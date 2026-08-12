@@ -42,3 +42,6 @@ next-env.d.ts
 
 # never let tooling artefacts into the served public dir
 public/**/.claude/
+
+# local session tooling, not project content
+.claude/logs/
