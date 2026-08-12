@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Pulito Digital design tokens.
+
+  Palette: deep forest near-black, bone, single terracotta accent.
+  Chosen over the usual charcoal + brass "premium" default so the page reads
+  like the joinery and stone showrooms our clients sell against, not like
+  every other agency site. One accent, used everywhere, nowhere else.
+
+  Shape system: sharp. Radius 0 on every surface, no exceptions.
+*/
+
+@theme {
+  --color-ink: #0b1310;
+  --color-ink-raised: #101a15;
+  --color-ink-line: #1e2a24;
+  --color-ink-line-strong: #2c3a33;
+
+  --color-bone: #eceae3;
+  --color-bone-muted: #a3b0a8;
+  /* 5.3:1 on ink, 5.0:1 on ink-raised. Anything darker fails AA at 13px. */
+  --color-bone-faint: #7c8b83;
+
+  --color-rust: #d65f3a;
+  --color-rust-bright: #e5764f;
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-none: 0px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-ink);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Focus is a real part of the design here, not a browser leftover. */
+  :focus-visible {
+    outline: 2px solid var(--color-rust);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: var(--color-rust);
+    color: var(--color-ink);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
