@@ -1,64 +1,196 @@
 @import "tailwindcss";
 
 /*
-  Pulito Digital design tokens.
+  Three variants share one set of semantic tokens. Each variant scope
+  re-points the same variables, so every component below can be written once
+  in semantic classes (bg-surface, text-fg, border-line) and still render as
+  three unrelated design worlds.
 
-  Palette: deep forest near-black, bone, single terracotta accent.
-  Chosen over the usual charcoal + brass "premium" default so the page reads
-  like the joinery and stone showrooms our clients sell against, not like
-  every other agency site. One accent, used everywhere, nowhere else.
-
-  Shape system: sharp. Radius 0 on every surface, no exceptions.
+  Defaults below are variant one.
 */
 
 @theme {
-  --color-ink: #0b1310;
-  --color-ink-raised: #101a15;
-  --color-ink-line: #1e2a24;
-  --color-ink-line-strong: #2c3a33;
+  --color-surface: #edebe6;
+  --color-surface-2: #e4e1da;
+  --color-surface-3: #d8d4cb;
+  --color-line: #c6c1b6;
+  --color-line-strong: #a8a294;
+  --color-fg: #141d19;
+  --color-fg-muted: #4a5852;
+  --color-accent: #0f4d3a;
+  --color-accent-fg: #f2f0eb;
 
-  --color-bone: #eceae3;
-  --color-bone-muted: #a3b0a8;
-  /* 5.3:1 on ink, 5.0:1 on ink-raised. Anything darker fails AA at 13px. */
-  --color-bone-faint: #7c8b83;
-
-  --color-rust: #d65f3a;
-  --color-rust-bright: #e5764f;
-
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-marcellus), Georgia, serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
 
-  --radius-none: 0px;
+/* ---- Variant one: stone and malachite. Daylight, symmetrical, restrained. */
+[data-v="one"] {
+  --color-surface: #edebe6;
+  --color-surface-2: #e4e1da;
+  --color-surface-3: #d8d4cb;
+  --color-line: #c6c1b6;
+  --color-line-strong: #a8a294;
+  --color-fg: #141d19;
+  --color-fg-muted: #46544e;
+  --color-accent: #0f4d3a;
+  --color-accent-fg: #f2f0eb;
+  --font-display: var(--font-marcellus), Georgia, serif;
+}
+
+/* ---- Variant two: palazzo. Night, gilt, editorial. */
+[data-v="two"] {
+  --color-surface: #0a0a0c;
+  --color-surface-2: #101013;
+  --color-surface-3: #17171b;
+  --color-line: #26262c;
+  --color-line-strong: #3a3a43;
+  --color-fg: #ede8de;
+  --color-fg-muted: #a8a091;
+  --color-accent: #c9a227;
+  --color-accent-fg: #0a0a0c;
+  --font-display: var(--font-bodoni), Georgia, serif;
+}
+
+/* ---- Variant three: porphyry. Excavated, oversized, loud. */
+[data-v="three"] {
+  --color-surface: #08070a;
+  --color-surface-2: #100e14;
+  --color-surface-3: #191520;
+  --color-line: #2c2534;
+  --color-line-strong: #463b52;
+  --color-fg: #f4f0ea;
+  --color-fg-muted: #b3a8bd;
+  /* 4.55:1 on the obsidian ground, so the 11px mono field labels clear AA,
+     not just the display type. Buttons fill with it and set near-black type,
+     which clears at the same ratio. */
+  --color-accent: #d1465f;
+  --color-accent-fg: #08070a;
+  --font-display: var(--font-cinzel), Georgia, serif;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: var(--color-ink);
+  }
+
+  /* Anchor targets clear the sticky header instead of relying on section
+     padding to absorb it. */
+  [id] {
+    scroll-margin-top: 6rem;
   }
 
   body {
-    background-color: var(--color-ink);
-    color: var(--color-bone);
+    background-color: var(--color-surface);
+    color: var(--color-fg);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Focus is a real part of the design here, not a browser leftover. */
+  /*
+    The variant scope lives on a wrapper inside body, so body itself would
+    keep variant one's limestone on every route. That shows through the
+    scrollbar gutter and the overscroll area on the dark variants. Matching
+    upward keeps the whole window in one world, and color-scheme carries it
+    into native chrome: scrollbars, select popups, form controls.
+  */
+  html:has([data-v="one"]) {
+    background-color: #edebe6;
+    color-scheme: light;
+  }
+
+  html:has([data-v="two"]) {
+    background-color: #0a0a0c;
+    color-scheme: dark;
+  }
+
+  html:has([data-v="three"]) {
+    background-color: #08070a;
+    color-scheme: dark;
+  }
+
+  html:has([data-v="compare"]) {
+    background-color: #0c0c0e;
+    color-scheme: dark;
+  }
+
+  /* The scrollbar is painted by the root element, so the variant's background
+     and color-scheme have to land on html, not body, or the gutter keeps the
+     default light treatment on the dark variants. */
+  html:has([data-v]) body {
+    background-color: transparent;
+  }
+
   :focus-visible {
-    outline: 2px solid var(--color-rust);
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
   }
 
   ::selection {
-    background-color: var(--color-rust);
-    color: var(--color-ink);
+    background-color: var(--color-accent);
+    color: var(--color-accent-fg);
   }
+}
+
+@utility rule-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Museum photography arrives on a neutral studio ground. Feathering the plate
+   dissolves that rectangle into the page instead of pasting a grey box onto
+   it. Used on the dark variants, where the seam is most obvious. */
+@utility feather-plate {
+  -webkit-mask-image: radial-gradient(
+    ellipse 76% 74% at 50% 46%,
+    #000 40%,
+    transparent 82%
+  );
+  mask-image: radial-gradient(
+    ellipse 76% 74% at 50% 46%,
+    #000 40%,
+    transparent 82%
+  );
+}
+
+/* Marble tooth. Sits on fixed, pointer-events-none layers only, never on a
+   scrolling container. */
+@utility grain {
+  position: relative;
+}
+
+@utility grain-layer {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+/* Marquee. The track holds two identical runs, so a translate of exactly
+   -50% loops seamlessly. Transform only, no scroll listener. */
+@keyframes marquee-run {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee-run 38s linear infinite;
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  /* The marquee is decorative; under reduced motion it simply holds still. */
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
   }
 
   *,

@@ -1,13 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-    ],
+  // All imagery is vendored under /public/img, so no remote patterns are needed.
+  turbopack: {
+    root: __dirname,
   },
 };
 

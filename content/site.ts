@@ -16,10 +16,21 @@ export const site = {
 
   hero: {
     headline: "Websites for Adelaide's premium renovation builders",
+    /** Same words, with the breaks variant three sets its capitals on. */
+    headlineLines: [
+      "Websites for",
+      "Adelaide's premium",
+      "renovation builders",
+    ],
     subhead:
       "We design, build and rank the sites that win high-end kitchen and whole-home jobs.",
-    imageAlt:
-      "A luxury kitchen with dark ribbed joinery, oak cabinetry and green velvet stools",
+  },
+
+  /** Section headings, so a wording change reaches all three variants. */
+  sections: {
+    services: "What we do for renovation businesses",
+    process: "How the work runs",
+    faq: "Questions we get asked",
   },
 
   problem: {
@@ -68,8 +79,6 @@ export const site = {
   offer: {
     headline: "See it on your own site first",
     body: "Send through your website and we will redesign the homepage as a working preview, built with your own photos and copy. No obligation, no pitch deck. If you like it, we talk. If you don't, you keep the preview.",
-    imageAlt:
-      "A dark contemporary kitchen with fluted cabinetry, timber shelving and a stone benchtop",
   },
 
   faqs: [

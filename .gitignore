@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# never let tooling artefacts into the served public dir
+public/**/.claude/

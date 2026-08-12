@@ -1,16 +1,41 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Geist } from "next/font/google";
+import {
+  Bodoni_Moda,
+  Cinzel,
+  Geist,
+  Geist_Mono,
+  Marcellus,
+} from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const marcellus = Marcellus({
+  variable: "--font-marcellus",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const bodoni = Bodoni_Moda({
+  variable: "--font-bodoni",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
   subsets: ["latin"],
   display: "swap",
 });
 
 const geist = Geist({
   variable: "--font-geist",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -31,8 +56,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Local business markup so Adelaide searches can place us. areaServed is the
-// part that matters for this niche.
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -44,10 +67,7 @@ const jsonLd = {
   areaServed: {
     "@type": "City",
     name: "Adelaide",
-    containedInPlace: {
-      "@type": "State",
-      name: "South Australia",
-    },
+    containedInPlace: { "@type": "State", name: "South Australia" },
   },
   address: {
     "@type": "PostalAddress",
@@ -61,9 +81,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-AU"
-      className={`${bricolage.variable} ${geist.variable} h-full`}
+      className={`${marcellus.variable} ${bodoni.variable} ${cinzel.variable} ${geist.variable} ${geistMono.variable} h-full`}
     >
-      <body className="min-h-full bg-ink text-bone">
+      <body className="min-h-full">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
