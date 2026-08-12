@@ -42,13 +42,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pulitodigital.com.au"),
-  title: "Pulito Digital | Websites for Adelaide renovation builders",
+  // The headline is deliberately broad; the title still has to carry Adelaide
+  // and the services, because that is what a search result is judged on.
+  title: "Pulito Digital | Digital marketing for premium craft, Adelaide",
   description:
-    "Adelaide web design, redesign, SEO and AI automation for premium kitchen designers, renovators and home builders. Get a free redesign preview of your current site.",
+    "Web design, SEO and AI automation for Adelaide's premium builders, renovators and makers. Get a free redesign preview of your current homepage.",
   openGraph: {
-    title: "Pulito Digital | Websites for Adelaide renovation builders",
+    title: "Pulito Digital | Digital marketing for premium craft",
     description:
-      "Web design, redesign, SEO and AI automation for Adelaide's premium renovation trades.",
+      "Web, search and automation for Adelaide's premium building and renovation trades.",
     url: "https://pulitodigital.com.au",
     siteName: "Pulito Digital",
     locale: "en_AU",

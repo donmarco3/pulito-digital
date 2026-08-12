@@ -50,7 +50,20 @@ A single landing page. One conversion event: a short enquiry form.
 
 - Name: Pulito Digital. Wordmark reads "Pulito".
 - Contact: hello@pulitodigital.com.au
-- Pinned aesthetic (user-supplied references): classical and heritage. Museum
-  and palazzo material, literal classical imagery, statuary, marble and
-  old-master painting, high-contrast display lettering.
-- All page copy lives in `content/site.ts` and is identical across variants.
+- Pinned aesthetic (user-supplied references): classical and heritage, in
+  black, bone and gold. Museum and palazzo material, worked marble, carved
+  detail and one classical figure, high-contrast Roman display lettering.
+- **Positioning is broad on purpose.** The headline says "digital marketing
+  for premium craft", not "websites" and not "renovation builders": the work
+  is web, search and automation, and the audience is premium craft generally.
+  Adelaide is carried by the running header, the FAQ, the page title and the
+  schema, never by the headline.
+- All page copy lives in `content/site.ts`.
+
+## History
+
+Three full design directions were built and compared (stone/malachite,
+palazzo/gilt, porphyry/red). The user chose the third and asked for gold in
+place of the porphyry red. The other two were deleted; they are recoverable
+from git history at tag-less commit `2fe6377` if a direction ever needs
+revisiting.

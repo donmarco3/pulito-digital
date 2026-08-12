@@ -1,82 +1,46 @@
 @import "tailwindcss";
 
 /*
-  Three variants share one set of semantic tokens. Each variant scope
-  re-points the same variables, so every component below can be written once
-  in semantic classes (bg-surface, text-fg, border-line) and still render as
-  three unrelated design worlds.
+  Pulito Digital.
 
-  Defaults below are variant one.
+  Black, bone and gold, taken from the reference set: night grounds, lit
+  marble, gilt lettering. One accent, used for every rule, numeral, marker
+  and action, and nowhere else.
+
+  Shape system: sharp. Radius 0 everywhere. Division is done with 2px
+  structural rules, not with cards or shadows.
 */
 
 @theme {
-  --color-surface: #edebe6;
-  --color-surface-2: #e4e1da;
-  --color-surface-3: #d8d4cb;
-  --color-line: #c6c1b6;
-  --color-line-strong: #a8a294;
-  --color-fg: #141d19;
-  --color-fg-muted: #4a5852;
-  --color-accent: #0f4d3a;
-  --color-accent-fg: #f2f0eb;
+  --color-surface: #0a0a0b;
+  --color-surface-2: #101012;
+  --color-surface-3: #17171a;
+  --color-line: #26262a;
+  /* 3.6:1 on the raised ground, so field borders clear WCAG 1.4.11. */
+  --color-line-strong: #6e6c64;
+  --color-rule: #33333a;
 
-  --font-display: var(--font-marcellus), Georgia, serif;
+  --color-fg: #f4f1ea;
+  --color-fg-muted: #a9a49a;
+
+  /* 8.3:1 against the ground in both directions: legible as 11px mono label
+     text, and takes near-black type when it fills a button. */
+  --color-accent: #c8a34a;
+  --color-accent-fg: #0a0a0b;
+
+  --font-display: var(--font-cinzel), Georgia, serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-}
-
-/* ---- Variant one: stone and malachite. Daylight, symmetrical, restrained. */
-[data-v="one"] {
-  --color-surface: #edebe6;
-  --color-surface-2: #e4e1da;
-  --color-surface-3: #d8d4cb;
-  --color-line: #c6c1b6;
-  --color-line-strong: #a8a294;
-  --color-fg: #141d19;
-  --color-fg-muted: #46544e;
-  --color-accent: #0f4d3a;
-  --color-accent-fg: #f2f0eb;
-  --font-display: var(--font-marcellus), Georgia, serif;
-}
-
-/* ---- Variant two: palazzo. Night, gilt, editorial. */
-[data-v="two"] {
-  --color-surface: #0a0a0c;
-  --color-surface-2: #101013;
-  --color-surface-3: #17171b;
-  --color-line: #26262c;
-  --color-line-strong: #3a3a43;
-  --color-fg: #ede8de;
-  --color-fg-muted: #a8a091;
-  --color-accent: #c9a227;
-  --color-accent-fg: #0a0a0c;
-  --font-display: var(--font-bodoni), Georgia, serif;
-}
-
-/* ---- Variant three: porphyry. Excavated, oversized, loud. */
-[data-v="three"] {
-  --color-surface: #08070a;
-  --color-surface-2: #100e14;
-  --color-surface-3: #191520;
-  --color-line: #2c2534;
-  --color-line-strong: #463b52;
-  --color-fg: #f4f0ea;
-  --color-fg-muted: #b3a8bd;
-  /* 4.55:1 on the obsidian ground, so the 11px mono field labels clear AA,
-     not just the display type. Buttons fill with it and set near-black type,
-     which clears at the same ratio. */
-  --color-accent: #d1465f;
-  --color-accent-fg: #08070a;
-  --font-display: var(--font-cinzel), Georgia, serif;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: var(--color-surface);
+    color-scheme: dark;
   }
 
-  /* Anchor targets clear the sticky header instead of relying on section
-     padding to absorb it. */
+  /* Anchor targets clear the sticky header. */
   [id] {
     scroll-margin-top: 6rem;
   }
@@ -88,49 +52,9 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /*
-    The variant scope lives on a wrapper inside body, so body itself would
-    keep variant one's limestone on every route. That shows through the
-    scrollbar gutter and the overscroll area on the dark variants. Matching
-    upward keeps the whole window in one world, and color-scheme carries it
-    into native chrome: scrollbars, select popups, form controls.
-  */
-  html:has([data-v="one"]) {
-    background-color: #edebe6;
-    color-scheme: light;
-  }
-
-  html:has([data-v="two"]) {
-    background-color: #0a0a0c;
-    color-scheme: dark;
-  }
-
-  html:has([data-v="three"]) {
-    background-color: #08070a;
-    color-scheme: dark;
-  }
-
-  html:has([data-v="compare"]) {
-    background-color: #0c0c0e;
-    color-scheme: dark;
-  }
-
-  /* The scrollbar is painted by the root element, so the variant's background
-     and color-scheme have to land on html, not body, or the gutter keeps the
-     default light treatment on the dark variants. */
-  html:has([data-v]) body {
-    background-color: transparent;
-  }
-
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
-  }
-
-  /* Variant one's enquiry section is a full malachite field, so an accent
-     focus ring would be painted in the colour of the ground behind it. */
-  [data-v="one"] #enquiry :focus-visible {
-    outline-color: var(--color-accent-fg);
   }
 
   ::selection {
@@ -139,16 +63,8 @@
   }
 }
 
-@utility rule-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
-/* Museum photography arrives on a neutral studio ground. Feathering the plate
-   dissolves that rectangle into the page instead of pasting a grey box onto
-   it. Used on the dark variants, where the seam is most obvious. */
+/* Museum photography arrives on a neutral studio ground. Feathering dissolves
+   that rectangle into the page instead of pasting a grey box onto it. */
 @utility feather-plate {
   -webkit-mask-image: radial-gradient(
     ellipse 76% 74% at 50% 46%,
@@ -162,12 +78,8 @@
   );
 }
 
-/* Marble tooth. Sits on fixed, pointer-events-none layers only, never on a
-   scrolling container. */
-@utility grain {
-  position: relative;
-}
-
+/* Marble tooth. Fixed, pointer-events-none layers only, never on a scrolling
+   container. */
 @utility grain-layer {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
 }
@@ -193,7 +105,6 @@
     scroll-behavior: auto;
   }
 
-  /* The marquee is decorative; under reduced motion it simply holds still. */
   .marquee-track {
     animation: none !important;
     transform: none !important;

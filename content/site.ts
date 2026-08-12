@@ -15,15 +15,17 @@ export const site = {
   cta: "Get a free preview",
 
   hero: {
-    headline: "Websites for Adelaide's premium renovation builders",
-    /** Same words, with the breaks variant three sets its capitals on. */
-    headlineLines: [
-      "Websites for",
-      "Adelaide's premium",
-      "renovation builders",
-    ],
+    /*
+      Deliberately broad. Not "websites", because the work is also search and
+      automation. Not "renovation builders", because the audience is premium
+      craft generally. Geography lives in the running header, the FAQ and the
+      schema rather than in the headline.
+    */
+    headline: "Digital marketing for premium craft",
+    /** The same words, with the breaks the capitals are set on. */
+    headlineLines: ["Digital marketing", "for premium", "craft"],
     subhead:
-      "We design, build and rank the sites that win high-end kitchen and whole-home jobs.",
+      "Web, search and automation for the builders, renovators and makers whose work already sets the standard.",
   },
 
   /** Running header used by variant three's mono metadata strip. */
@@ -31,20 +33,20 @@ export const site = {
 
   /** Section headings, so a wording change reaches all three variants. */
   sections: {
-    services: "What we do for renovation businesses",
+    services: "What we do for premium trades",
     process: "How the work runs",
     faq: "Questions we get asked",
   },
 
   problem: {
-    headline: "Your last kitchen was worth more than your whole website.",
-    body: "Premium renovation work sells on how it looks. Then the enquiry lands on a site built years ago on a template, slow on a phone, with a gallery that undersells the job and a contact form nobody checks. The client has already compared you to three other builders before you pick up. The work is the easy part. The first impression is the leak.",
+    headline: "Your last build was worth more than your whole website.",
+    body: "Premium work sells on how it looks. Then the enquiry lands on a site built years ago on a template, slow on a phone, with a gallery that undersells the job and a contact form nobody checks. The client has already compared you to three others before you pick up. The work is the easy part. The first impression is the leak.",
   },
 
   services: [
     {
       title: "Web design",
-      body: "A site built around the way renovation clients actually buy: the work first, the process second, an enquiry within reach on every screen.",
+      body: "A site built around the way high-end clients actually buy: the work first, the process second, an enquiry within reach on every screen.",
     },
     {
       title: "Web redesign",
