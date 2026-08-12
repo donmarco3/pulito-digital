@@ -51,8 +51,11 @@ A single landing page. One conversion event: a short enquiry form.
 - Name: Pulito Digital. Wordmark reads "Pulito".
 - Contact: hello@pulitodigital.com.au
 - Pinned aesthetic (user-supplied references): classical and heritage, in
-  black, bone and gold. Museum and palazzo material, worked marble, carved
-  detail and one classical figure, high-contrast Roman display lettering.
+  near-black, bone and burgundy. Museum and palazzo material, worked marble,
+  carved detail, high-contrast Roman display lettering. Two later references
+  (SPECTRA, an "ANTIQUE" concept page) pinned the hero composition: the
+  display type runs *behind* the central object, and the first viewport has
+  to feel alive rather than static.
 - **Positioning is broad on purpose.** The headline says "digital marketing
   for premium craft", not "websites" and not "renovation builders": the work
   is web, search and automation, and the audience is premium craft generally.
@@ -67,3 +70,11 @@ palazzo/gilt, porphyry/red). The user chose the third and asked for gold in
 place of the porphyry red. The other two were deleted; they are recoverable
 from git history at tag-less commit `2fe6377` if a direction ever needs
 revisiting.
+
+The red then came back, deeper: burgundy marble as the hero's material and
+the page's accent, with gold reduced to hairlines, and a Roman column as the
+object the headline runs behind. Three cursor behaviours for the slab were
+built rather than argued about — sheen, parallax, and both-plus-drift — and
+are live at `/motion/compare`. **Open decision:** which one ships. `/`
+currently renders `parallax`; changing it is one word in `app/page.tsx`, and
+the losing two plus the whole `/motion` tree come out in one commit.

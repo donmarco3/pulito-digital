@@ -16,8 +16,11 @@ export const formSkin: FormSkin = {
   option: "bg-surface text-fg",
   placeholder: "text-fg-muted",
   error: "font-mono text-[12px] tracking-[0.06em] text-[#ff9d8a]",
+  /* The burgundy fill is 1.5:1 against the page, so it cannot be its own
+     boundary. The gilt hairline is what makes the control's edge visible at
+     8.3:1, and it is the same hairline that rules the rest of the page. */
   button:
-    "mt-1 w-full border-2 border-accent bg-accent px-10 py-5 font-display text-[15px] tracking-[0.24em] whitespace-nowrap text-accent-fg uppercase transition-colors hover:bg-transparent hover:text-accent active:translate-y-px disabled:opacity-70",
+    "mt-1 w-full border border-gild bg-accent-deep px-10 py-5 font-display text-[15px] tracking-[0.24em] whitespace-nowrap text-fg uppercase transition-colors hover:bg-fg hover:text-accent-deep active:translate-y-px disabled:opacity-70",
   success: {
     wrap: "border-2 border-accent bg-surface-2 px-8 py-12",
     title: "font-display text-2xl tracking-[0.06em] uppercase text-fg",

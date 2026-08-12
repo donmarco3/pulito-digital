@@ -3,9 +3,10 @@
 /*
   Pulito Digital.
 
-  Black, bone and gold, taken from the reference set: night grounds, lit
-  marble, gilt lettering. One accent, used for every rule, numeral, marker
-  and action, and nowhere else.
+  Near-black ground, bone, burgundy. The burgundy comes from the reference
+  set's red marble: it is the hero's material and the page's one accent
+  below it. Gold survives only as hairlines — gilding on stone, never a UI
+  colour and never type.
 
   Shape system: sharp. Radius 0 everywhere. Division is done with 2px
   structural rules, not with cards or shadows.
@@ -23,10 +24,17 @@
   --color-fg: #f4f1ea;
   --color-fg-muted: #a9a49a;
 
-  /* 8.3:1 against the ground in both directions: legible as 11px mono label
-     text, and takes near-black type when it fills a button. */
-  --color-accent: #c8a34a;
-  --color-accent-fg: #0a0a0b;
+  /* Working accent: wine lifted far enough to be read as type. 4.9:1 on the
+     ground, 4.7:1 on the raised ground. Rules, numerals, markers, links. */
+  --color-accent: #bd6470;
+
+  /* The marble itself. Grounds and fills only — at 1.5:1 it can never carry
+     type, so anything sitting on it is bone (11.5:1). */
+  --color-accent-deep: #5e1622;
+  --color-accent-shade: #1a0509;
+
+  /* Gilding. 1px rules and nothing else. */
+  --color-gild: #c8a34a;
 
   --font-display: var(--font-cinzel), Georgia, serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
@@ -52,14 +60,16 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Bone, not the accent: the ring has to survive on the near-black page and
+     on the burgundy slab, and the accent disappears against the slab. */
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-fg);
     outline-offset: 3px;
   }
 
   ::selection {
-    background-color: var(--color-accent);
-    color: var(--color-accent-fg);
+    background-color: var(--color-accent-deep);
+    color: var(--color-fg);
   }
 }
 
@@ -100,12 +110,34 @@
   will-change: transform;
 }
 
+/* The slab breathing. Used only by the third hero motion. The veins are a
+   rasterised SVG layer, so this is a pure GPU transform: the filter is never
+   re-evaluated, which is the whole reason the marble is generated once and
+   then only moved. */
+@keyframes vein-drift {
+  0% {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.11) translate3d(-1.2%, 0.8%, 0);
+  }
+  100% {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+}
+
+.vein-drift {
+  animation: vein-drift 46s ease-in-out infinite;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .marquee-track {
+  .marquee-track,
+  .vein-drift {
     animation: none !important;
     transform: none !important;
   }
