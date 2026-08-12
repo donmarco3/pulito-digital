@@ -57,8 +57,10 @@ export default function VariantOne() {
         {/* On phones the plate leads and the inscription is cut into it, so
             variant one keeps a structural identity at 375 rather than
             collapsing into the same stacked hero as the other two. */}
-        <section className="flex flex-col px-5 pt-20 pb-0 md:px-8 md:pt-24">
-          <div className="mx-auto w-full max-w-[1240px]">
+        <section className="px-5 pt-20 pb-0 md:px-8 md:pt-24">
+          {/* The flex context has to live on the element that actually holds
+              the ordered children, or the order-* classes are inert. */}
+          <div className="mx-auto flex w-full max-w-[1240px] flex-col md:block">
             <Reveal className="order-2 text-center md:order-none">
               <h1 className="mx-auto max-w-[19ch] font-display text-[2.5rem] leading-[1.06] text-balance text-fg md:text-[4rem] lg:text-[5rem]">
                 {site.hero.headline}

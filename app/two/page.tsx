@@ -134,8 +134,15 @@ export default function VariantTwo() {
               {site.services.map((service, i) => (
                 <Reveal key={service.title} delay={i * 0.05}>
                   <article className="group grid grid-cols-1 gap-x-10 gap-y-4 border-t border-line py-10 transition-colors hover:border-accent md:grid-cols-12 md:py-12 last:border-b">
-                    <p className="font-mono text-[11px] tracking-[0.2em] text-accent md:col-span-1">
-                      {String(i + 1).padStart(2, "0")}
+                    {/* A lot number, set to read as one. Bare 01-04 in mono
+                        is indistinguishable from a generic step number. */}
+                    <p className="flex items-baseline gap-2 md:col-span-1 md:block">
+                      <span className="font-mono text-[10px] tracking-[0.22em] text-fg-muted uppercase">
+                        Lot
+                      </span>
+                      <span className="font-display text-[1.4rem] text-accent md:mt-1 md:block">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
                     </p>
                     <h3 className="font-display text-[1.8rem] leading-tight text-fg md:col-span-4 md:text-[2.2rem]">
                       {service.title}

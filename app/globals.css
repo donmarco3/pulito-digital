@@ -127,6 +127,12 @@
     outline-offset: 3px;
   }
 
+  /* Variant one's enquiry section is a full malachite field, so an accent
+     focus ring would be painted in the colour of the ground behind it. */
+  [data-v="one"] #enquiry :focus-visible {
+    outline-color: var(--color-accent-fg);
+  }
+
   ::selection {
     background-color: var(--color-accent);
     color: var(--color-accent-fg);

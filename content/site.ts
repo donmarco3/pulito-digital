@@ -26,6 +26,9 @@ export const site = {
       "We design, build and rank the sites that win high-end kitchen and whole-home jobs.",
   },
 
+  /** Running header used by variant three's mono metadata strip. */
+  disciplines: "Web, search and automation",
+
   /** Section headings, so a wording change reaches all three variants. */
   sections: {
     services: "What we do for renovation businesses",

@@ -41,7 +41,7 @@ export default function VariantThree() {
           </a>
 
           <p className="hidden font-mono text-[10px] tracking-[0.26em] text-fg-muted uppercase lg:block">
-            {site.location} &nbsp;/&nbsp; Web, search and automation
+            {site.location} &nbsp;/&nbsp; {site.disciplines}
           </p>
 
           <a
@@ -55,7 +55,10 @@ export default function VariantThree() {
 
       <main id="top">
         {/* ------------------------------------------------------------- hero */}
-        <section className="relative isolate flex min-h-[calc(100dvh-70px)] flex-col justify-center overflow-hidden px-5 py-20 md:px-8">
+        {/* Capped as well as viewport-relative: an uncapped 100dvh hero
+            expands to fill whatever height an embedding frame gives it, which
+            turned this page into one enormous hero inside the compare view. */}
+        <section className="relative isolate flex min-h-[min(calc(100dvh-70px),880px)] flex-col justify-center overflow-hidden px-5 py-20 md:px-8">
           {/* Fragment behind the inscription. */}
           <div
             aria-hidden
@@ -80,11 +83,17 @@ export default function VariantThree() {
               {/* The capitals are sized to overrun the right edge at every
                   width. The clip lives on the section, so the last line runs
                   off the canvas the way carved lettering runs off a lintel. */}
-              <h1 className="-mr-[12vw] font-display text-[clamp(2.4rem,7.4vw,6.2rem)] leading-[0.98] tracking-[-0.015em] whitespace-nowrap text-fg uppercase">
+              {/* The middle line is the one that runs off the canvas. The
+                  last line stays inside the gutter: "builders" is the word
+                  that tells the reader the page is for him, and bleeding it
+                  was costing it on a phone. */}
+              <h1 className="font-display text-[clamp(1.75rem,7.4vw,6.2rem)] leading-[0.98] tracking-[-0.015em] text-fg uppercase">
                 {site.hero.headlineLines.map((line, i) => (
                   <span
                     key={line}
-                    className={`block ${i === 2 ? "text-accent" : ""}`}
+                    className={`block ${i === 1 ? "-mr-[14vw] whitespace-nowrap" : ""} ${
+                      i === 2 ? "text-accent" : ""
+                    }`}
                   >
                     {line}
                   </span>
@@ -175,17 +184,21 @@ export default function VariantThree() {
             <div className="mt-16 border-t-2 border-line-strong">
               {site.services.map((service, i) => (
                 <Reveal key={service.title} delay={i * 0.04} move="rise">
-                  <article className="group grid grid-cols-1 items-baseline gap-x-10 gap-y-4 border-b-2 border-line py-10 md:grid-cols-12 md:py-14">
+                  {/* Stepped, not columnar: the title runs the full width and
+                      the description is inset beneath it. Variant two already
+                      owns the title-left / body-right catalogue row, and the
+                      two dark variants must not share one composition. */}
+                  <article className="group border-b-2 border-line py-10 md:py-14">
                     <h3
-                      className={`font-display leading-[0.95] text-fg uppercase transition-colors group-hover:text-accent md:col-span-6 ${
+                      className={`font-display leading-[0.92] text-fg uppercase transition-colors group-hover:text-accent ${
                         i === 0
-                          ? "text-[1.9rem] md:text-[3.2rem]"
-                          : "text-[1.6rem] md:text-[2.5rem]"
+                          ? "text-[2.1rem] md:text-[4rem]"
+                          : "text-[1.7rem] md:text-[3rem]"
                       }`}
                     >
                       {service.title}
                     </h3>
-                    <p className="max-w-[52ch] font-sans leading-[1.8] text-fg-muted md:col-span-6">
+                    <p className="mt-6 max-w-[54ch] font-sans leading-[1.8] text-fg-muted md:mt-8 md:ml-[38%]">
                       {service.body}
                     </p>
                   </article>

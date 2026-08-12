@@ -67,13 +67,24 @@ function ScaledFrame({ slug, height }: { slug: string; height: number }) {
     const host = hostRef.current;
     if (!host) return;
 
-    const observer = new ResizeObserver(([entry]) => {
-      const width = entry.contentRect.width;
-      const next = width < 560 ? PHONE_FRAME : DESKTOP_FRAME;
+    // Which layout to render is a property of the viewer's device, not of how
+    // narrow a comparison column happens to be. Keying this off column width
+    // made three side-by-side columns on a desktop render phone layouts.
+    const phone = window.matchMedia("(max-width: 767px)");
+
+    const fit = () => {
+      const width = host.getBoundingClientRect().width;
+      const next = phone.matches ? PHONE_FRAME : DESKTOP_FRAME;
       setFit({ scale: Math.min(width / next, 1), frame: next });
-    });
+    };
+
+    const observer = new ResizeObserver(fit);
     observer.observe(host);
-    return () => observer.disconnect();
+    phone.addEventListener("change", fit);
+    return () => {
+      observer.disconnect();
+      phone.removeEventListener("change", fit);
+    };
   }, []);
 
   const frameHeight = frame === PHONE_FRAME ? Math.round(height * 0.85) : height;
