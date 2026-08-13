@@ -1,42 +1,113 @@
 @import "tailwindcss";
 
 /*
-  Pulito Digital.
+  Pulito Digital — five photographic directions.
 
-  Near-black ground, bone, burgundy. The burgundy comes from the reference
-  set's red marble: it is the hero's material and the page's one accent
-  below it. Gold survives only as hairlines — gilding on stone, never a UI
-  colour and never type.
+  Everything on every direction is a PHOTOGRAPH of a real object. No vector
+  art, no illustration, no generated imagery, no icon set: the user's brief
+  rules all of it out, and a studio selling craft to people who build things
+  cannot argue for real material with a drawing of it.
 
-  Shape system: sharp. Radius 0 everywhere. Division is done with 2px
-  structural rules, not with cards or shadows.
+  That constraint decides the whole system. When the only picture you are
+  allowed is a photograph, the design work moves into ground, crop, type,
+  measure and rule — which is why the five directions are told apart by what
+  they do to a photograph rather than by what they draw next to one.
+
+  - 1 ULTRAMARINE — the institution. Drenched blue, one figure standing in it.
+  - 2 NERO        — the house catalogue. Near-black and gilt, the object lit.
+  - 3 BIANCO      — the auction catalogue. Cold paper, lot numbers, vermilion.
+  - 4 CAVA        — the quarry. The stone before it is anything, hi-vis orange.
+  - 5 GESSO       — the cast court. Plaster grey at scale, one acid signal.
+
+  Shape system: radius 0, everywhere, on all five. The only curves on any page
+  are the ones inside the photographs — a carved shoulder, a quarried arc, an
+  arch cast in plaster. A rounded button would put a second kind of curve on
+  the page and immediately make the first kind decorative.
 */
 
 @theme {
-  --color-surface: #0a0a0b;
-  --color-surface-2: #101012;
-  --color-surface-3: #17171a;
-  --color-line: #26262a;
-  /* 3.6:1 on the raised ground, so field borders clear WCAG 1.4.11. */
-  --color-line-strong: #6e6c64;
-  --color-rule: #33333a;
+  /* ------------------------------------------------------- 1 — ULTRAMARINE */
+  /* Tokens are named for the direction, not the hue. While five worlds share
+     one stylesheet, the useful thing to know at a glance is which page a
+     class belongs to. Contrast ratios are measured, not judged, and recorded
+     beside the value against the ground the token is actually used on. */
+  --color-ultra: #12306e; /* ground */
+  --color-ultra-2: #0d2454; /* recessed bands */
+  --color-ultra-rule: #2f4c8c; /* decorative hairline */
+  --color-ultra-rule-strong: #8ba0c8; /* 4.6:1 — field borders, WCAG 1.4.11 */
+  --color-ultra-bone: #f3f1ec; /* 11.4:1 on ground */
+  --color-ultra-bone-soft: #bcc7de; /* 6.4:1 */
+  --color-ultra-signal: #e8e3d6; /* the action fill: warm bone, 10.8:1 */
 
-  --color-fg: #f4f1ea;
-  --color-fg-muted: #a9a49a;
+  /* -------------------------------------------------------------- 2 — NERO */
+  --color-nero: #0b0b0c;
+  --color-nero-2: #141416; /* recessed bands */
+  --color-nero-rule: #2b2a27; /* decorative hairline */
+  --color-nero-rule-strong: #7d7669; /* 4.5:1 — field underlines */
+  --color-nero-bone: #efece4; /* 16.4:1 */
+  --color-nero-bone-soft: #a9a396; /* 7.6:1 */
+  --color-gilt: #c9a227; /* 8.4:1 on near-black */
+  --color-gilt-bright: #e2be47; /* hover, and NERO's error text */
 
-  /* Working accent: wine lifted far enough to be read as type. 4.9:1 on the
-     ground, 4.7:1 on the raised ground. Rules, numerals, markers, links. */
-  --color-accent: #bd6470;
+  /* ------------------------------------------------------------ 3 — BIANCO */
+  /* Cold paper, not cream. A warm cream ground under a serif is the single
+     most predictable thing this page could have been, and the coldness is
+     what stops the catalogue reading as a wedding invitation. */
+  --color-bianco: #f6f6f4;
+  --color-bianco-2: #ececeA; /* recessed: the enquiry panel */
+  --color-bianco-rule: #d2d2ce; /* decorative hairline, plate borders */
+  --color-bianco-rule-strong: #6b6b66; /* 4.9:1 — field borders */
+  --color-bianco-ink: #17171a; /* 15.4:1 */
+  --color-bianco-ink-soft: #56565a; /* 6.9:1 */
+  --color-vermilion: #b4321c; /* 5.4:1 on paper. Lot marks and the action */
+  --color-vermilion-deep: #8e2614;
 
-  /* The marble itself. Grounds and fills only — at 1.5:1 it can never carry
-     type, so anything sitting on it is bone (11.5:1). */
-  --color-accent-deep: #5e1622;
-  --color-accent-shade: #1a0509;
+  /* -------------------------------------------------------------- 4 — CAVA */
+  --color-cava: #ddd8d0; /* quarry dust in daylight */
+  --color-cava-2: #cbc4b9; /* recessed bands */
+  --color-cava-rule: #a89f92; /* decorative hairline */
+  --color-cava-rule-strong: #6a6157; /* 4.8:1 — field borders */
+  --color-cava-ink: #1b1916; /* 13.7:1 */
+  --color-cava-ink-soft: #554e45; /* 6.4:1 */
+  --color-hivis: #b8410e; /* 5.1:1 on dust. Survey marks and the action */
+  --color-hivis-deep: #93330a;
 
-  /* Gilding. 1px rules and nothing else. */
-  --color-gild: #c8a34a;
+  /* ------------------------------------------------------------- 5 — GESSO */
+  --color-gesso: #2a2a28; /* the cast hall in shadow */
+  --color-gesso-2: #1e1e1c; /* recessed bands */
+  --color-gesso-rule: #46453f; /* decorative hairline */
+  --color-gesso-rule-strong: #8c8a80; /* 4.6:1 — field underlines */
+  --color-gesso-bone: #edece6; /* 12.1:1 */
+  --color-gesso-bone-soft: #a8a69c; /* 6.3:1 */
+  --color-acid: #d6e34a; /* 10.4:1 on the hall. The action, and nothing else */
+  --color-acid-deep: #bccb2e;
 
-  --font-display: var(--font-cinzel), Georgia, serif;
+  /* Shared: what sits on a dark accent fill. */
+  --color-bone: #f4f1ea;
+  /* Shared: what sits on a light accent fill (bone, acid, signal). */
+  --color-obsidian: #121214;
+
+  /* ------------------------------------------------------------------ type */
+  /*
+    Five directions, five display faces, two shared workhorses. The faces load
+    at the root rather than per route, because the compare board puts all five
+    on one screen at once and a route-scoped face arrives late into its panel
+    there. That is a review-stage cost, paid deliberately, and four fifths of
+    it comes out of `app/layout.tsx` on the day a direction is chosen.
+
+    The trap, if these are ever split back onto their own routes, is worth
+    knowing because it fails silently: a custom property is substituted at
+    computed-value time ON THE ELEMENT IT IS DECLARED ON. Move a face variable
+    off `<html>` and this `:root` declaration references something that does
+    not exist there, so the token computes to the guaranteed-invalid value and
+    inherits as empty into every descendant — wordmark included — with no
+    error anywhere.
+  */
+  --font-caslon: var(--font-caslon-src), Georgia, serif;
+  --font-bodoni: var(--font-bodoni-src), Georgia, serif;
+  --font-garamond: var(--font-garamond-src), Georgia, serif;
+  --font-archivo: var(--font-archivo-src), ui-sans-serif, system-ui, sans-serif;
+  --font-bricolage: var(--font-bricolage-src), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
@@ -44,91 +115,348 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: var(--color-surface);
-    color-scheme: dark;
+    color-scheme: light;
+
+    /*
+      The height of the review switcher bar. Every direction reserves it as
+      bottom padding and every anchor clears it, because the bar is fixed over
+      pages it is not part of. It leaves with the scaffolding.
+    */
+    --switch-bar: 2.75rem;
   }
 
-  /* Anchor targets clear the sticky header. */
+  /* Anchor targets clear the sticky header at the top and the review bar at
+     the foot, so a jumped-to section is never half under either. */
   [id] {
     scroll-margin-top: 6rem;
+    scroll-margin-bottom: calc(var(--switch-bar) + 1rem);
   }
 
   body {
-    background-color: var(--color-surface);
-    color: var(--color-fg);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Bone, not the accent: the ring has to survive on the near-black page and
-     on the burgundy slab, and the accent disappears against the slab. */
+  /*
+    `currentColor`, not a fixed colour: the same ring has to survive on
+    ultramarine, near-black, cold paper, quarry dust and plaster shadow, and
+    on top of a bone, gilt, vermilion, hi-vis or acid fill. Any single hue
+    fails on at least one of those.
+  */
   :focus-visible {
-    outline: 2px solid var(--color-fg);
+    outline: 2px solid currentColor;
     outline-offset: 3px;
   }
 
-  ::selection {
-    background-color: var(--color-accent-deep);
-    color: var(--color-fg);
+  /*
+    Photographs carry the whole design, so none of them may reflow the page
+    while it loads. Every `<Image>` in this build is given real intrinsic
+    dimensions and a wrapper that owns the box.
+  */
+  img {
+    display: block;
+    max-width: 100%;
   }
 }
 
-/* Museum photography arrives on a neutral studio ground. Feathering dissolves
-   that rectangle into the page instead of pasting a grey box onto it. */
-@utility feather-plate {
-  -webkit-mask-image: radial-gradient(
-    ellipse 76% 74% at 50% 46%,
-    #000 40%,
-    transparent 82%
-  );
+/*
+  Skip link. Every direction has a sticky header and a long FAQ, so a keyboard
+  user otherwise tabs the header on every navigation. Off-screen until focused,
+  and never `display: none`, which would drop it out of the tab order.
+*/
+@utility skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 80;
+  transform: translateY(-160%);
+  transition: transform 0.18s ease-out;
+
+  &:focus-visible {
+    transform: translateY(0);
+  }
+}
+
+/*
+  ---------------------------------------------------------------------------
+  PHOTOGRAPH TREATMENTS
+
+  The five directions are told apart largely by what they do to a photograph.
+  Every treatment below is CSS over an untouched file, never a baked-in edit,
+  so swapping the picture never means re-exporting anything.
+  ---------------------------------------------------------------------------
+*/
+
+/*
+  Museum object photography arrives on a smooth grey or black seamless sweep.
+  On a dark ground, `screen` throws the sweep away and keeps the lit stone:
+  the object stops sitting on a rectangle and starts standing in the page.
+  This is the single trick the whole build leans on, and it only works because
+  the sweep is darker than the subject — which is why the plates were chosen
+  for their backgrounds as much as for their subjects.
+*/
+@utility plate-screen {
+  mix-blend-mode: screen;
+}
+
+/*
+  The same problem on a light ground has the opposite answer: `multiply` drops
+  the paper-white sweep and keeps the shadowed stone.
+*/
+@utility plate-multiply {
+  mix-blend-mode: multiply;
+}
+
+/*
+  `screen` only fully erases a sweep that is pure black, and museum sweeps are
+  not: they lift a little towards the top of the frame, which leaves a faint
+  rectangle floating over the ground. The mask dissolves the frame edge so the
+  residue has nowhere to draw a straight line, and it is authored as a mask
+  rather than as a gradient overlay because an overlay would sit ON the
+  photograph and grey the stone it is supposed to be rescuing.
+*/
+@utility plate-vignette {
   mask-image: radial-gradient(
-    ellipse 76% 74% at 50% 46%,
-    #000 40%,
-    transparent 82%
+    ellipse 58% 55% at 50% 42%,
+    #000 18%,
+    transparent 88%
   );
 }
 
-/* Marble tooth. Fixed, pointer-events-none layers only, never on a scrolling
-   container. */
-@utility grain-layer {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+/*
+  GESSO's crop discipline: photographs are cut to a hard duotone of the hall
+  and its acid signal, so a warm plaster snapshot joins the world instead of
+  visiting it.
+*/
+/*
+  GESSO's photographs are driven to grey AND well down in value, and the
+  darkening is not a mood — it is what makes the direction legible. This is the
+  one world that sets type ON its photograph at full bleed, so the picture is
+  also the type's background, and warm plaster at full value put bone lettering
+  at about 1.3:1 over the lit areas. A cast hall in shadow is both the honest
+  reading of the source and the only version where the words can be read.
+*/
+@utility plate-gesso {
+  filter: grayscale(1) contrast(1.06) brightness(0.5);
 }
 
-/* Marquee. The track holds two identical runs, so a translate of exactly
-   -50% loops seamlessly. Transform only, no scroll listener. */
-@keyframes marquee-run {
+/* CAVA keeps its photographs honest — daylight, dust, no grade — and only
+   lifts them slightly off the ground they sit on. */
+@utility plate-cava {
+  filter: saturate(0.86) contrast(1.06);
+}
+
+/*
+  ULTRAMARINE's framed plates take the page's own hue and keep only the
+  photograph's lightness. `screen` is not available to them — those objects sit
+  on a mid-grey sweep rather than a black one, and screening mid-grey over deep
+  blue leaves a pale rectangle hanging in the page — so they are presented as
+  plates, framed and captioned, which is what a collection does with a full
+  figure anyway. Left untreated the frame read as a hole punched in the blue;
+  `luminosity` over an ultramarine fill turns the sweep into the ground's own
+  colour and the marble into light, so the plate belongs to the world instead
+  of visiting it. The wrapper MUST carry the fill: `luminosity` blends against
+  what is behind it, and over nothing it does nothing.
+*/
+@utility plate-duotone {
+  mix-blend-mode: luminosity;
+}
+
+/*
+  Stone tooth. A light ground needs its noise MULTIPLIED in rather than
+  screened on: screening a white noise field over a light sheet only washes it
+  out. Fixed and pointer-events-none, never on a scrolling container.
+*/
+@utility tooth-layer {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/*
+  ---------------------------------------------------------------------------
+  MOTION
+
+  All CSS. No React state for a continuously changing value, no scroll
+  listeners, no pointer listeners. Each direction gets one authored moment on
+  load, plus `Reveal` for sections.
+  ---------------------------------------------------------------------------
+*/
+
+/*
+  Section entrance: content rises into place as it is scrolled to, once.
+
+  Scroll-driven, so it costs no JavaScript and no observer. The fallback is
+  the point. This started life as a Framer Motion component with
+  `initial={{ opacity: 0.25 }}`, which put `opacity:0.25` into the
+  server-rendered HTML of every section below the hero, where nothing removed
+  it until the bundle arrived. Body copy at 25% measures 1.41:1. The comment
+  justified the 0.25 as insurance "so nothing is invisible if the observer
+  never fires", which was the bug wearing the mitigation's clothes — on this
+  reader, a phone on site on whatever signal is going, a stalled bundle left
+  the page unreadable below the first screen.
+
+  The CSS version cannot fail that way: a browser without `animation-timeline`
+  drops that one declaration and is left with a zero-duration animation under
+  `both` fill, which resolves immediately to the finished state. No support,
+  and no JavaScript at all, both render the content.
+*/
+@keyframes reveal-rise {
   from {
-    transform: translate3d(0, 0, 0);
+    opacity: 0.3;
+    transform: translate3d(0, 26px, 0);
   }
   to {
-    transform: translate3d(-50%, 0, 0);
+    opacity: 1;
+    transform: none;
   }
 }
 
-.marquee-track {
-  animation: marquee-run 38s linear infinite;
-  will-change: transform;
+.reveal {
+  animation: reveal-rise linear both;
+  animation-timeline: view();
+  animation-range: entry 6% cover 24%;
 }
 
-/* The slab breathing. Used only by the third hero motion. The veins are a
-   rasterised SVG layer, so this is a pure GPU transform: the filter is never
-   re-evaluated, which is the whole reason the marble is generated once and
-   then only moved. */
-@keyframes vein-drift {
-  0% {
-    transform: scale(1.06) translate3d(0, 0, 0);
+/*
+  One entrance per DIRECTION, not one entrance for the whole site.
+
+  Every section of all five directions rose identically, which flattened each
+  page and — worse, on a build whose entire purpose is a comparison — erased
+  motion as an axis the five could differ on. Each direction now declares its
+  own gesture on its root, and every `.reveal` inside inherits it. The rise
+  stays as the default for anything unscoped.
+
+  Each gesture is the one the direction's own composition already implies:
+  ULTRAMARINE settles down under its own weight, NERO develops up out of the
+  dark like its plates, BIANCO turns a page in from the side, CAVA sets out
+  left to right along a rule, GESSO comes up soft and sharpens, the way a cast
+  leaves its mould.
+*/
+@keyframes reveal-settle {
+  from {
+    opacity: 0.3;
+    transform: translate3d(0, -18px, 0);
   }
-  50% {
-    transform: scale(1.11) translate3d(-1.2%, 0.8%, 0);
-  }
-  100% {
-    transform: scale(1.06) translate3d(0, 0, 0);
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
-.vein-drift {
-  animation: vein-drift 46s ease-in-out infinite;
-  will-change: transform;
+@keyframes reveal-develop {
+  from {
+    opacity: 0;
+    filter: brightness(0.4);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+@keyframes reveal-turn {
+  from {
+    opacity: 0.3;
+    transform: translate3d(22px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* GESSO: the cast lifted out of the mould — it arrives soft and sharpens. */
+@keyframes reveal-cast {
+  from {
+    opacity: 0.3;
+    filter: blur(7px);
+    transform: scale(1.015);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes reveal-setout {
+  from {
+    opacity: 0.3;
+    transform: translate3d(-26px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.motion-settle .reveal {
+  animation-name: reveal-settle;
+}
+.motion-develop .reveal {
+  animation-name: reveal-develop;
+}
+.motion-turn .reveal {
+  animation-name: reveal-turn;
+}
+.motion-setout .reveal {
+  animation-name: reveal-setout;
+}
+.motion-cast .reveal {
+  animation-name: reveal-cast;
+}
+
+/*
+  The hero moment, in the vocabulary photography actually has: the plate is
+  DEVELOPED. It rises a little, and comes up out of nothing to full value,
+  the way a print does in a tray. Nothing is drawn, because nothing on these
+  pages is drawing.
+*/
+@keyframes plate-develop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3%, 0) scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.plate-develop {
+  animation: plate-develop 1.5s cubic-bezier(0.16, 1, 0.3, 1)
+    var(--develop-delay, 0s) both;
+}
+
+/* Display lettering settles in from wide tracking to its resting value. */
+@keyframes letters-settle {
+  from {
+    opacity: 0;
+    letter-spacing: 0.3em;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: var(--settled-tracking, 0.02em);
+  }
+}
+
+.letters-settle {
+  animation: letters-settle 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* A rule draws itself across, used where a direction divides with lines. */
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.rule-draw {
+  transform-origin: left center;
+  animation: rule-draw 1.1s cubic-bezier(0.16, 1, 0.3, 1) var(--draw-delay, 0.2s)
+    both;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -136,10 +464,31 @@
     scroll-behavior: auto;
   }
 
-  .marquee-track,
-  .vein-drift {
+  /* The developed state IS the resting state, so forcing the animations off
+     leaves the finished composition rather than an empty frame. */
+  .reveal,
+  .plate-develop,
+  .letters-settle,
+  .rule-draw {
     animation: none !important;
+    opacity: 1 !important;
     transform: none !important;
+    /* `reveal-develop` animates `filter`, so forcing the animation off is not
+       enough on its own — without this the direction that uses it would rest
+       at 40% brightness for reduced-motion readers. */
+    filter: none !important;
+  }
+
+  /*
+    Tracking is settled for the display lettering ONLY, and this rule is
+    deliberately separate from the one above. `letter-spacing` inherits:
+    folding it into that shared selector would put a tracking value on every
+    `.reveal` wrapper on the page and from there into every descendant that
+    does not set its own, re-wrapping the entire page below the hero for
+    reduced-motion users alone.
+  */
+  .letters-settle {
+    letter-spacing: var(--settled-tracking, 0.02em);
   }
 
   *,

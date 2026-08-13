@@ -1,9 +1,9 @@
 /**
- * Enquiry form logic, shared by all three variants.
+ * Enquiry form logic, shared by both variants.
  *
  * Only the presentation differs between variants. Validation rules, field
  * names and the demo-only submit behaviour are identical, so a change here
- * lands in all three at once.
+ * lands in both at once.
  */
 
 import { useState, type FormEvent } from "react";

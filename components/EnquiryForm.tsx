@@ -1,14 +1,15 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { INTERESTS, useLeadForm } from "@/lib/leadForm";
 import { site } from "@/content/site";
 
 /**
- * One form, three skins.
+ * One form, two skins.
  *
  * Markup, validation, accessibility wiring and the demo-only submit are shared
- * so the three variants can never drift apart on behaviour. Everything a
- * variant is allowed to change is a class string below.
+ * so the two variants can never drift apart on behaviour. Everything a variant
+ * is allowed to change is a class string below.
  */
 export type FormSkin = {
   /** Prefix for element ids, so three forms can coexist on the compare page. */
@@ -32,10 +33,21 @@ export type FormSkin = {
 export function EnquiryForm({ skin }: { skin: FormSkin }) {
   const { values, errors, status, update, onSubmit } = useLeadForm(skin.id);
   const id = (name: string) => `${skin.id}-${name}`;
+  const done = useRef<HTMLDivElement>(null);
+
+  /*
+    Submitting unmounts the form, and with it the button that had focus, which
+    drops a keyboard or switch user back to the top of the document with no
+    position. `role="status"` announces the text but does not move anyone to
+    it. Focusing the panel puts them where the outcome is.
+  */
+  useEffect(() => {
+    if (status === "done") done.current?.focus();
+  }, [status]);
 
   if (status === "done") {
     return (
-      <div role="status" className={skin.success.wrap}>
+      <div ref={done} role="status" tabIndex={-1} className={skin.success.wrap}>
         <h3 className={skin.success.title}>{site.form.successHeadline}</h3>
         <p className={skin.success.body}>{site.form.successBody}</p>
         <a href={`mailto:${site.contactEmail}`} className={skin.success.link}>

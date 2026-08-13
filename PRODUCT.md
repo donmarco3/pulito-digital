@@ -50,12 +50,28 @@ A single landing page. One conversion event: a short enquiry form.
 
 - Name: Pulito Digital. Wordmark reads "Pulito".
 - Contact: hello@pulitodigital.com.au
-- Pinned aesthetic (user-supplied references): classical and heritage, in
-  near-black, bone and burgundy. Museum and palazzo material, worked marble,
-  carved detail, high-contrast Roman display lettering. Two later references
-  (SPECTRA, an "ANTIQUE" concept page) pinned the hero composition: the
-  display type runs *behind* the central object, and the first viewport has
-  to feel alive rather than static.
+- Pinned aesthetic (user-supplied references): classical and heritage —
+  Greco-Roman sculpture, worked marble, carved detail, quarried stone.
+  Described by the user as "elegant minimalism". The seven references supplied
+  are all photographic: a deep-blue hero with a classical figure, a near-black
+  luxury furniture house, a saturated-blue law firm behind a silver statue, a
+  white-and-yellow sculpture exhibition, a dark "antique" page, a dark-blue
+  page around a marble statue, and a light minimalist deck of Greek busts.
+- **Photography only. No vector art, no illustration, no generated imagery.**
+  This is the user's explicit instruction and it overrides everything the
+  earlier builds assumed. It also decides the design system: when the only
+  picture allowed is a photograph, the work moves into ground, crop, type,
+  measure and rule.
+- **Imagery must be free and easily obtained.** Sourced from The Met Open
+  Access (CC0) and Wikimedia Commons (CC BY / CC BY-SA), downloaded into
+  `public/img` rather than hotlinked. `public/img/CREDITS.md` records the
+  licence per file. **Five files are CC BY-SA, which obliges attribution and
+  share-alike on the resized derivatives in this repo** — a decision to make
+  before this goes live commercially, not after.
+- **The arch is no longer the pinned motif.** It was pinned for the previous
+  build and the user has since replaced the reference set. Radius 0 holds on
+  every direction, so the only curves anywhere are the ones inside the
+  photographs.
 - **Positioning is broad on purpose.** The headline says "digital marketing
   for premium craft", not "websites" and not "renovation builders": the work
   is web, search and automation, and the audience is premium craft generally.
@@ -65,16 +81,48 @@ A single landing page. One conversion event: a short enquiry form.
 
 ## History
 
-Three full design directions were built and compared (stone/malachite,
-palazzo/gilt, porphyry/red). The user chose the third and asked for gold in
-place of the porphyry red. The other two were deleted; they are recoverable
-from git history at tag-less commit `2fe6377` if a direction ever needs
-revisiting.
+Earlier builds, all deleted and all recoverable from git history: three dark
+directions on stone/malachite, palazzo/gilt and porphyry/red (`2fe6377`); a
+near-black page with a generated marble slab and three cursor behaviours
+(`9e26ea5`); a light pair of a joiner's setout sheet and a museum catalogue;
+and three arch-led directions at `/a` `/b` `/c` whose every object was
+hand-authored SVG.
 
-The red then came back, deeper: burgundy marble as the hero's material and
-the page's accent, with gold reduced to hairlines, and a Roman column as the
-object the headline runs behind. Three cursor behaviours for the slab were
-built rather than argued about — sheen, parallax, and both-plus-drift — and
-are live at `/motion/compare`. **Open decision:** which one ships. `/`
-currently renders `parallax`; changing it is one word in `app/page.tsx`, and
-the losing two plus the whole `/motion` tree come out in one commit.
+That last one is the one worth remembering, because this build is its
+opposite. The user supplied a new set of photographic references and ruled out
+vector art and illustration entirely, so the drawn arcade — the whole premise
+of the previous world — went with it. **A page selling craft to people who
+build things cannot argue for real material with a drawing of it.**
+
+The live build is **five photographic directions**, compared side by side and
+flicked through:
+
+- **`/1` — Ultramarine.** The institution. A drenched blue ground with one lit
+  marble head screened into it, Libre Caslon Display, asymmetric.
+- **`/2` — Nero.** The house catalogue. Near-black and gilt, Bodoni Moda,
+  symmetrical, the object lit out of the same darkness the type sits in.
+- **`/3` — Bianco.** The auction catalogue. Cold paper, vermilion, EB Garamond
+  at small display size, plates with references and a title block.
+- **`/4` — Cava.** The quarry. Quarry dust and hi-vis orange, Archivo at 800 in
+  tight capitals, the stone before it is anything.
+- **`/5` — Gesso.** The cast court. Plaster grey with one acid signal,
+  Bricolage Grotesque, type over full-bleed photography, and a hall of casts
+  that scrolls sideways.
+- **`/` — the comparison surface.** All five live in iframes at a real device
+  width. Two modes, because they answer different questions: BOARD shows all
+  five at once (phone width by default, which is both the reader's device and
+  the only width at which five panels are legible), and FLICK shows one at a
+  time, stepped with the arrow keys, without unmounting the others.
+
+**Open decision:** which one ships. The four losers — their plates, their form
+skins, their tokens, their motion gestures and their display faces — come out
+in one commit along with the board and the switcher; `DESIGN.md` lists exactly
+what each deletion takes with it. The winner moves to `/`.
+
+**Unratified copy.** Two commitments in `content/site.ts` are not granted
+anywhere in this document and predate the current build: the reply time
+("within one business day", used in the form body and the success panel) and
+the delivery estimates ("a couple of weeks", "four to six") in the FAQ. They
+are operational promises rather than invented proof, so they have been left as
+written rather than quietly softened — but they need the owner to confirm them
+or they need to change.
