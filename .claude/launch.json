@@ -14,6 +14,13 @@
       "runtimeArgs": ["next", "start"],
       "port": 4311,
       "autoPort": true
+    },
+    {
+      "name": "pulito-modern",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev", "../testing-modern"],
+      "port": 3100,
+      "autoPort": true
     }
   ]
 }
