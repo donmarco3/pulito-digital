@@ -24,8 +24,11 @@ export const site = {
   contactEmail: "hello@pulitodigital.com.au",
   location: "Adelaide, South Australia",
 
-  /** One CTA label, used in the nav, the hero and the footer of every world. */
+  /** One CTA label, used in the nav, the hero and the offer. */
   cta: "Get a free preview",
+  /** The quiet second action beside it, which goes to the offer rather than
+      the form — for a reader who wants to know what he is agreeing to first. */
+  secondaryCta: "What the preview involves",
 
   /** Running header metadata. */
   disciplines: "Web, search and automation",
@@ -238,127 +241,41 @@ export const plates = {
   },
 } satisfies Record<string, Plate>;
 
-export type DirectionKey = "1" | "2" | "3" | "4" | "5";
-
 /**
- * Per-direction voice.
+ * The page's voice.
  *
- * Every field here is a wording decision the design makes. None of them is a
- * claim: the five headlines say the same true thing about the same business
- * in five registers, and no direction gets a fact the others are denied.
+ * Kept separate from `site` above, and the split is worth preserving even now
+ * that one direction ships. `site` is PRODUCT TRUTH — services, process,
+ * offer, questions, form — facts about the business. This is the wording that
+ * is a DESIGN decision: how the page opens, how it puts the problem, what it
+ * calls its own sections. It changed five ways while five directions were
+ * being compared, and it is the half that will keep changing.
+ *
+ * Nothing here is a claim. The headline says the same true thing the other
+ * four said, in this page's register.
  */
-export const directions = {
-  "1": {
-    name: "Ultramarine",
-    tagline: "The institution",
-    /** What the page says it is, in the running header. */
-    eyebrow: "Pulito Digital — Adelaide",
-    headline: "Built to be looked at.",
-    headlineLines: ["Built to be", "looked at."],
-    subhead:
-      "Web, search and automation for the builders, renovators and makers whose work already sets the standard.",
-    problem: {
-      headline: "Your last build was worth more than your whole website.",
-      body: "Premium work sells on how it looks. Then the enquiry lands on a site built years ago on a template, slow on a phone, with a gallery that undersells the job. The client has already compared you to three others before you pick up. The work is the easy part. The first impression is the leak.",
-    },
-    sections: {
-      services: "What we do",
-      process: "How the work runs",
-      faq: "Questions we get asked",
-      offer: "The offer",
-    },
+export const direction = {
+  name: "Ultramarine",
+  tagline: "The institution",
+  /** Running-header metadata, beside the wordmark. */
+  eyebrow: "Pulito Digital — Adelaide",
+  /* One string, no authored line breaks. The measure on the h1 plus
+     `text-balance` produces "Built to be / looked at." on a wide screen and
+     re-breaks sensibly on a narrow one — and, because it is a single text
+     node, the tweak bar can make it editable in place without the caret
+     falling between two rendered variants of the same words. Rewrite it
+     freely; check the wrap at 1440 and at 390 afterwards. */
+  headline: "Built to be looked at.",
+  subhead:
+    "Web, search and automation for the builders, renovators and makers whose work already sets the standard.",
+  problem: {
+    headline: "Your last build was worth more than your whole website.",
+    body: "Premium work sells on how it looks. Then the enquiry lands on a site built years ago on a template, slow on a phone, with a gallery that undersells the job. The client has already compared you to three others before you pick up. The work is the easy part. The first impression is the leak.",
   },
-  "2": {
-    name: "Nero",
-    tagline: "The house catalogue",
-    eyebrow: "Adelaide, South Australia",
-    headline: "Work of this standard deserves a shopfront to match.",
-    headlineLines: ["Work of this standard", "deserves a shopfront", "to match."],
-    subhead:
-      "A digital studio for premium trades. Web design, redesign, search and automation, made in Adelaide.",
-    problem: {
-      headline: "The gap is not in the work. It is in the window.",
-      body: "You spend months on a kitchen that photographs like furniture, and it arrives online as four compressed thumbnails on a page that takes six seconds to load. Nobody doubts the craft. They never get close enough to see it.",
-    },
-    sections: {
-      services: "The disciplines",
-      process: "How a commission runs",
-      faq: "Before you ask",
-      offer: "An offer, without obligation",
-    },
+  sections: {
+    services: "What we do",
+    process: "How the work runs",
+    faq: "Questions we get asked",
+    offer: "The offer",
   },
-  "3": {
-    name: "Bianco",
-    tagline: "The auction catalogue",
-    eyebrow: "Pulito Digital · Adelaide SA · Web, search, automation",
-    headline: "Everything you build is catalogued badly.",
-    headlineLines: ["Everything you build", "is catalogued badly."],
-    subhead:
-      "We rebuild the record: the site, the search listing and the follow-up, for premium building and renovation trades.",
-    problem: {
-      headline: "A good object, described poorly, sells for less.",
-      body: "That is the whole of it. The kitchen is right, the joinery is right, the finish is right — and the page describing it is a stock template with a phone number in the footer. The buyer is comparing entries, not builders, and yours reads like the cheap lot.",
-    },
-    sections: {
-      services: "Services",
-      process: "Method",
-      faq: "Conditions of sale",
-      offer: "On approval",
-    },
-  },
-  "4": {
-    name: "Cava",
-    tagline: "The quarry",
-    eyebrow: "Adelaide + regional SA",
-    headline: "Nothing good was ever finished in a hurry.",
-    headlineLines: ["Nothing good", "was ever finished", "in a hurry."],
-    subhead:
-      "Websites, search and automation for the trades who cut, fit and finish. Built properly, owned by you.",
-    problem: {
-      headline: "You would not accept this standard on site.",
-      body: "A template site is a job done by someone who has never seen the work. Wrong dimensions, wrong materials, finished in an afternoon and signed off by nobody. You would pull it out and start again. Somehow the website gets a pass.",
-    },
-    sections: {
-      services: "The work",
-      process: "Sequence",
-      faq: "Straight answers",
-      offer: "Free, no obligation",
-    },
-  },
-  "5": {
-    name: "Gesso",
-    tagline: "The cast court",
-    eyebrow: "Pulito Digital",
-    headline: "A copy is never the thing.",
-    headlineLines: ["A copy is", "never", "the thing."],
-    subhead:
-      "Every template site is a cast of somebody else's business. We build the original: web, search and automation for premium trades in Adelaide.",
-    problem: {
-      headline: "Your website is a cast of a website.",
-      body: "Same layout as the last three builders who called you. Same hero photo, same four icons, same form nobody checks. It is a copy of a copy, and it is doing the job of representing work that is genuinely one of one.",
-    },
-    sections: {
-      services: "What we make",
-      process: "The sequence",
-      faq: "Asked and answered",
-      offer: "Take the original",
-    },
-  },
-} as const satisfies Record<
-  DirectionKey,
-  {
-    name: string;
-    tagline: string;
-    eyebrow: string;
-    headline: string;
-    headlineLines: readonly string[];
-    subhead: string;
-    problem: { headline: string; body: string };
-    sections: {
-      services: string;
-      process: string;
-      faq: string;
-      offer: string;
-    };
-  }
->;
+} as const;

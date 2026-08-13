@@ -1,28 +1,28 @@
 @import "tailwindcss";
 
 /*
-  Pulito Digital — five photographic directions.
+  Pulito Digital — ULTRAMARINE. The institution.
 
-  Everything on every direction is a PHOTOGRAPH of a real object. No vector
-  art, no illustration, no generated imagery, no icon set: the user's brief
-  rules all of it out, and a studio selling craft to people who build things
-  cannot argue for real material with a drawing of it.
+  One page, one colour, drenched, and one lit marble head standing in it. The
+  argument is authority: this is what a business looks like when it is
+  presented the way an institution presents its collection, and the reader's
+  own work has never been given that treatment.
 
-  That constraint decides the whole system. When the only picture you are
-  allowed is a photograph, the design work moves into ground, crop, type,
-  measure and rule — which is why the five directions are told apart by what
-  they do to a photograph rather than by what they draw next to one.
+  Every picture is a PHOTOGRAPH of a real carved object. No vector art, no
+  illustration, no generated imagery, no icon set: the brief rules all of it
+  out, and a studio selling craft to people who build things cannot argue for
+  real material with a drawing of it. That constraint decides the system —
+  when the only picture allowed is a photograph, the design work moves into
+  ground, crop, type, measure and rule.
 
-  - 1 ULTRAMARINE — the institution. Drenched blue, one figure standing in it.
-  - 2 NERO        — the house catalogue. Near-black and gilt, the object lit.
-  - 3 BIANCO      — the auction catalogue. Cold paper, lot numbers, vermilion.
-  - 4 CAVA        — the quarry. The stone before it is anything, hi-vis orange.
-  - 5 GESSO       — the cast court. Plaster grey at scale, one acid signal.
+  Chosen from five photographic directions built side by side; the four that
+  lost are in git history at `6670c6a`, along with their tokens, faces, form
+  skins, motion gestures and the comparison board that ran them.
 
-  Shape system: radius 0, everywhere, on all five. The only curves on any page
-  are the ones inside the photographs — a carved shoulder, a quarried arc, an
-  arch cast in plaster. A rounded button would put a second kind of curve on
-  the page and immediately make the first kind decorative.
+  Shape system: radius 0. The only curves anywhere are the ones inside the
+  photograph — a carved shoulder, a jaw, a cut lip of stone. A rounded button
+  would put a second kind of curve on the page and immediately make the first
+  kind decorative.
 */
 
 @theme {
@@ -39,52 +39,9 @@
   --color-ultra-bone-soft: #bcc7de; /* 6.4:1 */
   --color-ultra-signal: #e8e3d6; /* the action fill: warm bone, 10.8:1 */
 
-  /* -------------------------------------------------------------- 2 — NERO */
-  --color-nero: #0b0b0c;
-  --color-nero-2: #141416; /* recessed bands */
-  --color-nero-rule: #2b2a27; /* decorative hairline */
-  --color-nero-rule-strong: #7d7669; /* 4.5:1 — field underlines */
-  --color-nero-bone: #efece4; /* 16.4:1 */
-  --color-nero-bone-soft: #a9a396; /* 7.6:1 */
-  --color-gilt: #c9a227; /* 8.4:1 on near-black */
-  --color-gilt-bright: #e2be47; /* hover, and NERO's error text */
-
-  /* ------------------------------------------------------------ 3 — BIANCO */
-  /* Cold paper, not cream. A warm cream ground under a serif is the single
-     most predictable thing this page could have been, and the coldness is
-     what stops the catalogue reading as a wedding invitation. */
-  --color-bianco: #f6f6f4;
-  --color-bianco-2: #ececeA; /* recessed: the enquiry panel */
-  --color-bianco-rule: #d2d2ce; /* decorative hairline, plate borders */
-  --color-bianco-rule-strong: #6b6b66; /* 4.9:1 — field borders */
-  --color-bianco-ink: #17171a; /* 15.4:1 */
-  --color-bianco-ink-soft: #56565a; /* 6.9:1 */
-  --color-vermilion: #b4321c; /* 5.4:1 on paper. Lot marks and the action */
-  --color-vermilion-deep: #8e2614;
-
-  /* -------------------------------------------------------------- 4 — CAVA */
-  --color-cava: #ddd8d0; /* quarry dust in daylight */
-  --color-cava-2: #cbc4b9; /* recessed bands */
-  --color-cava-rule: #a89f92; /* decorative hairline */
-  --color-cava-rule-strong: #6a6157; /* 4.8:1 — field borders */
-  --color-cava-ink: #1b1916; /* 13.7:1 */
-  --color-cava-ink-soft: #554e45; /* 6.4:1 */
-  --color-hivis: #b8410e; /* 5.1:1 on dust. Survey marks and the action */
-  --color-hivis-deep: #93330a;
-
-  /* ------------------------------------------------------------- 5 — GESSO */
-  --color-gesso: #2a2a28; /* the cast hall in shadow */
-  --color-gesso-2: #1e1e1c; /* recessed bands */
-  --color-gesso-rule: #46453f; /* decorative hairline */
-  --color-gesso-rule-strong: #8c8a80; /* 4.6:1 — field underlines */
-  --color-gesso-bone: #edece6; /* 12.1:1 */
-  --color-gesso-bone-soft: #a8a69c; /* 6.3:1 */
-  --color-acid: #d6e34a; /* 10.4:1 on the hall. The action, and nothing else */
-  --color-acid-deep: #bccb2e;
-
   /* Shared: what sits on a dark accent fill. */
   --color-bone: #f4f1ea;
-  /* Shared: what sits on a light accent fill (bone, acid, signal). */
+  /* What sits on the signal fill. */
   --color-obsidian: #121214;
 
   /* ------------------------------------------------------------------ type */
@@ -104,9 +61,13 @@
     error anywhere.
   */
   --font-caslon: var(--font-caslon-src), Georgia, serif;
+  --font-archivo: var(--font-archivo-src), ui-sans-serif, system-ui, sans-serif;
+  /* The other three display faces stay loaded ONLY so the tweak bar's face
+     picker has something to offer. They are the page's largest remaining
+     weight and they come out of `app/layout.tsx` the moment the lettering is
+     settled — see the note there. */
   --font-bodoni: var(--font-bodoni-src), Georgia, serif;
   --font-garamond: var(--font-garamond-src), Georgia, serif;
-  --font-archivo: var(--font-archivo-src), ui-sans-serif, system-ui, sans-serif;
   --font-bricolage: var(--font-bricolage-src), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -118,18 +79,73 @@
     color-scheme: light;
 
     /*
-      The height of the review switcher bar. Every direction reserves it as
-      bottom padding and every anchor clears it, because the bar is fixed over
-      pages it is not part of. It leaves with the scaffolding.
+      ------------------------------------------------------------------
+      THE TWEAKABLE SURFACE
+      ------------------------------------------------------------------
+      Everything the tweak bar can move lives here as a custom property, and
+      the page consumes these rather than hard-coding the values. Two reasons
+      it is built this way rather than with React state:
+
+      1. The page stays a server component. Nothing about live editing should
+         cost the reader a JavaScript bundle — the bar is a design tool, and it
+         is the only thing that hydrates.
+      2. A custom property changes the rendered result without re-rendering
+         anything, so dragging a slider is a paint, not a React tree walk. It
+         stays smooth on a laptop with the whole page open.
+
+      The COLOUR tokens are not repeated here on purpose. Tailwind's `@theme`
+      already emits `--color-ultra` and friends as real custom properties, and
+      every `bg-ultra` / `text-ultra-bone` utility references them, so the bar
+      overrides those directly on `:root` and the whole page follows. Adding a
+      second set of colour variables would just be a layer to keep in sync.
+
+      Defaults here ARE the design. If the tweak bar is deleted tomorrow the
+      page renders exactly as it does now.
     */
-    --switch-bar: 2.75rem;
+    --h1-size: clamp(3rem, 9vw, 7.5rem);
+    --h1-lead: 0.94;
+    --h1-track: -0.015em;
+    --h2-size: clamp(2rem, 3.6vw, 3.4rem);
+    --sub-size: 17px;
+    --sub-size-lg: 19px;
+    --body-size: 16px;
+    --measure: 62ch;
+    /* Section vertical rhythm, scaled as one number so density can be moved
+       without touching twelve sections. */
+    --rhythm: 1;
+    --shell: 88rem;
+
+    /* The hero plate. */
+    --plate-col: 46%;
+    --plate-pos-x: 50%;
+    --plate-pos-y: 38%;
+    --plate-bright: 1;
+    --plate-contrast: 1;
+
+    /*
+      Radius is a variable so the bar can offer it, and it defaults to 0
+      because that is load-bearing: the only curves on this page are the ones
+      inside the photograph, and the moment a button gets a radius the carved
+      shoulder becomes decoration rather than the only round thing here. The
+      slider is there to be understood, not to be dragged.
+    */
+    --radius: 0px;
   }
 
-  /* Anchor targets clear the sticky header at the top and the review bar at
-     the foot, so a jumped-to section is never half under either. */
+  /* Section rhythm, applied by the page and scaled by one variable. */
+  .band {
+    padding-block: calc(5rem * var(--rhythm));
+  }
+
+  @media (min-width: 1024px) {
+    .band {
+      padding-block: calc(7rem * var(--rhythm));
+    }
+  }
+
+  /* Anchor targets clear the sticky header. */
   [id] {
     scroll-margin-top: 6rem;
-    scroll-margin-bottom: calc(var(--switch-bar) + 1rem);
   }
 
   body {
@@ -138,10 +154,10 @@
   }
 
   /*
-    `currentColor`, not a fixed colour: the same ring has to survive on
-    ultramarine, near-black, cold paper, quarry dust and plaster shadow, and
-    on top of a bone, gilt, vermilion, hi-vis or acid fill. Any single hue
-    fails on at least one of those.
+    `currentColor`, not a fixed colour: the ring has to survive on the deep
+    ground, on the recessed band, and on top of the bone action fill — and it
+    has to keep surviving after the tweak bar has moved every one of those
+    colours. Any single hue fails on at least one of them.
   */
   :focus-visible {
     outline: 2px solid currentColor;
@@ -181,9 +197,9 @@
   ---------------------------------------------------------------------------
   PHOTOGRAPH TREATMENTS
 
-  The five directions are told apart largely by what they do to a photograph.
   Every treatment below is CSS over an untouched file, never a baked-in edit,
-  so swapping the picture never means re-exporting anything.
+  so swapping the picture never means re-exporting anything — which is what
+  lets the tweak bar change the photograph, its crop and its grade live.
   ---------------------------------------------------------------------------
 */
 
@@ -200,14 +216,6 @@
 }
 
 /*
-  The same problem on a light ground has the opposite answer: `multiply` drops
-  the paper-white sweep and keeps the shadowed stone.
-*/
-@utility plate-multiply {
-  mix-blend-mode: multiply;
-}
-
-/*
   `screen` only fully erases a sweep that is pure black, and museum sweeps are
   not: they lift a little towards the top of the frame, which leaves a faint
   rectangle floating over the ground. The mask dissolves the frame edge so the
@@ -215,6 +223,15 @@
   rather than as a gradient overlay because an overlay would sit ON the
   photograph and grey the stone it is supposed to be rescuing.
 */
+/*
+  Live grading, driven by the tweak bar. Defaults to a no-op so the utility
+  costs the shipped page nothing but a `filter: brightness(1) contrast(1)` —
+  and so removing the bar never changes a pixel.
+*/
+@utility plate-graded {
+  filter: brightness(var(--plate-bright)) contrast(var(--plate-contrast));
+}
+
 @utility plate-vignette {
   mask-image: radial-gradient(
     ellipse 58% 55% at 50% 42%,
@@ -225,27 +242,8 @@
 
 /*
   GESSO's crop discipline: photographs are cut to a hard duotone of the hall
-  and its acid signal, so a warm plaster snapshot joins the world instead of
-  visiting it.
-*/
-/*
-  GESSO's photographs are driven to grey AND well down in value, and the
-  darkening is not a mood — it is what makes the direction legible. This is the
-  one world that sets type ON its photograph at full bleed, so the picture is
-  also the type's background, and warm plaster at full value put bone lettering
-  at about 1.3:1 over the lit areas. A cast hall in shadow is both the honest
-  reading of the source and the only version where the words can be read.
-*/
-@utility plate-gesso {
-  filter: grayscale(1) contrast(1.06) brightness(0.5);
-}
 
-/* CAVA keeps its photographs honest — daylight, dust, no grade — and only
-   lifts them slightly off the ground they sit on. */
-@utility plate-cava {
-  filter: saturate(0.86) contrast(1.06);
-}
-
+*/
 /*
   ULTRAMARINE's framed plates take the page's own hue and keep only the
   photograph's lightness. `screen` is not available to them — those objects sit
@@ -317,19 +315,12 @@
 }
 
 /*
-  One entrance per DIRECTION, not one entrance for the whole site.
+  The page's one authored entrance, declared on the root so every `.reveal`
+  inherits it.
 
-  Every section of all five directions rose identically, which flattened each
-  page and — worse, on a build whose entire purpose is a comparison — erased
-  motion as an axis the five could differ on. Each direction now declares its
-  own gesture on its root, and every `.reveal` inside inherits it. The rise
-  stays as the default for anything unscoped.
-
-  Each gesture is the one the direction's own composition already implies:
-  ULTRAMARINE settles down under its own weight, NERO develops up out of the
-  dark like its plates, BIANCO turns a page in from the side, CAVA sets out
-  left to right along a rule, GESSO comes up soft and sharpens, the way a cast
-  leaves its mould.
+  ULTRAMARINE settles down under its own weight — the gesture its composition
+  already implies. The four gestures that belonged to the other directions
+  left with them.
 */
 @keyframes reveal-settle {
   from {
@@ -342,67 +333,8 @@
   }
 }
 
-@keyframes reveal-develop {
-  from {
-    opacity: 0;
-    filter: brightness(0.4);
-  }
-  to {
-    opacity: 1;
-    filter: none;
-  }
-}
-
-@keyframes reveal-turn {
-  from {
-    opacity: 0.3;
-    transform: translate3d(22px, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* GESSO: the cast lifted out of the mould — it arrives soft and sharpens. */
-@keyframes reveal-cast {
-  from {
-    opacity: 0.3;
-    filter: blur(7px);
-    transform: scale(1.015);
-  }
-  to {
-    opacity: 1;
-    filter: none;
-    transform: none;
-  }
-}
-
-@keyframes reveal-setout {
-  from {
-    opacity: 0.3;
-    transform: translate3d(-26px, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 .motion-settle .reveal {
   animation-name: reveal-settle;
-}
-.motion-develop .reveal {
-  animation-name: reveal-develop;
-}
-.motion-turn .reveal {
-  animation-name: reveal-turn;
-}
-.motion-setout .reveal {
-  animation-name: reveal-setout;
-}
-.motion-cast .reveal {
-  animation-name: reveal-cast;
 }
 
 /*

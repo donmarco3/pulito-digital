@@ -30,36 +30,3 @@ export function Reveal({
 }) {
   return <div className={`reveal ${className}`}>{children}</div>;
 }
-
-/**
- * Authored line breaks, above `sm` only.
- *
- * Each direction's headline is set on lines chosen for it — three lines of
- * Bodoni centred, four lines of Archivo flush left — and those choices are
- * made at desktop width. Forced onto a 390px screen the same breaks re-wrap
- * into five and six lines with two-word orphans stranded on their own, which
- * is a worse rag than the browser would have produced unaided.
- *
- * So the breaks are a desktop decision, applied only where they were decided:
- * below `sm` the headline is one string and `text-balance` does the work.
- */
-export function BrokenHeadline({
-  lines,
-  headline,
-}: {
-  lines: readonly string[];
-  headline: string;
-}) {
-  return (
-    <>
-      <span className="sm:hidden">{headline}</span>
-      <span className="hidden sm:contents">
-        {lines.map((line) => (
-          <span key={line} className="block">
-            {line}
-          </span>
-        ))}
-      </span>
-    </>
-  );
-}

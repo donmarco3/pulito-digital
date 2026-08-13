@@ -12,27 +12,16 @@ import "./globals.css";
 import { site } from "@/content/site";
 
 /*
-  Seven faces load at the root: five display faces, one for each direction,
-  plus two workhorses shared across all of them.
+  Four faces are used by the page: Libre Caslon Display for the display voice,
+  Archivo for controls, and Geist / Geist Mono for running text and measured
+  values.
 
-  That is a review-stage cost and it is deliberate. The compare board puts all
-  five directions on one screen at once, and a face scoped to one route
-  arrives late into its panel there, so the comparison would be of five
-  fallbacks rather than of five directions. When one direction is chosen, the
-  other four faces come out of this file in the same commit.
-
-  - Libre Caslon Display — 1 ULTRAMARINE. A real Caslon at display size, cut
-    for headlines rather than text. Institutional without being a wordmark.
-  - Bodoni Moda — 2 NERO. A didone's thick and thin only exist above about
-    60px, and it is the only thing that holds its own against gilt on black.
-  - EB Garamond — 3 BIANCO. A book face, because a catalogue is a book. It is
-    the only direction whose display size is small on purpose.
-  - Archivo — 4 CAVA, at weight 800 in tight capitals. A grotesk with enough
-    weight to survive being set over a quarry face in full sun.
-  - Bricolage Grotesque — 5 GESSO. Optical-size aware, slightly irregular,
-    and it holds an enormous size without turning into a logo.
-  - Geist / Geist Mono — running text everywhere, and the measured voice that
-    BIANCO and CAVA both use for lot numbers, dimensions and schedules.
+  Bodoni Moda, EB Garamond and Bricolage Grotesque are loaded for ONE reason:
+  they are the alternatives in the tweak bar's display-face picker, left over
+  from the five directions that were compared. They are the page's largest
+  remaining weight. **Delete these three the moment the lettering is settled**
+  — this file, their tokens in `globals.css`, and their options in
+  `components/TweakBar.tsx`.
 */
 const caslon = Libre_Caslon_Display({
   variable: "--font-caslon-src",
@@ -79,9 +68,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pulitodigital.com.au"),
-  // The headlines are deliberately broad and differ per direction; the title
-  // still has to carry Adelaide and the services, because that is what a
-  // search result is judged on.
+  // The headline is deliberately broad; the title still has to carry Adelaide
+  // and the services, because that is what a search result is judged on.
   title: "Pulito Digital | Digital marketing for premium craft, Adelaide",
   description:
     "Web design, SEO and AI automation for Adelaide's premium builders, renovators and makers. Get a free redesign preview of your current homepage.",
@@ -123,29 +111,28 @@ const jsonLd = {
   served page. It tops the artifact re-opened on every edit.
 */
 const CONTRACT = `
-PULITO DIGITAL — DIRECTION CONTRACT (seed f1f3f5a9, form: pinned world, roll used for order only)
+PULITO DIGITAL — DIRECTION CONTRACT (ULTRAMARINE; chosen from five, seed f1f3f5a9)
 
-THESIS: Five photographic directions on one classical world, compared side by
-side. Every picture is a photograph of a real carved or quarried object; the
-category default this refuses is the drawn arch — an SVG arcade under a serif
-headline, which argues for real material with a drawing of it.
+THESIS: A business presented the way an institution presents its collection.
+Every picture is a photograph of a real carved object; the category default
+this refuses is the drawn arch — an SVG arcade under a serif headline, which
+argues for real material with a drawing of it.
 
-OWN-WORLD: One system, five grounds. 1 ULTRAMARINE drenched blue with a figure
-screened into it. 2 NERO near-black and gilt. 3 BIANCO cold paper, vermilion
-lot marks. 4 CAVA quarry dust and hi-vis orange. 5 GESSO plaster shadow and
-one acid signal. Radius 0 on all five: the only curves are inside the
-photographs.
+OWN-WORLD: Drenched ultramarine, warm bone accent, Libre Caslon Display over
+Archivo and Geist. Hairline rules, no cards. Radius 0: the only curves are
+inside the photograph.
 
 STORY: A renovation builder, on a phone between site visits, sees work
 photographed to the standard he sells at, understands Pulito does web, search
 and automation, and sends four fields to get his own homepage rebuilt free.
 
-FIRST VIEWPORT: Differs per direction by design — that is what is being
-compared. Each opens on one photograph at full commitment, the positioning
-line, and the enquiry action visible without scrolling.
+FIRST VIEWPORT: A lit marble head holding the right two-fifths at full height,
+screened into the ground so it stands in the page. The headline runs under and
+across it at display scale; the action sits in the reading path beneath, with a
+second action in the header.
 
-FORM: Five directions, presented together rather than chosen between; the roll
-assigned index 5 of the grounded list, which leads the board.
+FORM: One page, chosen from five photographic directions compared side by side;
+the four that lost are at commit 6670c6a.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the
 finish review, the verdict, and DESIGN.md

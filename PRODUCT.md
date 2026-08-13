@@ -94,30 +94,23 @@ vector art and illustration entirely, so the drawn arcade — the whole premise
 of the previous world — went with it. **A page selling craft to people who
 build things cannot argue for real material with a drawing of it.**
 
-The live build is **five photographic directions**, compared side by side and
-flicked through:
+**ULTRAMARINE ships.** The other four — Nero, Bianco, Cava, Gesso — are
+deleted, along with the comparison board, the direction switcher, their form
+skins, their tokens, their motion gestures and their display faces. All of it
+is recoverable at commit `6670c6a` if a decision ever needs revisiting.
 
-- **`/1` — Ultramarine.** The institution. A drenched blue ground with one lit
-  marble head screened into it, Libre Caslon Display, asymmetric.
-- **`/2` — Nero.** The house catalogue. Near-black and gilt, Bodoni Moda,
-  symmetrical, the object lit out of the same darkness the type sits in.
-- **`/3` — Bianco.** The auction catalogue. Cold paper, vermilion, EB Garamond
-  at small display size, plates with references and a title block.
-- **`/4` — Cava.** The quarry. Quarry dust and hi-vis orange, Archivo at 800 in
-  tight capitals, the stone before it is anything.
-- **`/5` — Gesso.** The cast court. Plaster grey with one acid signal,
-  Bricolage Grotesque, type over full-bleed photography, and a hall of casts
-  that scrolls sideways.
-- **`/` — the comparison surface.** All five live in iframes at a real device
-  width. Two modes, because they answer different questions: BOARD shows all
-  five at once (phone width by default, which is both the reader's device and
-  the only width at which five panels are legible), and FLICK shows one at a
-  time, stepped with the arrow keys, without unmounting the others.
+The live build is **one landing page** at `/`:
 
-**Open decision:** which one ships. The four losers — their plates, their form
-skins, their tokens, their motion gestures and their display faces — come out
-in one commit along with the board and the switcher; `DESIGN.md` lists exactly
-what each deletion takes with it. The winner moves to `/`.
+- Drenched ultramarine, one lit marble head screened into the ground so it
+  stands in the page rather than on a rectangle. Libre Caslon Display over
+  Archivo and Geist. Asymmetric, radius 0, one accent that marks the action.
+- **A tweak bar**, at `components/TweakBar.tsx`. Palette, type, layout,
+  photograph and copy are all editable live, on the page, with a measured
+  contrast readout that recomputes as the colours move and an export that
+  hands back a paste-ready patch for `globals.css` and `content/site.ts`.
+  It renders in development, or on a deployed preview with `?tweak` in the
+  URL, and never for a real visitor. Deleting it changes nothing about how
+  the page renders: the defaults live in the stylesheet, not in the tool.
 
 **Unratified copy.** Two commitments in `content/site.ts` are not granted
 anywhere in this document and predate the current build: the reply time
