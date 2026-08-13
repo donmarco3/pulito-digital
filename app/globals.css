@@ -1,113 +1,141 @@
 @import "tailwindcss";
 
 /*
-  Pulito Digital — five photographic directions.
+  Pulito Digital — three modern directions, compared side by side.
 
-  Everything on every direction is a PHOTOGRAPH of a real object. No vector
-  art, no illustration, no generated imagery, no icon set: the user's brief
-  rules all of it out, and a studio selling craft to people who build things
-  cannot argue for real material with a drawing of it.
+  This replaces the classical/photographic world entirely. The user supplied
+  three reference sites (daliagents.com, the Omega agency template, the Notus
+  agent-marketing template) and asked for one direction after each. What they
+  share is a modern grotesk at scale, real motion, and tight component craft.
+  What they do NOT share is ground, density or shape language, and that is the
+  comparison:
 
-  That constraint decides the whole system. When the only picture you are
-  allowed is a photograph, the design work moves into ground, crop, type,
-  measure and rule — which is why the five directions are told apart by what
-  they do to a photograph rather than by what they draw next to one.
+  - 1 MERIDIAN — after Dali. Deep blue, sparse, institutional. Sharp corners,
+    a fixed section rail, and the section you are reading is the only one at
+    full strength.
+  - 2 PLINTH   — after Omega. Warm light, no chrome at all: no cards, no
+    borders, no shadows. Bold type and air do the whole job. Pill nav.
+  - 3 LATTICE  — after Notus, in its LIGHT mode, which is the mode the user was
+    looking at. Cool white, blue-violet, a ruled grid, and the densest page of
+    the three.
 
-  - 1 ULTRAMARINE — the institution. Drenched blue, one figure standing in it.
-  - 2 NERO        — the house catalogue. Near-black and gilt, the object lit.
-  - 3 BIANCO      — the auction catalogue. Cold paper, lot numbers, vermilion.
-  - 4 CAVA        — the quarry. The stone before it is anything, hi-vis orange.
-  - 5 GESSO       — the cast court. Plaster grey at scale, one acid signal.
+  SHAPE IS A DIRECTION VARIABLE, not a house rule. MERIDIAN is square
+  (radius 0), PLINTH is pill (the nav and the actions, nothing else, because it
+  has no other chrome), LATTICE is soft-rectangular (bento cells at 0.75rem).
+  Three grounds, three shape languages, three densities — so the comparison is
+  between three kinds of page and not three palettes.
 
-  Shape system: radius 0, everywhere, on all five. The only curves on any page
-  are the ones inside the photographs — a carved shoulder, a quarried arc, an
-  arch cast in plaster. A rounded button would put a second kind of curve on
-  the page and immediately make the first kind decorative.
+  The one thing all three inherit is the drawing: hairline geometry taken from
+  classical architecture — an arcade, a run of fluting, a cornice rule. It is
+  the user's own taste, kept as line-work only. No marble, no photography, no
+  serif display face; the structure is classical, the surface is modern.
 */
 
 @theme {
-  /* ------------------------------------------------------- 1 — ULTRAMARINE */
-  /* Tokens are named for the direction, not the hue. While five worlds share
-     one stylesheet, the useful thing to know at a glance is which page a
-     class belongs to. Contrast ratios are measured, not judged, and recorded
-     beside the value against the ground the token is actually used on. */
-  --color-ultra: #12306e; /* ground */
-  --color-ultra-2: #0d2454; /* recessed bands */
-  --color-ultra-rule: #2f4c8c; /* decorative hairline */
-  --color-ultra-rule-strong: #8ba0c8; /* 4.6:1 — field borders, WCAG 1.4.11 */
-  --color-ultra-bone: #f3f1ec; /* 11.4:1 on ground */
-  --color-ultra-bone-soft: #bcc7de; /* 6.4:1 */
-  --color-ultra-signal: #e8e3d6; /* the action fill: warm bone, 10.8:1 */
+  /* --------------------------------------------------------- 1 — MERIDIAN */
+  /* Tokens are named for the direction rather than the hue: three worlds share
+     one stylesheet, and the useful thing to know at a glance is which page a
+     class belongs to. Every ratio below is measured against the ground the
+     token is actually used on, not judged. */
+  /* The ground is the ultramarine the user picked out on the other build, taken
+     across unchanged along with its recessed band, hairlines and bone text.
+     It is a far lighter ground than the navy it replaces (relative luminance
+     0.034 against 0.013), so every value beside it was re-measured rather than
+     carried over — see the dim in particular, which had to change. */
+  --color-mer: #12306e; /* ground */
+  --color-mer-2: #0d2454; /* recessed bands */
+  --color-mer-3: #081a3e; /* deepest: footer, and what sits on an accent fill */
+  --color-mer-line: #2f4c8c; /* 1.5:1 — decorative hairlines only */
+  --color-mer-line-strong: #8ba0c8; /* 4.8:1 — field borders, WCAG 1.4.11 */
+  --color-mer-ink: #f3f1ec; /* 11.1:1 */
+  --color-mer-ink-soft: #bcc7de; /* 7.4:1 */
+  /*
+     The action: warm bone, taken from the same build as the ground.
 
-  /* -------------------------------------------------------------- 2 — NERO */
-  --color-nero: #0b0b0c;
-  --color-nero-2: #141416; /* recessed bands */
-  --color-nero-rule: #2b2a27; /* decorative hairline */
-  --color-nero-rule-strong: #7d7669; /* 4.5:1 — field underlines */
-  --color-nero-bone: #efece4; /* 16.4:1 */
-  --color-nero-bone-soft: #a9a396; /* 7.6:1 */
-  --color-gilt: #c9a227; /* 8.4:1 on near-black */
-  --color-gilt-bright: #e2be47; /* hover, and NERO's error text */
+     This was amber-orange first. The user asked for a contrasting accent
+     because bone sounded too close to the body text, saw the contrasting
+     version, and preferred the bone after all — so the page is monochrome, and
+     the action is separated from the copy by FILL rather than by hue. A solid
+     bone panel against ultramarine is unmistakably a control; bone lettering
+     beside bone lettering would not be, which is why the accent is used as a
+     background and a rule, and almost never as text.
 
-  /* ------------------------------------------------------------ 3 — BIANCO */
-  /* Cold paper, not cream. A warm cream ground under a serif is the single
-     most predictable thing this page could have been, and the coldness is
-     what stops the catalogue reading as a wedding invitation. */
-  --color-bianco: #f6f6f4;
-  --color-bianco-2: #ececeA; /* recessed: the enquiry panel */
-  --color-bianco-rule: #d2d2ce; /* decorative hairline, plate borders */
-  --color-bianco-rule-strong: #6b6b66; /* 4.9:1 — field borders */
-  --color-bianco-ink: #17171a; /* 15.4:1 */
-  --color-bianco-ink-soft: #56565a; /* 6.9:1 */
-  --color-vermilion: #b4321c; /* 5.4:1 on paper. Lot marks and the action */
-  --color-vermilion-deep: #8e2614;
+     9.8:1 on the ground. `--color-mer-3` sits on the fill at 13.4:1.
+  */
+  --color-mer-accent: #e8e3d6;
+  --color-mer-accent-deep: #d6cfbe; /* hover and pressed, 8.1:1 */
 
-  /* -------------------------------------------------------------- 4 — CAVA */
-  --color-cava: #ddd8d0; /* quarry dust in daylight */
-  --color-cava-2: #cbc4b9; /* recessed bands */
-  --color-cava-rule: #a89f92; /* decorative hairline */
-  --color-cava-rule-strong: #6a6157; /* 4.8:1 — field borders */
-  --color-cava-ink: #1b1916; /* 13.7:1 */
-  --color-cava-ink-soft: #554e45; /* 6.4:1 */
-  --color-hivis: #b8410e; /* 5.1:1 on dust. Survey marks and the action */
-  --color-hivis-deep: #93330a;
+  /*
+     Errors, and the one hue on the page.
 
-  /* ------------------------------------------------------------- 5 — GESSO */
-  --color-gesso: #2a2a28; /* the cast hall in shadow */
-  --color-gesso-2: #1e1e1c; /* recessed bands */
-  --color-gesso-rule: #46453f; /* decorative hairline */
-  --color-gesso-rule-strong: #8c8a80; /* 4.6:1 — field underlines */
-  --color-gesso-bone: #edece6; /* 12.1:1 */
-  --color-gesso-bone-soft: #a8a69c; /* 6.3:1 */
-  --color-acid: #d6e34a; /* 10.4:1 on the hall. The action, and nothing else */
-  --color-acid-deep: #bccb2e;
+     A monochrome palette has nowhere to put a validation failure: with bone as
+     the accent, error text set in the accent is the same colour as the label
+     above it and the hint beside it, so the only thing marking the field as
+     wrong is the sentence itself. The failure is already conveyed
+     non-visually — `aria-invalid`, `aria-describedby`, real text — so this is
+     not a WCAG fix; it is so that a reader who has just been rejected by a
+     form can SEE which line is the rejection.
 
-  /* Shared: what sits on a dark accent fill. */
-  --color-bone: #f4f1ea;
-  /* Shared: what sits on a light accent fill (bone, acid, signal). */
-  --color-obsidian: #121214;
+     A soft rose rather than a signal red: it appears only on failure, it is
+     the least jarring warm tone against ultramarine, and it is nowhere near
+     the amber that was tried and rejected as an accent. 8.8:1 on the enquiry
+     panel.
+  */
+  --color-mer-alert: #ffb3a7;
+
+  /* ----------------------------------------------------------- 2 — PLINTH */
+  /* Warm, but not cream: cream plus a serif is the default this whole build is
+     avoiding. This is a warm GREY-white under a bold grotesk, which is a
+     printer's white rather than a stationery white. */
+  --color-pli: #f6f4ef; /* ground */
+  --color-pli-2: #ebe7de; /* recessed bands */
+  --color-pli-3: #14130f; /* the inverted band and footer */
+  --color-pli-line: #d8d2c6; /* decorative hairline */
+  --color-pli-line-strong: #6b6558; /* 4.5:1 — field borders */
+  --color-pli-ink: #14130f; /* 16.1:1 */
+  --color-pli-ink-soft: #55504a; /* 6.6:1 */
+  --color-pli-accent: #b93a16; /* 5.2:1 on ground. The action, and links */
+  --color-pli-accent-deep: #90290c; /* hover and pressed */
+
+  /* ---------------------------------------------------------- 3 — LATTICE */
+  --color-lat: #ffffff; /* ground */
+  --color-lat-2: #f4f6fa; /* recessed bands and cell fills */
+  --color-lat-3: #0b0f1a; /* the inverted CTA band and footer */
+  --color-lat-line: #e2e6ee; /* cell borders and the ruled grid */
+  --color-lat-line-strong: #737a88; /* 4.3:1 — field borders */
+  --color-lat-ink: #0b0f1a; /* 18.9:1 */
+  --color-lat-ink-soft: #545c6b; /* 6.7:1 */
+  --color-lat-accent: #4634d9; /* 7.6:1. The action, marks, active states */
+  --color-lat-accent-deep: #3628b0; /* hover and pressed */
+  --color-lat-accent-soft: #eeebfd; /* tinted fills behind accent text */
+
+  /* Shared: what sits on a dark fill, and what sits on a light one. */
+  --color-bone: #f7f7f5;
+  --color-obsidian: #0b0b0e;
 
   /* ------------------------------------------------------------------ type */
   /*
-    Five directions, five display faces, two shared workhorses. The faces load
-    at the root rather than per route, because the compare board puts all five
-    on one screen at once and a route-scoped face arrives late into its panel
-    there. That is a review-stage cost, paid deliberately, and four fifths of
-    it comes out of `app/layout.tsx` on the day a direction is chosen.
+    Three display faces, two shared workhorses, loaded at the root rather than
+    per route — the compare board puts all three on one screen at once, and a
+    route-scoped face arrives late into its panel there, so the comparison
+    would be of three fallbacks. Two thirds of this comes out of layout.tsx on
+    the day a direction is chosen.
 
-    The trap, if these are ever split back onto their own routes, is worth
-    knowing because it fails silently: a custom property is substituted at
-    computed-value time ON THE ELEMENT IT IS DECLARED ON. Move a face variable
-    off `<html>` and this `:root` declaration references something that does
-    not exist there, so the token computes to the guaranteed-invalid value and
-    inherits as empty into every descendant — wordmark included — with no
-    error anywhere.
+    None of the three is a system stack and none is one of the faces that turn
+    up by default in generated work. Each was picked for what it does at
+    display size on its own ground:
+
+    - Schibsted Grotesk — MERIDIAN. A newspaper grotesk: editorial, faintly
+      warm, and it holds authority on a dark ground without shouting.
+    - Archivo — PLINTH. At 700–800 in tight negative tracking it is the only
+      one of the three with real poster weight, which is the whole of a page
+      that has no cards, no borders and no shadows to lean on.
+    - Manrope — LATTICE. Semi-geometric, even colour, engineered-looking at
+      small sizes, which is what a dense ruled page needs.
   */
-  --font-caslon: var(--font-caslon-src), Georgia, serif;
-  --font-bodoni: var(--font-bodoni-src), Georgia, serif;
-  --font-garamond: var(--font-garamond-src), Georgia, serif;
+  --font-schibsted: var(--font-schibsted-src), ui-sans-serif, system-ui, sans-serif;
   --font-archivo: var(--font-archivo-src), ui-sans-serif, system-ui, sans-serif;
-  --font-bricolage: var(--font-bricolage-src), ui-sans-serif, system-ui, sans-serif;
+  --font-manrope: var(--font-manrope-src), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
@@ -138,21 +166,15 @@
   }
 
   /*
-    `currentColor`, not a fixed colour: the same ring has to survive on
-    ultramarine, near-black, cold paper, quarry dust and plaster shadow, and
-    on top of a bone, gilt, vermilion, hi-vis or acid fill. Any single hue
-    fails on at least one of those.
+    `currentColor`, not a fixed colour: the same ring has to survive on deep
+    blue, warm white and cool white, and on top of a blue, burnt-orange or
+    violet fill. Any single hue fails on at least one of those.
   */
   :focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 3px;
   }
 
-  /*
-    Photographs carry the whole design, so none of them may reflow the page
-    while it loads. Every `<Image>` in this build is given real intrinsic
-    dimensions and a wrapper that owns the box.
-  */
   img {
     display: block;
     max-width: 100%;
@@ -179,126 +201,116 @@
 
 /*
   ---------------------------------------------------------------------------
-  PHOTOGRAPH TREATMENTS
+  GROUNDS
 
-  The five directions are told apart largely by what they do to a photograph.
-  Every treatment below is CSS over an untouched file, never a baked-in edit,
-  so swapping the picture never means re-exporting anything.
+  Each direction's background field. All three are painted in CSS rather than
+  shipped as images: they have to survive a hero image being dropped in on top
+  of them later, and a file would have to be re-exported every time a token
+  moved.
   ---------------------------------------------------------------------------
 */
 
 /*
-  Museum object photography arrives on a smooth grey or black seamless sweep.
-  On a dark ground, `screen` throws the sweep away and keeps the lit stone:
-  the object stops sitting on a rectangle and starts standing in the page.
-  This is the single trick the whole build leans on, and it only works because
-  the sweep is darker than the subject — which is why the plates were chosen
-  for their backgrounds as much as for their subjects.
+  MERIDIAN's bloom. A single soft radial light behind the hero — the thing the
+  user described as the "subtle graphic in the background". It is one gradient,
+  not a mesh: a mesh of four would be the generated-page default, and one
+  light source is also what an arcade lit from outside actually looks like.
 */
-@utility plate-screen {
-  mix-blend-mode: screen;
+@utility mer-bloom {
+  /*
+    Two stops, and the order matters. A narrow warm one at the crown over a
+    wider cool lift beneath it, so the join reads as a horizon rather than as
+    one flat wash.
+
+    The warm stop is a literal value rather than `var(--color-mer-accent)`,
+    which is what it used to be. Tying it to the accent was tidy right up until
+    the accent changed: with the amber it made the warm horizon the user liked,
+    and with bone it would have collapsed into a white haze and taken the
+    gradient's whole character with it. Atmosphere and actions are different
+    jobs and no longer share a token.
+
+    Both are percentages of this element's own box, so the sizes are flat and
+    wide: a tall narrow radial concentrates into a blob at phone width, which
+    is the bug this build already fixed twice on the other two directions.
+  */
+  background:
+    radial-gradient(
+      100% 30% at 50% 0%,
+      color-mix(in oklab, #f2ddba 40%, transparent) 0%,
+      transparent 74%
+    ),
+    radial-gradient(
+      85% 58% at 50% 4%,
+      color-mix(in oklab, #86b4ff 32%, transparent) 0%,
+      transparent 76%
+    );
 }
 
 /*
-  The same problem on a light ground has the opposite answer: `multiply` drops
-  the paper-white sweep and keeps the shadowed stone.
+  LATTICE's ruled field: the grid the user picked out on Notus. Two repeating
+  gradients, masked so it fades rather than stopping at an edge — an
+  unfaded grid ends in a hard line across the page, which reads as a bug.
 */
-@utility plate-multiply {
-  mix-blend-mode: multiply;
+@utility lat-grid {
+  background-image:
+    linear-gradient(to right, var(--color-lat-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-lat-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(90% 70% at 50% 25%, #000 20%, transparent 80%);
 }
 
 /*
-  `screen` only fully erases a sweep that is pure black, and museum sweeps are
-  not: they lift a little towards the top of the frame, which leaves a faint
-  rectangle floating over the ground. The mask dissolves the frame edge so the
-  residue has nowhere to draw a straight line, and it is authored as a mask
-  rather than as a gradient overlay because an overlay would sit ON the
-  photograph and grey the stone it is supposed to be rescuing.
+  ---------------------------------------------------------------------------
+  MERIDIAN'S SECTION DIMMING
+
+  The mechanic the user singled out: the section you are reading is at full
+  strength and its neighbours fall back, so the page reads one section at a
+  time.
+
+  0.72, and the value is measured rather than chosen for feel — it is also the
+  price of the new ground, paid openly. Body text is --color-mer-ink-soft on
+  --color-mer. On the old near-black navy, 0.55 composited to 5.2:1 and the dim
+  was deep. On this ultramarine, which is nearly three times as light, the same
+  0.55 composites to 3.3:1 and fails; 0.70 still measures 4.43:1. 0.72 is the
+  first value that clears 4.5:1, at 4.60:1.
+
+  So the dim is genuinely shallower than it was, and than the reference's, and
+  no amount of taste changes that: a lighter ground leaves less room between
+  legible and faded. The scale-down carries proportionally more of the effect
+  now — recession you read as depth rather than as fog, and it costs no
+  contrast at all.
+
+  Off entirely under reduced motion — a section that fades in and out under a
+  reader who asked for stillness is exactly the thing that setting is for, and
+  the undimmed page is the correct resting state.
 */
-@utility plate-vignette {
-  mask-image: radial-gradient(
-    ellipse 58% 55% at 50% 42%,
-    #000 18%,
-    transparent 88%
-  );
+.dimmable {
+  transition:
+    opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/*
-  GESSO's crop discipline: photographs are cut to a hard duotone of the hall
-  and its acid signal, so a warm plaster snapshot joins the world instead of
-  visiting it.
-*/
-/*
-  GESSO's photographs are driven to grey AND well down in value, and the
-  darkening is not a mood — it is what makes the direction legible. This is the
-  one world that sets type ON its photograph at full bleed, so the picture is
-  also the type's background, and warm plaster at full value put bone lettering
-  at about 1.3:1 over the lit areas. A cast hall in shadow is both the honest
-  reading of the source and the only version where the words can be read.
-*/
-@utility plate-gesso {
-  filter: grayscale(1) contrast(1.06) brightness(0.5);
-}
-
-/* CAVA keeps its photographs honest — daylight, dust, no grade — and only
-   lifts them slightly off the ground they sit on. */
-@utility plate-cava {
-  filter: saturate(0.86) contrast(1.06);
-}
-
-/*
-  ULTRAMARINE's framed plates take the page's own hue and keep only the
-  photograph's lightness. `screen` is not available to them — those objects sit
-  on a mid-grey sweep rather than a black one, and screening mid-grey over deep
-  blue leaves a pale rectangle hanging in the page — so they are presented as
-  plates, framed and captioned, which is what a collection does with a full
-  figure anyway. Left untreated the frame read as a hole punched in the blue;
-  `luminosity` over an ultramarine fill turns the sweep into the ground's own
-  colour and the marble into light, so the plate belongs to the world instead
-  of visiting it. The wrapper MUST carry the fill: `luminosity` blends against
-  what is behind it, and over nothing it does nothing.
-*/
-@utility plate-duotone {
-  mix-blend-mode: luminosity;
-}
-
-/*
-  Stone tooth. A light ground needs its noise MULTIPLIED in rather than
-  screened on: screening a white noise field over a light sheet only washes it
-  out. Fixed and pointer-events-none, never on a scrolling container.
-*/
-@utility tooth-layer {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+.dimmable[data-active="false"] {
+  opacity: 0.72;
+  transform: scale(0.985);
 }
 
 /*
   ---------------------------------------------------------------------------
   MOTION
 
-  All CSS. No React state for a continuously changing value, no scroll
-  listeners, no pointer listeners. Each direction gets one authored moment on
-  load, plus `Reveal` for sections.
+  Scroll-driven CSS, no observers and no scroll listeners for anything that
+  changes continuously. The one JavaScript-driven mechanic on the whole build
+  is MERIDIAN's rail-and-dim, which needs to know WHICH section is active and
+  cannot be expressed as a per-element timeline.
+
+  The fallback is the point. A browser without `animation-timeline` drops that
+  one declaration and is left with a zero-duration animation under `both` fill,
+  which resolves immediately to the finished state. No support, and no
+  JavaScript at all, both render the finished content.
   ---------------------------------------------------------------------------
 */
 
-/*
-  Section entrance: content rises into place as it is scrolled to, once.
-
-  Scroll-driven, so it costs no JavaScript and no observer. The fallback is
-  the point. This started life as a Framer Motion component with
-  `initial={{ opacity: 0.25 }}`, which put `opacity:0.25` into the
-  server-rendered HTML of every section below the hero, where nothing removed
-  it until the bundle arrived. Body copy at 25% measures 1.41:1. The comment
-  justified the 0.25 as insurance "so nothing is invisible if the observer
-  never fires", which was the bug wearing the mitigation's clothes — on this
-  reader, a phone on site on whatever signal is going, a stalled bundle left
-  the page unreadable below the first screen.
-
-  The CSS version cannot fail that way: a browser without `animation-timeline`
-  drops that one declaration and is left with a zero-duration animation under
-  `both` fill, which resolves immediately to the finished state. No support,
-  and no JavaScript at all, both render the content.
-*/
 @keyframes reveal-rise {
   from {
     opacity: 0.3;
@@ -317,24 +329,32 @@
 }
 
 /*
-  One entrance per DIRECTION, not one entrance for the whole site.
+  One entrance per DIRECTION, not one for the whole build. Three pages whose
+  sections all arrive identically would have erased motion as an axis the
+  comparison could turn on, and motion is most of what the user liked about
+  the references.
 
-  Every section of all five directions rose identically, which flattened each
-  page and — worse, on a build whose entire purpose is a comparison — erased
-  motion as an axis the five could differ on. Each direction now declares its
-  own gesture on its root, and every `.reveal` inside inherits it. The rise
-  stays as the default for anything unscoped.
-
-  Each gesture is the one the direction's own composition already implies:
-  ULTRAMARINE settles down under its own weight, NERO develops up out of the
-  dark like its plates, BIANCO turns a page in from the side, CAVA sets out
-  left to right along a rule, GESSO comes up soft and sharpens, the way a cast
-  leaves its mould.
+  MERIDIAN lifts and clears, the way its sections come up out of the dim.
+  PLINTH is heavy type settling under its own weight. LATTICE assembles — it
+  arrives slightly apart and snaps onto the grid.
 */
+@keyframes reveal-clear {
+  from {
+    opacity: 0.25;
+    transform: translate3d(0, 34px, 0);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
 @keyframes reveal-settle {
   from {
     opacity: 0.3;
-    transform: translate3d(0, -18px, 0);
+    transform: translate3d(0, -20px, 0);
   }
   to {
     opacity: 1;
@@ -342,21 +362,10 @@
   }
 }
 
-@keyframes reveal-develop {
-  from {
-    opacity: 0;
-    filter: brightness(0.4);
-  }
-  to {
-    opacity: 1;
-    filter: none;
-  }
-}
-
-@keyframes reveal-turn {
+@keyframes reveal-assemble {
   from {
     opacity: 0.3;
-    transform: translate3d(22px, 0, 0);
+    transform: translate3d(0, 18px, 0) scale(0.985);
   }
   to {
     opacity: 1;
@@ -364,57 +373,49 @@
   }
 }
 
-/* GESSO: the cast lifted out of the mould — it arrives soft and sharpens. */
-@keyframes reveal-cast {
-  from {
-    opacity: 0.3;
-    filter: blur(7px);
-    transform: scale(1.015);
-  }
-  to {
-    opacity: 1;
-    filter: none;
-    transform: none;
-  }
+.motion-clear .reveal {
+  animation-name: reveal-clear;
 }
-
-@keyframes reveal-setout {
-  from {
-    opacity: 0.3;
-    transform: translate3d(-26px, 0, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 .motion-settle .reveal {
   animation-name: reveal-settle;
 }
-.motion-develop .reveal {
-  animation-name: reveal-develop;
-}
-.motion-turn .reveal {
-  animation-name: reveal-turn;
-}
-.motion-setout .reveal {
-  animation-name: reveal-setout;
-}
-.motion-cast .reveal {
-  animation-name: reveal-cast;
+.motion-assemble .reveal {
+  animation-name: reveal-assemble;
 }
 
 /*
-  The hero moment, in the vocabulary photography actually has: the plate is
-  DEVELOPED. It rises a little, and comes up out of nothing to full value,
-  the way a print does in a tray. Nothing is drawn, because nothing on these
-  pages is drawing.
+  The hero-to-body moment, and it belongs to MERIDIAN specifically — the user
+  named "the scrolling animation as you scroll from the hero section to the
+  body" as a thing they liked about Dali.
+
+  The hero plate is narrower than the page and widens to full bleed as it is
+  scrolled through, so the transition out of the hero is the picture opening
+  rather than the text leaving. Scroll-driven, so it is exact rather than
+  timed, and it holds at the finished state on browsers that cannot drive it.
 */
-@keyframes plate-develop {
+@keyframes plate-open {
+  from {
+    transform: scale(0.86) translate3d(0, 3%, 0);
+    opacity: 0.55;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.plate-open {
+  animation: plate-open linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 34%;
+}
+
+/* The hero's own arrival, on load. One authored moment per page, and this is
+   it: everything else on the page is scroll-driven. */
+@keyframes hero-arrive {
   from {
     opacity: 0;
-    transform: translate3d(0, 3%, 0) scale(1.04);
+    transform: translate3d(0, 18px, 0);
   }
   to {
     opacity: 1;
@@ -422,28 +423,40 @@
   }
 }
 
-.plate-develop {
-  animation: plate-develop 1.5s cubic-bezier(0.16, 1, 0.3, 1)
-    var(--develop-delay, 0s) both;
+.hero-arrive {
+  animation: hero-arrive 1s cubic-bezier(0.16, 1, 0.3, 1) var(--arrive-delay, 0s)
+    both;
 }
 
-/* Display lettering settles in from wide tracking to its resting value. */
-@keyframes letters-settle {
-  from {
-    opacity: 0;
-    letter-spacing: 0.3em;
+/*
+  The bloom breathes, very slowly, so the hero is never quite static.
+
+  TRANSFORM ONLY, and that is a bug fix rather than a preference. The first
+  version also animated `opacity` between 0.85 and 1, which silently defeated
+  the `opacity-[…]` utility every caller sets on the same element: an animation
+  wins over a normal declaration in the cascade, so a bloom asking for 5%
+  rendered at 85–100% instead. Every hero light and every hero-slot wash on all
+  three directions was several times stronger than its own class said, and two
+  rounds of "the bloom is too strong" were tuning a number that was not being
+  read. Opacity now belongs to the element, motion belongs to the animation,
+  and neither can overwrite the other.
+*/
+@keyframes bloom-breathe {
+  0%,
+  100% {
+    transform: scale(1);
   }
-  to {
-    opacity: 1;
-    letter-spacing: var(--settled-tracking, 0.02em);
+  50% {
+    transform: scale(1.06);
   }
 }
 
-.letters-settle {
-  animation: letters-settle 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+.bloom-breathe {
+  animation: bloom-breathe 14s ease-in-out infinite;
 }
 
-/* A rule draws itself across, used where a direction divides with lines. */
+/* A hairline draws itself across. Used where a direction divides with rules
+   rather than with space. */
 @keyframes rule-draw {
   from {
     transform: scaleX(0);
@@ -459,36 +472,52 @@
     both;
 }
 
+/*
+  The classical line-work draws itself in, once, on the hero. `stroke-dashoffset`
+  on a known path length — the arcade is authored with `pathLength="1"` so the
+  dash values are direction-independent and never need remeasuring.
+*/
+@keyframes stroke-in {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.stroke-in {
+  stroke-dasharray: 1;
+  animation: stroke-in 2.4s cubic-bezier(0.33, 1, 0.68, 1) var(--stroke-delay, 0.3s)
+    both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  /* The developed state IS the resting state, so forcing the animations off
-     leaves the finished composition rather than an empty frame. */
+  /* The finished state IS the resting state, so forcing the animations off
+     leaves the completed composition rather than an empty frame. */
   .reveal,
-  .plate-develop,
-  .letters-settle,
-  .rule-draw {
+  .plate-open,
+  .hero-arrive,
+  .rule-draw,
+  .stroke-in,
+  .bloom-breathe {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
-    /* `reveal-develop` animates `filter`, so forcing the animation off is not
-       enough on its own — without this the direction that uses it would rest
-       at 40% brightness for reduced-motion readers. */
     filter: none !important;
+    stroke-dashoffset: 0 !important;
   }
 
-  /*
-    Tracking is settled for the display lettering ONLY, and this rule is
-    deliberately separate from the one above. `letter-spacing` inherits:
-    folding it into that shared selector would put a tracking value on every
-    `.reveal` wrapper on the page and from there into every descendant that
-    does not set its own, re-wrapping the entire page below the hero for
-    reduced-motion users alone.
-  */
-  .letters-settle {
-    letter-spacing: var(--settled-tracking, 0.02em);
+  /* Dimming is a motion effect and comes off with the rest of them. Without
+     this the page would still pulse between states under a reader who asked
+     for stillness. */
+  .dimmable[data-active="false"] {
+    opacity: 1;
+    transform: none;
   }
 
   *,

@@ -1,35 +1,39 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { DirectionSwitch } from "@/components/DirectionSwitch";
+import { Arcade, Fluting, HeroSlot } from "@/components/Classical";
+import { DirectionSwitch, SWITCH_BAR_CLEARANCE } from "@/components/DirectionSwitch";
 import { DisclosureMark } from "@/components/Disclosure";
+import { PillNav } from "@/components/PillNav";
 import { BrokenHeadline, Reveal } from "@/components/Reveal";
-import { neroSkin } from "@/components/skins";
-import { directions, plates, site } from "@/content/site";
+import { plinthSkin } from "@/components/skins";
+import { directions, site } from "@/content/site";
 
 /**
- * 2 — NERO. The house catalogue.
+ * 2 — PLINTH. After the Omega agency template.
  *
- * The world of a furniture house's own book: near-black, gilt hairlines, a
- * didone at a size where its thick and thin actually exist, and objects lit
- * out of the dark. Where ULTRAMARINE is asymmetric and institutional, this one
- * is symmetrical and ceremonial — everything centres, and the display type
- * overlaps the plate beneath it the way a title page overlaps a frontispiece.
+ * The one with no chrome. There is not a single card, border, shadow or box on
+ * this page: the structure is carried entirely by TONAL BANDS — warm white,
+ * recessed warm grey, one inverted near-black — and by type at poster weight.
+ * That is the discipline that makes it a different kind of page from the other
+ * two rather than a different palette, and it is why the display face is
+ * Archivo at 800: on a page with nothing to lean on, the lettering has to
+ * carry the whole hierarchy by itself.
  *
- * The Met photographs these busts on a near-black sweep, which is the entire
- * reason this direction works: `mix-blend-mode: screen` erases the sweep into
- * the page ground, so the bust is lit out of the same darkness the type sits
- * in rather than pasted onto it. There is no other treatment on this page —
- * no grading, no duotone. The material was already this colour.
+ * Two things the user named on the reference:
  *
- * One accent, gilt, and the rule it actually keeps is a weaker one than "only
- * on what can be pressed" — worth stating plainly, because the comment here
- * originally claimed the strict version and the page never obeyed it. Gilt
- * also marks a hairline under the offer and the disclosure crosses. What the
- * page does guarantee is that the ACTION is always the loudest instance of the
- * accent on any screen: a bordered gilt control at 4.5rem of padding, against
- * hairlines and 11px marks. Accent discipline is one of the things the five
- * directions are being compared on, so it is recorded as built, not as hoped.
+ * 1. THE PILL NAV. The header leaves the top of the page and contracts into a
+ *    floating pill, all properties on one element easing together. It is the
+ *    one component on this direction allowed a surface, and it earns it by
+ *    being the only thing that overlaps content. See `PillNav.tsx`.
+ * 2. THE FIGURES. The reference's key-metrics band, spent on the offer instead
+ *    of on results — the user's own call, and the only honest option, because
+ *    the business has no results to report yet. Four commitments already made
+ *    in words elsewhere on the page, set at the scale a metric gets.
+ *
+ * The black-and-white illustration is the arcade, drawn large in ink hairlines
+ * at the head of the process band. It is the same primitive the other two
+ * directions use; here it is the only picture on the page besides the hero
+ * slot, so it is given the room to be one.
  */
 
 const d = directions["2"];
@@ -39,328 +43,300 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function Nero() {
+export default function Plinth() {
   return (
-    <div className="bg-nero motion-develop pb-[var(--switch-bar)] text-nero-bone">
-      <a href="#main" className="skip-link bg-gilt px-4 py-2 text-nero">
+    <div className={`motion-settle bg-pli text-pli-ink ${SWITCH_BAR_CLEARANCE}`}>
+      <a
+        href="#main"
+        className="skip-link rounded-full bg-pli-accent px-4 py-2 font-archivo text-[13px] font-bold text-bone"
+      >
         Skip to content
       </a>
 
-      {/* ------------------------------------------------------------ header */}
-      <header className="sticky top-0 z-50 border-b border-nero-rule bg-nero/92 backdrop-blur-sm">
-        <div className="mx-auto grid max-w-[80rem] grid-cols-[1fr_auto_1fr] items-center gap-6 px-6 py-4 lg:px-10">
-          <span className="hidden font-sans text-[11px] tracking-[0.2em] text-nero-bone-soft uppercase md:block">
-            {d.eyebrow}
-          </span>
-          <a
-            href="#main"
-            className="col-start-2 text-center font-bodoni text-[24px] tracking-[0.14em] text-nero-bone uppercase"
-          >
-            Pulito
-          </a>
-          <a
-            href="#enquiry"
-            className="col-start-3 justify-self-end border-b border-gilt pb-1 font-sans text-[13px] whitespace-nowrap text-gilt transition-colors hover:text-gilt-bright"
-          >
-            {/* Two words on a phone, four above it. "Get a free preview"
-                wrapped to two lines at 390px and shoved the centred wordmark
-                off its own axis, which is the one thing a symmetrical header
-                cannot survive. */}
-            <span className="sm:hidden">Free preview</span>
-            <span className="hidden sm:inline">{site.cta}</span>
-          </a>
-        </div>
-      </header>
+      <PillNav />
 
       <main id="main">
-        {/* -------------------------------------------------------------- hero */}
-        <section className="relative overflow-hidden border-b border-nero-rule pt-16 lg:pt-24">
-          <div className="mx-auto max-w-[80rem] px-6 text-center lg:px-10">
-            {/* No kicker above the headline — see app/1/page.tsx. */}
-            <h1 className="mx-auto max-w-[20ch] font-bodoni text-[clamp(2.4rem,6.4vw,5.4rem)] leading-[1.04] tracking-[-0.005em] text-balance">
+        <section id="top" className="relative isolate overflow-hidden">
+          {/*
+            One warm light behind the words, under everything, in no container.
+
+            Wide and short so it reads as a horizon glow rather than a blob,
+            and weaker on a phone — the gradient is sized in per cent of its
+            own box, so a figure that is a soft wash across 1440px concentrates
+            into a smudge behind the header at 375px. Both widths measured.
+          */}
+          <div
+            aria-hidden
+            className="bloom-breathe pointer-events-none absolute inset-x-0 top-0 -z-10 h-[62vh] bg-[radial-gradient(115%_38%_at_50%_0%,var(--color-pli-accent)_0%,transparent_68%)] opacity-[0.30] sm:opacity-[0.42]"
+          />
+
+          <div className="mx-auto max-w-[76rem] px-5 pt-36 pb-20 text-center sm:px-8 sm:pt-44 sm:pb-24">
+            <h1
+              className="hero-arrive mx-auto max-w-[15ch] font-archivo text-[clamp(2.9rem,8vw,5.8rem)] leading-[0.94] font-extrabold tracking-[-0.038em] text-balance"
+              style={{ ["--arrive-delay" as string]: "0.05s" }}
+            >
               <BrokenHeadline lines={d.headlineLines} headline={d.headline} />
             </h1>
-            <p className="mx-auto mt-7 max-w-[52ch] font-sans text-[16.5px] leading-[1.7] text-nero-bone-soft lg:text-[18px]">
+
+            <p
+              className="hero-arrive mx-auto mt-8 max-w-[58ch] text-[clamp(1.05rem,1.6vw,1.24rem)] leading-relaxed text-pli-ink-soft"
+              style={{ ["--arrive-delay" as string]: "0.18s" }}
+            >
               {d.subhead}
             </p>
 
-            {/*
-              The action sits ABOVE the plate, not under it. A title page wants
-              the frontispiece last, and the first build obeyed that — which
-              pushed the only call to action on the first screen below the fold
-              on a 900px desktop, on a Persuade surface. The ceremony is worth
-              keeping; the cost of it was not.
-            */}
-            <a
-              href="#enquiry"
-              className="mt-9 inline-block border border-gilt px-10 py-4.5 font-archivo text-[12px] font-medium tracking-[0.3em] text-gilt uppercase transition-colors hover:bg-gilt hover:text-nero"
+            <div
+              className="hero-arrive mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+              style={{ ["--arrive-delay" as string]: "0.3s" }}
             >
-              {site.cta}
-            </a>
-          </div>
-
-          {/*
-            `plate-vignette` is not decoration here, it is the fix. The Met's
-            sweep is near-black but not black, so `screen` alone lifts it just
-            enough to leave a visible grey rectangle hanging in the page — the
-            exact failure this direction cannot afford, since its whole claim
-            is that the object is lit out of the same darkness the type sits
-            in. The mask dissolves the frame edge so the residue has no
-            straight line to draw.
-
-            The box is bounded and the image covers it. Left to its intrinsic
-            ratio the plate stood 640px tall, and once the mask had faded its
-            top and bottom away that was a screen and a half of near-nothing
-            between the headline and the next section.
-          */}
-          <div className="relative mx-auto mt-12 h-[34vh] max-w-[32rem] px-6 lg:h-[38vh] lg:px-10">
-            <Image
-              src={plates.caligula.src}
-              alt={plates.caligula.alt}
-              width={plates.caligula.width}
-              height={plates.caligula.height}
-              priority
-              sizes="(min-width: 1024px) 32rem, 90vw"
-              className="bg-nero-2 plate-screen plate-vignette plate-develop h-full w-full object-cover object-[50%_24%]"
-            />
-          </div>
-
-          <div className="mx-auto max-w-[80rem] px-6 pb-14 text-center lg:px-10 lg:pb-20">
-            <p className="font-sans text-[11.5px] tracking-[0.12em] text-nero-bone-soft uppercase">
-              {plates.caligula.credit}
-            </p>
-          </div>
-        </section>
-
-        {/* ----------------------------------------------------------- problem */}
-        <Reveal>
-          <section className="relative overflow-hidden border-b border-nero-rule">
-            {/*
-              The house-book device: the same sentiment set enormous and almost
-              unlit behind the passage that says it properly. It is decoration
-              that is also structure — it sets the section's width — and it is
-              `aria-hidden` because a screen reader announcing the headline
-              twice in a row is a defect, not an effect.
-            */}
-            {/* Sized to FIT rather than clipped to fit. At 15vw the line ran
-                past the viewport and `truncate` cut it mid-word, which reads
-                as a bug rather than as a watermark — the one thing a device
-                like this cannot afford, since it has no other job than to look
-                deliberate. */}
-            <p
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 top-10 overflow-hidden text-center font-bodoni text-[clamp(2.6rem,8.6vw,8rem)] leading-none whitespace-nowrap text-nero-bone/[0.05] uppercase select-none"
-            >
-              Premium craft
-            </p>
-            <div className="relative mx-auto max-w-[68rem] px-6 py-24 text-center lg:px-10 lg:py-36">
-              <h2 className="mx-auto max-w-[22ch] font-bodoni text-[clamp(1.9rem,4vw,3.4rem)] leading-[1.12] text-balance">
-                {d.problem.headline}
-              </h2>
-              <p className="mx-auto mt-8 max-w-[62ch] font-sans text-[17px] leading-[1.75] text-nero-bone-soft">
-                {d.problem.body}
-              </p>
-            </div>
-          </section>
-        </Reveal>
-
-        {/* ---------------------------------------------------------- services */}
-        <Reveal>
-          <section className="border-b border-nero-rule">
-            <div className="mx-auto max-w-[80rem] px-6 py-20 lg:px-10 lg:py-28">
-              <h2 className="text-center font-sans text-[11px] tracking-[0.34em] text-nero-bone-soft uppercase">
-                {d.sections.services}
-              </h2>
-
-              <ul className="mx-auto mt-14 max-w-[62rem] border-t border-nero-rule">
-                {/* No 01/02/03 down the side. The four services are a list,
-                    not a sequence — numbering them told the reader an order
-                    exists that does not, and bought nothing but the look of
-                    rigour. The process steps below ARE a sequence and keep
-                    their numerals. */}
-                {site.services.map((service) => (
-                  <li
-                    key={service.code}
-                    className="grid gap-3 border-b border-nero-rule py-9 lg:grid-cols-[1fr_1.2fr] lg:items-baseline lg:gap-10"
-                  >
-                    <h3 className="font-bodoni text-[clamp(1.5rem,2.2vw,2.1rem)] leading-tight">
-                      {service.title}
-                    </h3>
-                    <p className="max-w-[56ch] font-sans text-[15.5px] leading-[1.75] text-nero-bone-soft">
-                      {service.body}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        </Reveal>
-
-        {/* ------------------------------------------------------ gallery band */}
-        <Reveal>
-          <section className="relative border-b border-nero-rule">
-            <Image
-              src={plates.galleryRelief.src}
-              alt={plates.galleryRelief.alt}
-              width={plates.galleryRelief.width}
-              height={plates.galleryRelief.height}
-              sizes="100vw"
-              className="bg-nero-2 h-[46vh] w-full object-cover object-center lg:h-[62vh]"
-            />
-            {/* A wash, not a tint: the band has to stay a photograph, and the
-                gradient exists only so the caption on top of it clears 4.5:1
-                against the lightest part of the stone underneath. */}
-            <div className="absolute inset-0 bg-gradient-to-t from-nero via-nero/45 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 mx-auto max-w-[80rem] px-6 pb-8 lg:px-10 lg:pb-12">
-              <p className="max-w-[34ch] font-bodoni text-[clamp(1.3rem,2.6vw,2.2rem)] leading-tight text-nero-bone">
-                Work photographed the way it deserves to be seen.
-              </p>
-              <p className="mt-3 font-sans text-[11.5px] tracking-[0.12em] text-nero-bone-soft uppercase">
-                {plates.galleryRelief.credit}
-              </p>
-            </div>
-          </section>
-        </Reveal>
-
-        {/* ----------------------------------------------------------- process */}
-        <Reveal>
-          <section className="border-b border-nero-rule bg-nero-2">
-            <div className="mx-auto grid max-w-[80rem] gap-14 px-6 py-20 lg:grid-cols-12 lg:px-10 lg:py-28">
-              <div className="lg:col-span-5">
-                <h2 className="font-sans text-[11px] tracking-[0.34em] text-nero-bone-soft uppercase">
-                  {d.sections.process}
-                </h2>
-                <Image
-                  src={plates.herodotos.src}
-                  alt={plates.herodotos.alt}
-                  width={plates.herodotos.width}
-                  height={plates.herodotos.height}
-                  sizes="(min-width: 1024px) 36vw, 70vw"
-                  className="bg-nero-2 plate-screen plate-vignette mt-10 w-[70%] max-w-[22rem] lg:w-full"
-                />
-                <p className="mt-4 font-sans text-[11.5px] tracking-[0.12em] text-nero-bone-soft uppercase">
-                  {plates.herodotos.credit}
-                </p>
-              </div>
-
-              <ol className="border-t border-nero-rule lg:col-span-6 lg:col-start-7">
-                {site.process.map((step, index) => (
-                  <li
-                    key={step.title}
-                    className="reveal border-b border-nero-rule py-8"
-                  >
-                    <div className="flex items-baseline gap-5">
-                      <span className="font-bodoni text-[17px] text-nero-bone-soft tabular-nums">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <h3 className="font-bodoni text-[24px] leading-tight">
-                        {step.title}
-                      </h3>
-                    </div>
-                    <p className="mt-3 max-w-[56ch] pl-10 font-sans text-[15.5px] leading-[1.75] text-nero-bone-soft">
-                      {step.body}
-                    </p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </section>
-        </Reveal>
-
-        {/* ------------------------------------------------------------- offer */}
-        <Reveal>
-          <section id="offer" className="border-b border-nero-rule">
-            <div className="mx-auto max-w-[80rem] px-6 py-24 text-center lg:px-10 lg:py-36">
-              <h2 className="font-sans text-[11px] tracking-[0.34em] text-nero-bone-soft uppercase">
-                {d.sections.offer}
-              </h2>
-              <p className="mx-auto mt-9 max-w-[16ch] font-bodoni text-[clamp(2.2rem,5.6vw,4.8rem)] leading-[1.04] text-balance">
-                {site.offer.headline}
-              </p>
-              <div className="mx-auto mt-9 h-px w-24 bg-gilt" />
-              <p className="mx-auto mt-9 max-w-[58ch] font-sans text-[17px] leading-[1.75] text-nero-bone-soft">
-                {site.offer.body}
-              </p>
               <a
                 href="#enquiry"
-                className="mt-11 inline-block border border-gilt px-10 py-4.5 font-archivo text-[12px] font-medium tracking-[0.3em] text-gilt uppercase transition-colors hover:bg-gilt hover:text-nero"
+                className="w-full rounded-full bg-pli-accent px-9 py-4 font-archivo text-[15px] font-bold text-bone transition-colors hover:bg-pli-accent-deep sm:w-auto"
               >
                 {site.cta}
               </a>
+              <a
+                href="#process"
+                className="w-full rounded-full bg-pli-2 px-9 py-4 font-archivo text-[15px] font-bold text-pli-ink transition-colors hover:bg-pli-line sm:w-auto"
+              >
+                {site.ctaSecondary}
+              </a>
             </div>
-          </section>
-        </Reveal>
+          </div>
 
-        {/* ----------------------------------------------------------- enquiry */}
-        <Reveal>
-          <section id="enquiry" className="border-b border-nero-rule bg-nero-2">
-            <div className="mx-auto max-w-[52rem] px-6 py-20 lg:px-10 lg:py-28">
-              <div className="text-center">
-                <h2 className="font-bodoni text-[clamp(2rem,3.4vw,3rem)] leading-[1.08]">
-                  {site.form.headline}
-                </h2>
-                <p className="mx-auto mt-6 max-w-[48ch] font-sans text-[16px] leading-[1.7] text-nero-bone-soft">
-                  {site.form.body}
-                </p>
-              </div>
-              <div className="mt-12">
-                <EnquiryForm skin={neroSkin} />
-              </div>
-              <p className="mt-10 text-center font-sans text-[14px] text-nero-bone-soft">
-                Or write to{" "}
-                <a
-                  href={`mailto:${site.contactEmail}`}
-                  className="border-b border-gilt pb-0.5 text-nero-bone"
-                >
-                  {site.contactEmail}
-                </a>
-              </p>
-            </div>
-          </section>
-        </Reveal>
+          {/* Full bleed, edge to edge: on a page with no containers the
+              picture is not going to sit inside one either. */}
+          <div className="px-5 pb-20 sm:px-8 sm:pb-28">
+            <Reveal>
+              <HeroSlot
+                w={d.heroSlot.w}
+                h={d.heroSlot.h}
+                variant="plinth"
+                className="mx-auto max-w-[92rem]"
+              />
+            </Reveal>
+          </div>
+        </section>
 
-        {/* --------------------------------------------------------------- faq */}
-        <Reveal>
-          <section className="border-b border-nero-rule">
-            <div className="mx-auto max-w-[62rem] px-6 py-20 lg:px-10 lg:py-28">
-              <h2 className="text-center font-sans text-[11px] tracking-[0.34em] text-nero-bone-soft uppercase">
-                {d.sections.faq}
+        {/*
+          THE FIGURES. The reference's metric band, spent on the offer. Every
+          one of the four is a promise the page makes in words somewhere else;
+          none is a measurement, and none implies a client the business does
+          not have.
+        */}
+        <section id="offer" className="bg-pli-2">
+          <div className="mx-auto max-w-[86rem] px-5 py-20 sm:px-8 sm:py-24">
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-4">
+              {site.figures.map((figure) => (
+                <Reveal key={figure.label}>
+                  <div>
+                    <dt className="sr-only">{figure.label}</dt>
+                    <dd>
+                      <span className="block font-archivo text-[clamp(2.6rem,5vw,3.9rem)] leading-none font-extrabold tracking-[-0.04em] text-pli-accent">
+                        {figure.value}
+                      </span>
+                      <span className="mt-4 block max-w-[22ch] text-[14.5px] leading-snug text-pli-ink-soft">
+                        {figure.label}
+                      </span>
+                    </dd>
+                  </div>
+                </Reveal>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        <section className="bg-pli">
+          <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <Reveal>
+              <h2 className="max-w-[18ch] font-archivo text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.02] font-extrabold tracking-[-0.038em] text-balance">
+                {d.problem.headline}
               </h2>
-              <div className="mt-12 border-t border-nero-rule">
+            </Reveal>
+            <Reveal>
+              <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-20">
+                <p className="max-w-[62ch] text-[1.08rem] leading-relaxed text-pli-ink-soft">
+                  {d.problem.body}
+                </p>
+                <div>
+                  <h3 className="font-archivo text-[1.5rem] font-extrabold tracking-[-0.03em]">
+                    {site.offer.headline}
+                  </h3>
+                  <p className="mt-4 max-w-[62ch] text-[1.08rem] leading-relaxed text-pli-ink-soft">
+                    {site.offer.body}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Four services, no boxes. Two columns of large type with a great
+            deal of air between them — the space is the container. */}
+        <section id="services" className="bg-pli-2">
+          <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <Reveal>
+              <h2 className="font-archivo text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.02] font-extrabold tracking-[-0.038em]">
+                {d.sections.services}
+              </h2>
+            </Reveal>
+
+            <div className="mt-16 grid gap-14 sm:grid-cols-2 sm:gap-x-16 sm:gap-y-20">
+              {site.services.map((service) => (
+                <Reveal key={service.code}>
+                  <div>
+                    <h3 className="font-archivo text-[clamp(1.5rem,2.6vw,2.1rem)] leading-tight font-extrabold tracking-[-0.035em]">
+                      {service.title}
+                    </h3>
+                    <p className="mt-4 max-w-[54ch] text-[1.02rem] leading-relaxed text-pli-ink-soft">
+                      {service.body}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* The black-and-white illustration, at the scale it deserves, over
+            the process. Ink hairlines on warm white: the only two-colour thing
+            on the page. */}
+        <section id="process" className="bg-pli">
+          <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            {/* No height class: the arcade now carries its own aspect, so
+                `w-full` fills the band exactly. Given a fixed height instead
+                it was letterboxed to a third of the width and sat marooned in
+                the middle of the page. Seven bays, because at this width that
+                is the arch size that reads as an elevation rather than as a
+                logo. */}
+            <Reveal>
+              <Arcade bays={7} className="w-full text-pli-ink/45" strokeWidth={1} />
+            </Reveal>
+
+            <Reveal>
+              <h2 className="mt-16 font-archivo text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.02] font-extrabold tracking-[-0.038em]">
+                {d.sections.process}
+              </h2>
+            </Reveal>
+
+            <ol className="mt-14 grid gap-12 sm:grid-cols-2 xl:grid-cols-4 xl:gap-10">
+              {site.process.map((step, i) => (
+                <li key={step.title}>
+                  <Reveal>
+                    <span className="block font-archivo text-[2.6rem] leading-none font-extrabold tracking-[-0.04em] text-pli-line">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-5 font-archivo text-[1.3rem] font-extrabold tracking-[-0.03em]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 max-w-[42ch] leading-relaxed text-pli-ink-soft">
+                      {step.body}
+                    </p>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section id="faq" className="bg-pli-2">
+          <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <div className="grid gap-14 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
+              <Reveal>
+                <h2 className="font-archivo text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.02] font-extrabold tracking-[-0.038em] text-balance lg:sticky lg:top-32">
+                  {d.sections.faq}
+                </h2>
+              </Reveal>
+
+              {/* Separated by space and weight, never by a rule: this is the
+                  direction that has no lines on it. */}
+              <div className="flex flex-col gap-2">
                 {site.faqs.map((faq) => (
-                  <details key={faq.q} className="group border-b border-nero-rule">
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-8 py-6 font-bodoni text-[clamp(1.15rem,1.7vw,1.5rem)] leading-snug marker:content-none">
+                  <details key={faq.q} className="group">
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-8 py-4 font-archivo text-[1.15rem] font-bold tracking-[-0.02em] transition-colors hover:text-pli-accent">
                       {faq.q}
-                      <DisclosureMark className="mt-1 font-bodoni text-[24px] text-gilt" />
+                      <DisclosureMark className="mt-0.5 text-[1.4rem] font-normal text-pli-accent" />
                     </summary>
-                    <p className="max-w-[74ch] pb-8 font-sans text-[16px] leading-[1.75] text-nero-bone-soft">
+                    <p className="max-w-[66ch] pb-6 leading-relaxed text-pli-ink-soft">
                       {faq.a}
                     </p>
                   </details>
                 ))}
               </div>
             </div>
-          </section>
-        </Reveal>
+          </div>
+        </section>
+
+        {/* The inverted band. The one moment of drama a page with no chrome
+            gets, and it goes on the closing argument. */}
+        <section className="relative isolate overflow-hidden bg-pli-3 text-bone">
+          <Fluting
+            count={70}
+            className="pointer-events-none absolute inset-0 -z-10 h-full w-full text-bone/8"
+          />
+          <div className="mx-auto max-w-[86rem] px-5 py-24 text-center sm:px-8 sm:py-28">
+            <Reveal>
+              <h2 className="mx-auto max-w-[20ch] font-archivo text-[clamp(1.9rem,4vw,3rem)] leading-[1.05] font-extrabold tracking-[-0.038em] text-balance">
+                {site.offer.headline}
+              </h2>
+              <a
+                href="#enquiry"
+                className="mt-10 inline-block rounded-full bg-pli-accent px-10 py-4 font-archivo text-[15px] font-bold text-bone transition-colors hover:bg-pli-accent-deep"
+              >
+                {site.cta}
+              </a>
+            </Reveal>
+          </div>
+        </section>
+
+        <section id="enquiry" className="bg-pli">
+          <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <div className="grid gap-14 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
+              <Reveal>
+                <div>
+                  <h2 className="font-archivo text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.02] font-extrabold tracking-[-0.038em] text-balance">
+                    {site.form.headline}
+                  </h2>
+                  <p className="mt-5 max-w-[46ch] leading-relaxed text-pli-ink-soft">
+                    {site.form.body}
+                  </p>
+                  <a
+                    href={`mailto:${site.contactEmail}`}
+                    className="mt-8 inline-block font-archivo text-[15px] font-bold text-pli-accent transition-colors hover:text-pli-accent-deep"
+                  >
+                    {site.contactEmail}
+                  </a>
+                </div>
+              </Reveal>
+
+              <Reveal>
+                <EnquiryForm skin={plinthSkin} />
+              </Reveal>
+            </div>
+          </div>
+        </section>
       </main>
 
-      {/* ------------------------------------------------------------- footer */}
-      <footer className="mx-auto max-w-[80rem] px-6 pt-16 pb-28 text-center lg:px-10">
-        <p className="font-bodoni text-[38px] tracking-[0.14em] uppercase">Pulito</p>
-        <p className="mt-5 font-sans text-[14px] text-nero-bone-soft">
-          {site.footer.line}
-        </p>
-        <a
-          href={`mailto:${site.contactEmail}`}
-          className="mt-3 inline-block border-b border-gilt pb-0.5 font-sans text-[14px] text-nero-bone"
-        >
-          {site.contactEmail}
-        </a>
-        <p className="mx-auto mt-12 max-w-[70ch] border-t border-nero-rule pt-6 font-sans text-[12px] leading-relaxed text-nero-bone-soft">
-          Photography: {plates.caligula.credit}; {plates.herodotos.credit};{" "}
-          {plates.galleryRelief.credit}. Full licence details in{" "}
-          <code>public/img/CREDITS.md</code>.
-        </p>
+      <footer className="bg-pli-3 text-bone">
+        <div className="mx-auto flex max-w-[86rem] flex-col gap-6 px-5 py-14 sm:px-8 md:flex-row md:items-end md:justify-between">
+          <div>
+            <span className="font-archivo text-[19px] font-extrabold tracking-[-0.03em]">
+              Pulito
+            </span>
+            <p className="mt-4 max-w-[46ch] text-[14.5px] leading-relaxed text-bone/70">
+              {site.footer.line}
+            </p>
+          </div>
+          <p className="text-[14.5px] text-bone/70">
+            {site.location} ·{" "}
+            <a
+              href={`mailto:${site.contactEmail}`}
+              className="text-bone transition-colors hover:text-pli-accent"
+            >
+              {site.contactEmail}
+            </a>
+          </p>
+        </div>
       </footer>
 
       <DirectionSwitch current="2" />

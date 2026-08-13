@@ -30,7 +30,11 @@ A single landing page. One conversion event: a short enquiry form.
 
 - **Offer:** a free redesign preview of the prospect's existing homepage. No
   obligation. They keep it either way.
-- **Services:** web design, web redesign, SEO, AI automation.
+- **Services:** web design, SEO, AI automation. Redesigns are not a separate
+  service — they are most of what web design actually is, and the user merged
+  the two lines because splitting them made the list look padded. The FAQ still
+  answers "we already have a website" directly, because that is still true and
+  still the most common way a job starts.
 - **Geography:** Adelaide and regional South Australia. Interstate possible for
   design and build.
 - **Pricing:** never stated on the page. Quoted after a call, because it depends
@@ -50,33 +54,40 @@ A single landing page. One conversion event: a short enquiry form.
 
 - Name: Pulito Digital. Wordmark reads "Pulito".
 - Contact: hello@pulitodigital.com.au
-- Pinned aesthetic (user-supplied references): classical and heritage —
-  Greco-Roman sculpture, worked marble, carved detail, quarried stone.
-  Described by the user as "elegant minimalism". The seven references supplied
-  are all photographic: a deep-blue hero with a classical figure, a near-black
-  luxury furniture house, a saturated-blue law firm behind a silver statue, a
-  white-and-yellow sculpture exhibition, a dark "antique" page, a dark-blue
-  page around a marble statue, and a light minimalist deck of Greek busts.
-- **Photography only. No vector art, no illustration, no generated imagery.**
-  This is the user's explicit instruction and it overrides everything the
-  earlier builds assumed. It also decides the design system: when the only
-  picture allowed is a photograph, the work moves into ground, crop, type,
-  measure and rule.
-- **Imagery must be free and easily obtained.** Sourced from The Met Open
-  Access (CC0) and Wikimedia Commons (CC BY / CC BY-SA), downloaded into
-  `public/img` rather than hotlinked. `public/img/CREDITS.md` records the
-  licence per file. **Five files are CC BY-SA, which obliges attribution and
-  share-alike on the resized derivatives in this repo** — a decision to make
-  before this goes live commercially, not after.
-- **The arch is no longer the pinned motif.** It was pinned for the previous
-  build and the user has since replaced the reference set. Radius 0 holds on
-  every direction, so the only curves anywhere are the ones inside the
-  photographs.
-- **Positioning is broad on purpose.** The headline says "digital marketing
-  for premium craft", not "websites" and not "renovation builders": the work
-  is web, search and automation, and the audience is premium craft generally.
-  Adelaide is carried by the running header, the FAQ, the page title and the
-  schema, never by the headline.
+- **Pinned aesthetic (user-supplied references): modern, clean, professional.**
+  Three sites, supplied together and named as the thing to build after:
+  `daliagents.com`, the Omega agency template on nextjsshop, and the Notus
+  agent-marketing template **in its light mode**. What the user named as the
+  reasons: Dali's dark blue, its subtle hero background graphic, its centred
+  wordmark with slash marks, its hero-to-body scroll transition, the sticky
+  sidebar in its solutions section, and the way it dims every section except
+  the one being read. (The "little column on the left" was first read as a
+  page-margin index; against the reference's own stylesheet it is the solutions
+  sidebar, and the margin rail was removed once that was clear.)
+  Omega's nav contracting into a pill on scroll, its black-and-white
+  illustration, its key figures, its simple palette. Notus's centred hero with
+  an accent and a device in the middle, and its grid.
+- **The classical world is retired.** Greco-Roman remains the user's personal
+  favourite and they asked for a trace of it, explicitly conditional on it
+  being cheap. It survives as **hairline geometry only** — an arcade, fluting,
+  a cornice — drawn parametrically in `components/Classical.tsx`. No marble, no
+  sculpture photography, no serif display face. The user's standard was "clean
+  enough to get up and running and to look professional", and "not too fancy".
+- **The hero imagery is being generated separately by the user**, through
+  Higgsfield. `/2` and `/3` each reserve a real 16:9 slot with a composed
+  placeholder; `DESIGN.md` records the dimensions. **`/1`, the direction that
+  is actually shipping, no longer has one** — the user asked for the arcade
+  image below its hero to go, and that box was the slot. Where a supplied hero
+  image lives on Meridian is an open question.
+- **Nothing about the founder appears on the page.** No name, no photograph,
+  no bio, no "who we are". Asked directly whether a founder section should
+  stand in for the missing proof, the user said no. A standing constraint, not
+  a gap waiting to be filled.
+- **The headline leads with the offer, not the audience.** The user's call: the
+  guarantee — you see the redesign before you pay for it — is what the first
+  screen argues, and it is deliberately not tied to a trade or a city. The
+  wording varies between directions; the claim does not. Adelaide is carried
+  by the FAQ, the footer, the page title and the schema.
 - All page copy lives in `content/site.ts`.
 
 ## History
@@ -88,36 +99,50 @@ near-black page with a generated marble slab and three cursor behaviours
 and three arch-led directions at `/a` `/b` `/c` whose every object was
 hand-authored SVG.
 
-That last one is the one worth remembering, because this build is its
-opposite. The user supplied a new set of photographic references and ruled out
-vector art and illustration entirely, so the drawn arcade — the whole premise
-of the previous world — went with it. **A page selling craft to people who
-build things cannot argue for real material with a drawing of it.**
+Most recently, five photographic directions on Met sculpture photography —
+Ultramarine, Nero, Bianco, Cava, Gesso — with five display serifs and a
+compare board. **That build is still live on `main`, in the primary working
+tree, and is being finished in a separate session.** Nothing here touches it.
 
-The live build is **five photographic directions**, compared side by side and
-flicked through:
+This tree is a separate branch, `design/modern-three`, in its own worktree. It
+exists because the user said plainly that they had not been happy with any of
+the classical attempts, and supplied three modern reference sites instead. The
+brief that replaced the old one, in their words: clean enough to get up and
+running, professional, not too fancy.
 
-- **`/1` — Ultramarine.** The institution. A drenched blue ground with one lit
-  marble head screened into it, Libre Caslon Display, asymmetric.
-- **`/2` — Nero.** The house catalogue. Near-black and gilt, Bodoni Moda,
-  symmetrical, the object lit out of the same darkness the type sits in.
-- **`/3` — Bianco.** The auction catalogue. Cold paper, vermilion, EB Garamond
-  at small display size, plates with references and a title block.
-- **`/4` — Cava.** The quarry. Quarry dust and hi-vis orange, Archivo at 800 in
-  tight capitals, the stone before it is anything.
-- **`/5` — Gesso.** The cast court. Plaster grey with one acid signal,
-  Bricolage Grotesque, type over full-bleed photography, and a hall of casts
-  that scrolls sideways.
-- **`/` — the comparison surface.** All five live in iframes at a real device
-  width. Two modes, because they answer different questions: BOARD shows all
-  five at once (phone width by default, which is both the reader's device and
-  the only width at which five panels are legible), and FLICK shows one at a
-  time, stepped with the arrow keys, without unmounting the others.
+The live build here is **three modern directions, one after each reference**,
+compared side by side and flicked through. All three carry identical product
+facts, the same offer and the same form; what varies is ground, density,
+structure and one signature mechanic each.
 
-**Open decision:** which one ships. The four losers — their plates, their form
-skins, their tokens, their motion gestures and their display faces — come out
-in one commit along with the board and the switcher; `DESIGN.md` lists exactly
-what each deletion takes with it. The winner moves to `/`.
+- **`/1` — Meridian. THE CHOSEN ONE.** The studio, after Dali. Ultramarine,
+  amber-orange action, Schibsted Grotesk, headline "Built to be seen." The user
+  picked this direction and then pulled parts into it: the ultramarine and the
+  headline from the build running alongside this one, the pill nav and the hero
+  gradient from Plinth, and the sticky-sidebar showcase from the Dali
+  reference. `/2` and `/3` are now reference material rather than candidates.
+- **`/2` — Plinth.** The agency, after Omega. Warm white with **no chrome at
+  all** — no card, border or shadow on the page — Archivo at 800 carrying the
+  hierarchy alone. Its mechanic is the header contracting into a floating pill,
+  and it owns the figures band.
+- **`/3` — Lattice.** The product page, after Notus in light mode. Cool white
+  on a ruled grid, blue-violet, bordered cells, nine sections. The densest of
+  the three, and the only one with a bento grid.
+- **`/` — the comparison surface.** All three live in iframes at a real device
+  width. BOARD shows all three at once — at phone width they render 1:1, which
+  five panels never allowed — and FLICK shows one at a time, stepped with the
+  arrow keys, without unmounting the others. Flicking matters more here than it
+  did before: two of the three are carried by scroll mechanics that do not read
+  honestly in a shrunken panel.
+
+**Decided:** Meridian ships. What is still open is only the cleanup — Plinth
+and Lattice, their form skins, tokens, motion gestures and display faces come
+out in one commit along with the board and the switcher, and Meridian moves to
+`/`. `DESIGN.md` lists exactly what each deletion takes with it. They are being
+kept alive for now so the user can still flick back and compare.
+
+**Still to come from the user:** the hero images, generated in Higgsfield. The
+slots are reserved and dimensioned.
 
 **Unratified copy.** Two commitments in `content/site.ts` are not granted
 anywhere in this document and predate the current build: the reply time

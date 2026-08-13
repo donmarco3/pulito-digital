@@ -6,30 +6,32 @@ import { DIRECTIONS } from "./DirectionSwitch";
 /**
  * The comparison surface.
  *
- * Five live pages, in iframes rendered at a real device width and scaled to
- * fit — not screenshots, and not five copies of the components rendered
+ * Three live pages, in iframes rendered at a real device width and scaled to
+ * fit — not screenshots, and not three copies of the components rendered
  * inline.
  *
  * Iframes, specifically, for a reason worth keeping. Each direction defines
  * its own colours, its own display face and its own sticky header, and each is
  * written assuming it owns the viewport. Rendered inline into one document
  * they would fight over `position: sticky`, over `100svh`, over
- * `:focus-visible`, and over any `@media` query keyed to viewport width — five
- * columns on a 27" screen are phone-width, so every direction would show its
- * mobile layout and the comparison would be of the wrong thing. An iframe
- * gives each one a real viewport, so what is on screen is what ships.
+ * `:focus-visible`, and over any `@media` query keyed to viewport width —
+ * three columns on a 27" screen are tablet-width, so every direction would
+ * show the wrong layout and the comparison would be of the wrong thing. An
+ * iframe gives each one a real viewport, so what is on screen is what ships.
  *
- * The user asked for two different ways of looking, because they answer two
- * different questions, and one control cannot do both:
+ * Two ways of looking, because they answer two different questions and one
+ * control cannot do both:
  *
- * - **BOARD** — all five at once. This is for "which of these is a different
+ * - **BOARD** — all three at once. This is for "which of these is a different
  *   kind of thing", which is a question about the set and needs them adjacent.
  * - **FLICK** — one at a time, stepped with ← / →, each at a much larger
  *   scale. This is for "which of these is actually good", which is a question
- *   about one page and cannot be answered at 20% scale. Flicking rather than
- *   navigating matters: the frames stay mounted, so the page you come back to
- *   is still where you left it and the comparison is between two things you
- *   have both just read, not between one page and a memory of another.
+ *   about one page and cannot be answered at a third scale. It matters more on
+ *   this build than on the last one: two of the three directions are carried
+ *   by scroll mechanics — a section rail with its neighbours dimmed, a header
+ *   contracting into a pill — and neither reads honestly in a shrunken panel.
+ *   Flicking rather than navigating keeps the frames mounted, so the page you
+ *   come back to is still where you left it.
  *
  * Same-origin, so reaching into `contentWindow` is legitimate here rather than
  * a trick. This whole file is review scaffolding and comes out when a
@@ -50,16 +52,16 @@ export function CompareBoard() {
     rather than about the board. PRODUCT.md puts this reader on a phone
     between site visits, so the phone column is the one that decides.
 
-    It also happens to be the only width at which five panels are worth
-    looking at. Five 1440px frames across a 1440px window put each column at
-    ~270px, which is a scale of 0.19 and a 176px-tall stump — nothing about
-    any direction is judgeable at 19%, and the rest of the screen is empty.
-    Five 390px frames in the same columns run at about 0.69 and stand ~580px
-    tall. The desktop width therefore caps at two columns and scrolls, which
-    is the honest trade: an iframe stretched past its device height would show
-    more page, but every `svh` and `vh` unit inside it would then be measuring
-    a viewport no reader has, and this board's whole job is to show what
-    ships.
+    Three panels rather than five also changes what the board can show. Three
+    390px frames across a 1440px window get ~470px of column each, so the
+    scale caps at 1:1 and the phone panels render at their real size — no
+    scaling artefact, no guessing, the page exactly as the reader gets it.
+    Three 1440px frames in the same window would run at about 0.33, so the
+    desktop width still caps at two columns until the window is wide enough
+    for a third. That is the honest trade: an iframe stretched past its device
+    height would show more page, but every `svh` and `vh` unit inside it would
+    then be measuring a viewport no reader has, and this board's whole job is
+    to show what ships.
   */
   const [width, setWidth] = useState<WidthKey>("phone");
   const [view, setView] = useState<View>("board");
@@ -73,7 +75,7 @@ export function CompareBoard() {
   const device = WIDTHS[width];
 
   /* Scale is measured from a real column rather than computed from a
-     breakpoint: the board is 1, 2, 3 or 5 columns depending on the window and
+     breakpoint: the board is 1, 2 or 3 columns depending on the window and
      the view, and guessing which would put the frames at the wrong size on
      every layout but the one that was guessed.
 
@@ -166,9 +168,9 @@ export function CompareBoard() {
   );
 
   /*
-    Keys. 1–5 select; in board view that means opening the page full size,
+    Keys. 1–3 select; in board view that means opening the page full size,
     and in flick view it means bringing that panel to the front without
-    leaving. ← / → step, and they wrap — the fifth direction's neighbour is
+    leaving. ← / → step, and they wrap — the third direction's neighbour is
     the first, and a dead end at either end turns a riffle into bookkeeping.
     F swaps the view, because the whole point of flicking is that it is
     faster than reaching for a control.
@@ -217,12 +219,12 @@ export function CompareBoard() {
       <header className="sticky top-0 z-20 flex flex-wrap items-center justify-between gap-4 border-b border-white/15 bg-[#141414]/95 px-5 py-3.5 backdrop-blur-md">
         <div>
           <h1 className="font-mono text-[12px] tracking-[0.2em] uppercase">
-            Pulito · five directions
+            Pulito · three directions
           </h1>
           <p className="mt-1 font-mono text-[10.5px] tracking-[0.12em] text-white/65 uppercase">
             {view === "board"
-              ? "1–5 opens one full size · F or ← → to flick through"
-              : `← → steps · 1–5 jumps · F returns to the board`}
+              ? "1–3 opens one full size · F or ← → to flick through"
+              : `← → steps · 1–3 jumps · F returns to the board`}
           </p>
         </div>
 
@@ -277,7 +279,7 @@ export function CompareBoard() {
       </header>
 
       {/*
-        Both views render the SAME five frames. They are never unmounted —
+        Both views render the SAME three frames. They are never unmounted —
         only the wrapper's layout changes — so flicking costs nothing, keeps
         every panel's scroll position, and never reloads a page mid-comparison.
         `hidden` rather than conditional rendering is doing real work here.
@@ -286,8 +288,8 @@ export function CompareBoard() {
         className={
           view === "board"
             ? width === "phone"
-              ? "grid gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
-              : "grid gap-4 p-4 xl:grid-cols-2"
+              ? "grid gap-4 p-4 sm:grid-cols-2 lg:grid-cols-3"
+              : "grid gap-4 p-4 xl:grid-cols-2 2xl:grid-cols-3"
             : "p-4"
         }
       >
@@ -310,7 +312,7 @@ export function CompareBoard() {
                   <span className="text-white/55">{d.key} ·</span> {d.label}
                   {/* Wraps, never truncates. Moving the tagline onto its own
                       line was not enough on its own — it kept `truncate` and
-                      five columns still cut it to "The instituti…", which is
+                      three columns still cut it to "The product pa…", which is
                       the same defect one line lower. The tagline is the half
                       that says what is being compared, so it is allowed the
                       second line it needs. */}

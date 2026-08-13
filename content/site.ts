@@ -3,20 +3,20 @@
  *
  * The file has two halves, and the split is the point.
  *
- * `site` is PRODUCT TRUTH: the services, the process, the offer, the
- * questions people actually ask, the form. It is identical on all five
- * directions, because those are facts about the business and a comparison
- * that let them drift would be comparing two things at once.
+ * `site` is PRODUCT TRUTH: the services, the capabilities, the process, the
+ * offer, the figures, the questions people actually ask, the form. It is
+ * identical on all three directions, because those are facts about the
+ * business and a comparison that let them drift would be comparing two things
+ * at once.
  *
  * `directions` is VOICE: the headline, the way the problem is put, what the
- * sections are called, and the small label each world uses for its own
- * furniture. The user asked for copy to vary with the design, so it does —
- * but only where wording is a design decision rather than a claim.
+ * sections are called. The user asked for creativity and flexibility in the
+ * hero copy specifically, so the three headlines say the same true thing in
+ * three registers — but no direction gets a fact the others are denied.
  *
  * Standing constraints, from PRODUCT.md, that bind both halves:
  * no testimonials, logos, ratings or client numbers; no pricing in any form;
- * Australian English; Adelaide carried by the header, FAQ, title and schema
- * rather than by a headline.
+ * nothing about the founder personally; Australian English.
  */
 
 export const site = {
@@ -26,30 +26,84 @@ export const site = {
 
   /** One CTA label, used in the nav, the hero and the footer of every world. */
   cta: "Get a free preview",
+  /** The quieter second action, which scrolls rather than converts. */
+  ctaSecondary: "See how it works",
 
   /** Running header metadata. */
   disciplines: "Web, search and automation",
 
+  /**
+   * THREE services, not four.
+   *
+   * "Web design" and "Web redesign" were separate entries and are now one, at
+   * the user's instruction: they are the same job, and splitting them made the
+   * list look padded rather than thorough. The redesign case did not get
+   * dropped — it is the second half of the web design entry, and the FAQ still
+   * answers "we already have a website" directly, because that is still true
+   * and still the most common way a job starts.
+   *
+   * Each service carries three `points`. Every one of them is a sentence that
+   * already existed in this file, either in the service's own body or in the
+   * capability list that used to sit below it, moved to the service it
+   * actually belongs to. Nothing here is a new claim.
+   */
   services: [
     {
-      code: "WD",
+      code: "01",
       title: "Web design",
-      body: "A site built around the way high-end clients actually buy: the work first, the process second, an enquiry within reach on every screen.",
+      body: "A site built around the way high-end clients actually buy: the work first, the process second, an enquiry within reach on every screen. If you already have a site, the content and the search rankings carry across — we replace the shopfront, not the business.",
+      points: [
+        {
+          title: "Mobile first, genuinely",
+          body: "Designed on a 390px screen before a desktop one, because that is where your enquiries actually arrive.",
+        },
+        {
+          title: "A speed budget",
+          body: "Pages that load on site reception on a phone, not only on office wi-fi with a fast laptop.",
+        },
+        {
+          title: "Ownership from day one",
+          body: "Domain, hosting and code in your name. Leaving us should never mean losing your website.",
+        },
+      ],
     },
     {
-      code: "RD",
-      title: "Web redesign",
-      body: "Keep the business, replace the shopfront. Your existing content and search rankings carry across to something that matches the standard of your builds.",
-    },
-    {
-      code: "SE",
+      code: "02",
       title: "SEO",
-      body: "Getting found for the searches worth money in Adelaide. Suburb and service pages, a Google Business Profile that works, and technical fixes that let the site rank at all.",
+      body: "Getting found for the searches worth money in Adelaide, and being the one they call rather than the one they scroll past.",
+      points: [
+        {
+          title: "Suburb and service pages",
+          body: "The pages that rank for searches with money behind them, written so they read like a business rather than a keyword.",
+        },
+        {
+          title: "Google Business Profile",
+          body: "Set up and maintained properly, so the map result works as hard as the website does.",
+        },
+        {
+          title: "The technical side",
+          body: "The fixes that let a site rank at all — the part that is invisible until it is missing.",
+        },
+      ],
     },
     {
-      code: "AI",
+      code: "03",
       title: "AI automation",
-      body: "Enquiries answered in minutes instead of days. Quotes chased, leads followed up and jobs logged without anyone remembering to do it.",
+      body: "Enquiries answered in minutes instead of days, and nothing falling through the gap between the site visit and the quote.",
+      points: [
+        {
+          title: "Enquiries acknowledged",
+          body: "Every enquiry gets a reply within minutes, logged, whether or not anyone is at a desk.",
+        },
+        {
+          title: "Quotes chased",
+          body: "Follow-up that happens on its own, instead of when someone remembers on a Sunday night.",
+        },
+        {
+          title: "Jobs logged",
+          body: "The record keeps itself, so the pipeline is something you can look at rather than something you carry around.",
+        },
+      ],
     },
   ],
 
@@ -77,6 +131,22 @@ export const site = {
     body: "Send through your website and we will redesign the homepage as a working preview, built with your own photos and copy. No obligation, no pitch deck. If you like it, we talk. If you don't, you keep the preview.",
   },
 
+  /**
+   * The figures band.
+   *
+   * The user liked the metrics block on one of the references and chose to
+   * spend it on the offer rather than on results — which is the only honest
+   * option available, because the business is new and has no results to
+   * report. Every one of these four is a commitment already made in words
+   * elsewhere on the page; none is a measurement, and none implies a client.
+   */
+  figures: [
+    { value: "$0", label: "What the preview costs you" },
+    { value: "0", label: "Lock-in contracts, ever" },
+    { value: "100%", label: "Yours: domain, hosting and code" },
+    { value: "1 day", label: "Until we come back to you" },
+  ],
+
   faqs: [
     {
       q: "What does a website cost?",
@@ -89,6 +159,10 @@ export const site = {
     {
       q: "How long does it take?",
       a: "A single-page site is a couple of weeks. A full renovation site with project galleries and suburb pages usually runs four to six, most of which is waiting on photography and copy approvals.",
+    },
+    {
+      q: "What's the catch with the free preview?",
+      a: "There isn't one. We rebuild your homepage because showing you is faster than convincing you, and because it is the only honest way to prove the work before you have paid for any. If you like it we talk about the rest of the site. If you don't, you keep it and we leave you alone.",
     },
     {
       q: "Do you only work with renovation businesses?",
@@ -117,232 +191,89 @@ export const site = {
   },
 } as const;
 
-/**
- * A photograph's credit line and alternative text.
- *
- * Alt text describes the object, never the treatment. A screen reader user
- * gets told there is a marble Diadoumenos; being told it has been screened
- * into an ultramarine ground tells them about CSS, not about the page.
- *
- * `credit` is not optional politeness. Five of these files are CC BY or
- * CC BY-SA, which oblige attribution on a derivative, and the resize made
- * every file in the repo a derivative. `public/img/CREDITS.md` records which
- * is which and what that costs before this goes live commercially.
- */
-export type Plate = {
-  src: string;
-  alt: string;
-  credit: string;
-  width: number;
-  height: number;
-};
-
-export const plates = {
-  diadoumenos: {
-    src: "/img/figure-diadoumenos.webp",
-    alt: "Marble statue of the Diadoumenos, a young athlete binding a band around his head, standing beside a tree stump",
-    credit: "The Met, Open Access (CC0)",
-    width: 1500,
-    height: 2043,
-  },
-  athena: {
-    src: "/img/torso-athena.webp",
-    alt: "Marble head and torso of Athena, draped and belted, the surface weathered",
-    credit: "The Met, Open Access (CC0)",
-    width: 1200,
-    height: 1600,
-  },
-  caligula: {
-    src: "/img/bust-caligula.webp",
-    alt: "Marble portrait bust of the emperor Gaius, known as Caligula, lit against a black ground",
-    credit: "The Met, Open Access (CC0)",
-    width: 1500,
-    height: 1999,
-  },
-  herodotos: {
-    src: "/img/bust-herodotos.webp",
-    alt: "Marble bust of Herodotos, bearded, his name cut in Greek capitals across the base",
-    credit: "The Met, Open Access (CC0)",
-    width: 1200,
-    height: 1599,
-  },
-  galleryRelief: {
-    src: "/img/gallery-relief.webp",
-    alt: "A carved stone relief panel hung in a museum gallery against a deep red wall",
-    credit: "M. Gaylard, Wikimedia Commons (CC BY 2.0)",
-    width: 1200,
-    height: 799,
-  },
-  eros: {
-    src: "/img/torso-eros.webp",
-    alt: "Marble torso of Eros, broken at the shoulders and thighs, on a plain ground",
-    credit: "The Met, Open Access (CC0)",
-    width: 1100,
-    height: 1100,
-  },
-  rosso: {
-    src: "/img/torso-rosso.webp",
-    alt: "Torso of a centaur carved in rosso antico, a deep red marble",
-    credit: "The Met, Open Access (CC0)",
-    width: 1000,
-    height: 1333,
-  },
-  boy: {
-    src: "/img/torso-boy.webp",
-    alt: "Marble torso of a boy, weathered smooth",
-    credit: "The Met, Open Access (CC0)",
-    width: 1000,
-    height: 1272,
-  },
-  constantine: {
-    src: "/img/head-constantine.webp",
-    alt: "Marble portrait head of the Emperor Constantine I",
-    credit: "The Met, Open Access (CC0)",
-    width: 1000,
-    height: 1333,
-  },
-  caracalla: {
-    src: "/img/head-caracalla.webp",
-    alt: "Marble portrait of the emperor Caracalla, brow drawn down, head turned sharply",
-    credit: "The Met, Open Access (CC0)",
-    width: 1200,
-    height: 1599,
-  },
-  quarryFace: {
-    src: "/img/quarry-face.webp",
-    alt: "A worked face of a Carrara marble quarry, cut in terraces under a deep blue sky",
-    credit: "Wittylama, Wikimedia Commons (CC BY-SA 4.0)",
-    width: 1200,
-    height: 1600,
-  },
-  quarryRange: {
-    src: "/img/quarry-range.webp",
-    alt: "Marble quarries cut into a mountain range above a valley, seen from across the slope",
-    credit: "Ingo Mehling, Wikimedia Commons (CC BY-SA 4.0)",
-    width: 1280,
-    height: 687,
-  },
-  castRelief: {
-    src: "/img/cast-relief.webp",
-    alt: "A plaster cast of a carved architectural niche, a shell hood over figures beneath a tree",
-    credit: "M. Gaylard, Wikimedia Commons (CC BY 2.0)",
-    width: 1200,
-    height: 1804,
-  },
-  castHall: {
-    src: "/img/cast-hall.webp",
-    alt: "The interior of a museum cast hall, plaster casts of monuments crowded under a high roof",
-    credit: "DiscoA340, Wikimedia Commons (CC BY-SA 4.0)",
-    width: 1200,
-    height: 800,
-  },
-} satisfies Record<string, Plate>;
-
-export type DirectionKey = "1" | "2" | "3" | "4" | "5";
+export type DirectionKey = "1" | "2" | "3";
 
 /**
- * Per-direction voice.
+ * Per-direction voice, plus the one piece of layout data that belongs with the
+ * copy rather than in the page: the hero image slot's aspect.
  *
- * Every field here is a wording decision the design makes. None of them is a
- * claim: the five headlines say the same true thing about the same business
- * in five registers, and no direction gets a fact the others are denied.
+ * `heroSlot` is here so the three ratios are recorded in one readable place
+ * for whoever generates the images. The page reads the ratio from this object,
+ * so changing it here changes the reserved box — there is no second number to
+ * keep in step.
  */
 export const directions = {
   "1": {
-    name: "Ultramarine",
-    tagline: "The institution",
+    name: "Meridian",
+    tagline: "The studio",
     /** What the page says it is, in the running header. */
     eyebrow: "Pulito Digital — Adelaide",
-    headline: "Built to be looked at.",
-    headlineLines: ["Built to be", "looked at."],
+    /*
+      The user's own line, carried over from the build they liked and shortened
+      from "Built to be looked at." at their request. It is a better headline
+      than the one it replaces: three words, about the reader's work rather
+      than about the offer, and it lands before the reader has decided whether
+      to keep reading. The guarantee moves into the subhead, where it still
+      does the persuading.
+    */
+    headline: "Built to be seen.",
+    headlineLines: ["Built to be seen."],
     subhead:
-      "Web, search and automation for the builders, renovators and makers whose work already sets the standard.",
+      "Web, search and automation for the trades whose work already sets the standard — starting with your own homepage, redesigned as a working preview before you pay us anything.",
     problem: {
       headline: "Your last build was worth more than your whole website.",
       body: "Premium work sells on how it looks. Then the enquiry lands on a site built years ago on a template, slow on a phone, with a gallery that undersells the job. The client has already compared you to three others before you pick up. The work is the easy part. The first impression is the leak.",
     },
     sections: {
+      offer: "The offer",
       services: "What we do",
       process: "How the work runs",
       faq: "Questions we get asked",
-      offer: "The offer",
+      enquiry: "Enquiry",
     },
+    heroSlot: { w: 1600, h: 900 },
   },
   "2": {
-    name: "Nero",
-    tagline: "The house catalogue",
+    name: "Plinth",
+    tagline: "The agency",
     eyebrow: "Adelaide, South Australia",
-    headline: "Work of this standard deserves a shopfront to match.",
-    headlineLines: ["Work of this standard", "deserves a shopfront", "to match."],
+    headline: "See it built before you buy it.",
+    headlineLines: ["See it built", "before you buy it."],
     subhead:
-      "A digital studio for premium trades. Web design, redesign, search and automation, made in Adelaide.",
+      "Send us your website and we redesign the homepage as a working preview. No obligation, no pitch deck, and you keep it either way.",
     problem: {
-      headline: "The gap is not in the work. It is in the window.",
+      headline: "The work is not the problem. The window is.",
       body: "You spend months on a kitchen that photographs like furniture, and it arrives online as four compressed thumbnails on a page that takes six seconds to load. Nobody doubts the craft. They never get close enough to see it.",
     },
     sections: {
-      services: "The disciplines",
-      process: "How a commission runs",
+      offer: "The offer",
+      services: "What we do",
+      process: "How a job runs",
       faq: "Before you ask",
-      offer: "An offer, without obligation",
+      enquiry: "Start here",
     },
+    heroSlot: { w: 1920, h: 1080 },
   },
   "3": {
-    name: "Bianco",
-    tagline: "The auction catalogue",
+    name: "Lattice",
+    tagline: "The product page",
     eyebrow: "Pulito Digital · Adelaide SA · Web, search, automation",
-    headline: "Everything you build is catalogued badly.",
-    headlineLines: ["Everything you build", "is catalogued badly."],
+    headline: "Your homepage, redesigned. Before you commit to anything.",
+    headlineLines: ["Your homepage, redesigned.", "Before you commit to anything."],
     subhead:
-      "We rebuild the record: the site, the search listing and the follow-up, for premium building and renovation trades.",
+      "Web design, redesign, SEO and AI automation for premium building and renovation trades. Start with a free working preview of your own homepage and decide from there.",
     problem: {
-      headline: "A good object, described poorly, sells for less.",
-      body: "That is the whole of it. The kitchen is right, the joinery is right, the finish is right — and the page describing it is a stock template with a phone number in the footer. The buyer is comparing entries, not builders, and yours reads like the cheap lot.",
+      headline: "Where the enquiry actually leaks.",
+      body: "It is rarely the trade and it is rarely the price. It is a slow page on a phone, a gallery that undersells the job, and a form nobody checks. Three fixable things standing between the work and the quote.",
     },
     sections: {
-      services: "Services",
-      process: "Method",
-      faq: "Conditions of sale",
-      offer: "On approval",
+      offer: "The offer",
+      services: "What we do",
+      process: "How it works",
+      faq: "Frequently asked",
+      enquiry: "Get your preview",
     },
-  },
-  "4": {
-    name: "Cava",
-    tagline: "The quarry",
-    eyebrow: "Adelaide + regional SA",
-    headline: "Nothing good was ever finished in a hurry.",
-    headlineLines: ["Nothing good", "was ever finished", "in a hurry."],
-    subhead:
-      "Websites, search and automation for the trades who cut, fit and finish. Built properly, owned by you.",
-    problem: {
-      headline: "You would not accept this standard on site.",
-      body: "A template site is a job done by someone who has never seen the work. Wrong dimensions, wrong materials, finished in an afternoon and signed off by nobody. You would pull it out and start again. Somehow the website gets a pass.",
-    },
-    sections: {
-      services: "The work",
-      process: "Sequence",
-      faq: "Straight answers",
-      offer: "Free, no obligation",
-    },
-  },
-  "5": {
-    name: "Gesso",
-    tagline: "The cast court",
-    eyebrow: "Pulito Digital",
-    headline: "A copy is never the thing.",
-    headlineLines: ["A copy is", "never", "the thing."],
-    subhead:
-      "Every template site is a cast of somebody else's business. We build the original: web, search and automation for premium trades in Adelaide.",
-    problem: {
-      headline: "Your website is a cast of a website.",
-      body: "Same layout as the last three builders who called you. Same hero photo, same four icons, same form nobody checks. It is a copy of a copy, and it is doing the job of representing work that is genuinely one of one.",
-    },
-    sections: {
-      services: "What we make",
-      process: "The sequence",
-      faq: "Asked and answered",
-      offer: "Take the original",
-    },
+    heroSlot: { w: 1600, h: 900 },
   },
 } as const satisfies Record<
   DirectionKey,
@@ -355,10 +286,12 @@ export const directions = {
     subhead: string;
     problem: { headline: string; body: string };
     sections: {
+      offer: string;
       services: string;
       process: string;
       faq: string;
-      offer: string;
+      enquiry: string;
     };
+    heroSlot: { w: number; h: number };
   }
 >;

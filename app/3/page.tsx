@@ -1,36 +1,33 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { EnquiryForm } from "@/components/EnquiryForm";
-import { DirectionSwitch } from "@/components/DirectionSwitch";
+import { Arcade, HeroSlot } from "@/components/Classical";
+import { DirectionSwitch, SWITCH_BAR_CLEARANCE } from "@/components/DirectionSwitch";
 import { DisclosureMark } from "@/components/Disclosure";
 import { BrokenHeadline, Reveal } from "@/components/Reveal";
-import { biancoSkin } from "@/components/skins";
-import { directions, plates, site } from "@/content/site";
+import { latticeSkin } from "@/components/skins";
+import { directions, site } from "@/content/site";
 
 /**
- * 3 — BIANCO. The auction catalogue.
+ * 3 — LATTICE. After Notus, in LIGHT mode.
  *
- * The quiet pole of the five, and the one that argues by restraint: a
- * catalogue of antiquities, where every object gets a plate, a reference and
- * a description, and nothing shouts because the objects do not need it.
+ * Light, and that is the user's correction rather than my reading: they were
+ * looking at that reference with its theme toggle set to light, and preferred
+ * it. It leaves this build with one dark direction and two light ones, so
+ * PLINTH and LATTICE are pulled hard apart on everything except value —
+ * PLINTH is warm, sparse and has no chrome at all; LATTICE is cool, dense, and
+ * is ENTIRELY chrome. Bordered cells, a ruled grid ground, soft corners, and
+ * more sections than either of the others.
  *
- * Two decisions keep this out of the rut it is closest to. The ground is COLD
- * paper, not cream — warm cream under a serif is the single most predictable
- * thing this page could have been, and the coldness is what stops a catalogue
- * reading as a wedding invitation. And the display size is SMALL on purpose:
- * this is the only one of the five whose headline does not fill the screen,
- * because a catalogue's authority comes from its margins and its
- * consistency, not from its type size.
+ * The structural system is the lattice its name promises: cells separated by
+ * shared hairlines on a grid field, so the page reads as one ruled surface
+ * rather than as a stack of floating cards. Where a grid of equal cells would
+ * flatten the content, the spans vary — the services run 4/2/2/4 across six
+ * columns, because they are not four interchangeable products.
  *
- * The lots are the services, referenced by the codes that already exist in
- * `content/site.ts`. Nothing here invents a provenance, an estimate or a date:
- * a catalogue is the most convincing typeface a lie can wear, and this one
- * sells a business with no track record yet.
- *
- * The plates are NOT knocked out. Every one sits on the grey sweep it was
- * photographed against, framed and captioned — which is what a catalogue does
- * with a photograph anyway, and it means no plate on this page depends on a
- * blend mode to look deliberate.
+ * The centred hero device is where the reference puts its dashboard
+ * screenshot. There is no dashboard to put there and no product UI to
+ * photograph, so it is the reserved image slot, at 1600×900, sitting on the
+ * grid under a violet bloom.
  */
 
 const d = directions["3"];
@@ -40,38 +37,49 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-/** One plate per service, in the order the services are listed. */
-const LOT_PLATES = [plates.eros, plates.rosso, plates.boy, plates.constantine];
+const NAV = [
+  { href: "#offer", label: d.sections.offer },
+  { href: "#services", label: d.sections.services },
+  { href: "#process", label: d.sections.process },
+  { href: "#faq", label: d.sections.faq },
+] as const;
 
-export default function Bianco() {
+export default function Lattice() {
   return (
-    <div className="bg-bianco motion-turn pb-[var(--switch-bar)] text-bianco-ink">
+    <div
+      className={`motion-assemble bg-lat font-manrope text-lat-ink ${SWITCH_BAR_CLEARANCE}`}
+    >
       <a
         href="#main"
-        className="skip-link bg-vermilion px-4 py-2 text-bone"
+        className="skip-link rounded-lg bg-lat-accent px-4 py-2 text-[13px] font-semibold text-bone"
       >
         Skip to content
       </a>
 
-      {/* Paper tooth. Multiplied in, never screened on: screening a white noise
-          field over a light sheet only washes it out. */}
-      <div
-        aria-hidden
-        className="tooth-layer pointer-events-none fixed inset-0 z-40 opacity-[0.05] mix-blend-multiply"
-      />
-
-      {/* ------------------------------------------------------------ header */}
-      <header className="sticky top-0 z-50 border-b border-bianco-ink bg-bianco/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-[78rem] items-baseline gap-6 px-6 py-3.5 lg:px-10">
-          <a href="#main" className="font-garamond text-[20px] tracking-[0.04em]">
-            Pulito Digital
+      <header
+        id="top"
+        className="sticky top-0 z-40 border-b border-lat-line bg-lat/85 backdrop-blur-xl"
+      >
+        <div className="mx-auto flex max-w-[82rem] items-center justify-between gap-6 px-5 py-3.5 sm:px-8">
+          <a href="#top" className="text-[18px] font-extrabold tracking-[-0.03em]">
+            Pulito
           </a>
-          <span className="hidden font-mono text-[10.5px] tracking-[0.14em] text-bianco-ink-soft uppercase md:block">
-            {d.eyebrow}
-          </span>
+
+          <nav aria-label="Sections" className="hidden items-center gap-1 lg:flex">
+            {NAV.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="rounded-lg px-3 py-2 text-[14px] font-medium text-lat-ink-soft transition-colors hover:bg-lat-2 hover:text-lat-ink"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
           <a
             href="#enquiry"
-            className="ml-auto font-mono text-[10.5px] tracking-[0.14em] text-vermilion uppercase underline decoration-vermilion underline-offset-4 transition-colors hover:text-vermilion-deep"
+            className="shrink-0 rounded-lg bg-lat-accent px-4 py-2.5 text-[14px] font-bold whitespace-nowrap text-bone transition-colors hover:bg-lat-accent-deep"
           >
             {site.cta}
           </a>
@@ -79,306 +87,312 @@ export default function Bianco() {
       </header>
 
       <main id="main">
-        {/* --------------------------------------------------------- title page */}
-        <section className="border-b border-bianco-ink">
-          <div className="mx-auto grid max-w-[78rem] gap-12 px-6 py-16 lg:grid-cols-12 lg:gap-16 lg:px-10 lg:py-24">
-            <div className="lg:col-span-6">
-              {/* No kicker above the headline — see app/1/page.tsx. Adelaide
-                  was the one thing this line carried that the subhead does
-                  not, and the title-block below already schedules it under
-                  Region, which is where a catalogue puts it anyway. */}
-              <h1 className="max-w-[20ch] font-garamond text-[clamp(2.1rem,4.2vw,3.5rem)] leading-[1.12] tracking-[-0.005em] text-balance">
-                <BrokenHeadline lines={d.headlineLines} headline={d.headline} />
-              </h1>
+        <section className="relative isolate overflow-hidden">
+          <div
+            aria-hidden
+            className="lat-grid pointer-events-none absolute inset-0 -z-10"
+          />
+          {/* Flattened to a horizon glow and weakened on a phone, for the same
+              reason as PLINTH's: a percentage-sized radial concentrates into a
+              violet blob behind the header at 375px. */}
+          <div
+            aria-hidden
+            className="bloom-breathe pointer-events-none absolute inset-x-0 top-0 -z-10 h-[70vh] bg-[radial-gradient(115%_36%_at_50%_0%,var(--color-lat-accent)_0%,transparent_70%)] opacity-[0.30] sm:opacity-[0.42]"
+          />
 
-              <div className="mt-8 h-px w-full bg-bianco-rule" />
+          <div className="mx-auto max-w-[82rem] px-5 pt-24 pb-16 text-center sm:px-8 sm:pt-32">
+            <h1
+              /* 26ch, not 19: the headline is authored on two lines and 19ch
+                 re-wrapped both of them, so the hero opened on four lines and
+                 pushed its own actions to the fold. */
+              className="hero-arrive mx-auto max-w-[26ch] text-[clamp(2.4rem,5.6vw,4.2rem)] leading-[1.04] font-extrabold tracking-[-0.035em] text-balance"
+              style={{ ["--arrive-delay" as string]: "0.05s" }}
+            >
+              <BrokenHeadline lines={d.headlineLines} headline={d.headline} />
+            </h1>
 
-              <p className="mt-8 max-w-[54ch] font-sans text-[16.5px] leading-[1.72] text-bianco-ink-soft">
-                {d.subhead}
-              </p>
+            <p
+              className="hero-arrive mx-auto mt-7 max-w-[62ch] text-[clamp(1rem,1.4vw,1.15rem)] leading-relaxed text-lat-ink-soft"
+              style={{ ["--arrive-delay" as string]: "0.18s" }}
+            >
+              {d.subhead}
+            </p>
 
-              <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-                <a
-                  href="#enquiry"
-                  className="bg-vermilion px-8 py-4 font-mono text-[12px] tracking-[0.18em] text-bone uppercase transition-colors hover:bg-vermilion-deep"
-                >
-                  {site.cta}
-                </a>
-                <a
-                  href="#offer"
-                  className="border-b border-bianco-rule-strong pb-1 font-sans text-[15px] text-bianco-ink-soft transition-colors hover:border-bianco-ink hover:text-bianco-ink"
-                >
-                  Terms of the preview
-                </a>
-              </div>
-
-              {/* The running metadata a catalogue carries on its title page.
-                  Every cell is a fact PRODUCT.md already states. */}
-              <dl className="mt-14 grid max-w-[34rem] grid-cols-2 gap-x-8 gap-y-5 border-t border-bianco-rule pt-8">
-                {[
-                  ["Studio", "Pulito Digital"],
-                  ["Disciplines", site.disciplines],
-                  ["Region", "Adelaide and regional SA"],
-                  ["Ownership", "Domain, hosting and code in your name"],
-                ].map(([label, value]) => (
-                  <div key={label}>
-                    <dt className="font-mono text-[10px] tracking-[0.16em] text-bianco-ink-soft uppercase">
-                      {label}
-                    </dt>
-                    <dd className="mt-1.5 font-sans text-[14.5px] leading-snug">
-                      {value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
+            <div
+              className="hero-arrive mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+              style={{ ["--arrive-delay" as string]: "0.3s" }}
+            >
+              <a
+                href="#enquiry"
+                className="w-full rounded-lg bg-lat-accent px-7 py-3.5 text-[15px] font-bold text-bone transition-colors hover:bg-lat-accent-deep sm:w-auto"
+              >
+                {site.cta}
+              </a>
+              <a
+                href="#process"
+                className="w-full rounded-lg border border-lat-line bg-lat px-7 py-3.5 text-[15px] font-bold text-lat-ink transition-colors hover:border-lat-line-strong hover:bg-lat-2 sm:w-auto"
+              >
+                {site.ctaSecondary}
+              </a>
             </div>
+          </div>
 
-            {/*
-              The frontispiece, and two decisions worth recording.
-
-              It comes FIRST on a phone (`order-first`). Left in source order
-              the phone fold was headline, rule, subhead, action and a
-              four-cell metadata grid — a spec sheet — and this direction's
-              own contract says it opens on a photograph. It is also cropped
-              to 4:5 below `lg`: at its native 1500x2043 the plate ate 530px
-              of an 844px screen and pushed the action off the fold to buy
-              nothing, since a catalogue plate is a crop by nature.
-
-              The plate is the Athena rather than the Diadoumenos. Both are
-              Met CC0 and either carries the classical argument, but this page
-              is opened cold, on a phone, on a building site, sometimes with a
-              client standing there — and the Diadoumenos is a full-frontal
-              nude at the largest scale on the page. That is a bad thing to
-              hand someone as a first impression when a draped torso does the
-              identical work. The standing figure is off this page entirely —
-              it still leads ULTRAMARINE, where it is one plate among two
-              rather than the register of the whole thing.
-            */}
-            <figure className="plate-develop order-first lg:order-none lg:col-span-5 lg:col-start-8">
-              <div className="border border-bianco-ink bg-bianco-2 p-3">
-                <Image
-                  src={plates.athena.src}
-                  alt={plates.athena.alt}
-                  width={plates.athena.width}
-                  height={plates.athena.height}
-                  priority
-                  sizes="(min-width: 1024px) 38vw, 100vw"
-                  className="bg-bianco-2 aspect-[4/5] w-full object-cover object-top lg:aspect-auto lg:object-fill"
-                />
-              </div>
-              <figcaption className="mt-4 font-mono text-[10.5px] leading-relaxed tracking-[0.1em] text-bianco-ink-soft uppercase">
-                Frontispiece — {plates.athena.credit}
-              </figcaption>
-            </figure>
+          {/* The centred device, where the reference puts its dashboard. */}
+          <div className="mx-auto max-w-[82rem] px-5 pb-20 sm:px-8 sm:pb-24">
+            <Reveal>
+              <HeroSlot w={d.heroSlot.w} h={d.heroSlot.h} variant="lattice" />
+            </Reveal>
           </div>
         </section>
 
-        {/* ----------------------------------------------------------- problem */}
-        <Reveal>
-          <section className="border-b border-bianco-ink bg-bianco-2">
-            <div className="mx-auto max-w-[78rem] px-6 py-20 lg:px-10 lg:py-24">
-              <h2 className="max-w-[26ch] font-garamond text-[clamp(1.7rem,3vw,2.7rem)] leading-[1.18] text-balance">
-                {d.problem.headline}
-              </h2>
-              <p className="mt-7 max-w-[68ch] font-sans text-[16.5px] leading-[1.78] text-bianco-ink-soft">
-                {d.problem.body}
-              </p>
-            </div>
-          </section>
-        </Reveal>
-
-        {/* -------------------------------------------------------- the lots */}
-        <Reveal>
-          <section className="border-b border-bianco-ink">
-            <div className="mx-auto max-w-[78rem] px-6 py-20 lg:px-10 lg:py-24">
-              <div className="flex items-baseline justify-between gap-6 border-b border-bianco-ink pb-4">
-                <h2 className="font-mono text-[11px] tracking-[0.22em] uppercase">
-                  {d.sections.services}
+        {/* The offer, tinted rather than boxed: the one place the accent owns
+            a whole region instead of marking a control. */}
+        <section id="offer" className="border-y border-lat-line bg-lat-accent-soft">
+          <div className="mx-auto max-w-[82rem] px-5 py-20 sm:px-8 sm:py-24">
+            <Reveal>
+              <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+                <h2 className="text-[clamp(1.7rem,3.2vw,2.5rem)] leading-[1.08] font-extrabold tracking-[-0.03em] text-balance">
+                  {site.offer.headline}
                 </h2>
-                <p className="font-mono text-[11px] tracking-[0.22em] text-bianco-ink-soft uppercase">
-                  Four references
+                <div>
+                  <p className="max-w-[64ch] text-[1.05rem] leading-relaxed text-lat-ink-soft">
+                    {site.offer.body}
+                  </p>
+                  <a
+                    href="#enquiry"
+                    className="mt-8 inline-block rounded-lg bg-lat-accent px-6 py-3 text-[14.5px] font-bold text-bone transition-colors hover:bg-lat-accent-deep"
+                  >
+                    {site.cta}
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="bg-lat">
+          <div className="mx-auto max-w-[82rem] px-5 py-20 sm:px-8 sm:py-24">
+            <Reveal>
+              <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+                <h2 className="text-[clamp(1.7rem,3.2vw,2.5rem)] leading-[1.08] font-extrabold tracking-[-0.03em] text-balance">
+                  {d.problem.headline}
+                </h2>
+                <p className="max-w-[64ch] text-[1.05rem] leading-relaxed text-lat-ink-soft">
+                  {d.problem.body}
                 </p>
               </div>
+            </Reveal>
+          </div>
+        </section>
 
-              {/* A single-pixel gap grid, so the four cells share drawn
-                  boundaries rather than each becoming a floating card. */}
-              <ul className="mt-px grid gap-px bg-bianco-rule sm:grid-cols-2 lg:grid-cols-4">
-                {site.services.map((service, index) => {
-                  const plate = LOT_PLATES[index];
-                  return (
-                    <li key={service.code} className="bg-bianco px-5 py-7">
-                      <div className="flex items-baseline justify-between">
-                        <span className="font-mono text-[11px] tracking-[0.18em] text-vermilion uppercase">
-                          Ref. {service.code}
-                        </span>
-                        <span className="font-mono text-[11px] text-bianco-ink-soft tabular-nums">
-                          {String(index + 1).padStart(2, "0")}/04
-                        </span>
-                      </div>
+        {/* Bento, with the spans varied 4/2/2/4. Four equal cells would say
+            the four services are interchangeable; they are not. */}
+        <section id="services" className="border-t border-lat-line bg-lat-2">
+          <div className="mx-auto max-w-[82rem] px-5 py-20 sm:px-8 sm:py-24">
+            <Reveal>
+              <h2 className="text-[clamp(1.7rem,3.2vw,2.5rem)] leading-[1.08] font-extrabold tracking-[-0.03em]">
+                {d.sections.services}
+              </h2>
+            </Reveal>
 
-                      <div className="mt-5 border border-bianco-rule bg-bianco-2 p-2">
-                        <Image
-                          src={plate.src}
-                          alt={plate.alt}
-                          width={plate.width}
-                          height={plate.height}
-                          sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 90vw"
-                          className="bg-bianco-2 aspect-[3/4] w-full object-cover object-top"
-                        />
-                      </div>
-
-                      <h3 className="mt-6 font-garamond text-[26px] leading-tight">
-                        {service.title}
-                      </h3>
-                      <p className="mt-3 font-sans text-[14.5px] leading-[1.7] text-bianco-ink-soft">
-                        {service.body}
-                      </p>
-                      <p className="mt-5 font-mono text-[9.5px] leading-relaxed tracking-[0.08em] text-bianco-ink-soft uppercase">
-                        {plate.credit}
-                      </p>
-                    </li>
-                  );
-                })}
-              </ul>
+            {/* Spans 6 / 3 / 3 across six columns: the first service takes a
+                full row and the other two split the next. Was 4/2/2/4 when
+                there were four services; with three, that pattern left a
+                half-empty row. */}
+            <div className="mt-12 grid gap-4 lg:grid-cols-6">
+              {site.services.map((service, i) => (
+                <Reveal
+                  key={service.code}
+                  className={i === 0 ? "lg:col-span-6" : "lg:col-span-3"}
+                >
+                  <div className="h-full rounded-xl border border-lat-line bg-lat p-7 transition-colors hover:border-lat-line-strong sm:p-8">
+                    <h3 className="text-[1.3rem] font-extrabold tracking-[-0.025em]">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 max-w-[60ch] leading-relaxed text-lat-ink-soft">
+                      {service.body}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
-          </section>
-        </Reveal>
+          </div>
+        </section>
 
-        {/* ------------------------------------------------------------ method */}
-        <Reveal>
-          <section className="border-b border-bianco-ink bg-bianco-2">
-            <div className="mx-auto max-w-[78rem] px-6 py-20 lg:px-10 lg:py-24">
-              <h2 className="font-mono text-[11px] tracking-[0.22em] uppercase">
+        {/*
+          The lattice proper: six cells sharing hairlines on one ruled surface,
+          rather than six floating cards with six shadows. The `gap-px` over a
+          line-coloured ground is what makes the borders shared instead of
+          doubled.
+        */}
+        <section className="border-t border-lat-line bg-lat">
+          <div className="mx-auto max-w-[82rem] px-5 py-20 sm:px-8 sm:py-24">
+            <Reveal>
+              <h2 className="text-[clamp(1.4rem,2.4vw,1.9rem)] font-extrabold tracking-[-0.025em]">
+                What that actually includes
+              </h2>
+            </Reveal>
+
+            <div className="mt-10 overflow-hidden rounded-xl border border-lat-line">
+              {/* Flattened from the services rather than kept as a separate
+                  list: the detail used to live in its own `capabilities`
+                  array, and now belongs to the service it describes. Nine
+                  cells across three columns. */}
+              <div className="grid gap-px bg-lat-line sm:grid-cols-2 lg:grid-cols-3">
+                {site.services
+                  /* Spread, not `s.points` directly: `as const` makes each
+                     service's points a distinct readonly TUPLE, and flatMap
+                     cannot reconcile three different tuple types into one
+                     element type. Copying to a plain array widens them. */
+                  .flatMap((s) => [...s.points])
+                  .map((item) => (
+                  <div key={item.title} className="bg-lat p-6 sm:p-7">
+                    <h3 className="text-[1.02rem] font-bold tracking-[-0.015em]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-[14.5px] leading-relaxed text-lat-ink-soft">
+                      {item.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="process" className="border-t border-lat-line bg-lat-2">
+          <div className="mx-auto max-w-[82rem] px-5 py-20 sm:px-8 sm:py-24">
+            <Reveal>
+              <h2 className="text-[clamp(1.7rem,3.2vw,2.5rem)] leading-[1.08] font-extrabold tracking-[-0.03em]">
                 {d.sections.process}
               </h2>
-              <ol className="mt-10 grid gap-px border-y border-bianco-rule bg-bianco-rule lg:grid-cols-4">
-                {site.process.map((step, index) => (
-                  <li key={step.title} className="reveal bg-bianco-2 px-5 py-8">
-                    <span className="font-mono text-[11px] tracking-[0.18em] text-vermilion tabular-nums">
-                      {String(index + 1).padStart(2, "0")}
+            </Reveal>
+
+            {/* Numerals earned: this is a sequence and the order is the
+                information. The rule behind them is the connector. */}
+            <ol className="relative mt-14 grid gap-10 sm:grid-cols-2 xl:grid-cols-4 xl:gap-8">
+              <span
+                aria-hidden
+                className="rule-draw absolute top-4 right-0 left-0 -z-0 hidden h-px bg-lat-line xl:block"
+              />
+              {site.process.map((step, i) => (
+                <li key={step.title} className="relative">
+                  <Reveal>
+                    <span className="relative z-10 flex size-8 items-center justify-center rounded-full bg-lat-accent text-[13px] font-bold text-bone">
+                      {i + 1}
                     </span>
-                    <h3 className="mt-4 font-garamond text-[24px] leading-tight">
+                    <h3 className="mt-5 text-[1.2rem] font-extrabold tracking-[-0.025em]">
                       {step.title}
                     </h3>
-                    <p className="mt-3 font-sans text-[14.5px] leading-[1.7] text-bianco-ink-soft">
+                    <p className="mt-2.5 max-w-[42ch] leading-relaxed text-lat-ink-soft">
                       {step.body}
                     </p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </section>
-        </Reveal>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
 
-        {/* ------------------------------------------------------------- offer */}
-        <Reveal>
-          <section id="offer" className="border-b border-bianco-ink">
-            <div className="mx-auto grid max-w-[78rem] gap-12 px-6 py-20 lg:grid-cols-12 lg:px-10 lg:py-24">
-              <figure className="lg:col-span-4">
-                <div className="border border-bianco-ink bg-bianco-2 p-3">
-                  <Image
-                    src={plates.eros.src}
-                    alt={plates.eros.alt}
-                    width={plates.eros.width}
-                    height={plates.eros.height}
-                    sizes="(min-width: 1024px) 30vw, 100vw"
-                    className="bg-bianco-2 w-full"
-                  />
-                </div>
-                <figcaption className="mt-4 font-mono text-[10.5px] tracking-[0.1em] text-bianco-ink-soft uppercase">
-                  {plates.eros.credit}
-                </figcaption>
-              </figure>
-
-              <div className="lg:col-span-7 lg:col-start-6">
-                <h2 className="font-mono text-[11px] tracking-[0.22em] text-vermilion uppercase">
-                  {d.sections.offer}
+        <section id="faq" className="border-t border-lat-line bg-lat">
+          <div className="mx-auto max-w-[82rem] px-5 py-20 sm:px-8 sm:py-24">
+            <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
+              <Reveal>
+                <h2 className="text-[clamp(1.7rem,3.2vw,2.5rem)] leading-[1.08] font-extrabold tracking-[-0.03em] text-balance lg:sticky lg:top-28">
+                  {d.sections.faq}
                 </h2>
-                <p className="mt-6 max-w-[18ch] font-garamond text-[clamp(2rem,3.8vw,3.2rem)] leading-[1.1] text-balance">
-                  {site.offer.headline}
-                </p>
-                <p className="mt-7 max-w-[58ch] font-sans text-[16.5px] leading-[1.78] text-bianco-ink-soft">
-                  {site.offer.body}
-                </p>
-                <a
-                  href="#enquiry"
-                  className="mt-10 inline-block bg-vermilion px-8 py-4 font-mono text-[12px] tracking-[0.18em] text-bone uppercase transition-colors hover:bg-vermilion-deep"
-                >
-                  {site.cta}
-                </a>
-              </div>
-            </div>
-          </section>
-        </Reveal>
+              </Reveal>
 
-        {/* ----------------------------------------------------------- enquiry */}
-        <Reveal>
-          <section id="enquiry" className="border-b border-bianco-ink bg-bianco-2">
-            <div className="mx-auto grid max-w-[78rem] gap-12 px-6 py-20 lg:grid-cols-12 lg:px-10 lg:py-24">
-              <div className="lg:col-span-4">
-                <h2 className="font-garamond text-[clamp(1.9rem,3vw,2.6rem)] leading-[1.12]">
-                  {site.form.headline}
-                </h2>
-                <p className="mt-6 max-w-[42ch] font-sans text-[15.5px] leading-[1.72] text-bianco-ink-soft">
-                  {site.form.body}
-                </p>
-                <a
-                  href={`mailto:${site.contactEmail}`}
-                  className="mt-8 inline-block border-b border-vermilion pb-1 font-sans text-[15px]"
-                >
-                  {site.contactEmail}
-                </a>
-              </div>
-              <div className="lg:col-span-7 lg:col-start-6">
-                <EnquiryForm skin={biancoSkin} />
-              </div>
-            </div>
-          </section>
-        </Reveal>
-
-        {/* --------------------------------------------------------------- faq */}
-        <Reveal>
-          <section className="border-b border-bianco-ink">
-            <div className="mx-auto max-w-[78rem] px-6 py-20 lg:px-10 lg:py-24">
-              <h2 className="font-mono text-[11px] tracking-[0.22em] uppercase">
-                {d.sections.faq}
-              </h2>
-              <div className="mt-10 border-t border-bianco-rule">
+              <div className="overflow-hidden rounded-xl border border-lat-line">
                 {site.faqs.map((faq) => (
-                  <details key={faq.q} className="group border-b border-bianco-rule">
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-8 py-5 font-garamond text-[clamp(1.15rem,1.6vw,1.45rem)] leading-snug marker:content-none">
+                  <details
+                    key={faq.q}
+                    className="group border-b border-lat-line last:border-b-0"
+                  >
+                    <summary className="flex cursor-pointer list-none items-start justify-between gap-8 p-6 text-[1.05rem] font-bold tracking-[-0.015em] transition-colors hover:bg-lat-2">
                       {faq.q}
-                      <DisclosureMark className="mt-0.5 font-garamond text-[24px] text-vermilion" />
+                      <DisclosureMark className="mt-0.5 text-[1.35rem] font-normal text-lat-accent" />
                     </summary>
-                    <p className="max-w-[76ch] pb-7 font-sans text-[15.5px] leading-[1.78] text-bianco-ink-soft">
+                    <p className="max-w-[68ch] px-6 pb-6 leading-relaxed text-lat-ink-soft">
                       {faq.a}
                     </p>
                   </details>
                 ))}
               </div>
             </div>
-          </section>
-        </Reveal>
+          </div>
+        </section>
+
+        <section className="relative isolate overflow-hidden bg-lat-3 text-bone">
+          <Arcade
+            bays={8}
+            className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[85%] w-full text-lat-accent/25"
+          />
+          <div className="mx-auto max-w-[82rem] px-5 py-20 text-center sm:px-8 sm:py-24">
+            <Reveal>
+              <h2 className="mx-auto max-w-[22ch] text-[clamp(1.7rem,3.4vw,2.6rem)] leading-[1.08] font-extrabold tracking-[-0.03em] text-balance">
+                Send us the website. We will send back the redesign.
+              </h2>
+              <a
+                href="#enquiry"
+                className="mt-9 inline-block rounded-lg bg-lat-accent px-8 py-3.5 text-[15px] font-bold text-bone transition-colors hover:bg-lat-accent-deep"
+              >
+                {site.cta}
+              </a>
+            </Reveal>
+          </div>
+        </section>
+
+        <section id="enquiry" className="border-t border-lat-line bg-lat-2">
+          <div className="mx-auto max-w-[82rem] px-5 py-20 sm:px-8 sm:py-24">
+            <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+              <Reveal>
+                <div>
+                  <h2 className="text-[clamp(1.7rem,3.2vw,2.5rem)] leading-[1.08] font-extrabold tracking-[-0.03em] text-balance">
+                    {site.form.headline}
+                  </h2>
+                  <p className="mt-5 max-w-[46ch] leading-relaxed text-lat-ink-soft">
+                    {site.form.body}
+                  </p>
+                  <a
+                    href={`mailto:${site.contactEmail}`}
+                    className="mt-8 inline-block text-[15px] font-bold text-lat-accent transition-colors hover:text-lat-accent-deep"
+                  >
+                    {site.contactEmail}
+                  </a>
+                </div>
+              </Reveal>
+
+              <Reveal>
+                <div className="rounded-xl border border-lat-line bg-lat p-7 sm:p-9">
+                  <EnquiryForm skin={latticeSkin} />
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
       </main>
 
-      {/* ------------------------------------------------------------- footer */}
-      <footer className="mx-auto max-w-[78rem] px-6 pt-14 pb-28 lg:px-10">
-        <div className="flex flex-wrap items-end justify-between gap-8 border-t border-bianco-ink pt-8">
-          <p className="font-garamond text-[30px] leading-none">Pulito Digital</p>
-          <div className="font-sans text-[14px] text-bianco-ink-soft">
-            <p>{site.footer.line}</p>
+      <footer className="bg-lat-3 text-bone">
+        <div className="mx-auto flex max-w-[82rem] flex-col gap-6 px-5 py-14 sm:px-8 md:flex-row md:items-end md:justify-between">
+          <div>
+            <span className="text-[18px] font-extrabold tracking-[-0.03em]">
+              Pulito
+            </span>
+            <p className="mt-4 max-w-[46ch] text-[14.5px] leading-relaxed text-bone/70">
+              {site.footer.line}
+            </p>
+          </div>
+          <p className="text-[14.5px] text-bone/70">
+            {site.location} ·{" "}
             <a
               href={`mailto:${site.contactEmail}`}
-              className="mt-2 inline-block border-b border-vermilion pb-0.5 text-bianco-ink"
+              className="text-bone transition-colors hover:text-lat-accent"
             >
               {site.contactEmail}
             </a>
-          </div>
+          </p>
         </div>
-        <p className="mt-10 font-mono text-[10px] leading-relaxed tracking-[0.06em] text-bianco-ink-soft uppercase">
-          All plates: The Met, Open Access (CC0). Full licence details in
-          public/img/CREDITS.md
-        </p>
       </footer>
 
       <DirectionSwitch current="3" />

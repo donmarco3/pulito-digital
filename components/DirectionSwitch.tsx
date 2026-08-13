@@ -6,28 +6,28 @@ import { useRouter } from "next/navigation";
 import { directions, type DirectionKey } from "@/content/site";
 
 /**
- * Review furniture: the way from any one direction to the other four.
+ * Review furniture: the way from any one direction to the other two.
  *
- * This is not part of any of the five worlds and is not meant to look like
- * one. It is a scaffold, and it comes out in the same commit as the four
+ * This is not part of any of the three worlds and is not meant to look like
+ * one. It is a scaffold, and it comes out in the same commit as the two
  * losing directions — deleting it is this file plus one line in each page.
  *
  * Three things it has to get right:
  *
- * 1. **It hides itself inside the compare view.** The board renders all five
- *    in iframes, and five fixed switchers stacked in five scaled panels would
- *    be the loudest thing on that screen. The check is `window.self !==
+ * 1. **It hides itself inside the compare view.** The board renders all three
+ *    in iframes, and three fixed switchers stacked in three scaled panels
+ *    would be the loudest thing on that screen. The check is `window.self !==
  *    window.top`, and it runs through `useSyncExternalStore` so the server
  *    snapshot and the first client render agree — rendering the bar on the
- *    server and removing it on hydration would flash it into all five panels
+ *    server and removing it on hydration would flash it into all three panels
  *    on every load of the board.
  *
- * 2. **1–5 jump, and ← / → step.** Comparing means flipping between pages
+ * 2. **1–3 jump, and ← / → step.** Comparing means flipping between pages
  *    fast and repeatedly, and a mouse trip to a corner control breaks that.
  *    Number keys are for going somewhere specific; the arrows are for the
  *    actual comparing motion, which is riffling back and forth through
  *    neighbours without deciding anything yet. Stepping wraps, because the
- *    fifth direction's neighbour is the first — a dead end at either end
+ *    third direction's neighbour is the first — a dead end at either end
  *    turns a riffle into a bookkeeping exercise.
  *
  * 3. **It stands down inside a field.** Every direction has a form on it, and
@@ -39,8 +39,8 @@ import { directions, type DirectionKey } from "@/content/site";
  * direction's root as bottom padding; without it the bar sat across the hero's
  * primary action on a 390px screen — scaffolding covering the one control the
  * page exists to offer, which is a worse bug than anything it was built to
- * check. The variable, not a magic number in five files, so the bar can change
- * height in one place.
+ * check. The variable, not a magic number in three files, so the bar can
+ * change height in one place.
  */
 export const SWITCH_BAR_CLEARANCE = "pb-[var(--switch-bar)]";
 
@@ -139,17 +139,16 @@ export function DirectionSwitch({ current }: { current: DirectionKey }) {
             <span className={active ? "text-neutral-600" : "text-neutral-400"}>
               {d.key}
             </span>
-            {/* The name is hidden below `sm`, not truncated. Five names at
-                11px tracked do not fit 390px however they are cut, and
-                "ULTRAMARI…" next to "GESS" is worse than a row of numerals
-                that matches the 1–5 shortcut exactly. The full name stays on
-                the link's accessible name either way. */}
-            <span className="hidden truncate sm:inline">{d.label}</span>
+            {/* Three names at 11px tracked DO fit 390px, where five did not,
+                so the name stays on every width. It is allowed to truncate
+                rather than wrap, because the bar is one row high and the full
+                name is on the link's accessible name either way. */}
+            <span className="truncate">{d.label}</span>
           </Link>
         );
       })}
       <span className="hidden shrink-0 items-center px-4 py-2.5 text-neutral-400 lg:flex">
-        1–5 · ← →
+        1–3 · ← →
       </span>
     </nav>
   );

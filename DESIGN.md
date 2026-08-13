@@ -3,423 +3,368 @@
 Recorded from the built world, not from intention. Product truth lives in
 `PRODUCT.md`.
 
-Five directions are live at once, deliberately. `/` is the comparison surface;
-the directions are at `/1` … `/5`. They share one stylesheet, one copy file,
-one form and one set of accessibility rules, and they differ in ground, accent,
-lettering, structure, motion and — because the user asked for it — voice. Four
-of them get deleted once the comparison is settled; until then, anything
-written here that says "every direction" is a shared commitment and anything
-scoped to one is not.
+Three directions are live at once, deliberately. `/` is the comparison board;
+the directions are at `/1`, `/2` and `/3`. They share one stylesheet, one copy
+file, one form, one drawing system and one set of accessibility rules. Two of
+them get deleted once the comparison is settled; until then, anything written
+here that says "every direction" is a shared commitment and anything scoped to
+one is not.
 
-## The premise all five share
+This world replaced a classical/photographic one. That build — five directions
+on Met sculpture photography, five display serifs, marble and arch grounds —
+is not here; it lives on `main` and in the other working tree. Nothing from it
+survives except the arch, and the arch survives as line-work.
 
-**Every picture is a photograph of a real carved or quarried object.** No
-vector art, no illustration, no generated imagery, no icon set. That is the
-user's instruction and it is the single decision the whole system falls out of:
-when the only picture you are allowed is a photograph, the design work moves
-into ground, crop, type, measure and rule, which is why the five are told apart
-by what they *do to* a photograph rather than by what they draw next to one.
+## The premise all three share
 
-The direction this replaced was the opposite — three arch-led pages whose every
-object was hand-authored SVG. It is recoverable from git history. The reason it
-went is worth keeping: **a page selling craft to people who build things cannot
-argue for real material with a drawing of it.**
+**One offer, three kinds of page.** The user supplied three reference sites and
+asked for one direction after each. What the references share is a modern
+grotesk at scale, real motion and tight component craft. What they do not share
+is ground, density or shape language — and that is the comparison. A reader
+choosing between these is choosing what kind of page they want to be, not which
+palette they prefer.
 
-**Radius 0, everywhere, on all five.** The only curves anywhere are the ones
-inside the photographs. A rounded button would put a second kind of curve on
-the page and immediately make the first kind decorative.
+The category default all three refuse is the proof-shaped SaaS page: logo wall,
+testimonials, growth stats, pricing table. The business is new, none of that is
+true, and PRODUCT.md forbids inventing it. The offer does the persuading
+instead.
 
-| | World | Ground | Accent | Display face | What the photograph does |
-|---|---|---|---|---|---|
-| `/1` | **Ultramarine** — the institution | Drenched blue | Warm bone | Libre Caslon Display | One lit head *screened* into the ground, standing in the page |
-| `/2` | **Nero** — the house catalogue | Near-black | Gilt | Bodoni Moda | The object lit out of the same darkness the type sits in |
-| `/3` | **Bianco** — the auction catalogue | Cold paper | Vermilion | EB Garamond | Framed, captioned plates; nothing knocked out |
-| `/4` | **Cava** — the quarry | Quarry dust | Hi-vis orange | Archivo 800 | Full-bleed daylight, ungraded; the material before it is anything |
-| `/5` | **Gesso** — the cast court | Plaster shadow | Acid | Bricolage Grotesque | Driven to grey, type set *on* it at full bleed |
+- **1 MERIDIAN (`/1`) — the studio. THE CHOSEN DIRECTION.** Ultramarine, a lot
+  of air, and a sticky-sidebar showcase for the body. The user picked it, then
+  pulled pieces into it from the other two and from the references, so it is no
+  longer one of three equals — it is the page being built, and `/2` and `/3`
+  are kept only so they can still be flicked back to.
+
+  What came from where: the ground is the ultramarine from the build running
+  alongside this one, the user's own pick. The action is amber-orange, chosen
+  because they asked for a contrasting accent — bone sat too close to the body
+  text to read as pressable. The headline is their line. The pill nav and the
+  hero gradient came across from PLINTH. The body is the reference's solutions
+  section, rebuilt from its stylesheet.
+- **2 PLINTH (`/2`) — the agency.** Warm white, and **no chrome at all**: not
+  one card, border, shadow or box on the page. Structure is carried by tonal
+  bands and by Archivo at 800. The header contracts into a floating pill on
+  scroll. Medium length.
+- **3 LATTICE (`/3`) — the product page.** Cool white on a ruled grid,
+  blue-violet, and **entirely chrome**: bordered cells, soft corners, shared
+  hairlines. The densest of the three, nine sections.
+
+**Two of the three are light.** That is the user's correction, not an oversight:
+they were viewing the third reference in its light mode and preferred it. So
+PLINTH and LATTICE are pulled hard apart on everything except value — warm
+against cool, sparse against dense, no chrome against all chrome.
+
+## Shape is a direction variable
+
+Not a house rule. Each direction owns one shape language and never borrows
+another's:
+
+| | MERIDIAN | PLINTH | LATTICE |
+|---|---|---|---|
+| Radius | pill on **actions only**; `0` on everything that holds content | pill (`9999px`) on nav and actions, nothing else | `0.5rem`–`0.75rem` on cells and controls |
+| Structure | hairline rules between everything | tonal bands; **no rules at all** | bordered cells on a grid field |
+| Elevation | one soft shadow, on the nav pill when stuck | none | one soft shadow on the hero slot |
+
+MERIDIAN's radius rule changed when it took PLINTH's pill nav: a square button
+inside a pill bar reads as an oversight. It is now one legible rule —
+**actions are pills, structure is square** — and the form is where that rule
+stops being a preference and starts telling the reader which element is the
+control.
+
+If a fourth pattern is ever needed, it belongs to whichever direction's system
+already answers it — not to all three.
 
 ## Tokens
 
-Declared once in `@theme` in `app/globals.css`, named for the direction rather
-than the hue — `bg-ultra`, `text-nero-bone`, `border-cava-rule` — because while
-five worlds share one stylesheet, the useful thing to know at a glance is which
-page a class belongs to.
+Declared once in `@theme` in `app/globals.css`. Named for the direction rather
+than the hue — `bg-mer`, `text-pli-ink`, `border-lat-line` — because while
+three worlds share one stylesheet, the useful thing to know at a glance is
+which page a class belongs to. Ratios are measured against the ground the token
+is actually used on.
 
-Contrast ratios are measured against the ground each token is actually used on
-and recorded beside the value. A token that only clears on the base ground is
-not allowed on the recessed one without being rechecked.
+| Token | Value | Notes |
+|---|---|---|
+| `--color-mer` | `#12306e` | MERIDIAN's ground. The ultramarine the user picked out |
+| `--color-mer-2` | `#0d2454` | Recessed bands: the showcase, the enquiry panel |
+| `--color-mer-3` | `#081a3e` | Deepest: footer, form fields, text on accent fills |
+| `--color-mer-line` | `#2f4c8c` | 1.5:1. Decorative hairlines only |
+| `--color-mer-line-strong` | `#8ba0c8` | 4.8:1. Field borders, WCAG 1.4.11 |
+| `--color-mer-ink` | `#f3f1ec` | 11.1:1 |
+| `--color-mer-ink-soft` | `#bcc7de` | 7.4:1 |
+| `--color-mer-accent` | `#e8e3d6` | 9.8:1. Warm bone. The action; `mer-3` sits on the fill at 13.4:1 |
+| `--color-mer-accent-deep` | `#d6cfbe` | Hover and pressed, 8.1:1 |
+| `--color-mer-alert` | `#ffb3a7` | 8.8:1 on the enquiry panel. Validation errors, and nothing else |
+| `--color-pli` | `#f6f4ef` | PLINTH's ground. A printer's warm white, not cream |
+| `--color-pli-2` | `#ebe7de` | Recessed bands |
+| `--color-pli-3` | `#14130f` | The inverted band and footer |
+| `--color-pli-line` | `#d8d2c6` | Used almost nowhere by design; process numerals |
+| `--color-pli-line-strong` | `#6b6558` | 4.5:1. Field underlines |
+| `--color-pli-ink` | `#14130f` | 16.1:1 |
+| `--color-pli-ink-soft` | `#55504a` | 6.6:1 |
+| `--color-pli-accent` | `#b93a16` | 5.2:1 on ground. The action, links, the figures |
+| `--color-pli-accent-deep` | `#90290c` | Hover and pressed |
+| `--color-lat` | `#ffffff` | LATTICE's ground |
+| `--color-lat-2` | `#f4f6fa` | Recessed bands and cell fills |
+| `--color-lat-3` | `#0b0f1a` | The inverted CTA band and footer |
+| `--color-lat-line` | `#e2e6ee` | Cell borders and the ruled grid |
+| `--color-lat-line-strong` | `#737a88` | 4.3:1. Field borders |
+| `--color-lat-ink` | `#0b0f1a` | 18.9:1 |
+| `--color-lat-ink-soft` | `#545c6b` | 6.7:1 |
+| `--color-lat-accent` | `#4634d9` | 7.6:1. The action, marks, step numerals |
+| `--color-lat-accent-deep` | `#3628b0` | Hover and pressed |
+| `--color-lat-accent-soft` | `#eeebfd` | The offer band's whole ground |
+| `--color-bone` | `#f7f7f5` | What sits on any dark or saturated fill |
+| `--color-obsidian` | `#0b0b0e` | What sits on any light fill |
 
-| Direction | Ground | Recessed | Rule (strong) | Text | Soft text | Accent |
-|---|---|---|---|---|---|---|
-| Ultramarine | `#12306e` | `#0d2454` | `#8ba0c8` 4.6:1 | `#f3f1ec` 11.4:1 | `#bcc7de` 6.4:1 | `#e8e3d6` 10.8:1 |
-| Nero | `#0b0b0c` | `#141416` | `#7d7669` 4.5:1 | `#efece4` 16.4:1 | `#a9a396` 7.6:1 | `#c9a227` 8.4:1 |
-| Bianco | `#f6f6f4` | `#ececea` | `#6b6b66` 4.9:1 | `#17171a` 15.4:1 | `#56565a` 6.9:1 | `#b4321c` 5.4:1 |
-| Cava | `#ddd8d0` | `#cbc4b9` | `#6a6157` 4.8:1 | `#1b1916` 13.7:1 | `#554e45` 6.4:1 | `#b8410e` 5.1:1 |
-| Gesso | `#2a2a28` | `#1e1e1c` | `#8c8a80` 4.6:1 | `#edece6` 12.1:1 | `#a8a69c` 6.3:1 | `#d6e34a` 10.4:1 |
+**One accent per direction, and it marks what the reader can act on.** Buttons,
+the submit control, link underlines, focus-state field rules. The two
+deliberate exceptions are both whole regions rather than marks: LATTICE's offer
+band is `lat-accent-soft` end to end, and PLINTH's four figures are set in the
+accent at display size because the figures *are* the offer.
 
-Shared: `--color-bone` `#f4f1ea` sits on any dark accent fill; `--color-obsidian`
-`#121214` on any light one (bone, acid, signal).
+**MERIDIAN separates its action by FILL, not by hue.** Its accent was
+amber-orange first — the user asked for a contrasting accent, then saw it and
+preferred bone after all. That makes the page monochrome, and it changes how
+the accent may be used: a solid bone panel against ultramarine is unmistakably
+a control, while bone lettering beside bone lettering is not. So on this
+direction the accent is a background and a rule, and almost never text.
 
-**Never knock a soft token down with alpha.** Every photo credit line on the
-site was once `*-soft/70`, which took sound 6.3–7.6:1 tokens to 3.7–4.4:1 — and
-those lines carry the CC BY / CC BY-SA attribution, so the copy with a legal
-obligation attached was the least legible on the page. If a label reads too
-loud, make it smaller; do not fade it.
-
-**One accent per direction, and the rule it keeps is a hierarchy, not a
-prohibition.** The accent also marks section eyebrows, step numerals and lot
-references on the directions that use those. What is guaranteed everywhere is
-that **the only FILLED instance of an accent on any screen is a control** —
-everything else it touches is an 11px label or a numeral, so the button wins on
-area by an order of magnitude and the single conversion event keeps its
-meaning. Nero is the case that proves the boundary: it has no red anywhere,
-including in its form errors, which are set in `gilt-bright`.
-
-Every accent is its own boundary on its own ground — a fill needs no hairline
-around it to satisfy WCAG 1.4.11.
+**The one exception is the error state, which needed its own hue.** With bone
+as the accent, error text set in the accent is the same colour as the label
+above it and the hint beside it — nothing but the sentence marks the field as
+wrong. The failure is already conveyed non-visually (`aria-invalid`,
+`aria-describedby`, real text), so `--color-mer-alert` is not a WCAG fix; it is
+so a reader who has just been rejected by a form can see which line is the
+rejection. Soft rose rather than signal red, shown only on failure. The invalid
+BORDER stays bone, so the field and its message are not both shouting.
 
 ## Type
 
-Five display faces, one per direction, plus two shared workhorses. All seven
-load at the root in `app/layout.tsx`, because the compare board puts all five
-on one screen at once and a route-scoped face arrives late into its panel
-there. That is a review-stage cost, paid deliberately; **four fifths of it
-comes out of that file on the day a direction is chosen.**
+Five faces load at the root: three display faces, one per direction, plus two
+workhorses. That is a review-stage cost, paid because the compare board puts
+all three on one screen and a route-scoped face would arrive late into its
+panel. Two thirds of it comes out of `app/layout.tsx` when a direction is
+chosen.
 
-- **Libre Caslon Display** — `/1`, a real Caslon cut for headlines.
-- **Bodoni Moda** — `/2`. A didone's thick and thin only exist above ~60px, and
-  it is the only thing that holds against gilt on black.
-- **EB Garamond** — `/3`, a book face, because a catalogue is a book. This is
-  the only direction whose display size is small on purpose: a catalogue's
-  authority comes from its margins and its consistency, not from its type size.
-- **Archivo 800** — `/4`, tight capitals with enough weight to survive being
-  set over a quarry face in full sun.
-- **Bricolage Grotesque** — `/5`, optical-size aware, holds an enormous size
-  without turning into a logo.
-- **Geist / Geist Mono** — running text everywhere, and the measured voice for
-  lot references, schedules and credits.
+| Face | Direction | Why |
+|---|---|---|
+| Schibsted Grotesk | MERIDIAN | A newspaper grotesk. Editorial, faintly warm, authoritative on a dark ground without shouting |
+| Archivo 700–800 | PLINTH | The only one of the three with real poster weight, which is the whole job on a page with no cards, borders or shadows |
+| Manrope | LATTICE | Semi-geometric, even colour, engineered-looking at small sizes — what a dense ruled page needs |
+| Geist | all | Running text |
+| Geist Mono | all | MERIDIAN's process numerals. Measurement only, never as a costume |
 
-If the faces are ever split back onto their own routes, the trap fails
-silently: `@theme` declares `--font-caslon: var(--font-caslon-src), …` on
-`:root`, and a custom property is substituted at computed-value time **on the
-element it is declared on**. Move a face variable off `<html>` and the `:root`
-declaration references something that does not exist there, so the token
-computes to the guaranteed-invalid value and inherits as empty into every
-descendant — wordmark and all — with no error anywhere.
+Display sizes cap at `5.8rem`; tracking never goes below `-0.04em`; body
+measure runs 58–68ch. Headlines are authored on lines per direction
+(`headlineLines` in `content/site.ts`) and those breaks apply above `sm` only —
+below it the headline is one string and `text-balance` does the work.
 
-**No kicker above any heading, on any direction.** All five once carried a
-tracked "Web, search and automation" line over the `h1`, and all five then said
-the same thing again in the subhead one element later, so the label was not
-even paying for itself in information.
+## The drawing system
 
-**Authored line breaks are a desktop decision and are applied only there.**
-`BrokenHeadline` in `components/Reveal.tsx` renders `headlineLines` above `sm`
-and the single `headline` string with `text-balance` below it. Forced onto a
-390px screen the desktop breaks re-wrapped into five and six lines with
-two-word orphans stranded on their own — a worse rag than the browser produces
-unaided.
+`components/Classical.tsx`. Three primitives, all parametric, all `aria-hidden`,
+all server components. The user's own taste is Greco-Roman; the instruction was
+to weave it in only if it was cheap. So it is geometry, not illustration —
+there is no artwork in the repo, nothing to re-export when a token moves, and
+every line takes `currentColor` from the direction it is drawn on.
 
-## Structure
+- **`Arcade({bays})`** — N round arches on piers over a base rule. Declares its
+  own `aspect-ratio` inline, so a `w-full` arcade fills its box exactly instead
+  of being letterboxed by `preserveAspectRatio="meet"`. Callers that set an
+  explicit height still win. Fewer bays means larger arches.
+- **`Fluting({count})`** — the vertical channels of a column shaft, flattened
+  into a texture band. Stretches (`preserveAspectRatio="none"`).
+- **`Cornice()`** — three rules at uneven weights and uneven spacing. Evenly
+  spaced they would read as a border rather than as a moulding. **Give it an
+  explicit width**: an inline SVG is a replaced element, so `inset-x` with
+  `width: auto` resolves to its 100-unit intrinsic width and it renders as a
+  stub.
 
-Each direction argues with a different arrangement, not a different palette on
-one arrangement. The failure this is guarding against is real and was caught in
-review: Cava and Gesso were briefly one page in two colourways, identical
-section for section, which cost a fifth of the comparison.
+## The hero image slots
 
-- **`/1`** divides with hairlines; services are ruled rows, never cards.
-- **`/2`** is symmetrical and ceremonial; everything centres and the display
-  type overlaps the plate beneath it the way a title page overlaps a
-  frontispiece.
-- **`/3`** is a single-pixel gap grid of plates with references and a title
-  block `<dl>`; the whole page is a catalogue's furniture.
-- **`/4`** is a schedule: a 2×2 services grid with drawn boundaries, and a
-  vertical **setout** for the process — reference, item, description, ruled off.
-- **`/5`** is **the hall**: services are a sideways snap-scrolling register of
-  four tall plaster plates, photograph large and type small. It is the only
-  section anywhere on the site that moves horizontally, and the plates are
-  deliberately objects that appear on other directions, driven to grey — a cast
-  court is full of accurate copies of things that exist somewhere else, and so
-  is that row.
+Every direction reserves a real, correctly proportioned box for a hero image
+the user is generating separately. Dropping one in is a one-line change with no
+reflow: the aspect is read from `directions[key].heroSlot` in
+`content/site.ts`, so the reserved box and the recorded dimensions cannot
+drift apart.
 
-None of the five may become a card grid.
+| Direction | Slot | Position |
+|---|---|---|
+| MERIDIAN | **1600 × 900** | ~~Below the hero~~ — **removed at the user's request.** See below |
+| PLINTH | **1920 × 1080** | Full-bleed band under the centred hero |
+| LATTICE | **1600 × 900** | Centred device, where the reference puts its dashboard |
 
-**Known and open:** all five still share one section *sequence* (hero →
-problem → services → process → offer → enquiry → FAQ). That is defensible as a
-controlled comparison — same content, five treatments — but it is the reason
-the set can read as one template with five skins, and it is recorded here
-rather than argued away.
+All three are 16:9, so one generated image fits any of them.
 
-## Photograph treatments
+**MERIDIAN no longer has one.** The user asked for the arcade image between the
+hero and the body to go, and that box WAS the reserved slot — the hero now runs
+straight into the offer. `heroSlot` stays in the content file and `.plate-open`
+stays in the stylesheet, both unused on that page, so reinstating it is a few
+lines rather than a rebuild. Until then, the direction that is actually
+shipping has nowhere to put a supplied hero image, which is worth resolving
+before those images are generated.
 
-Every treatment is CSS over an untouched file, never a baked-in edit, so
-swapping a picture never means re-exporting anything.
-
-- **`plate-screen`** — museum object photography arrives on a near-black
-  sweep; `screen` throws the sweep away and leaves only the lit stone, so the
-  object stops sitting on a rectangle and starts standing in the page. **This
-  only works on plates shot against a near-black ground.** Screening a mid-grey
-  sweep over a coloured ground leaves a pale rectangle hanging in the page,
-  which is why `/1`'s full figure is framed rather than screened.
-- **`plate-vignette`** — `screen` fully erases only a pure-black sweep, and
-  museum sweeps lift towards the top of frame. The mask dissolves the frame
-  edge so the residue has no straight line to draw. It is authored as a mask
-  rather than a gradient overlay, because an overlay would sit *on* the
-  photograph and grey the stone it is meant to rescue.
-- **`plate-duotone`** — `luminosity` over a wrapper carrying the ground's own
-  fill. `/1`'s framed plate read as a hole punched in the blue until it took
-  the page's hue and kept only the photograph's lightness. **The wrapper must
-  carry the fill**; `luminosity` over nothing does nothing.
-- **`plate-gesso`** — `grayscale(1) contrast(1.06) brightness(0.5)`. The
-  darkening is not mood: `/5` is the one world that sets type *on* its
-  photograph at full bleed, so the picture is also the type's background, and
-  warm plaster at full value put bone lettering at about 1.3:1.
-- **`plate-cava`** — `saturate(.86) contrast(1.06)` and nothing else, because
-  that direction's argument is that the material is already right.
-
-**A scrim covers the type's own band, never the frame.** `/5` briefly ran two
-washes at full height which compounded to nearly opaque and took the whole
-picture with them. A hero photograph that renders as a black rectangle is worse
-than no photograph, because the page still pays for it.
-
-**Every `<Image>` carries its direction's recessed-band colour behind it**, so a
-bad site-visit connection shows the world's own ground rather than a blank box.
+Until an image arrives, `HeroSlot` paints a composed placeholder rather than a
+grey rectangle: a fluting rhythm behind everything, a cornice near the head, and
+a three-bay arcade standing on the base, over the direction's own wash. It is
+deliberately finished-looking — three pages being compared side by side would
+all read as unfinished in the same way if the slot announced itself as empty.
+It carries no "placeholder" label on the page; these dimensions are the record.
 
 ## Motion
 
-All CSS. No React state for a continuously changing value, no scroll listeners,
-no pointer listeners. Each direction gets one authored load moment plus
-`Reveal` for sections.
+Scroll-driven CSS, with one exception. A browser without `animation-timeline`
+drops that declaration and is left with a zero-duration animation under `both`
+fill, which resolves immediately to the finished state — so no support, and no
+JavaScript at all, both render the finished content.
 
-**One entrance per direction, not one for the whole site.** Every section of
-all five once rose identically, which flattened each page and — on a build
-whose entire purpose is a comparison — erased motion as an axis the five could
-differ on. Each direction declares its gesture on its root and every `.reveal`
-inside inherits it:
+- **One entrance per direction**, not one for the build: MERIDIAN clears
+  (rise + de-blur), PLINTH settles (heavy type dropping in), LATTICE assembles
+  (snapping onto the grid). Three pages whose sections all arrived identically
+  would have erased motion as an axis the comparison could turn on.
+- **`hero-arrive`** — the single authored on-load moment per page, staggered
+  across headline, subhead and actions.
+- **`plate-open`** — MERIDIAN only. The hero slot starts inset and widens to
+  full bleed as it is scrolled through. This is the hero-to-body transition.
+- **`stroke-in`** — the arcade draws itself, left to right, keyed to
+  `pathLength="1"` so the dash values never need remeasuring.
+- **`bloom-breathe`** — a 14s scale pulse on the hero lights. **Transform
+  only.** It once animated `opacity` as well, which silently defeated the
+  `opacity-[…]` utility on the same element — an animation beats a normal
+  declaration, so a bloom asking for 5% rendered at 85–100%, and every hero
+  light on all three directions was several times stronger than its class said.
+  Opacity belongs to the element; motion belongs to the animation.
 
-| | Class | Gesture |
-|---|---|---|
-| `/1` | `motion-settle` | Settles down under its own weight |
-| `/2` | `motion-develop` | Develops up out of the dark, like its plates |
-| `/3` | `motion-turn` | Turns a page in from the side |
-| `/4` | `motion-setout` | Sets out left to right along a rule |
-| `/5` | `motion-cast` | Comes up soft and sharpens, the way a cast leaves its mould |
+Under `prefers-reduced-motion: reduce`, every animation resolves to its
+finished state and the dimming is switched off entirely.
 
-`plate-develop` brings a hero plate up out of nothing to full value, the way a
-print comes up in a tray — the vocabulary photography actually has, since
-nothing on these pages is drawing.
+## MERIDIAN's showcase and dim
 
-**The reveal's failure mode is the rule worth keeping.** It was a Framer Motion
-component with `initial={{ opacity: 0.25 }}`, which put `opacity:0.25` on every
-section below the hero in the server-rendered HTML, where nothing removed it
-until the bundle arrived. Body copy at 25% measures 1.41:1. The comment
-justified the 0.25 as insurance "so nothing is invisible if the observer never
-fires", which was the bug wearing the mitigation's clothes. The CSS version
-cannot fail that way: a browser without `animation-timeline` drops that one
-declaration and is left with a zero-duration animation under `both` fill, which
-resolves immediately to the finished state.
+Two separate mechanics that were once conflated, and untangling them was the
+main correction of this pass.
 
-**Any future entrance animation must be verifiable in the built HTML.** Grep the
-output for a hidden initial state; if a block ships hidden and only a script can
-reveal it, it is a bug regardless of how the animation is written. The current
-build ships no inline `opacity` at all.
+### The showcase — `components/Solutions.tsx`
 
-Under `prefers-reduced-motion` every animation is forced off and the resting
-state each ends on is the composition. `filter` is reset there explicitly,
-because `reveal-cast` and `reveal-develop` animate it and would otherwise
-leave `/5` and `/2` resting blurred or at 40% brightness. `letter-spacing` is
-settled in a **separate** rule from the animation reset: it inherits, so
-folding it into the shared selector would put a tracking value on every
-`.reveal` wrapper and from there into every descendant, re-wrapping the whole
-page for reduced-motion readers alone.
+The body of the page, and the thing the user asked for by name after looking at
+the reference. It is worth recording what that section ACTUALLY is, because two
+plausible readings of "a sidebar that scrolls through" are both wrong. It is
+not a tab strip that swaps a panel on click, and it is not a pinned section
+that hijacks the scroll. It is a two-column grid whose left column is sticky,
+whose right column is a normal stack of very tall panels, and a scrollspy
+marking the link for whichever panel is being read. Taken from the reference's
+own stylesheet rather than guessed:
 
-## Accessibility rules this system holds to
+    .showcase     grid-template-columns: minmax(13.5rem,.28fr) minmax(0,1fr)
+    .sidebarInner position: sticky; top: clamp(5.5rem,14vh,8.5rem)
+    .panel        min-height: min(82vh,48rem); border-bottom: 1px
+    .sidebarLink[aria-current=location]  border-left-color: accent;
+                                         transform: translateX(.25rem)
 
-- Body text ≥4.5:1, large text ≥3:1, non-text UI boundaries ≥3:1, measured
-  against the ground each element actually sits on. Where type sits over a
-  photograph the measurement is taken from the **rendered background with the
-  text hidden**, at its lightest patch — sampling the text's own box measures
-  the glyphs, not what they sit on.
-- Nothing sets `focus:outline-none`. The `:focus-visible` ring is
-  `currentColor`, because the same ring has to survive on ultramarine,
-  near-black, cold paper, quarry dust and plaster shadow and on top of five
-  different accent fills; any single hue fails on at least one.
-- An invalid field carries the error in its own border as well as in the
-  message beneath it.
-- **Form fields are 16px minimum in every skin.** Mobile Safari zooms the
-  viewport when a field under 16px is focused and does not zoom back out.
-- Submitting unmounts the form and the button that had focus with it, so the
-  success panel takes `tabIndex={-1}` and is focused on mount. `role="status"`
-  announces the outcome without moving anyone to it.
-- Every direction carries a skip link, moved off-screen by transform and never
-  by `display: none`.
-- The heading order starts with the positioning line, not the wordmark. One
-  `h1` per page, no skipped levels — verified on all five.
-- Process steps are `<li>` elements carrying `.reveal` directly. Wrapping them
-  in the `Reveal` div would put a `div` between `<ol>` and `<li>`, which is
-  invalid and drops the list semantics a screen reader uses to announce
-  "step 2 of 4".
-- **A horizontal scroller takes `tabIndex={0}`, `role="group"` and a label.**
-  `/5`'s hall once asserted in a comment that "every item is in the tab order"
-  while its items held nothing focusable at all, resting keyboard reach on a
-  browser heuristic Safari does not implement. The region itself takes focus so
-  it can be driven with the arrow keys.
-- The disclosure marker is a typographic `+`, not an icon. The brief rules out
-  vector art, and an icon set is vector art with a licence attached.
-- `color-scheme: light` on the root so native selects and the scrollbar match.
-- `scroll-margin-top: 6rem` and `scroll-margin-bottom` clearing the review bar
-  on all ids.
+Those proportions are kept. The 82vh panel height is load-bearing: it is what
+gives the sticky column enough scroll distance to feel alive, and panels sized
+to their own content would make the mechanism pointless.
 
-## Responsive rules earned the hard way
+Below `lg` the grid collapses and the sidebar becomes a sticky horizontal chip
+bar under the nav, active state moving from a left border to a bottom border.
+That is the reference's own mobile behaviour, and it is the part most builds of
+this pattern get wrong by simply hiding the sidebar.
 
-- **`/1` puts the plate before the headline on a phone.** The picture is the
-  argument, and burying it below three screens of type would be making the case
-  everywhere except where it is read.
-- **`/3`'s frontispiece is `order-first` below `lg` and cropped 4:5.** Left in
-  source order its phone fold was headline, rule, subhead, action and a
-  four-cell metadata grid — a spec sheet, on the one direction whose contract
-  says it opens on a photograph. At native ratio the plate ate 530px of an
-  844px screen.
-- **An attribution is shortened, never truncated.** `/4`'s hero credit was
-  clipped to `CC BY-S…` on a phone, with a `title` attribute defended as the
-  fallback — `title` is not reachable on touch, and the severed token was the
-  licence name on a CC BY-SA image.
-- **The review bar reserves its own space.** `--switch-bar` is declared on
-  `html` and consumed by every direction's root as bottom padding. Without it
-  the fixed bar sat across the hero's primary action at 390px: scaffolding
-  covering the one control the page exists to offer.
+**A READ LINE, not an observer band.** The scrollspy was first built as an
+IntersectionObserver with a thin `rootMargin` band, matching the dimming below,
+and it marked the wrong panel: an observer callback only ever sees the entries
+that CHANGED, so it cannot answer "which of the three is current" — only "which
+one just crossed" — and a panel that never re-crosses keeps a stale marker.
+The active panel is now COMPUTED from all three on every frame: it is the last
+one whose top edge has passed a line 30% down the viewport. That is a total
+function of scroll position, so it cannot go stale, and it gives the same
+answer whether the reader arrives by scrolling, by deep link, or by a restored
+scroll position. Three `getBoundingClientRect` calls in a rAF-throttled passive
+listener.
 
-## Content
+### The dim — `components/SectionRail.tsx`
 
-Every visible string lives in `content/site.ts`, in two halves, and the split
-is the point. `site` is **product truth** — services, process, offer, FAQ,
-form — identical on all five, because those are facts about the business and a
-comparison that let them drift would be comparing two things at once.
-`directions` is **voice** — headline, problem, section names — which varies per
-direction because the user asked for it, but only where wording is a design
-decision rather than a claim. The five headlines say the same true thing in
-five registers; no direction gets a fact the others are denied.
+The page-level sections outside the showcase. One `IntersectionObserver` with
+`rootMargin: -45% 0px -45%` collapses the viewport to a band across its middle,
+so exactly one section intersects at a time and "active" needs no tie-break.
+Sections register through context, so the page stays a server component and no
+copy ships as client JavaScript. The showcase is deliberately NOT wrapped in a
+`DimSection`: it runs its own scrollspy, and dimming three screens of content
+as one unit would fight it.
 
-Standing constraints from `PRODUCT.md`: no testimonials, logos, ratings or
-client numbers; no pricing in any form; Australian English; Adelaide carried by
-the header, FAQ, title and schema rather than by a headline.
+**The dim is 0.72, and that number is the price of the new ground.** Body text
+is `mer-ink-soft` on `mer`. On the near-black navy this direction started with,
+0.55 composited to 5.2:1 and the dim was deep. On the ultramarine — nearly
+three times as light — the same 0.55 composites to 3.3:1 and fails; 0.70 still
+measures 4.43:1; 0.72 is the first value clearing 4.5:1, at 4.60:1. So the dim
+is genuinely shallower than it was, and no amount of taste changes that: a
+lighter ground leaves less room between legible and faded. The paired
+`scale(0.985)` now carries proportionally more of the effect, and costs no
+contrast at all.
 
-`/3` is the direction that looks most like a document of record, so every cell
-in its title block is a fact `PRODUCT.md` already states. A catalogue that
-invents a provenance, an estimate or a date is the most convincing lie
-available.
+**A margin rail used to live here and is gone.** It was built from the user's
+remark about "the little column on the left as another little navigation",
+read as a page-level index in the far-left margin. Against the reference's
+stylesheet, they were describing the showcase sidebar all along. Keeping both
+would have put two competing navigations on one screen, which the reference
+does not do either — its page nav is in the header.
 
-**Open:** two commitments in `content/site.ts` predate this build and are not
-granted by `PRODUCT.md` — the reply time ("within one business day") and the
-delivery estimates ("a couple of weeks", "four to six"). They are operational
-promises rather than invented proof, so they were left as written rather than
-quietly softened. They need the owner to confirm them or they need to change.
+### The nav — `components/MeridianNav.tsx`
 
-## Photography
+PLINTH's pill mechanic at the width the user asked for: "not so it shrinks, so
+it stays as a pill but almost a full length of the screen". The contraction is
+therefore small, 92rem to 80rem, and the transition is carried by the ends
+rounding, a hairline appearing, the ground going translucent and the blur
+switching on. Three-column grid from `md` up so the wordmark sits dead centre;
+a plain flex row below it, because with the links hidden there is nothing to
+balance the action and the grid shoved the wordmark off centre anyway.
 
-Fourteen files in `public/img`, all free-licence, downloaded rather than
-hotlinked so the build carries no CDN dependency and no layout shift.
+## Accessibility
 
-- **Nine CC0** from The Met Open Access — no obligation.
-- **Five CC BY / CC BY-SA** from Wikimedia Commons. The resize made every file
-  in this repo a derivative, and **CC BY-SA obliges a derivative to carry the
-  same licence**, so those files cannot quietly become proprietary site assets.
-  The visible credit in each footer discharges attribution; the share-alike
-  terms are a decision to make before this goes live commercially.
+Shared by all three, and none of it is a per-direction decision.
 
-`public/img/CREDITS.md` records licence, author and source per file. Alt text
-describes the object, never the treatment: a screen reader user gets told there
-is a marble Diadoumenos; being told it has been screened into an ultramarine
-ground tells them about CSS, not about the page.
+- Skip link on every page, off-screen until focused, never `display: none`.
+- `:focus-visible` uses `currentColor` at 2px with a 3px offset — the same ring
+  has to survive deep blue, warm white and cool white, and sit on a blue,
+  burnt-orange or violet fill. Any fixed hue fails on at least one.
+- Every form input is 16px in every skin. Mobile Safari zooms the viewport on a
+  smaller field and does not zoom back out, which would throw the reader into a
+  zoomed, horizontally scrolling page at the one conversion event the page has.
+- Field borders and underlines clear 3:1 as non-text UI; labels, hints and
+  errors clear 4.5:1. No skin sets `focus:outline-none`.
+- Focus states never rely on colour alone — PLINTH's underline thickens,
+  LATTICE's cell tints as well as changing border colour.
+- Anchor targets clear both the sticky header and the fixed review bar.
+- The drawing primitives are all `aria-hidden`; the figures band is a `<dl>`
+  with the label as the `<dt>`.
 
-**Subject choice is a design decision, not just a licence one.** `/3` originally
-led with a full-frontal standing nude at the largest scale on the page. This is
-a cold page opened on a phone on a building site, sometimes with a client
-present, so it now leads with a draped torso, which carries the identical
-classical argument and asks less of the reader.
+## Review scaffolding, and what deleting it costs
 
-## The enquiry form
+None of this ships.
 
-`components/EnquiryForm.tsx` with five skins in `components/skins.ts`. Four
-fields, matching the "Four fields" promise in the copy. Markup, validation,
-accessibility wiring and the demo-only submit are shared, so the directions can
-never drift apart on how the enquiry actually works — and so whichever one
-wins, the form is already the tested one. **A skin may only change class
-strings.**
+- `app/page.tsx` + `components/CompareBoard.tsx` — the board. Three live pages
+  in iframes at real device width, a desktop/phone toggle, a 40ms scroll lock,
+  and a flick view. Phone panels render at 1:1 in a three-column layout, so
+  what is on screen is exactly what a reader gets.
+- `components/DirectionSwitch.tsx` — the fixed bar. Hides itself inside an
+  iframe, stands down inside a form field, and declares `--switch-bar`, which
+  every direction consumes as bottom padding.
+- All four routes are `noindex`.
 
-Demo-only: it validates, focuses the first invalid field after paint, shows a
-success panel, and issues no network request. The single `TODO` in
-`lib/leadForm.ts` marks where a real endpoint attaches. Wiring it means the page
-starts collecting personal information and needs a privacy notice.
+**Choosing a direction** means: move it to `/`, delete the other two page
+files, and in the same commit take out the board, the switcher, `--switch-bar`
+and its `SWITCH_BAR_CLEARANCE` consumers, the two losing skins in
+`components/skins.ts`, the two losing token blocks in `@theme`, the two losing
+faces in `app/layout.tsx`, and the two losing entries in `directions`.
 
-## Routes and review furniture
+Direction-specific deletions:
 
-| Route | What it is |
-|---|---|
-| `/` | The comparison surface. `noindex` |
-| `/1` … `/5` | The five directions. All `noindex` |
+- **MERIDIAN is the chosen direction**, so this one is what stays. When the
+  comparison is closed it moves to `/` and takes `SectionRail.tsx`,
+  `Solutions.tsx`, `MeridianNav.tsx`, the `.dimmable` rules, `.plate-open` and
+  `.mer-bloom` with it.
+- **If PLINTH loses:** `components/PillNav.tsx` goes. The figures band goes with
+  it — `site.figures` has no other consumer.
+- **If LATTICE loses:** `.lat-grid` goes, and `site.capabilities` loses its only
+  consumer.
 
-All six routes are `noindex`. The real site is one page, and five half-built
-directions competing with it in a search index is the one way this comparison
-could do actual damage.
-
-Everything on this list is scaffolding and comes out when a direction is
-chosen: `app/page.tsx`, `components/CompareBoard.tsx`,
-`components/DirectionSwitch.tsx`, the four losing directions' page files, their
-skins, their tokens, their motion gestures and their faces in
-`app/layout.tsx`. The winner moves to `/`.
-
-**`DirectionSwitch`** is a fixed bar on each direction. `1`–`5` jump and `←` /
-`→` step, wrapping — number keys are for going somewhere specific, the arrows
-for the actual comparing motion, which is riffling back and forth through
-neighbours without deciding anything yet. It stands down inside a field or a
-contenteditable, and it hides itself inside the compare frames through
-`useSyncExternalStore` so the server snapshot and the first client render agree
-and the bar is never painted into the panels. Below `sm` it shows numerals
-only; five names at 11px tracked do not fit 390px however they are cut, and the
-full name stays on each link's accessible name.
-
-**`CompareBoard`** renders the five as live iframes at a real device width.
-
-- **Iframes, not inline components.** Each direction defines its own colours,
-  display face and sticky header and is written assuming it owns the viewport.
-  Rendered inline into one document they would fight over `position: sticky`,
-  over `100svh`, over `:focus-visible`, and over any width-keyed `@media`
-  query — five columns on a 27" screen are phone-width, so every direction
-  would show its mobile layout and the comparison would be of the wrong thing.
-- **Two modes, because they answer different questions.** BOARD shows all five
-  at once, for "which of these is a different kind of thing". FLICK shows one
-  at a time, stepped with the arrow keys, for "which of these is actually
-  good" — which cannot be answered at 20% scale. The frames are never
-  unmounted between modes, so flicking keeps every panel's scroll position and
-  the comparison is between two things you have both just read.
-- **Phone is the default width.** It is the reader's device, and it is the only
-  width at which five panels are worth looking at: five 1440px frames across a
-  1440px window run at 0.19 and stand 176px tall. Five 390px frames run at
-  ~0.69 and stand ~580px. Desktop width therefore caps at two columns and
-  scrolls. **The iframe is never stretched past its device height** to show more
-  page — every `svh` inside it would then be measuring a viewport no reader
-  has, and this board's whole job is to show what ships.
-- **Scale is measured from a real column** with a `ResizeObserver`, capped at
-  1:1. A phone frame scaled *up* is a blurrier, larger-than-life thing that is
-  no longer what the reader would see.
-- **The scroll lock is driven by a 40ms timer polling the frames**, and the two
-  builds it replaced are the reason. A `scroll` listener inside each frame is
-  the obvious build and does not work: a scaled, transformed iframe does not
-  reliably fire scroll events to its own window, measured here as `scrollY`
-  moving to 2200 while both a window-level and a document-level listener
-  counted zero. A `requestAnimationFrame` poll has the same shape of problem:
-  rAF is tied to the compositor and does not tick in a headless or
-  non-painting context, which is exactly where this board gets checked. **A
-  control whose whole job is to be trusted while a decision is made is built on
-  the mechanism that cannot silently do nothing, not the one that is nominally
-  more correct.**
-- Frames are locked by scroll **fraction**, not by pixel, because the five
-  pages have different section heights and pixel-locking compares the hero of
-  one against the FAQ of another. Followed frames move with
-  `behavior: "instant"` — every direction sets `scroll-behavior: smooth`, and a
-  followed frame still animating on the next tick reads as the driver, so the
-  five chase each other down the page.
-
-`DirectionContract` is retained but **not currently mounted**. The direction
-contract is emitted instead from `app/layout.tsx` as a real HTML comment, first
-child of `<body>`, and it survives the production build — verified by grepping
-the built output for the seed key.
+`components/Classical.tsx`, `Reveal`, `Disclosure`, `EnquiryForm`,
+`lib/leadForm.ts` and everything in `site` stay whichever way it goes.

@@ -1,54 +1,31 @@
 import type { Metadata } from "next";
-import {
-  Archivo,
-  Bodoni_Moda,
-  Bricolage_Grotesque,
-  EB_Garamond,
-  Geist,
-  Geist_Mono,
-  Libre_Caslon_Display,
-} from "next/font/google";
+import { Archivo, Geist, Geist_Mono, Manrope, Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 
 /*
-  Seven faces load at the root: five display faces, one for each direction,
-  plus two workhorses shared across all of them.
+  Five faces load at the root: three display faces, one per direction, plus two
+  workhorses shared across all of them.
 
   That is a review-stage cost and it is deliberate. The compare board puts all
-  five directions on one screen at once, and a face scoped to one route
-  arrives late into its panel there, so the comparison would be of five
-  fallbacks rather than of five directions. When one direction is chosen, the
-  other four faces come out of this file in the same commit.
+  three directions on one screen at once, and a face scoped to one route
+  arrives late into its panel there, so the comparison would be of three
+  fallbacks rather than of three directions. When one direction is chosen, the
+  other two faces come out of this file in the same commit.
 
-  - Libre Caslon Display — 1 ULTRAMARINE. A real Caslon at display size, cut
-    for headlines rather than text. Institutional without being a wordmark.
-  - Bodoni Moda — 2 NERO. A didone's thick and thin only exist above about
-    60px, and it is the only thing that holds its own against gilt on black.
-  - EB Garamond — 3 BIANCO. A book face, because a catalogue is a book. It is
-    the only direction whose display size is small on purpose.
-  - Archivo — 4 CAVA, at weight 800 in tight capitals. A grotesk with enough
-    weight to survive being set over a quarry face in full sun.
-  - Bricolage Grotesque — 5 GESSO. Optical-size aware, slightly irregular,
-    and it holds an enormous size without turning into a logo.
-  - Geist / Geist Mono — running text everywhere, and the measured voice that
-    BIANCO and CAVA both use for lot numbers, dimensions and schedules.
+  - Schibsted Grotesk — 1 MERIDIAN. A newspaper grotesk, editorial and faintly
+    warm, with the authority a deep blue institutional page needs and none of
+    the shout.
+  - Archivo — 2 PLINTH. At 700–800 in tight negative tracking it is the only
+    one of the three with real poster weight, which is the whole job on a page
+    that has no cards, no borders and no shadows to lean on.
+  - Manrope — 3 LATTICE. Semi-geometric with even colour, engineered-looking
+    at small sizes, which is what a dense ruled page needs.
+  - Geist / Geist Mono — running text everywhere, and the measured voice used
+    for the offer figures and the rail's indices.
 */
-const caslon = Libre_Caslon_Display({
-  variable: "--font-caslon-src",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-const bodoni = Bodoni_Moda({
-  variable: "--font-bodoni-src",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const garamond = EB_Garamond({
-  variable: "--font-garamond-src",
+const schibsted = Schibsted_Grotesk({
+  variable: "--font-schibsted-src",
   subsets: ["latin"],
   display: "swap",
 });
@@ -59,8 +36,8 @@ const archivo = Archivo({
   display: "swap",
 });
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage-src",
+const manrope = Manrope({
+  variable: "--font-manrope-src",
   subsets: ["latin"],
   display: "swap",
 });
@@ -79,14 +56,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pulitodigital.com.au"),
-  // The headlines are deliberately broad and differ per direction; the title
-  // still has to carry Adelaide and the services, because that is what a
-  // search result is judged on.
-  title: "Pulito Digital | Digital marketing for premium craft, Adelaide",
+  // The headlines lead with the offer rather than the audience, per the
+  // user's decision; the title still has to carry Adelaide and the services,
+  // because that is what a search result is judged on.
+  title: "Pulito Digital | Web design, SEO and automation, Adelaide",
   description:
-    "Web design, SEO and AI automation for Adelaide's premium builders, renovators and makers. Get a free redesign preview of your current homepage.",
+    "See your homepage redesigned before you pay anything. Web design, SEO and AI automation for Adelaide's premium building and renovation trades.",
   openGraph: {
-    title: "Pulito Digital | Digital marketing for premium craft",
+    title: "Pulito Digital | See the redesign before you pay for it",
     description:
       "Web, search and automation for Adelaide's premium building and renovation trades.",
     url: "https://pulitodigital.com.au",
@@ -123,29 +100,34 @@ const jsonLd = {
   served page. It tops the artifact re-opened on every edit.
 */
 const CONTRACT = `
-PULITO DIGITAL — DIRECTION CONTRACT (seed f1f3f5a9, form: pinned world, roll used for order only)
+PULITO DIGITAL — DIRECTION CONTRACT (world pinned by the user: three reference
+sites, one direction each; no roll, a pinned brief beats it)
 
-THESIS: Five photographic directions on one classical world, compared side by
-side. Every picture is a photograph of a real carved or quarried object; the
-category default this refuses is the drawn arch — an SVG arcade under a serif
-headline, which argues for real material with a drawing of it.
+THESIS: Three modern directions on one offer. Each takes its structure, density
+and signature mechanic from one of the user's three references, and all three
+carry identical product facts. The category default all three refuse is the
+proof-shaped SaaS page — logo wall, testimonials, stats, pricing table — because
+the business is new and none of that is true yet; the offer does the persuading
+instead.
 
-OWN-WORLD: One system, five grounds. 1 ULTRAMARINE drenched blue with a figure
-screened into it. 2 NERO near-black and gilt. 3 BIANCO cold paper, vermilion
-lot marks. 4 CAVA quarry dust and hi-vis orange. 5 GESSO plaster shadow and
-one acid signal. Radius 0 on all five: the only curves are inside the
-photographs.
+OWN-WORLD: One stylesheet, three grounds and three shape languages. 1 MERIDIAN
+deep blue, square corners, a fixed section rail, neighbours dimmed. 2 PLINTH
+warm white with NO chrome — no cards, borders or shadows — pill nav and pill
+actions. 3 LATTICE cool white on a ruled grid, blue-violet, bento cells at
+0.75rem. Shared across all three: hairline geometry drawn from classical
+architecture — an arcade, fluting, a cornice rule. Line-work only, no marble,
+no photography, no serif.
 
-STORY: A renovation builder, on a phone between site visits, sees work
-photographed to the standard he sells at, understands Pulito does web, search
-and automation, and sends four fields to get his own homepage rebuilt free.
+STORY: A renovation builder, on a phone between site visits, reads that he can
+see his own homepage redesigned before he pays anything, understands Pulito does
+web, search and automation, and sends four fields.
 
 FIRST VIEWPORT: Differs per direction by design — that is what is being
-compared. Each opens on one photograph at full commitment, the positioning
-line, and the enquiry action visible without scrolling.
+compared. Each opens on the guarantee at display scale, a hero image slot
+awaiting a supplied image, and the enquiry action reachable without scrolling.
 
-FORM: Five directions, presented together rather than chosen between; the roll
-assigned index 5 of the grounded list, which leads the board.
+FORM: Pinned by the user, not dealt. Reference-per-direction, chosen in
+interview over one-skeleton-three-skins and over a loudness ladder.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the
 finish review, the verdict, and DESIGN.md
@@ -155,7 +137,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-AU"
-      className={`${caslon.variable} ${bodoni.variable} ${garamond.variable} ${archivo.variable} ${bricolage.variable} ${geist.variable} ${geistMono.variable} h-full`}
+      className={`${schibsted.variable} ${archivo.variable} ${manrope.variable} ${geist.variable} ${geistMono.variable} h-full`}
     >
       <body className="min-h-full">
         <div dangerouslySetInnerHTML={{ __html: `<!--${CONTRACT}-->` }} />
