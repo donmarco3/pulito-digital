@@ -138,17 +138,29 @@ under a hairline. Deepest ground (`mer-3`), no cards, no icons.
 - **The landing page keeps the full pitch** (owner's decision): hero,
   problem+offer, the showcase, process, FAQ, enquiry. A cold visitor never
   needs to leave it.
-- **Inner pages share one scaffold**: title + lede band under the fixed nav
-  (`pt-40`/`pt-44` clears it), hairline-ruled content, then
-  `components/CtaBand.tsx` — the offer restated once with the one pill,
-  linking back to `/#enquiry`. One form on the site means one tested
-  conversion path; `/contact` gets its own instance later, deliberately.
-- **The service pages are one dynamic route** (`app/services/[slug]`),
-  `generateStaticParams` off `site.services`, `dynamicParams = false`. The
-  showcase panels on the landing page link into them ("More on …", the
-  quieter second exit beside the conversion link).
-- The inner pages standing today are **first-draft scaffolding** — recorded
-  in their own file comments — and each gets its full pass in its milestone.
+- **The service pages are ONE CLAIM PER ROOM** — the structure chosen at
+  the milestone-2 review (surface seed `c95ba129`, candidate 7 of the
+  grounded list; brief in `.impeccable/surfaces/`). The page opens on a
+  three-or-four-word claim at display scale with one word in the accent —
+  the landing hero's own device, which is what makes the pages one
+  family — then gives each of the service's three points an entire dimmed
+  room: title at `clamp(2.1rem,4.6vw,3.7rem)`, the standing point body as
+  the loud paragraph, a quieter `more` paragraph beneath (content rule:
+  `more` may only deepen facts `site` or PRODUCT.md already grants). The
+  middle room indents 22% at `lg` for rhythm; rooms are
+  `sm:min-h-[72svh]` so a phone gets the pacing from the dim and the air,
+  not from empty screens. A ruled two-cell row links to the sibling
+  services, and the page ends at its OWN enquiry form — same proportions
+  and panel as the landing page's, minus the contact list. Web design
+  alone carries the ratified delivery estimate above the form. One dynamic
+  route (`app/services/[slug]`), `generateStaticParams` off
+  `site.services`, `dynamicParams = false`; claims split with
+  `lib/headline.ts`, shared with the hero.
+- **Process and About share the scaffold pattern for now**: title + lede
+  band under the fixed nav (`pt-40`/`pt-44` clears it), hairline-ruled
+  content, then `components/CtaBand.tsx` linking back to `/#enquiry`. Both
+  are **first-draft scaffolding** and get their full pass in milestone 3.
+  `CtaBand` stays their close; the service pages outgrew it.
 
 ## The drawing system
 

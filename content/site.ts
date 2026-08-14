@@ -49,66 +49,97 @@ export const site = {
    * capability list that used to sit below it, moved to the service it
    * actually belongs to. Nothing here is a new claim.
    */
+  /*
+   * Each service also carries its own PAGE now — the "one claim per room"
+   * structure chosen at the milestone-2 review (seed c95ba129, candidate
+   * 7 of 7): `claim` opens the page at display scale with one word in the
+   * accent, each point gets a whole dimmed room with `more` as its second,
+   * quieter paragraph, and the page ends at its own enquiry form.
+   *
+   * `more` may only deepen what `body` already says with facts this file or
+   * PRODUCT.md already grants — no new claims. `timeline` appears above the
+   * form where a ratified delivery promise exists (web design only; the
+   * owner confirmed the estimates on 2026-08-14).
+   */
   services: [
     {
       code: "01",
       slug: "web-design",
       title: "Web design",
+      claim: "Look like your work.",
+      claimAccent: "work",
       body: "A site built around the way high-end clients actually buy: the work first, the process second, an enquiry within reach on every screen. If you already have a site, the content and the search rankings carry across — we replace the shopfront, not the business.",
       points: [
         {
           title: "Mobile first, genuinely",
           body: "Designed on a 390px screen before a desktop one, because that is where your enquiries actually arrive.",
+          more: "Your client is comparing you against three other builders from a ute between site visits, on 4G. That screen is the showroom, and the desktop version is the adaptation — not the other way around.",
         },
         {
           title: "A speed budget",
           body: "Pages that load on site reception on a phone, not only on office wi-fi with a fast laptop.",
+          more: "A slow page loses the enquiry before anyone reads a word, so speed is part of the design brief from the first sketch — never an optimisation pass bolted on at the end.",
         },
         {
           title: "Ownership from day one",
           body: "Domain, hosting and code in your name. Leaving us should never mean losing your website.",
+          more: "No page-builder subscriptions, no monthly ransom to keep the site online. If we stop working together, everything keeps running and everything stays yours.",
         },
       ],
+      timeline:
+        "A redesign is usually a couple of weeks; a full site runs four to six.",
     },
     {
       code: "02",
       slug: "seo",
       title: "SEO",
+      claim: "Be the one they call.",
+      claimAccent: "call",
       body: "Getting found for the searches worth money in Adelaide, and being the one they call rather than the one they scroll past.",
       points: [
         {
           title: "Suburb and service pages",
           body: "The pages that rank for searches with money behind them, written so they read like a business rather than a keyword.",
+          more: "Adelaide first: a search with a suburb in it usually has a job attached, and those are the pages that meet it.",
         },
         {
           title: "Google Business Profile",
           body: "Set up and maintained properly, so the map result works as hard as the website does.",
+          more: "For a trade, the map pack is often the first Google result that matters — the profile gets the same care as the site behind it.",
         },
         {
           title: "The technical side",
           body: "The fixes that let a site rank at all — the part that is invisible until it is missing.",
+          more: "Indexing, structure and speed, done quietly under the surface. Nothing to admire, everything to lose.",
         },
       ],
+      timeline: null,
     },
     {
       code: "03",
       slug: "ai-automation",
       title: "AI automation",
+      claim: "Answered in minutes.",
+      claimAccent: "minutes",
       body: "Enquiries answered in minutes instead of days, and nothing falling through the gap between the site visit and the quote.",
       points: [
         {
           title: "Enquiries acknowledged",
           body: "Every enquiry gets a reply within minutes, logged, whether or not anyone is at a desk.",
+          more: "The client who hears back first assumes the rest of the job runs the same way. That reply goes out while your competitors' enquiries sit unread in a van.",
         },
         {
           title: "Quotes chased",
           body: "Follow-up that happens on its own, instead of when someone remembers on a Sunday night.",
+          more: "The quote marked “with the client” stops quietly dying there — the follow-up runs on its own schedule until there is an answer either way.",
         },
         {
           title: "Jobs logged",
           body: "The record keeps itself, so the pipeline is something you can look at rather than something you carry around.",
+          more: "Every enquiry, quote and job in one place you can read at a glance, instead of across a phone, a notebook and a memory.",
         },
       ],
+      timeline: null,
     },
   ],
 

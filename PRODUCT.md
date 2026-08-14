@@ -40,10 +40,10 @@ recorded interview. One conversion event: the enquiry form.
   required because the form goes real (below).
 
 Build sequence, agreed with the owner: (1) consolidation and nav — DONE;
-(2) the three service pages; (3) process + about; (4) contact + privacy +
-live form + SEO. The inner pages currently standing are FIRST-DRAFT
-SCAFFOLDING from step 1, so the nav has real destinations; each gets its full
-design-and-copy pass in its own step.
+(2) the three service pages — DONE (the "one claim per room" structure,
+chosen at the milestone-2 review; each ends at its own enquiry form);
+(3) process + about — still first-draft scaffolds; (4) contact + privacy +
+live form + SEO.
 
 ## Product truth
 

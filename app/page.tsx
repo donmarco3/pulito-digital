@@ -9,6 +9,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Solutions } from "@/components/Solutions";
 import { meridianSkin } from "@/components/skins";
 import { meridian, site } from "@/content/site";
+import { splitHeadline } from "@/lib/headline";
 
 /**
  * The landing page — MERIDIAN, the direction that won the three-way
@@ -49,25 +50,6 @@ import { meridian, site } from "@/content/site";
  *
  * Numerals appear once, on the process, where the order is the information.
  */
-
-/*
-  Split the headline around the one word that takes the accent.
-
-  Written to degrade rather than to assume: if `headlineAccent` is ever edited
-  to a word the headline no longer contains, this returns the line whole and
-  unaccented instead of rendering a highlighted fragment that is not in the
-  copy. `indexOf` rather than `split` for the same reason — a word that occurs
-  twice would otherwise scatter the emphasis across both.
-*/
-function splitHeadline(line: string, word: string) {
-  const at = line.indexOf(word);
-  if (!word || at === -1) return { before: line, accent: "", after: "" };
-  return {
-    before: line.slice(0, at),
-    accent: word,
-    after: line.slice(at + word.length),
-  };
-}
 
 export default function Home() {
   const headline = splitHeadline(meridian.headline, meridian.headlineAccent);
