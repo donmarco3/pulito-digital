@@ -64,7 +64,7 @@ export default async function ServicePage({
     <div className="motion-clear bg-mer text-mer-ink">
       <a
         href="#main"
-        className="skip-link rounded-full bg-mer-accent px-4 py-2 font-schibsted text-[13px] font-semibold text-mer-3"
+        className="skip-link pill t-control bg-mer-accent px-4 py-2 text-mer-3"
       >
         Skip to content
       </a>
@@ -83,10 +83,16 @@ export default async function ServicePage({
           */}
           <section className="relative isolate overflow-hidden">
             <div className="mer-bloom bloom-breathe pointer-events-none absolute inset-x-0 top-0 -z-10 h-[40vh]" />
-            <div className="mx-auto flex min-h-[88svh] max-w-[86rem] flex-col justify-center px-5 pt-32 pb-16 sm:px-8 sm:pt-36">
+            <div className="shell flex min-h-[88svh] flex-col justify-center pt-32 pb-16 sm:pt-36">
               <h1
-                className="hero-arrive max-w-[12ch] display-face text-[clamp(3rem,8.5vw,6.8rem)] leading-[0.96] tracking-[-0.04em] text-balance"
-                style={{ ["--arrive-delay" as string]: "0.05s" }}
+                className="hero-arrive t-h1 max-w-[12ch] text-balance"
+                style={{
+                  ["--arrive-delay" as string]: "0.05s",
+                  ["--h1-min" as string]: "3rem",
+                  ["--h1-fluid" as string]: "8.5vw",
+                  ["--h1-max" as string]: "6.8rem",
+                  ["--h1-lead" as string]: "0.96",
+                }}
               >
                 {claim.before}
                 <span className="text-mer-accent">{claim.accent}</span>
@@ -94,7 +100,7 @@ export default async function ServicePage({
               </h1>
 
               <p
-                className="hero-arrive mt-8 max-w-[54ch] text-[clamp(1.05rem,1.5vw,1.24rem)] leading-relaxed text-mer-ink-soft"
+                className="hero-arrive t-lead mt-8 text-mer-ink-soft"
                 style={{ ["--arrive-delay" as string]: "0.18s" }}
               >
                 {service.body}
@@ -106,13 +112,13 @@ export default async function ServicePage({
               >
                 <a
                   href="#enquiry"
-                  className="rounded-full bg-mer-accent px-8 py-4 text-center font-schibsted text-[15px] font-semibold text-mer-3 transition-colors hover:bg-mer-accent-deep"
+                  className="pill t-control bg-mer-accent px-8 py-4 text-center text-mer-3 transition-colors hover:bg-mer-accent-deep"
                 >
                   {site.cta}
                 </a>
                 <Link
                   href="/process"
-                  className="rounded-full border border-mer-line-strong px-8 py-4 text-center font-schibsted text-[15px] font-semibold text-mer-ink transition-colors hover:border-mer-ink hover:bg-mer-2"
+                  className="pill t-control border border-mer-line-strong px-8 py-4 text-center text-mer-ink transition-colors hover:border-mer-ink hover:bg-mer-2"
                 >
                   {site.ctaSecondary}
                 </Link>
@@ -136,20 +142,43 @@ export default async function ServicePage({
               className="border-t border-mer-line"
             >
               <div
-                className={`mx-auto flex max-w-[86rem] flex-col justify-center px-5 py-24 sm:min-h-[72svh] sm:px-8 sm:py-28 ${
+                className={`shell band flex flex-col justify-center sm:min-h-[72svh] ${
                   i === 1 ? "lg:pl-[22%]" : ""
                 }`}
+                style={{ ["--band-pad-wide" as string]: "7rem" }}
               >
                 <Reveal>
                   <div className="max-w-[30ch]">
-                    <h2 className="display-face text-[clamp(2.1rem,4.6vw,3.7rem)] leading-[1.02] tracking-[-0.03em] text-balance">
+                    <h2
+                      className="t-h2 text-balance"
+                      style={{
+                        ["--h2-min" as string]: "2.1rem",
+                        ["--h2-fluid" as string]: "4.6vw",
+                        ["--h2-max" as string]: "3.7rem",
+                        ["--h2-lead" as string]: "1.02",
+                      }}
+                    >
                       {point.title}
                     </h2>
                   </div>
-                  <p className="mt-7 max-w-[54ch] text-[clamp(1.08rem,1.4vw,1.22rem)] leading-relaxed text-mer-ink">
+                  <p
+                    className="t-body mt-7 text-mer-ink"
+                    style={{
+                      ["--body-min" as string]: "1.08rem",
+                      ["--body-fluid" as string]: "1.4vw",
+                      ["--body-max" as string]: "1.22rem",
+                      ["--measure" as string]: "54ch",
+                    }}
+                  >
                     {point.body}
                   </p>
-                  <p className="mt-5 max-w-[54ch] text-[1.02rem] leading-relaxed text-mer-ink-soft">
+                  <p
+                    className="t-body mt-5 text-mer-ink-soft"
+                    style={{
+                      ["--body-size" as string]: "1.02rem",
+                      ["--measure" as string]: "54ch",
+                    }}
+                  >
                     {point.more}
                   </p>
                 </Reveal>
@@ -163,7 +192,7 @@ export default async function ServicePage({
             title would outrank the rooms above it.
           */}
           <section aria-label="Other services" className="border-t border-mer-line bg-mer-2">
-            <div className="mx-auto max-w-[86rem] px-5 sm:px-8">
+            <div className="shell">
               <div className="grid sm:grid-cols-2">
                 {others.map((other, i) => (
                   <Link
@@ -173,12 +202,15 @@ export default async function ServicePage({
                       i === 1 ? "border-t border-mer-line sm:border-t-0 sm:border-l sm:pl-10" : "sm:pr-10"
                     }`}
                   >
-                    <span className="display-face text-[1.4rem] tracking-[-0.02em] transition-colors group-hover:text-mer-accent">
+                    <span
+                      className="t-h3 transition-colors group-hover:text-mer-accent"
+                      style={{ ["--h3-max" as string]: "1.4rem" }}
+                    >
                       {other.title}
                     </span>
                     <span
                       aria-hidden
-                      className="font-schibsted text-[15px] font-semibold text-mer-ink-soft transition-[color,transform] duration-200 group-hover:translate-x-1 group-hover:text-mer-accent"
+                      className="t-control text-mer-ink-soft transition-[color,transform] duration-200 group-hover:translate-x-1 group-hover:text-mer-accent"
                     >
                       →
                     </span>
@@ -197,18 +229,25 @@ export default async function ServicePage({
             carries its ratified delivery estimate above the form.
           */}
           <DimSection id="enquiry" className="border-t border-mer-line">
-            <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <div className="shell band">
               <div className="grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
                 <Reveal>
                   <div>
-                    <h2 className="display-face text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.05] tracking-[-0.03em] text-balance">
-                      {site.offer.headline}
-                    </h2>
-                    <p className="mt-5 max-w-[56ch] leading-relaxed text-mer-ink-soft">
+                    <h2 className="t-h2 text-balance">{site.offer.headline}</h2>
+                    <p
+                      className="t-body mt-5 text-mer-ink-soft"
+                      style={{ ["--measure" as string]: "56ch" }}
+                    >
                       {site.offer.body}
                     </p>
                     {service.timeline && (
-                      <p className="mt-8 border-t border-mer-line pt-6 max-w-[56ch] text-[15px] leading-relaxed text-mer-ink">
+                      <p
+                        className="t-body mt-8 border-t border-mer-line pt-6 text-mer-ink"
+                        style={{
+                          ["--body-size" as string]: "15px",
+                          ["--measure" as string]: "56ch",
+                        }}
+                      >
                         {service.timeline}
                       </p>
                     )}
@@ -216,7 +255,7 @@ export default async function ServicePage({
                 </Reveal>
 
                 <Reveal>
-                  <div className="bg-mer-2 p-7 sm:p-10">
+                  <div className="bg-mer p-7 sm:p-10">
                     <EnquiryForm skin={meridianSkin} />
                   </div>
                 </Reveal>

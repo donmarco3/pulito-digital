@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import {
+  Bodoni_Moda,
   Geist,
   Geist_Mono,
   Libre_Caslon_Display,
   Schibsted_Grotesk,
 } from "next/font/google";
 import "./globals.css";
+import { TweakBar } from "@/components/TweakBar";
 import { site } from "@/content/site";
 
 /*
@@ -20,6 +22,7 @@ import { site } from "@/content/site";
     worse than the grotesk it replaced.
   - Geist / Geist Mono — running text everywhere, and the measured voice used
     for the process numerals and the contact-row labels.
+  - Bodoni Moda — the WORDMARK, and nothing else. See the note over it.
 */
 const schibsted = Schibsted_Grotesk({
   variable: "--font-schibsted-src",
@@ -47,6 +50,30 @@ const geistMono = Geist_Mono({
 */
 const caslon = Libre_Caslon_Display({
   variable: "--font-caslon-src",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+/*
+  Bodoni Moda, and it has exactly ONE consumer: the wordmark.
+
+  Chosen in the tweak bar, where it was loaded from Google on the fly; this is
+  the same face made real. It earns a fifth family because a wordmark is not
+  type, it is a mark — the studio's name set once, at 36px, in the one place a
+  Didone's extreme thick/thin can do its job without having to survive at
+  reading size. Everything else stays on the four faces.
+
+  400 rather than the 100 the picker was left on: Bodoni Moda ships 400–900,
+  and a browser cannot synthesise a weight LIGHTER than the lightest it has —
+  100 was already rendering as 400 and only looked like a setting. Asking for
+  what is actually there keeps the file honest.
+
+  Latin only, one weight: the whole point of a single-consumer face is that it
+  costs one small file.
+*/
+const bodoni = Bodoni_Moda({
+  variable: "--font-bodoni-src",
   subsets: ["latin"],
   weight: "400",
   display: "swap",
@@ -111,20 +138,23 @@ pricing table — because the business is new and none of that is true yet; the
 free-preview offer does the persuading instead, on every page.
 
 OWN-WORLD: Ultramarine ground over three recessed depths, hairline rules
-between everything, bone ink, one verdigris action. ACTIONS ARE PILLS,
-STRUCTURE IS SQUARE. One soft shadow, on floating nav furniture only. Libre
+between everything, bone ink, one BONE action — the page is monochrome, and
+the action separates itself by FILL rather than by hue. Controls are pills,
+what holds content is square. One soft shadow, on floating nav furniture
+only. Libre
 Caslon Display for headings, Schibsted Grotesk for controls, Geist for
-running text, mono for measurement only. The classical world appears as
-weather: a generated arcade silhouette in the hero, hairline primitives
-elsewhere.
+running text, mono for measurement only, Bodoni Moda for the wordmark alone.
+The classical world appears as weather: a generated arcade silhouette in the
+hero, hairline primitives elsewhere.
 
 STORY: A renovation builder, on a phone between site visits, reads that he can
 see his own homepage redesigned before he pays anything, understands Pulito
 does web, search and automation, and sends four fields.
 
-FIRST VIEWPORT: Headline stacked upper-left over the arcade picture, one word
-in the accent; subhead and two pill actions beneath; pill nav with links left,
-wordmark centred, the enquiry action right.
+FIRST VIEWPORT: Headline stacked upper-left over the arcade picture, unbroken
+— no accent word, because a near-white accent marks nothing; subhead and ONE
+pill action beneath; pill nav with links left, the Bodoni wordmark centred,
+the enquiry action right.
 
 FORM: Pinned by the user across two builds and a comparison; not dealt.
 
@@ -136,7 +166,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-AU"
-      className={`${schibsted.variable} ${geist.variable} ${geistMono.variable} ${caslon.variable} h-full`}
+      className={`${schibsted.variable} ${geist.variable} ${geistMono.variable} ${caslon.variable} ${bodoni.variable} h-full`}
     >
       <body className="min-h-full">
         <div dangerouslySetInnerHTML={{ __html: `<!--${CONTRACT}-->` }} />
@@ -145,6 +175,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        {/*
+          The tweak bar. It renders nothing in production unless the URL carries
+          `?tweak`, and it is the only client component in the tree — every page
+          under it stays a server component. See `components/TweakBar.tsx` for
+          why it moves custom properties rather than state.
+        */}
+        <TweakBar />
       </body>
     </html>
   );

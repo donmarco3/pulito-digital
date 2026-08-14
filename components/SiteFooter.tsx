@@ -15,27 +15,38 @@ import { site } from "@/content/site";
 export function SiteFooter() {
   return (
     <footer className="border-t border-mer-line bg-mer-3">
-      <div className="mx-auto max-w-[86rem] px-5 py-14 sm:px-8">
+      <div
+        className="shell band"
+        style={{
+          ["--band-pad" as string]: "3.5rem",
+          ["--band-pad-wide" as string]: "3.5rem",
+          ["--body-size" as string]: "14.5px",
+        }}
+      >
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr] md:gap-16">
           <div>
-            <span className="font-schibsted text-[18px] font-semibold tracking-[-0.02em]">
+            <span
+              className="t-control tracking-[-0.02em]"
+              style={{ ["--control-size" as string]: "18px" }}
+            >
               Pulito
             </span>
-            <p className="mt-4 max-w-[46ch] text-[14.5px] leading-relaxed text-mer-ink-soft">
+            <p
+              className="t-body mt-4 text-mer-ink-soft"
+              style={{ ["--measure" as string]: "46ch" }}
+            >
               {site.footer.line}
             </p>
           </div>
 
           <nav aria-label="Services">
-            <p className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
-              Services
-            </p>
+            <p className="t-label text-mer-ink-soft">Services</p>
             <ul className="mt-4 flex flex-col gap-2.5">
               {site.services.map((service) => (
                 <li key={service.slug}>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="text-[14.5px] text-mer-ink transition-colors hover:text-mer-accent"
+                    className="t-body text-mer-ink transition-colors hover:text-mer-accent"
                   >
                     {service.title}
                   </Link>
@@ -45,14 +56,12 @@ export function SiteFooter() {
           </nav>
 
           <nav aria-label="Company">
-            <p className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
-              Studio
-            </p>
+            <p className="t-label text-mer-ink-soft">Studio</p>
             <ul className="mt-4 flex flex-col gap-2.5">
               <li>
                 <Link
                   href="/process"
-                  className="text-[14.5px] text-mer-ink transition-colors hover:text-mer-accent"
+                  className="t-body text-mer-ink transition-colors hover:text-mer-accent"
                 >
                   Process
                 </Link>
@@ -60,7 +69,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/about"
-                  className="text-[14.5px] text-mer-ink transition-colors hover:text-mer-accent"
+                  className="t-body text-mer-ink transition-colors hover:text-mer-accent"
                 >
                   About
                 </Link>
@@ -68,7 +77,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-[14.5px] text-mer-ink transition-colors hover:text-mer-accent"
+                  className="t-body text-mer-ink transition-colors hover:text-mer-accent"
                 >
                   Contact
                 </Link>
@@ -77,7 +86,10 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <p className="mt-12 flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-mer-line pt-6 text-[14.5px] text-mer-ink-soft">
+        <p
+          className="t-body mt-12 flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-mer-line pt-6 text-mer-ink-soft"
+          style={{ ["--measure" as string]: "none" }}
+        >
           <span>
             {site.location} ·{" "}
             <a

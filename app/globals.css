@@ -9,8 +9,8 @@
   expanded from one landing page into a proper multi-page site in its system.
 
   The world in one breath: ultramarine ground, a lot of air, hairline rules
-  between everything, a verdigris action, and one shape rule — ACTIONS ARE
-  PILLS, STRUCTURE IS SQUARE. The nav and every button are pills because a
+  between everything, a bone action on a monochrome page, and one shape rule —
+  ACTIONS ARE PILLS, STRUCTURE IS SQUARE. The nav and every button are pills because a
   square control inside a pill bar reads as an oversight; everything that
   holds content keeps radius 0. Elevation is one soft shadow, on the nav
   furniture when it floats.
@@ -54,36 +54,49 @@
   */
   --color-mer-sky: #122c79;
   /*
-     The action: VERDIGRIS. Chosen, after a review; the switcher is deleted.
+     The action: BONE. Chosen by the owner in the tweak bar, replacing
+     verdigris; the page is monochrome again.
 
-     It was warm bone, and bone was correct while the hero was type on an empty
-     ground — the page was monochrome and the action separated itself by FILL
-     rather than by hue. The hero picture ended that. The arcade is pale
-     travertine and bone measured **1.09:1** against it, so the one control the
-     page exists to offer and the architecture behind it were the same colour,
-     separated by shape alone.
+     THE FULL HISTORY, because this token has now been decided three times and
+     the next person to reach for it deserves the whole argument rather than
+     the last verdict.
 
-     Two rounds. The first tried the warm metals — gold, brass, bronze,
-     copper — and the user rejected all of them for the same reason, which is
-     worth keeping because it will come up again: a metal reads as metal
-     because of a specular highlight, and a flat fill on a screen has none, so
-     they resolve as mud-yellow and mud-orange. Making them work needs a gloss
-     treatment, which was built, seen, and judged not worth the complexity.
+     It began as warm bone, which was correct while the hero was type on an
+     empty ground: the page was monochrome and the action separated itself by
+     FILL rather than by hue. A photoreal hero picture ended that — the arcade
+     was pale travertine and bone measured **1.09:1** against it, so the one
+     control the page exists to offer and the architecture behind it were the
+     same colour, separated by shape alone.
 
-     The second round dropped the metals and probed hue, saturation and
-     analogy — aqua, jade, mint, periwinkle, rose. Verdigris won.
+     Two rounds followed. The first tried the warm metals — gold, brass,
+     bronze, copper — all rejected for the same reason, which is worth keeping
+     because it will come up again: a metal reads as metal because of a
+     specular highlight, and a flat fill on a screen has none, so they resolve
+     as mud-yellow and mud-orange. The second dropped the metals and probed
+     hue, saturation and analogy — aqua, jade, mint, periwinkle, rose.
+     Verdigris won, at 4.75:1 on the ground.
 
-     Why it holds up beyond taste: it is oxidised bronze, which is the metal
-     that actually sits on travertine in the world these arches come from, and
-     it is the ground's complement, so it lifts off the blue without shouting.
+     WHY BONE IS AVAILABLE AGAIN: the picture that ruled it out is gone. The
+     hero is now a SILHOUETTE — the arches read darker than the sky, and the
+     brightest pixel inside the text block is #25438b. Bone measures 9.8:1
+     against that, not 1.09:1. The condition that made bone unusable was the
+     pale travertine, not bone itself, and the file no longer has any.
 
-     4.75:1 on the ground. `--color-mer-3` sits on the fill at 6.5:1, and on
-     the hover at 4.6:1. The hero headline sets one word in it — see
-     `headlineAccent` in `content/site.ts` — which only works because the
-     accent is now a hue rather than a near-white.
+     WHAT IT COSTS, stated plainly because it is real and it was accepted:
+     the accent is a NEAR-WHITE again, so it can only mark things by FILL.
+     Anywhere the accent was carrying meaning as ink — a link underline, a
+     process numeral, a `Measured` fact — it now sits a hair off
+     `--color-mer-ink` and marks nothing. The hero's accent word went with it;
+     see `headlineAccent` in `content/site.ts`, now empty. The error rose is
+     the only hue left on the site, which is the state the alert token was
+     introduced to survive.
+
+     11.31:1 on the ground. `--color-mer-3` sits on the fill at 15.42:1, and on
+     the hover at 12.72:1 — every ratio in this direction goes up, because the
+     failures of a near-white accent are legibility of MEANING, not of text.
   */
-  --color-mer-accent: #43b0a0;
-  --color-mer-accent-deep: #359287; /* hover and pressed, 4.6:1 on the label */
+  --color-mer-accent: #f5f3ed;
+  --color-mer-accent-deep: #e2ded2; /* hover and pressed, 12.72:1 on the label */
 
   /*
      Errors, and the one hue on the page.
@@ -98,8 +111,9 @@
 
      A soft rose rather than a signal red: it appears only on failure, it is
      the least jarring warm tone against ultramarine, and it is nowhere near
-     the amber that was tried and rejected as an accent. 8.8:1 on the enquiry
-     panel.
+     the amber that was tried and rejected as an accent. 7.32:1 on the ground —
+     re-measured when the enquiry panel was flattened onto it, where it used to
+     read 8.8:1 against the recessed `mer-2`.
   */
   --color-mer-alert: #ffb3a7;
 
@@ -126,36 +140,365 @@
       contact-row labels), never a costume.
   */
   --font-caslon: var(--font-caslon-src), Georgia, serif;
+  /* One consumer, the wordmark — see the note in app/layout.tsx. It sits in
+     `@theme` rather than in the tweak contract on purpose: it is a mark, not a
+     role, so nothing should be able to swap it by moving a face token. */
+  --font-bodoni: var(--font-bodoni-src), Georgia, serif;
   --font-schibsted: var(--font-schibsted-src), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 /*
-  The heading face, as one pair — DECIDED: Libre Caslon Display, chosen by
-  the owner on the live hero over Schibsted Grotesk, Instrument Serif,
-  Fraunces, Bodoni Moda and EB Garamond.
+  ---------------------------------------------------------------------------
+  THE TWEAK CONTRACT
 
-  `display-face` remains the single point of indirection: every heading
-  carries it, so the face lives in exactly one place. WEIGHT TRAVELS WITH
-  THE FAMILY: Caslon ships a single 400, and asking for 600 would make the
-  browser synthesise a faux bold that smears its thin strokes — which is why
-  the heading classes carry no `font-semibold` of their own.
+  Every face, size, leading, tracking, alignment, offset, measure and rhythm
+  on the site resolves through the custom properties below, and nothing on any
+  page hard-codes one. That is what makes `components/TweakBar.tsx` possible:
+  the bar writes to `document.documentElement.style` and the whole site
+  re-paints, without a single React re-render and without the pages knowing
+  the bar exists.
 
-  Deliberately NOT applied to controls, the nav, the wordmark or running
-  text: a serif at 15px inside a pill button is worse than the grotesk.
+  Three rules hold this together, and breaking any of them breaks the tool:
 
-  These live outside `@theme` on purpose. Declared there, `--font-display`
-  would generate a `font-display` utility and collide with this one.
+  1. THE SHIPPED DESIGN LIVES HERE, not in the bar. Every value below is the
+     design as it stands; the bar only ever overrides. Delete the bar and the
+     site is pixel-identical, which is the property that makes it safe to keep.
+
+  2. SIZES ARE A CLAMP TIMES A SCALE. Each role owns a `min / fluid / max`
+     triple, and instances that legitimately differ (the landing hero is 7.5rem,
+     a page title is 4.8rem) override that triple INLINE on the element. The
+     bar moves `--h1-scale`, a multiplier, so dragging one slider scales every
+     h1 on the site while keeping the hierarchy between them intact. Setting
+     `--h1-size` outright on `:root` overrides the clamp everywhere — the
+     escape hatch when you want one absolute number rather than a ratio.
+
+  3. POSITION IS `translate`, NOT `transform`. The site's entrances
+     (`hero-arrive`, `reveal`, `plate-open`) all animate `transform`, and
+     `translate` is a separate property that composes with it. Nudging a
+     heading with the bar therefore cannot fight an animation, which is what
+     a `transform`-based offset would do — the heading would jump back to
+     centre the moment its entrance finished.
+  ---------------------------------------------------------------------------
 */
 :root {
+  /*
+    The four faces, as indirections. `display-face` was already the single
+    point of truth for the heading face; the other three now match it, so the
+    bar can swap any of them and every consumer follows.
+
+    These live outside `@theme` on purpose. Declared there, `--font-display`
+    would generate a `font-display` utility and collide with this one.
+
+    WEIGHT TRAVELS WITH THE FAMILY: Caslon ships a single 400, and asking for
+    600 makes the browser synthesise a faux bold that smears its thin strokes.
+    Swap to a family with real weights in the bar and the weight control is
+    what makes that swap worth anything, which is why it is a token and not a
+    constant.
+  */
   --font-display: var(--font-caslon);
   --font-display-weight: 400;
+  --font-control: var(--font-schibsted);
+  --font-body: var(--font-sans);
+  --font-measure: var(--font-mono);
+
+  /* ------------------------------------------------------------- shell */
+  /* `--shell` is the 86rem every page centres its content in; `--gutter`
+     the phone inset and `--gutter-wide` the one from `sm` up. `--rhythm`
+     multiplies every band's vertical padding at once, so the whole site can
+     be loosened or tightened without touching a section. */
+  --shell: 86rem;
+  --gutter: 1.25rem;
+  --gutter-wide: 2rem;
+  --rhythm: 1;
+  --band-pad: 6rem;
+  --band-pad-wide: 8rem;
+
+  /*
+    Shape, as two tokens rather than as literals: what can be pressed, and
+    what holds content. As it stands the first is a pill and the second is
+    square — but that is a description of the current values, not a rule the
+    stylesheet enforces. DESIGN.md carried it as doctrine and stopped; these
+    are adjustable precisely so the question stays open.
+  */
+  --pill: 9999px;
+  --box: 0px;
+
+  /* A multiplier over every role at once, on top of each role's own. */
+  --type-scale: 1;
+
+  /* ------------------------------------------------------------- roles */
+  /*
+    Seven roles, and between them they cover every string on the site. Each
+    carries the same nine controls so the bar's panel is one loop rather than
+    seven special cases.
+  */
+
+  /* h1 — the landing hero and every page title. */
+  --h1-scale: 1;
+  --h1-min: 3.2rem;
+  --h1-fluid: 10vw;
+  --h1-max: 7.5rem;
+  --h1-lead: 0.94;
+  --h1-track: -0.04em;
+  --h1-case: none;
+  --h1-align: start;
+  --h1-x: 0px;
+  --h1-y: 0px;
+
+  /* h2 — section headings, and the statement scale on the inner pages. */
+  --h2-scale: 1;
+  --h2-min: 1.9rem;
+  --h2-fluid: 3.4vw;
+  --h2-max: 2.9rem;
+  --h2-lead: 1.05;
+  --h2-track: -0.03em;
+  --h2-case: none;
+  --h2-align: start;
+  --h2-x: 0px;
+  --h2-y: 0px;
+
+  /* h3 — panel titles, process steps, FAQ questions. */
+  --h3-scale: 1;
+  --h3-min: 1.35rem;
+  --h3-fluid: 1.6vw;
+  --h3-max: 1.6rem;
+  --h3-lead: 1.2;
+  --h3-track: -0.02em;
+  --h3-case: none;
+  --h3-align: start;
+  --h3-x: 0px;
+  --h3-y: 0px;
+
+  /* lead — the subhead under every title. */
+  --lead-scale: 1;
+  --lead-min: 1.05rem;
+  --lead-fluid: 1.5vw;
+  --lead-max: 1.24rem;
+  --lead-lead: 1.625;
+  --lead-track: 0em;
+  --lead-case: none;
+  --lead-align: start;
+  --lead-x: 0px;
+  --lead-y: 0px;
+  --lead-measure: 54ch;
+
+  /* body — running text. */
+  --body-scale: 1;
+  --body-min: 1rem;
+  --body-fluid: 1.05rem;
+  --body-max: 1.08rem;
+  --body-lead: 1.625;
+  --body-track: 0em;
+  --body-case: none;
+  --body-align: start;
+  --body-x: 0px;
+  --body-y: 0px;
+  --body-measure: 66ch;
+
+  /* label — the mono measurement voice. Never a costume. */
+  --label-scale: 1;
+  --label-size: 10.5px;
+  --label-lead: 1.4;
+  --label-track: 0.18em;
+  --label-case: uppercase;
+  --label-align: start;
+  --label-x: 0px;
+  --label-y: 0px;
+
+  /* control — the nav, the buttons, the underlined links. */
+  --control-scale: 1;
+  --control-size: 15px;
+  --control-weight: 600;
+  --control-lead: 1.2;
+  --control-track: 0em;
+  --control-case: none;
+
+  /* ------------------------------------------------------------ hero */
+  /* Where the landing hero's text block actually sits: how tall the section
+     is, which end of it the block hangs from, and how far in from the left
+     it starts. The block is a flex column, so `--hero-place` drives
+     `justify-content` and `--hero-items` the cross axis. */
+  --hero-min-h: 100svh;
+  /*
+    The hero text sits HIGH in the section, not centred in it.
+
+    The owner moved the headline, the subhead and the action up by ~250px each
+    in the tweak bar. Three fixed pixel offsets is what "this block should sit
+    higher" looks like when the only tool to hand is a nudge — so it is
+    recorded as the placement it actually is. A translate would have been the
+    same distance at every viewport height, riding up under the nav on a laptop
+    and leaving a hole at the bottom of the section on a tall monitor; hanging
+    the block off the top of a `100svh` section is the same composition and
+    survives both.
+  */
+  --hero-place: flex-start;
+  --hero-items: flex-start;
+  --hero-pad-top: 8rem;
+  --hero-pad-bottom: 6rem;
+  --hero-indent: 0px;
+
+  /* ---------------------------------------------------------- motion */
+  /* The dim's depth, exposed because it is measured rather than chosen —
+     see the note over `.dimmable`. Dragging it below 0.72 fails 4.5:1, and
+     the bar says so out loud rather than letting it happen quietly. */
+  --dim-opacity: 0.72;
+  --dim-scale: 0.985;
+  --reveal-rise: 34px;
+  --reveal-blur: 6px;
 }
 
+/*
+  The role utilities.
+
+  `display-face` survives unchanged and still means "wear the heading face",
+  because plenty of things want the face without wanting h2's size — the FAQ
+  summaries, the sibling-service links. The `t-*` roles are the full spec.
+*/
 @utility display-face {
   font-family: var(--font-display);
   font-weight: var(--font-display-weight);
+}
+
+@utility t-h1 {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
+  font-size: calc(
+    var(--h1-size, clamp(var(--h1-min), var(--h1-fluid), var(--h1-max))) *
+      var(--h1-scale) * var(--type-scale)
+  );
+  line-height: var(--h1-lead);
+  letter-spacing: var(--h1-track);
+  text-transform: var(--h1-case);
+  text-align: var(--h1-align);
+  translate: var(--h1-x) var(--h1-y);
+}
+
+@utility t-h2 {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
+  font-size: calc(
+    var(--h2-size, clamp(var(--h2-min), var(--h2-fluid), var(--h2-max))) *
+      var(--h2-scale) * var(--type-scale)
+  );
+  line-height: var(--h2-lead);
+  letter-spacing: var(--h2-track);
+  text-transform: var(--h2-case);
+  text-align: var(--h2-align);
+  translate: var(--h2-x) var(--h2-y);
+}
+
+@utility t-h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
+  font-size: calc(
+    var(--h3-size, clamp(var(--h3-min), var(--h3-fluid), var(--h3-max))) *
+      var(--h3-scale) * var(--type-scale)
+  );
+  line-height: var(--h3-lead);
+  letter-spacing: var(--h3-track);
+  text-transform: var(--h3-case);
+  text-align: var(--h3-align);
+  translate: var(--h3-x) var(--h3-y);
+}
+
+@utility t-lead {
+  font-family: var(--font-body);
+  font-size: calc(
+    var(--lead-size, clamp(var(--lead-min), var(--lead-fluid), var(--lead-max))) *
+      var(--lead-scale) * var(--type-scale)
+  );
+  line-height: var(--lead-lead);
+  letter-spacing: var(--lead-track);
+  text-transform: var(--lead-case);
+  text-align: var(--lead-align);
+  translate: var(--lead-x) var(--lead-y);
+  max-width: var(--measure, var(--lead-measure));
+}
+
+@utility t-body {
+  font-family: var(--font-body);
+  font-size: calc(
+    var(--body-size, clamp(var(--body-min), var(--body-fluid), var(--body-max))) *
+      var(--body-scale) * var(--type-scale)
+  );
+  line-height: var(--body-lead);
+  letter-spacing: var(--body-track);
+  text-transform: var(--body-case);
+  text-align: var(--body-align);
+  translate: var(--body-x) var(--body-y);
+  max-width: var(--measure, var(--body-measure));
+}
+
+@utility t-label {
+  font-family: var(--font-measure);
+  font-weight: 500;
+  font-size: calc(var(--label-size) * var(--label-scale) * var(--type-scale));
+  line-height: var(--label-lead);
+  letter-spacing: var(--label-track);
+  text-transform: var(--label-case);
+  text-align: var(--label-align);
+  translate: var(--label-x) var(--label-y);
+}
+
+@utility t-control {
+  font-family: var(--font-control);
+  font-weight: var(--control-weight);
+  font-size: calc(var(--control-size) * var(--control-scale) * var(--type-scale));
+  line-height: var(--control-lead);
+  letter-spacing: var(--control-track);
+  text-transform: var(--control-case);
+}
+
+/*
+  The shell and the band: the two measurements every section on the site is
+  built out of, previously repeated as `mx-auto max-w-[86rem] px-5 sm:px-8`
+  and `py-24 sm:py-32` in fifteen places. One utility each means the bar can
+  move all fifteen, and it is a better file besides.
+
+  `--band-pad` is the phone value and `--band-pad-wide` takes over at `sm`,
+  matching what the literals did. Both are multiplied by `--rhythm`.
+*/
+@utility shell {
+  margin-inline: auto;
+  max-width: var(--shell);
+  /*
+    The indent is PADDING on top of the gutter, and it has to be, which is
+    worth recording because the obvious alternative silently breaks the site.
+
+    Indenting with `margin-inline-start` overrides the `auto` on that side —
+    `margin-inline: auto` is what centres this column — so the whole content
+    column stops being centred and hangs off the left edge of any viewport
+    wider than `--shell`. It looks correct at 1280px, where the column is
+    already wider than the screen and both auto margins resolve to 0, and
+    wrong on every larger monitor. Padding cannot do that.
+  */
+  padding-inline: var(--gutter);
+  padding-inline-start: calc(var(--gutter) + var(--shell-indent, 0px));
+
+  @media (width >= 40rem) {
+    padding-inline: var(--gutter-wide);
+    padding-inline-start: calc(var(--gutter-wide) + var(--shell-indent, 0px));
+  }
+}
+
+@utility band {
+  padding-block: calc(var(--band-pad) * var(--rhythm));
+
+  @media (width >= 40rem) {
+    padding-block: calc(var(--band-pad-wide) * var(--rhythm));
+  }
+}
+
+/* Radius from one place: `pill` replaces `rounded-full` on every control,
+   `boxed` names the radius of everything that holds content. */
+@utility pill {
+  border-radius: var(--pill);
+}
+
+@utility boxed {
+  border-radius: var(--box);
 }
 
 @layer base {
@@ -197,6 +540,10 @@
   and never `display: none`, which would drop it out of the tab order.
 */
 @utility skip-link {
+  /* It wears `t-control` like every other action, one step down: the link is
+     off-screen until focused and does not need to match a nav pill. Set as a
+     token so it still follows a face swap. */
+  --control-size: 13px;
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
@@ -294,8 +641,8 @@
 }
 
 .dimmable[data-active="false"] {
-  opacity: 0.72;
-  transform: scale(0.985);
+  opacity: var(--dim-opacity);
+  transform: scale(var(--dim-scale));
 }
 
 /*
@@ -341,8 +688,8 @@
 @keyframes reveal-clear {
   from {
     opacity: 0.25;
-    transform: translate3d(0, 34px, 0);
-    filter: blur(6px);
+    transform: translate3d(0, var(--reveal-rise), 0);
+    filter: blur(var(--reveal-blur));
   }
   to {
     opacity: 1;

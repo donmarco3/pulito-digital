@@ -161,7 +161,7 @@ export function MeridianNav() {
       <div
         className={`mt-3 flex w-full items-center justify-between gap-4 border transition-[max-width,padding,border-radius,background-color,border-color,box-shadow] duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] md:grid md:grid-cols-[1fr_auto_1fr] ${
           hardened
-            ? "max-w-[80rem] rounded-full border-mer-line bg-mer/90 px-4 py-2.5 shadow-[0_16px_44px_-26px_rgb(4_12_30/0.9)] backdrop-blur-xl sm:px-5"
+            ? "max-w-[80rem] pill border-mer-line bg-mer/90 px-4 py-2.5 shadow-[0_16px_44px_-26px_rgb(4_12_30/0.9)] backdrop-blur-xl sm:px-5"
             : "max-w-[92rem] rounded-none border-transparent bg-transparent px-2 py-4 shadow-none sm:px-4"
         }`}
       >
@@ -172,7 +172,8 @@ export function MeridianNav() {
               aria-expanded={servicesOpen}
               aria-controls="services-menu"
               onClick={() => setServicesOpen((v) => !v)}
-              className={`flex items-center gap-2 text-[13.5px] transition-colors hover:text-mer-ink ${
+              style={{ ["--control-size" as string]: "13.5px", ["--control-weight" as string]: "400" }}
+              className={`t-control flex items-center gap-2 transition-colors hover:text-mer-ink ${
                 servicesOpen || pathname.startsWith("/services")
                   ? "text-mer-ink"
                   : "text-mer-ink-soft"
@@ -194,7 +195,8 @@ export function MeridianNav() {
                     <Link
                       href={`/services/${service.slug}`}
                       aria-current={isCurrent(`/services/${service.slug}`)}
-                      className={`block px-5 py-3.5 text-[14px] transition-colors hover:bg-mer-2/60 hover:text-mer-ink aria-[current]:text-mer-accent ${
+                      style={{ ["--control-size" as string]: "14px", ["--control-weight" as string]: "400" }}
+                      className={`t-control block px-5 py-3.5 transition-colors hover:bg-mer-2/60 hover:text-mer-ink aria-[current]:text-mer-accent ${
                         pathname === `/services/${service.slug}`
                           ? "text-mer-ink"
                           : "text-mer-ink-soft"
@@ -213,7 +215,8 @@ export function MeridianNav() {
               key={page.href}
               href={page.href}
               aria-current={isCurrent(page.href)}
-              className={`text-[13.5px] transition-colors hover:text-mer-ink ${
+              style={{ ["--control-size" as string]: "13.5px", ["--control-weight" as string]: "400" }}
+              className={`t-control transition-colors hover:text-mer-ink ${
                 pathname === page.href ? "text-mer-ink" : "text-mer-ink-soft"
               }`}
             >
@@ -225,7 +228,20 @@ export function MeridianNav() {
         {/* The wordmark alone, holding the centre column. On the way to any
             inner page it is also the way home. */}
         <Link href="/" className="flex items-center md:justify-center">
-          <span className="font-schibsted text-[19px] font-semibold tracking-[-0.02em] text-mer-ink">
+          {/*
+            The wordmark is the one thing on the site that is a MARK rather
+            than type, so it is the one thing that does not follow a role. It
+            is set in Bodoni Moda at 36px — chosen in the tweak bar — with the
+            tracking opened rather than tightened, which is what a Didone at
+            display size wants and the opposite of what the grotesk wanted.
+
+            Deliberately NOT `--font-control`: swapping the control face in the
+            tweak bar should move the nav links and the buttons, and leave the
+            name alone.
+          */}
+          <span
+            className="font-bodoni text-[36px] leading-[0.99] tracking-[0.04em] text-mer-ink"
+          >
             Pulito
           </span>
         </Link>
@@ -237,8 +253,9 @@ export function MeridianNav() {
               their local forms. */}
           <Link
             href="/contact"
-            className={`rounded-full bg-mer-accent font-schibsted font-semibold whitespace-nowrap text-mer-3 transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-mer-accent-deep ${
-              hardened ? "px-4 py-2 text-[13px]" : "px-5 py-2.5 text-[13.5px]"
+            style={{ ["--control-size" as string]: hardened ? "13px" : "13.5px" }}
+            className={`pill t-control bg-mer-accent whitespace-nowrap text-mer-3 transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-mer-accent-deep ${
+              hardened ? "px-4 py-2" : "px-5 py-2.5"
             }`}
           >
             {site.cta}
@@ -254,7 +271,7 @@ export function MeridianNav() {
             aria-controls="site-menu"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMenuOpen((v) => !v)}
-            className="grid h-9 w-9 place-items-center rounded-full border border-mer-line-strong text-mer-ink transition-colors hover:border-mer-ink md:hidden"
+            className="pill grid h-9 w-9 place-items-center border border-mer-line-strong text-mer-ink transition-colors hover:border-mer-ink md:hidden"
           >
             <span aria-hidden className="relative block h-2.5 w-4">
               <span
@@ -281,7 +298,7 @@ export function MeridianNav() {
         className="mt-2 max-h-[calc(100dvh-6rem)] w-full max-w-[80rem] overflow-y-auto border border-mer-line bg-mer/95 shadow-[0_16px_44px_-26px_rgb(4_12_30/0.9)] backdrop-blur-xl md:hidden!"
       >
         <nav aria-label="Site" className="px-6 py-6">
-          <p className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
+          <p className="t-label text-mer-ink-soft">
             Services
           </p>
           <ul className="mt-2 mb-6">
@@ -290,7 +307,8 @@ export function MeridianNav() {
                 <Link
                   href={`/services/${service.slug}`}
                   aria-current={isCurrent(`/services/${service.slug}`)}
-                  className={`block py-2.5 font-schibsted text-[1.35rem] font-semibold tracking-[-0.02em] transition-colors hover:text-mer-accent ${
+                  style={{ ["--control-size" as string]: "1.35rem" }}
+                  className={`t-control block py-2.5 tracking-[-0.02em] transition-colors hover:text-mer-accent ${
                     pathname === `/services/${service.slug}`
                       ? "text-mer-accent"
                       : "text-mer-ink"
@@ -308,7 +326,8 @@ export function MeridianNav() {
                 <Link
                   href={page.href}
                   aria-current={isCurrent(page.href)}
-                  className={`block py-2.5 font-schibsted text-[1.35rem] font-semibold tracking-[-0.02em] transition-colors hover:text-mer-accent ${
+                  style={{ ["--control-size" as string]: "1.35rem" }}
+                  className={`t-control block py-2.5 tracking-[-0.02em] transition-colors hover:text-mer-accent ${
                     pathname === page.href ? "text-mer-accent" : "text-mer-ink"
                   }`}
                 >
@@ -318,7 +337,10 @@ export function MeridianNav() {
             ))}
           </ul>
 
-          <p className="mt-6 border-t border-mer-line pt-5 text-[13.5px] text-mer-ink-soft">
+          <p
+            className="t-body mt-6 border-t border-mer-line pt-5 text-mer-ink-soft"
+            style={{ ["--body-size" as string]: "13.5px" }}
+          >
             {site.location} ·{" "}
             <a
               href={`mailto:${site.contactEmail}`}

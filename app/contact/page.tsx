@@ -32,7 +32,7 @@ export default function ContactPage() {
     <div className="motion-clear bg-mer text-mer-ink">
       <a
         href="#main"
-        className="skip-link rounded-full bg-mer-accent px-4 py-2 font-schibsted text-[13px] font-semibold text-mer-3"
+        className="skip-link pill t-control bg-mer-accent px-4 py-2 text-mer-3"
       >
         Skip to content
       </a>
@@ -42,12 +42,20 @@ export default function ContactPage() {
       <main id="main">
         <section className="relative isolate overflow-hidden">
           <div className="mer-bloom bloom-breathe pointer-events-none absolute inset-x-0 top-0 -z-10 h-[40vh]" />
-          <div className="mx-auto max-w-[86rem] px-5 pt-40 pb-20 sm:px-8 sm:pt-44 sm:pb-24">
-            <h1 className="hero-arrive max-w-[14ch] display-face text-[clamp(2.6rem,6.5vw,4.8rem)] leading-[0.98] tracking-[-0.04em] text-balance">
+          <div className="shell pt-40 pb-20 sm:pt-44 sm:pb-24">
+            <h1
+              className="hero-arrive t-h1 max-w-[14ch] text-balance"
+              style={{
+                ["--h1-min" as string]: "2.6rem",
+                ["--h1-fluid" as string]: "6.5vw",
+                ["--h1-max" as string]: "4.8rem",
+                ["--h1-lead" as string]: "0.98",
+              }}
+            >
               {meridian.pages.contact.title}
             </h1>
             <p
-              className="hero-arrive mt-7 max-w-[54ch] text-[clamp(1.05rem,1.5vw,1.24rem)] leading-relaxed text-mer-ink-soft"
+              className="hero-arrive t-lead mt-7 text-mer-ink-soft"
               style={{ ["--arrive-delay" as string]: "0.12s" }}
             >
               {meridian.pages.contact.lede}
@@ -56,26 +64,43 @@ export default function ContactPage() {
         </section>
 
         <section className="border-t border-mer-line">
-          <div className="mx-auto max-w-[86rem] px-5 py-20 sm:px-8 sm:py-24">
+          <div
+            className="shell band"
+            style={{
+              ["--band-pad" as string]: "5rem",
+              ["--band-pad-wide" as string]: "6rem",
+            }}
+          >
             <div className="grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
               <Reveal>
                 <div>
-                  <h2 className="display-face text-[clamp(1.7rem,3vw,2.4rem)] leading-[1.05] tracking-[-0.03em] text-balance">
+                  <h2
+                    className="t-h2 text-balance"
+                    style={{
+                      ["--h2-min" as string]: "1.7rem",
+                      ["--h2-fluid" as string]: "3vw",
+                      ["--h2-max" as string]: "2.4rem",
+                    }}
+                  >
                     {site.form.headline}
                   </h2>
-                  <p className="mt-5 max-w-[52ch] leading-relaxed text-mer-ink-soft">
+                  <p
+                    className="t-body mt-5 text-mer-ink-soft"
+                    style={{ ["--measure" as string]: "52ch" }}
+                  >
                     {site.form.body}
                   </p>
 
                   <dl className="mt-10 border-t border-mer-line lg:mt-12">
                     <div className="grid grid-cols-[5.5rem_1fr] items-baseline gap-x-6 border-b border-mer-line py-4 sm:grid-cols-[7rem_1fr]">
-                      <dt className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
+                      <dt className="t-label text-mer-ink-soft">
                         {meridian.contactLabels.email}
                       </dt>
                       <dd>
                         <a
                           href={`mailto:${site.contactEmail}`}
-                          className="border-b border-mer-line-strong pb-0.5 text-[15px] text-mer-ink transition-colors hover:border-mer-accent"
+                          className="t-body border-b border-mer-line-strong pb-0.5 text-mer-ink transition-colors hover:border-mer-accent"
+                          style={{ ["--body-size" as string]: "15px" }}
                         >
                           {site.contactEmail}
                         </a>
@@ -83,21 +108,32 @@ export default function ContactPage() {
                     </div>
 
                     <div className="grid grid-cols-[5.5rem_1fr] items-baseline gap-x-6 border-b border-mer-line py-4 sm:grid-cols-[7rem_1fr]">
-                      <dt className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
+                      <dt className="t-label text-mer-ink-soft">
                         {meridian.contactLabels.location}
                       </dt>
-                      <dd className="text-[15px] text-mer-ink">{site.location}</dd>
+                      <dd
+                        className="t-body text-mer-ink"
+                        style={{ ["--body-size" as string]: "15px" }}
+                      >
+                        {site.location}
+                      </dd>
                     </div>
                   </dl>
 
-                  <p className="mt-8 max-w-[52ch] text-[15px] leading-relaxed text-mer-ink-soft">
+                  <p
+                    className="t-body mt-8 text-mer-ink-soft"
+                    style={{
+                      ["--body-size" as string]: "15px",
+                      ["--measure" as string]: "52ch",
+                    }}
+                  >
                     {meridian.pages.contact.area}
                   </p>
                 </div>
               </Reveal>
 
               <Reveal>
-                <div className="bg-mer-2 p-7 sm:p-10">
+                <div className="bg-mer p-7 sm:p-10">
                   <EnquiryForm skin={meridianSkin} />
                 </div>
               </Reveal>

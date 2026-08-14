@@ -107,7 +107,21 @@ export function Solutions({ items }: { items: readonly Item[] }) {
           its own height — at 3.6rem the chips tucked under it. `bg-mer-2`
           rather than `bg-mer`, because this bar sits inside a `mer-2` section
           and a `mer` strip reads as a seam across the box. */}
-      <aside className="sticky top-[4.25rem] z-30 border-b border-mer-line bg-mer-2 lg:static lg:z-auto lg:border-r lg:border-b-0 lg:bg-transparent">
+      {/*
+        `min-w-0` is load-bearing, and it is the fix for a real overflow.
+
+        This aside is a GRID ITEM, and a grid item's implicit `min-width: auto`
+        refuses to shrink below its content's min-content width. The chip bar
+        inside it is three `whitespace-nowrap` chips — about 350px of them — so
+        below roughly 380px the aside pushed the whole showcase box wider than
+        the page and the document itself gained a horizontal scrollbar. The
+        chips are already in an `overflow-x-auto` scroller; they were meant to
+        scroll INSIDE the box, and this is what lets them.
+
+        Harmless at `lg`, where the track is `minmax(13.5rem, 0.28fr)` and the
+        floor comes from the template rather than from the item.
+      */}
+      <aside className="sticky top-[4.25rem] z-30 min-w-0 border-b border-mer-line bg-mer-2 lg:static lg:z-auto lg:border-r lg:border-b-0 lg:bg-transparent">
         <div className="lg:sticky lg:top-[clamp(5.5rem,14vh,8.5rem)] lg:max-h-[calc(100vh-clamp(6rem,16vh,10rem))] lg:overflow-y-auto lg:px-6 lg:py-10">
           <nav
             aria-label="Services"
@@ -121,7 +135,11 @@ export function Solutions({ items }: { items: readonly Item[] }) {
                   key={item.code}
                   href={`#${id}`}
                   aria-current={on ? "location" : undefined}
-                  className={`shrink-0 border-b-2 px-3 py-2.5 text-[15px] font-medium whitespace-nowrap transition-[color,border-color,transform] duration-200 lg:border-b-0 lg:border-l-2 lg:py-2 lg:pr-0 lg:pl-3 ${
+                  /* 500 rather than the control role's 600: these are a chip
+                     bar, and at full control weight they read as four buttons
+                     competing with the panel headings beside them. */
+                  style={{ ["--control-weight" as string]: "500" }}
+                  className={`t-control shrink-0 border-b-2 px-3 py-2.5 whitespace-nowrap transition-[color,border-color,transform] duration-200 lg:border-b-0 lg:border-l-2 lg:py-2 lg:pr-0 lg:pl-3 ${
                     on
                       ? "border-mer-accent text-mer-ink lg:translate-x-1"
                       : "border-transparent text-mer-ink-soft/70 hover:text-mer-ink lg:hover:translate-x-0.5"
@@ -151,11 +169,25 @@ export function Solutions({ items }: { items: readonly Item[] }) {
                  arrive underneath the control that sent you there. */
               className="flex min-h-[min(82vh,48rem)] scroll-mt-32 flex-col justify-center border-b border-mer-line/70 px-6 py-16 last:border-b-0 sm:px-10 sm:py-20 lg:px-14"
             >
-              <h3 className="max-w-[14ch] display-face text-[clamp(2rem,4vw,3.2rem)] leading-[1.02] tracking-[-0.03em]">
+              {/* Panel titles are h2-scale in this world even though they are
+                  h3 in the outline — they are the loudest thing in a room of
+                  their own. The role's triple is overridden, not its face. */}
+              <h3
+                className="t-h2 max-w-[14ch]"
+                style={{
+                  ["--h2-min" as string]: "2rem",
+                  ["--h2-fluid" as string]: "4vw",
+                  ["--h2-max" as string]: "3.2rem",
+                  ["--h2-lead" as string]: "1.02",
+                }}
+              >
                 {item.title}
               </h3>
 
-              <p className="mt-6 max-w-[56ch] text-[1.08rem] leading-relaxed text-mer-ink-soft">
+              <p
+                className="t-body mt-6 text-mer-ink-soft"
+                style={{ ["--measure" as string]: "56ch" }}
+              >
                 {item.body}
               </p>
 
@@ -168,10 +200,13 @@ export function Solutions({ items }: { items: readonly Item[] }) {
                     key={point.title}
                     className="border-t border-mer-line py-5 sm:grid sm:grid-cols-[14rem_1fr] sm:gap-8"
                   >
-                    <dt className="font-schibsted text-[1.02rem] font-semibold text-mer-ink">
+                    <dt
+                      className="t-control text-mer-ink"
+                      style={{ ["--control-size" as string]: "1.02rem" }}
+                    >
                       {point.title}
                     </dt>
-                    <dd className="mt-1.5 leading-relaxed text-mer-ink-soft sm:mt-0">
+                    <dd className="t-body mt-1.5 text-mer-ink-soft sm:mt-0">
                       {point.body}
                     </dd>
                   </div>
@@ -184,13 +219,13 @@ export function Solutions({ items }: { items: readonly Item[] }) {
               <div className="mt-12 flex flex-wrap items-baseline gap-x-8 gap-y-3">
                 <a
                   href="#enquiry"
-                  className="inline-block border-b border-mer-accent pb-1 font-schibsted text-[15px] font-semibold text-mer-ink transition-colors hover:text-mer-accent"
+                  className="t-control inline-block border-b border-mer-accent pb-1 text-mer-ink transition-colors hover:text-mer-accent"
                 >
                   {site.cta}
                 </a>
                 <Link
                   href={`/services/${item.slug}`}
-                  className="inline-block border-b border-mer-line-strong pb-1 font-schibsted text-[15px] font-semibold text-mer-ink-soft transition-colors hover:border-mer-ink hover:text-mer-ink"
+                  className="t-control inline-block border-b border-mer-line-strong pb-1 text-mer-ink-soft transition-colors hover:border-mer-ink hover:text-mer-ink"
                 >
                   More on {item.title.toLowerCase()}
                 </Link>

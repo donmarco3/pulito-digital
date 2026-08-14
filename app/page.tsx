@@ -25,14 +25,15 @@ import { splitHeadline } from "@/lib/headline";
  * - THE GROUND is the ultramarine from the build running alongside this one —
  *   the user's own pick, taken across with its recessed band, hairlines and
  *   bone text rather than approximated.
- * - THE ACTION is VERDIGRIS, chosen after two rounds of review. It was bone,
- *   which was right while the page was monochrome and the action separated
- *   itself by fill rather than by hue — and wrong the moment the hero gained a
- *   pale travertine arcade it measured 1.09:1 against. Reasoning in full in
- *   `globals.css`.
+ * - THE ACTION is BONE, and the page is monochrome: the action separates
+ *   itself by FILL rather than by hue. It was verdigris for one round, which
+ *   was the right answer while the hero was a pale travertine arcade that bone
+ *   measured 1.09:1 against; the hero is a dark silhouette now and the
+ *   condition is gone. Full history in `globals.css`.
  * - THE HEADLINE is the user's line, shortened at their request from "Built to
- *   be looked at." One word of it — "seen" — is set in the accent. Which word
- *   comes from `content/site.ts` so the copy stays one editable string.
+ *   be looked at." It runs UNBROKEN — the accent word left with verdigris,
+ *   because bone lettering beside bone lettering marks nothing. The mechanism
+ *   is intact in `content/site.ts` if a hue ever comes back.
  * - THE DISPLAY FACE is LIBRE CASLON DISPLAY, chosen by the owner from a
  *   six-way review on this hero (five serifs against the incumbent grotesk,
  *   flicked live with `FontSwitch`, now deleted). Headings only — controls,
@@ -58,7 +59,7 @@ export default function Home() {
     <div className="motion-clear bg-mer text-mer-ink">
       <a
         href="#main"
-        className="skip-link rounded-full bg-mer-accent px-4 py-2 font-schibsted text-[13px] font-semibold text-mer-3"
+        className="skip-link pill t-control bg-mer-accent px-4 py-2 text-mer-3"
       >
         Skip to content
       </a>
@@ -145,7 +146,40 @@ export default function Home() {
               className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[13%] bg-[linear-gradient(to_bottom,transparent,var(--color-mer))] sm:h-[17%] lg:h-[24%]"
             />
 
-            <div className="mx-auto flex min-h-svh max-w-[86rem] flex-col justify-center px-5 pt-32 pb-24 sm:px-8 sm:pt-36 sm:pb-28">
+            {/*
+              The hero block's placement is entirely token-driven — height,
+              which end of the section it hangs from, which edge it aligns to,
+              its padding and its indent. It is the one composition on the site
+              worth being able to move without editing, so the tweak bar's
+              Placement group drives these five properties directly.
+            */}
+            <div
+              className="shell flex flex-col"
+              style={{
+                minHeight: "var(--hero-min-h)",
+                justifyContent: "var(--hero-place)",
+                alignItems: "var(--hero-items)",
+                paddingTop: "var(--hero-pad-top)",
+                paddingBottom: "var(--hero-pad-bottom)",
+                /* Handed to `shell`, which folds it into its own responsive
+                   padding — see the note there for why this must not be a
+                   margin. */
+                ["--shell-indent" as string]: "var(--hero-indent)",
+                /*
+                  The hero runs NARROWER than the rest of the site — 79.5rem
+                  against the standard 86rem. `shell` reads `--shell`, so
+                  overriding it here narrows this one column without touching
+                  the fifteen others.
+
+                  It is the room the picture needs. Every other band on the
+                  site is type on a flat ground and wants the full measure;
+                  this one is type over an arcade, and pulling the column in
+                  keeps the headline off the arches instead of running the
+                  subhead across them.
+                */
+                ["--shell" as string]: "79.5rem",
+              }}
+            >
               {/*
                 Three words, so it is allowed to be very large — this is the
                 size the line was written for.
@@ -160,7 +194,7 @@ export default function Home() {
                 ground, so it clears the stricter bar anyway.
               */}
               <h1
-                className="hero-arrive max-w-[11ch] display-face text-[clamp(3.2rem,10vw,7.5rem)] leading-[0.94] tracking-[-0.04em] text-balance"
+                className="hero-arrive t-h1 max-w-[11ch] text-balance"
                 style={{ ["--arrive-delay" as string]: "0.05s" }}
               >
                 {headline.before}
@@ -172,8 +206,11 @@ export default function Home() {
                   The measure sits inside the clear triangle above the
                   cornice — which is also a better measure for reading. */}
               <p
-                className="hero-arrive mt-8 max-w-[52ch] text-[clamp(1.05rem,1.5vw,1.24rem)] leading-relaxed text-mer-ink-soft lg:max-w-[40ch]"
-                style={{ ["--arrive-delay" as string]: "0.18s" }}
+                className="hero-arrive t-lead mt-8 text-mer-ink-soft lg:max-w-[40ch]"
+                style={{
+                  ["--arrive-delay" as string]: "0.18s",
+                  ["--measure" as string]: "52ch",
+                }}
               >
                 {meridian.subhead}
               </p>
@@ -182,46 +219,51 @@ export default function Home() {
                 className="hero-arrive mt-11 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
                 style={{ ["--arrive-delay" as string]: "0.3s" }}
               >
+                {/*
+                  ONE action in the hero, not two.
+
+                  The outlined "See how it works" went at the owner's call, and
+                  the reason it can go is that it was never the page's job: the
+                  showcase is the next thing under the fold, so the reader
+                  scrolls into it whether or not a button points there. What is
+                  left is the only thing the page actually wants pressed.
+
+                  `site.ctaSecondary` still has consumers — the service pages
+                  keep both actions, where the second one goes somewhere a
+                  scroll does not.
+                */}
                 <a
                   href="#enquiry"
-                  className="rounded-full bg-mer-accent px-8 py-4 text-center font-schibsted text-[15px] font-semibold text-mer-3 transition-colors hover:bg-mer-accent-deep"
+                  className="pill t-control bg-mer-accent px-8 py-4 text-center text-mer-3 transition-colors hover:bg-mer-accent-deep"
                 >
                   {site.cta}
-                </a>
-                <a
-                  href="#services"
-                  className="rounded-full border border-mer-line-strong px-8 py-4 text-center font-schibsted text-[15px] font-semibold text-mer-ink transition-colors hover:border-mer-ink hover:bg-mer-2"
-                >
-                  {site.ctaSecondary}
                 </a>
               </div>
             </div>
           </section>
 
           <DimSection id="offer" className="border-t border-mer-line">
-            <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <div className="shell band">
               <Reveal>
                 <div className="grid gap-14 lg:grid-cols-[1fr_1.35fr] lg:gap-20">
-                  <h2 className="display-face text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.05] tracking-[-0.03em] text-balance">
+                  <h2 className="t-h2 text-balance">
                     {meridian.problem.headline}
                   </h2>
 
                   <div>
-                    <p className="max-w-[66ch] text-[1.05rem] leading-relaxed text-mer-ink-soft">
+                    <p className="t-body text-mer-ink-soft">
                       {meridian.problem.body}
                     </p>
 
                     <Cornice className="mt-12 h-2 w-full text-mer-line" />
 
-                    <h3 className="mt-12 display-face text-[1.6rem] tracking-[-0.02em]">
-                      {site.offer.headline}
-                    </h3>
-                    <p className="mt-4 max-w-[66ch] text-[1.05rem] leading-relaxed text-mer-ink-soft">
+                    <h3 className="t-h3 mt-12">{site.offer.headline}</h3>
+                    <p className="t-body mt-4 text-mer-ink-soft">
                       {site.offer.body}
                     </p>
                     <a
                       href="#enquiry"
-                      className="mt-9 inline-block border-b border-mer-accent pb-1 font-schibsted text-[15px] font-semibold text-mer-ink transition-colors hover:text-mer-accent"
+                      className="t-control mt-9 inline-block border-b border-mer-accent pb-1 text-mer-ink transition-colors hover:text-mer-accent"
                     >
                       {site.cta}
                     </a>
@@ -238,22 +280,18 @@ export default function Home() {
             content at once.
           */}
           <section id="services" className="border-t border-mer-line bg-mer-2">
-            <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <div className="shell band">
               <Reveal>
-                <h2 className="mb-14 display-face text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.05] tracking-[-0.03em]">
-                  {meridian.sections.services}
-                </h2>
+                <h2 className="t-h2 mb-14">{meridian.sections.services}</h2>
               </Reveal>
               <Solutions items={site.services} />
             </div>
           </section>
 
           <DimSection id="process" className="border-t border-mer-line">
-            <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <div className="shell band">
               <Reveal>
-                <h2 className="display-face text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.05] tracking-[-0.03em]">
-                  {meridian.sections.process}
-                </h2>
+                <h2 className="t-h2">{meridian.sections.process}</h2>
               </Reveal>
 
               {/* Numerals are earned here: this is a sequence, and the order is
@@ -262,13 +300,23 @@ export default function Home() {
                 {site.process.map((step, i) => (
                   <li key={step.title} className="bg-mer p-8 sm:p-9">
                     <Reveal>
-                      <span className="font-mono text-[11px] tracking-[0.2em] text-mer-accent">
+                      <span
+                        className="t-label text-mer-accent"
+                        style={{
+                          ["--label-size" as string]: "11px",
+                          ["--label-track" as string]: "0.2em",
+                          ["--label-case" as string]: "none",
+                        }}
+                      >
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <h3 className="mt-5 display-face text-[1.35rem] tracking-[-0.02em]">
+                      <h3
+                        className="t-h3 mt-5"
+                        style={{ ["--h3-max" as string]: "1.35rem" }}
+                      >
                         {step.title}
                       </h3>
-                      <p className="mt-3 leading-relaxed text-mer-ink-soft">
+                      <p className="t-body mt-3 text-mer-ink-soft">
                         {step.body}
                       </p>
                     </Reveal>
@@ -279,10 +327,10 @@ export default function Home() {
           </DimSection>
 
           <DimSection id="faq" className="border-t border-mer-line bg-mer-2">
-            <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <div className="shell band">
               <div className="grid gap-14 lg:grid-cols-[1fr_1.6fr] lg:gap-20">
                 <Reveal>
-                  <h2 className="display-face text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.05] tracking-[-0.03em] text-balance lg:sticky lg:top-32">
+                  <h2 className="t-h2 text-balance lg:sticky lg:top-32">
                     {meridian.sections.faq}
                   </h2>
                 </Reveal>
@@ -293,11 +341,17 @@ export default function Home() {
                       key={faq.q}
                       className="group border-t border-mer-line last:border-b"
                     >
-                      <summary className="flex cursor-pointer list-none items-start justify-between gap-8 py-6 display-face text-[1.12rem] font-medium transition-colors hover:text-mer-accent">
+                      <summary
+                        className="t-h3 flex cursor-pointer list-none items-start justify-between gap-8 py-6 transition-colors hover:text-mer-accent"
+                        style={{ ["--h3-max" as string]: "1.12rem" }}
+                      >
                         {faq.q}
                         <DisclosureMark className="mt-0.5 text-[1.4rem] font-normal text-mer-accent" />
                       </summary>
-                      <p className="max-w-[68ch] pr-8 pb-7 leading-relaxed text-mer-ink-soft">
+                      <p
+                        className="t-body pr-8 pb-7 text-mer-ink-soft"
+                        style={{ ["--measure" as string]: "68ch" }}
+                      >
                         {faq.a}
                       </p>
                     </details>
@@ -322,14 +376,15 @@ export default function Home() {
             control, and it should stay the only one.
           */}
           <DimSection id="enquiry" className="border-t border-mer-line">
-            <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <div className="shell band">
               <div className="grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
                 <Reveal>
                   <div>
-                    <h2 className="display-face text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.05] tracking-[-0.03em] text-balance">
-                      {site.form.headline}
-                    </h2>
-                    <p className="mt-5 max-w-[52ch] leading-relaxed text-mer-ink-soft">
+                    <h2 className="t-h2 text-balance">{site.form.headline}</h2>
+                    <p
+                      className="t-body mt-5 text-mer-ink-soft"
+                      style={{ ["--measure" as string]: "52ch" }}
+                    >
                       {site.form.body}
                     </p>
 
@@ -348,13 +403,14 @@ export default function Home() {
                     */}
                     <dl className="mt-10 border-t border-mer-line lg:mt-12">
                       <div className="grid grid-cols-[5.5rem_1fr] items-baseline gap-x-6 border-b border-mer-line py-4 sm:grid-cols-[7rem_1fr]">
-                        <dt className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
+                        <dt className="t-label text-mer-ink-soft">
                           {meridian.contactLabels.email}
                         </dt>
                         <dd>
                           <a
                             href={`mailto:${site.contactEmail}`}
-                            className="border-b border-mer-line-strong pb-0.5 text-[15px] text-mer-ink transition-colors hover:border-mer-accent"
+                            className="t-body border-b border-mer-line-strong pb-0.5 text-mer-ink transition-colors hover:border-mer-accent"
+                            style={{ ["--body-size" as string]: "15px" }}
                           >
                             {site.contactEmail}
                           </a>
@@ -362,17 +418,22 @@ export default function Home() {
                       </div>
 
                       <div className="grid grid-cols-[5.5rem_1fr] items-baseline gap-x-6 border-b border-mer-line py-4 sm:grid-cols-[7rem_1fr]">
-                        <dt className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
+                        <dt className="t-label text-mer-ink-soft">
                           {meridian.contactLabels.location}
                         </dt>
-                        <dd className="text-[15px] text-mer-ink">{site.location}</dd>
+                        <dd
+                          className="t-body text-mer-ink"
+                          style={{ ["--body-size" as string]: "15px" }}
+                        >
+                          {site.location}
+                        </dd>
                       </div>
                     </dl>
                   </div>
                 </Reveal>
 
                 <Reveal>
-                  <div className="bg-mer-2 p-7 sm:p-10">
+                  <div className="bg-mer p-7 sm:p-10">
                     <EnquiryForm skin={meridianSkin} />
                   </div>
                 </Reveal>

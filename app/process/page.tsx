@@ -36,7 +36,7 @@ export default function ProcessPage() {
     <div className="motion-clear bg-mer text-mer-ink">
       <a
         href="#main"
-        className="skip-link rounded-full bg-mer-accent px-4 py-2 font-schibsted text-[13px] font-semibold text-mer-3"
+        className="skip-link pill t-control bg-mer-accent px-4 py-2 text-mer-3"
       >
         Skip to content
       </a>
@@ -47,13 +47,24 @@ export default function ProcessPage() {
         <main id="main">
           <section className="relative isolate overflow-hidden">
             <div className="mer-bloom bloom-breathe pointer-events-none absolute inset-x-0 top-0 -z-10 h-[40vh]" />
-            <div className="mx-auto max-w-[86rem] px-5 pt-40 pb-16 sm:px-8 sm:pt-44 sm:pb-20">
-              <h1 className="hero-arrive max-w-[16ch] display-face text-[clamp(2.6rem,6.5vw,4.8rem)] leading-[0.98] tracking-[-0.04em] text-balance">
+            <div className="shell pt-40 pb-16 sm:pt-44 sm:pb-20">
+              <h1
+                className="hero-arrive t-h1 max-w-[16ch] text-balance"
+                style={{
+                  ["--h1-min" as string]: "2.6rem",
+                  ["--h1-fluid" as string]: "6.5vw",
+                  ["--h1-max" as string]: "4.8rem",
+                  ["--h1-lead" as string]: "0.98",
+                }}
+              >
                 {meridian.pages.process.title}
               </h1>
               <p
-                className="hero-arrive mt-7 max-w-[58ch] text-[clamp(1.05rem,1.5vw,1.24rem)] leading-relaxed text-mer-ink-soft"
-                style={{ ["--arrive-delay" as string]: "0.12s" }}
+                className="hero-arrive t-lead mt-7 text-mer-ink-soft"
+                style={{
+                  ["--arrive-delay" as string]: "0.12s",
+                  ["--measure" as string]: "58ch",
+                }}
               >
                 {meridian.pages.process.lede}
               </p>
@@ -73,16 +84,44 @@ export default function ProcessPage() {
               id={`step-${i + 1}`}
               className="border-t border-mer-line"
             >
-              <div className="mx-auto grid max-w-[86rem] gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-24">
+              <div
+                className="shell band grid gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-24"
+                style={{
+                  ["--band-pad" as string]: "4rem",
+                  ["--band-pad-wide" as string]: "5rem",
+                }}
+              >
                 <Reveal>
                   <div>
-                    <span className="font-mono text-[11px] tracking-[0.2em] text-mer-accent">
+                    <span
+                      className="t-label text-mer-accent"
+                      style={{
+                        ["--label-size" as string]: "11px",
+                        ["--label-track" as string]: "0.2em",
+                        ["--label-case" as string]: "none",
+                      }}
+                    >
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <h2 className="mt-5 display-face text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.02] tracking-[-0.03em]">
+                    <h2
+                      className="t-h2 mt-5"
+                      style={{
+                        ["--h2-min" as string]: "2rem",
+                        ["--h2-fluid" as string]: "4.2vw",
+                        ["--h2-max" as string]: "3.2rem",
+                        ["--h2-lead" as string]: "1.02",
+                      }}
+                    >
                       {step.title}
                     </h2>
-                    <p className="mt-6 max-w-[58ch] text-[clamp(1.05rem,1.35vw,1.18rem)] leading-relaxed text-mer-ink-soft">
+                    <p
+                      className="t-body mt-6 text-mer-ink-soft"
+                      style={{
+                        ["--body-max" as string]: "1.18rem",
+                        ["--body-fluid" as string]: "1.35vw",
+                        ["--measure" as string]: "58ch",
+                      }}
+                    >
                       {step.body}
                     </p>
                   </div>
@@ -91,18 +130,26 @@ export default function ProcessPage() {
                 <Reveal>
                   <dl className="lg:pt-12">
                     <div className="border-t border-mer-line py-5">
-                      <dt className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
+                      <dt className="t-label text-mer-ink-soft">
                         You leave with
                       </dt>
-                      <dd className="mt-2.5 max-w-[44ch] leading-relaxed text-mer-ink">
+                      <dd
+                        className="t-body mt-2.5 text-mer-ink"
+                        style={{ ["--measure" as string]: "44ch" }}
+                      >
                         {step.youGet}
                       </dd>
                     </div>
                     <div className="border-t border-b border-mer-line py-5">
-                      <dt className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
-                        Measured
-                      </dt>
-                      <dd className="mt-2.5 font-mono text-[13px] tracking-[0.04em] text-mer-accent">
+                      <dt className="t-label text-mer-ink-soft">Measured</dt>
+                      <dd
+                        className="t-label mt-2.5 text-mer-accent"
+                        style={{
+                          ["--label-size" as string]: "13px",
+                          ["--label-track" as string]: "0.04em",
+                          ["--label-case" as string]: "none",
+                        }}
+                      >
                         {step.fact}
                       </dd>
                     </div>
@@ -113,21 +160,22 @@ export default function ProcessPage() {
           ))}
 
           <DimSection id="enquiry" className="border-t border-mer-line">
-            <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
+            <div className="shell band">
               <div className="grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
                 <Reveal>
                   <div>
-                    <h2 className="display-face text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.05] tracking-[-0.03em] text-balance">
-                      {site.form.headline}
-                    </h2>
-                    <p className="mt-5 max-w-[52ch] leading-relaxed text-mer-ink-soft">
+                    <h2 className="t-h2 text-balance">{site.form.headline}</h2>
+                    <p
+                      className="t-body mt-5 text-mer-ink-soft"
+                      style={{ ["--measure" as string]: "52ch" }}
+                    >
                       {site.form.body}
                     </p>
                   </div>
                 </Reveal>
 
                 <Reveal>
-                  <div className="bg-mer-2 p-7 sm:p-10">
+                  <div className="bg-mer p-7 sm:p-10">
                     <EnquiryForm skin={meridianSkin} />
                   </div>
                 </Reveal>

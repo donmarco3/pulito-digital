@@ -16,18 +16,28 @@ import { site } from "@/content/site";
 export function CtaBand() {
   return (
     <section className="border-t border-mer-line bg-mer-2">
-      <div className="mx-auto grid max-w-[86rem] gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[1.35fr_auto] lg:items-center lg:gap-16">
+      {/* A shorter band than a full section, so it sets its own pad pair
+          rather than wearing the site's — still multiplied by `--rhythm`, so
+          it loosens and tightens with everything else. */}
+      <div
+        className="shell band grid gap-10 lg:grid-cols-[1.35fr_auto] lg:items-center lg:gap-16"
+        style={{
+          ["--band-pad" as string]: "5rem",
+          ["--band-pad-wide" as string]: "6rem",
+        }}
+      >
         <div>
-          <h2 className="display-face text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.05] tracking-[-0.03em] text-balance">
-            {site.offer.headline}
-          </h2>
-          <p className="mt-5 max-w-[58ch] text-[1.05rem] leading-relaxed text-mer-ink-soft">
+          <h2 className="t-h2 text-balance">{site.offer.headline}</h2>
+          <p
+            className="t-body mt-5 text-mer-ink-soft"
+            style={{ ["--measure" as string]: "58ch" }}
+          >
             {site.offer.body}
           </p>
         </div>
         <Link
           href="/#enquiry"
-          className="justify-self-start rounded-full bg-mer-accent px-8 py-4 text-center font-schibsted text-[15px] font-semibold text-mer-3 transition-colors hover:bg-mer-accent-deep lg:justify-self-end"
+          className="pill t-control justify-self-start bg-mer-accent px-8 py-4 text-center text-mer-3 transition-colors hover:bg-mer-accent-deep lg:justify-self-end"
         >
           {site.cta}
         </Link>

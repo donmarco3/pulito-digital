@@ -41,9 +41,9 @@ token is actually used on.
 | `--color-mer-ink` | `#f3f1ec` | 11.1:1 |
 | `--color-mer-ink-soft` | `#bcc7de` | 7.4:1 |
 | `--color-mer-sky` | `#122c79` | The hero picture's own sky, sampled off its top edge — see the hero notes |
-| `--color-mer-accent` | `#f5f3ed` | 11.0:1. BONE — the page is monochrome and the action separates by FILL. `mer-3` sits on it at 15.9:1 |
-| `--color-mer-accent-deep` | `#e2ded2` | Hover and pressed; the label holds 13.9:1 |
-| `--color-mer-alert` | `#ffb3a7` | 8.8:1 on the enquiry panel. Validation errors |
+| `--color-mer-accent` | `#f5f3ed` | 11.31:1. BONE — the page is monochrome and the action separates by FILL. `mer-3` sits on it at 15.42:1 |
+| `--color-mer-accent-deep` | `#e2ded2` | Hover and pressed; the label holds 12.72:1 |
+| `--color-mer-alert` | `#ffb3a7` | 7.32:1 on the ground, re-measured when the form flattened onto it. Validation errors |
 | `--color-bone` | `#f7f7f5` | What sits on any dark or saturated fill |
 | `--color-obsidian` | `#0b0b0e` | What sits on any light fill |
 
@@ -337,7 +337,7 @@ and a darker one reads as a cut. Flattened by the owner, which is a
 legitimate other answer: the form stops being an object sitting on the page
 and becomes ruled lines drawn on it.
 
-**What keeps it legal is the borders.** `mer-line-strong` measures 4.8:1 on
+**What keeps it legal is the borders.** `mer-line-strong` measures 4.76:1 on
 this ground, so the fields still clear WCAG 1.4.11's 3:1 for non-text UI on
 their own — which they have to, now that fill carries none of that job. Any
 future move on `--color-mer-line-strong` has to be measured against

@@ -43,7 +43,7 @@ export default function AboutPage() {
     <div className="motion-clear bg-mer text-mer-ink">
       <a
         href="#main"
-        className="skip-link rounded-full bg-mer-accent px-4 py-2 font-schibsted text-[13px] font-semibold text-mer-3"
+        className="skip-link pill t-control bg-mer-accent px-4 py-2 text-mer-3"
       >
         Skip to content
       </a>
@@ -54,17 +54,23 @@ export default function AboutPage() {
         <main id="main">
           <section className="relative isolate overflow-hidden">
             <div className="mer-bloom bloom-breathe pointer-events-none absolute inset-x-0 top-0 -z-10 h-[40vh]" />
-            <div className="mx-auto flex min-h-[70svh] max-w-[86rem] flex-col justify-center px-5 pt-32 pb-16 sm:px-8 sm:pt-36">
+            <div className="shell flex min-h-[70svh] flex-col justify-center pt-32 pb-16 sm:pt-36">
               <h1
-                className="hero-arrive max-w-[16ch] display-face text-[clamp(2.8rem,7vw,5.6rem)] leading-[1.02] tracking-[-0.04em] text-balance"
-                style={{ ["--arrive-delay" as string]: "0.05s" }}
+                className="hero-arrive t-h1 max-w-[16ch] text-balance"
+                style={{
+                  ["--arrive-delay" as string]: "0.05s",
+                  ["--h1-min" as string]: "2.8rem",
+                  ["--h1-fluid" as string]: "7vw",
+                  ["--h1-max" as string]: "5.6rem",
+                  ["--h1-lead" as string]: "1.02",
+                }}
               >
                 {statement.before}
                 <span className="text-mer-accent">{statement.accent}</span>
                 {statement.after}
               </h1>
               <p
-                className="hero-arrive mt-8 max-w-[54ch] text-[clamp(1.05rem,1.5vw,1.24rem)] leading-relaxed text-mer-ink-soft"
+                className="hero-arrive t-lead mt-8 text-mer-ink-soft"
                 style={{ ["--arrive-delay" as string]: "0.18s" }}
               >
                 {meridian.pages.about.lede}
@@ -85,23 +91,36 @@ export default function AboutPage() {
               id={`mirror-${i + 1}`}
               className="border-t border-mer-line"
             >
-              <div className="mx-auto grid max-w-[86rem] gap-8 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-2 lg:gap-0">
+              <div
+                className="shell band grid gap-8 lg:grid-cols-2 lg:gap-0"
+                style={{
+                  ["--band-pad" as string]: "3.5rem",
+                  ["--band-pad-wide" as string]: "4rem",
+                }}
+              >
                 <Reveal>
                   <div className="lg:border-r lg:border-mer-line lg:pr-16">
-                    <p className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
-                      {labels.you}
-                    </p>
-                    <p className="mt-4 max-w-[30ch] display-face text-[clamp(1.5rem,2.6vw,2.1rem)] leading-[1.15] tracking-[-0.02em] text-balance">
+                    <p className="t-label text-mer-ink-soft">{labels.you}</p>
+                    <p
+                      className="t-h3 mt-4 max-w-[30ch] text-balance"
+                      style={{
+                        ["--h3-min" as string]: "1.5rem",
+                        ["--h3-fluid" as string]: "2.6vw",
+                        ["--h3-max" as string]: "2.1rem",
+                        ["--h3-lead" as string]: "1.15",
+                      }}
+                    >
                       {row.you}
                     </p>
                   </div>
                 </Reveal>
                 <Reveal>
                   <div className="lg:pl-16">
-                    <p className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-accent uppercase">
-                      {labels.us}
-                    </p>
-                    <p className="mt-4 max-w-[52ch] text-[1.05rem] leading-relaxed text-mer-ink-soft">
+                    <p className="t-label text-mer-accent">{labels.us}</p>
+                    <p
+                      className="t-body mt-4 text-mer-ink-soft"
+                      style={{ ["--measure" as string]: "52ch" }}
+                    >
                       {row.us}
                     </p>
                   </div>
@@ -116,13 +135,19 @@ export default function AboutPage() {
             the mirror earns.
           */}
           <DimSection id="studio" className="border-t border-mer-line bg-mer-2">
-            <div className="mx-auto max-w-[86rem] px-5 py-20 sm:px-8 sm:py-24">
+            <div
+              className="shell band"
+              style={{
+                ["--band-pad" as string]: "5rem",
+                ["--band-pad-wide" as string]: "6rem",
+              }}
+            >
               <Reveal>
                 <div className="flex max-w-[66ch] flex-col gap-7">
                   {meridian.pages.about.body.map((paragraph) => (
                     <p
                       key={paragraph.slice(0, 24)}
-                      className="text-[1.08rem] leading-relaxed text-mer-ink-soft"
+                      className="t-body text-mer-ink-soft"
                     >
                       {paragraph}
                     </p>

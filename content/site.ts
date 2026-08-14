@@ -254,20 +254,25 @@ export const meridian = {
   */
   headline: "Built to be seen.",
   /*
-    The one word in the headline set in the accent, at the user's request.
+    The one word in the headline set in the accent — EMPTY, and the hero line
+    now runs unbroken.
 
-    It lives here rather than as markup in the page because the headline stays
-    ONE string — the word is located inside it at render time. Authoring the
-    emphasis as JSX would fork the line into fragments, and splitting a
-    headline into pieces is a decision every earlier build came to regret the
-    moment the copy needed editing.
+    It was "seen", and it stopped earning its place when the action went bone:
+    an accent word only marks anything while the accent is a HUE, and bone
+    lettering beside bone lettering marks nothing. That is the same reasoning
+    that sent the accent to verdigris in the first place, running the other
+    way. Left as a token rather than deleted because the mechanism is intact —
+    put a word back here and the hero accents it again.
 
-    "seen" and not "seen." — the full stop closes the sentence, not the word,
-    and colouring it drags a coloured dot onto the end of the line.
+    The line stays ONE string either way: the word is located inside it at
+    render time, and `lib/headline.ts` returns the line whole when this is
+    empty. Authoring the emphasis as JSX would fork the copy into fragments,
+    which every earlier build came to regret the moment the line needed
+    editing.
   */
-  headlineAccent: "seen",
+  headlineAccent: "",
   subhead:
-    "Web, search and automation for the trades whose work already sets the standard — starting with your own homepage, redesigned as a working preview before you pay us anything.",
+    "Web design, SEO and AI automation for the trades whose work already sets the standard — starting with your own homepage, redesigned as a working preview for free.",
   problem: {
     headline: "Your last build was worth more than your whole website.",
     body: "Premium work sells on how it looks. Then the enquiry lands on a site built years ago on a template, slow on a phone, with a gallery that undersells the job. The client has already compared you to three others before you pick up. The work is the easy part. The first impression is the leak.",
