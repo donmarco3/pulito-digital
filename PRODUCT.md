@@ -42,8 +42,8 @@ recorded interview. One conversion event: the enquiry form.
 Build sequence, agreed with the owner: (1) consolidation and nav — DONE;
 (2) the three service pages — DONE (the "one claim per room" structure,
 chosen at the milestone-2 review; each ends at its own enquiry form);
-(3) process + about — still first-draft scaffolds; (4) contact + privacy +
-live form + SEO.
+(3) process + about — DONE (the deepened ladder and the mirror, chosen at
+the milestone-3 review); (4) contact + privacy + live form + SEO.
 
 ## Product truth
 

@@ -156,11 +156,23 @@ under a hairline. Deepest ground (`mer-3`), no cards, no icons.
   route (`app/services/[slug]`), `generateStaticParams` off
   `site.services`, `dynamicParams = false`; claims split with
   `lib/headline.ts`, shared with the hero.
-- **Process and About share the scaffold pattern for now**: title + lede
-  band under the fixed nav (`pt-40`/`pt-44` clears it), hairline-ruled
-  content, then `components/CtaBand.tsx` linking back to `/#enquiry`. Both
-  are **first-draft scaffolding** and get their full pass in milestone 3.
-  `CtaBand` stays their close; the service pages outgrew it.
+- **Process is THE DEEPENED LADDER** (seed `b80f7f55`, candidate 3; brief
+  in `.impeccable/surfaces/`). Four full-width ruled bands, one per step,
+  numerals earned twice over — the page is about the sequence. Each band
+  pairs the standing step copy with a small `dl`: "You leave with" (the
+  deliverable) and "Measured" (one mono fact line in the accent — ratified
+  or granted numbers only, per the rule written above `site.process`).
+  The signature beat is "Paid so far · $0" sitting inside Design, at the
+  moment money would normally first change hands. Ends at its own enquiry
+  form under `site.form` copy.
+- **About is THE MIRROR** (seed `c5cdef18`, candidate 3; brief in
+  `.impeccable/surfaces/`). Opening statement "You build the work. We
+  build where it's seen." — "seen" takes the accent, closing the loop with
+  the hero. Four ruled two-voice rows under the mono labels "On site" /
+  "At the studio": the reader's craft in Caslon at statement scale, the
+  studio's answering granted fact in running text. Never the founder.
+  Closes with the studio's plain facts on the recessed ground, then
+  `CtaBand` — now that band's only consumer.
 
 ## The drawing system
 

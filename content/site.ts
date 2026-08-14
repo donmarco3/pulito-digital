@@ -143,22 +143,40 @@ export const site = {
     },
   ],
 
+  /*
+   * Each step also carries the deep version for /process — the "deepened
+   * ladder" chosen at the milestone-3 review (seed b80f7f55, candidate 3):
+   * `youGet` is the deliverable the reader leaves the step with, and `fact`
+   * is the step's one measured line, set in the mono measurement voice.
+   * Every fact is ratified or already granted: the reply time and the
+   * delivery estimates were confirmed by the owner as written (2026-08-14),
+   * and $0 / ownership are the offer's own terms. Nothing here may carry a
+   * number PRODUCT.md does not grant.
+   */
   process: [
     {
       title: "Audit",
       body: "We go through your current site, your search visibility and how enquiries reach you today. You get the findings whether or not you hire us.",
+      youGet: "The findings, in writing — yours to keep either way.",
+      fact: "Reply within one business day",
     },
     {
       title: "Design",
       body: "You see the real thing before we build it: your photos, your work, your words, laid out the way it will ship.",
+      youGet: "A working preview of your own homepage, built with your photos and copy.",
+      fact: "Paid so far · $0",
     },
     {
       title: "Build",
       body: "Fast, mobile-first, and yours. No page builder subscriptions, no monthly ransom to keep the site online.",
+      youGet: "A fast, mobile-first site, built in your name.",
+      fact: "Couple of weeks · 4–6 for a full site",
     },
     {
       title: "Handover",
       body: "Trained on how to update it, with the enquiry flow tested end to end. Ongoing SEO and automation only if you want it.",
+      youGet: "The keys: domain, hosting and code, and the training to run it.",
+      fact: "Domain, hosting, code · yours",
     },
   ],
 
@@ -296,13 +314,42 @@ export const meridian = {
       title: "How the work runs",
       lede: "Four steps from first look to handover — and you see the design before you commit to anything. This is the same sequence whether the job is a redesign or a site built from nothing.",
     },
+    /*
+      THE MIRROR — the structure chosen at the milestone-3 review (seed
+      c5cdef18, candidate 3). The page pairs the reader's craft with the
+      studio's, row by row, and its opening statement deliberately echoes
+      the site's headline: "seen" takes the accent here for the same reason
+      it does on the hero. Nothing about the founder, per the standing
+      constraint. Every `us` cell is a fact PRODUCT.md already grants —
+      ownership, no packages, quote-after-scope, the preview.
+    */
     about: {
       title: "The studio",
+      statement: "You build the work. We build where it's seen.",
+      statementAccent: "seen",
       lede: "Pulito is a digital studio in Adelaide, built for the renovation trades whose work already sets the standard.",
+      mirrorLabels: { you: "On site", us: "At the studio" },
+      mirror: [
+        {
+          you: "You hand over joins you would accept in your own house.",
+          us: "We ship pages to the same standard — measured, tested on the phone in your client's hand, nothing held together with tape.",
+        },
+        {
+          you: "Your tools are your own. Nobody rents you a saw.",
+          us: "Your site is your own. No page-builder subscriptions, no monthly ransom — domain, hosting and code in your name from day one.",
+        },
+        {
+          you: "You quote after you have walked the job.",
+          us: "So do we. No packages: the price follows the scope, after a call, and we will say so if your current site is fine.",
+        },
+        {
+          you: "You show finished jobs, not promises.",
+          us: "We show you your own homepage, rebuilt as a working preview, before you pay us anything.",
+        },
+      ],
       body: [
         "We do three things: web design, SEO and AI automation, for kitchen designers and builders, bathroom and whole-home renovators, and high-end builders across Adelaide and regional South Australia.",
-        "The businesses we work with sell on craftsmanship, and most of them are undersold online — premium work presented on a template site that is slow on a phone and looks nothing like the standard of the builds. We exist to close that gap, and we prove it before you pay anything: your own homepage, redesigned as a working preview with your photos and your copy.",
-        "What we build is yours. The domain, the hosting and the code sit in your name from day one, there are no packages and no monthly lock-in, and leaving us never means losing your website.",
+        "The businesses we work with sell on craftsmanship, and most of them are undersold online — premium work presented on a template site that is slow on a phone and looks nothing like the standard of the builds. We exist to close that gap, and we prove it before you pay anything.",
       ],
     },
   },
