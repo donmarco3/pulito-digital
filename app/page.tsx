@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { FontSwitch } from "@/components/FontSwitch";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { Cornice } from "@/components/Classical";
 import { DisclosureMark } from "@/components/Disclosure";
@@ -33,10 +32,10 @@ import { meridian, site } from "@/content/site";
  * - THE HEADLINE is the user's line, shortened at their request from "Built to
  *   be looked at." One word of it — "seen" — is set in the accent. Which word
  *   comes from `content/site.ts` so the copy stays one editable string.
- * - THE DISPLAY FACE is UNDER REVIEW. `FontSwitch` is on the page in
- *   development while five serifs are compared against the incumbent grotesk.
- *   It moves HEADINGS only — controls, nav and running text stay where they
- *   are.
+ * - THE DISPLAY FACE is LIBRE CASLON DISPLAY, chosen by the owner from a
+ *   six-way review on this hero (five serifs against the incumbent grotesk,
+ *   flicked live with `FontSwitch`, now deleted). Headings only — controls,
+ *   nav and running text stay on the grotesk.
  * - THE PILL NAV came from PLINTH, widened, and has since grown the site's
  *   page navigation. See `MeridianNav.tsx`.
  * - THE BODY is the reference's solutions section, built from its own
@@ -402,17 +401,6 @@ export default function Home() {
       </RailProvider>
 
       <SiteFooter />
-
-      {/*
-        Review scaffolding for the heading face, gated on NODE_ENV rather than
-        hidden with CSS: in a production build this branch is dead and the
-        panel is absent from the rendered HTML — checked against a real
-        `next build`, not assumed.
-
-        It comes out in the same commit that writes the chosen face into
-        `globals.css`, along with the four losing faces in `layout.tsx`.
-      */}
-      {process.env.NODE_ENV === "development" ? <FontSwitch /> : null}
     </div>
   );
 }

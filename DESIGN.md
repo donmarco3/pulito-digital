@@ -74,25 +74,23 @@ message are not both shouting.
 
 ## Type
 
-One display face, two workhorses — plus, temporarily, five candidate serifs.
+Four faces, each with one job. **The heading review is CLOSED**: the owner
+chose Libre Caslon Display on the live hero over the incumbent grotesk and
+four other serifs (Instrument Serif, Fraunces, Bodoni Moda, EB Garamond —
+all in git history with the `FontSwitch` review panel).
 
 | Face | Role |
 |---|---|
-| Schibsted Grotesk | Display, pending the review below. A newspaper grotesk: editorial, faintly warm, authoritative on a dark ground without shouting |
+| Libre Caslon Display | HEADINGS, through the `display-face` utility. Transitional: sturdy, bookish, even in colour — institutional without being cold, and at home beside the Roman arcade |
+| Schibsted Grotesk | CONTROLS, the nav and the wordmark. A serif at 15px inside a pill button would be worse than the grotesk, so the grotesk keeps every job below display scale |
 | Geist | Running text |
 | Geist Mono | Measurement only: process numerals, the mono group labels on contact rows, the footer and the mobile sheet. Never a costume |
 
-**THE HEADING FACE IS UNDER REVIEW.** Every heading carries the
-`display-face` utility, which reads `--font-display` and
-`--font-display-weight` from the root; `FontSwitch` (dev-only, landing page)
-swaps both. Five serifs load alongside the grotesk while the owner decides:
-Libre Caslon Display, Instrument Serif, Fraunces, Bodoni Moda, EB Garamond.
-Weight travels with the face (600 grotesk, 400–500 serifs) because two of the
-serifs ship a single 400 and a synthesised bold would smear exactly the thin
-strokes under review. **When the face is chosen:** write it into `:root` in
-`globals.css`, delete `FontSwitch.tsx` and its render in `app/page.tsx`, and
-take the losing faces out of `app/layout.tsx` and the `@theme` font block in
-the same commit.
+`display-face` reads `--font-display` and `--font-display-weight` from
+`:root` in `globals.css` — still the single point of indirection, so the
+face lives in exactly one place. **Weight travels with the family**: Caslon
+ships a single 400, and a synthesised 600 would smear its thin strokes, so
+no heading class carries its own `font-semibold`.
 
 Display sizes cap at `7.5rem` (the hero only; section headings at
 `clamp(1.9rem,3.4vw,2.9rem)`, page titles at `clamp(2.6rem,6.5vw,4.8rem)`);
@@ -262,15 +260,9 @@ history has it.
 - Anchor targets clear the sticky header (`scroll-margin-top: 6rem`).
 - The drawing primitives are `aria-hidden`; label/value pairs are `<dl>`s.
 
-## Review scaffolding, and what deleting it costs
+## Review scaffolding
 
-The compare board, the direction switcher, `--switch-bar` and its clearance
-consumers are GONE. What remains:
-
-- **`components/FontSwitch.tsx`** — the heading-face review panel, dev-only,
-  rendered by the landing page. `f` cycles; choice persists to
-  `localStorage`. It comes out in the same commit that writes the chosen
-  face into `globals.css` and deletes the losing faces from `layout.tsx`
-  and `@theme`. Until then, inner pages render the incumbent grotesk in dev
-  (the switch applies its choice only where it is mounted) — a review-stage
-  artefact, not a bug.
+None left. The compare board, the direction switcher, `--switch-bar` and its
+clearance consumers went with the consolidation; `FontSwitch` and the four
+losing serifs went when the heading face was decided. The world carries no
+furniture that is not the site's own.

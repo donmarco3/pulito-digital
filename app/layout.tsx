@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import {
-  Bodoni_Moda,
-  EB_Garamond,
-  Fraunces,
   Geist,
   Geist_Mono,
-  Instrument_Serif,
   Libre_Caslon_Display,
   Schibsted_Grotesk,
 } from "next/font/google";
@@ -13,12 +9,15 @@ import "./globals.css";
 import { site } from "@/content/site";
 
 /*
-  One display face and two workhorses. PLINTH's Archivo and LATTICE's Manrope
-  left with their directions when MERIDIAN won the comparison.
+  Four faces, each with one job. The five-way serif review is over — Libre
+  Caslon Display won on the live hero, and the four losing candidates left
+  this file with the switcher.
 
-  - Schibsted Grotesk — the display face, pending the heading review below. A
-    newspaper grotesk, editorial and faintly warm, with the authority a deep
-    blue institutional page needs and none of the shout.
+  - Libre Caslon Display — headings, through `display-face`. Transitional,
+    sturdy, bookish; institutional without being cold.
+  - Schibsted Grotesk — controls, the nav and the wordmark. A newspaper
+    grotesk, editorial and faintly warm; a serif at control size would be
+    worse than the grotesk it replaced.
   - Geist / Geist Mono — running text everywhere, and the measured voice used
     for the process numerals and the contact-row labels.
 */
@@ -41,62 +40,15 @@ const geistMono = Geist_Mono({
 });
 
 /*
-  THE HEADING FACES UNDER REVIEW — five of them, and they are temporary.
-
-  MERIDIAN's headings were Schibsted Grotesk on the argument that a display
-  serif belonged to the classical world this build replaced. The user has since
-  seen Libre Caslon Display on the other build, likes it, and asked to compare
-  it here against alternatives. So these load alongside the workhorses while
-  `FontSwitch` is on the page, and the four that lose come out of this file with
-  it — the same deal the three direction faces already have above.
-
-  They are chosen to span the serif space rather than to offer five versions of
-  one idea, because "a serif" is not a decision:
-
-  - LIBRE CASLON DISPLAY — the reference, and the reason for the exercise. A
-    transitional face: sturdy, bookish, even in colour.
-  - INSTRUMENT SERIF — high contrast and tightly set. The most current-looking,
-    and the one that changes the page most at headline scale.
-  - FRAUNCES — old-style with deliberate softness and wonk. Warmest of the five
-    and the least institutional.
-  - BODONI MODA — a didone. Extreme thick-to-thin, which reads as luxury and
-    fashion rather than as trade.
-  - EB GARAMOND — Renaissance humanist. Historically the closest thing here to
-    the Roman world the arcade comes from, and the quietest.
-
-  Weight is pinned to 400 where the face offers a choice. These are display
-  faces at 3–7rem, and a semibold serif at that size is a different typeface
-  wearing the same name.
+  Weight is pinned to 400: Libre Caslon Display ships a single weight, and a
+  synthesised semibold at display scale is a different typeface wearing the
+  same name. `display-face` in globals.css carries the weight with the
+  family for the same reason.
 */
 const caslon = Libre_Caslon_Display({
   variable: "--font-caslon-src",
   subsets: ["latin"],
   weight: "400",
-  display: "swap",
-});
-
-const instrument = Instrument_Serif({
-  variable: "--font-instrument-src",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces-src",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const bodoni = Bodoni_Moda({
-  variable: "--font-bodoni-src",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const garamond = EB_Garamond({
-  variable: "--font-garamond-src",
-  subsets: ["latin"],
   display: "swap",
 });
 
@@ -156,10 +108,11 @@ free-preview offer does the persuading instead, on every page.
 
 OWN-WORLD: Ultramarine ground over three recessed depths, hairline rules
 between everything, bone ink, one verdigris action. ACTIONS ARE PILLS,
-STRUCTURE IS SQUARE. One soft shadow, on floating nav furniture only. Display
-grotesk at scale (heading face under review); Geist for running text; mono for
-measurement only. The classical world appears as weather: a generated arcade
-silhouette in the hero, hairline primitives elsewhere.
+STRUCTURE IS SQUARE. One soft shadow, on floating nav furniture only. Libre
+Caslon Display for headings, Schibsted Grotesk for controls, Geist for
+running text, mono for measurement only. The classical world appears as
+weather: a generated arcade silhouette in the hero, hairline primitives
+elsewhere.
 
 STORY: A renovation builder, on a phone between site visits, reads that he can
 see his own homepage redesigned before he pays anything, understands Pulito
@@ -179,7 +132,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-AU"
-      className={`${schibsted.variable} ${geist.variable} ${geistMono.variable} ${caslon.variable} ${instrument.variable} ${fraunces.variable} ${bodoni.variable} ${garamond.variable} h-full`}
+      className={`${schibsted.variable} ${geist.variable} ${geistMono.variable} ${caslon.variable} h-full`}
     >
       <body className="min-h-full">
         <div dangerouslySetInnerHTML={{ __html: `<!--${CONTRACT}-->` }} />

@@ -109,60 +109,48 @@
 
   /* ------------------------------------------------------------------ type */
   /*
-    One display face and two workhorses. PLINTH's Archivo and LATTICE's
-    Manrope left with their directions.
+    One display face, one control face, two workhorses.
 
-    - Schibsted Grotesk — the display face pending the review below. A
-      newspaper grotesk: editorial, faintly warm, and it holds authority on a
-      dark ground without shouting.
+    - Libre Caslon Display — HEADINGS. Chosen by the owner from a six-way
+      review on the live hero (five serifs against the incumbent grotesk;
+      the switcher and the four losers are deleted). Transitional: sturdy,
+      bookish, even in colour — institutional without being cold, and it
+      pairs with the Roman arcade the hero stands on. It falls back to
+      Georgia rather than generic `serif`, because a missing display face at
+      7rem is very visible and the default serif on Windows is Times, which
+      shares none of its proportions.
+    - Schibsted Grotesk — CONTROLS, the nav and the wordmark. A serif at
+      15px inside a pill button would be worse than the grotesk, so the
+      grotesk keeps every job below display scale.
     - Geist — running text. Geist Mono — measurement only (process numerals,
       contact-row labels), never a costume.
   */
+  --font-caslon: var(--font-caslon-src), Georgia, serif;
   --font-schibsted: var(--font-schibsted-src), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-
-  /*
-    THE FIVE CANDIDATE HEADING FACES. Review-stage; four of these come out when
-    one is chosen.
-
-    Each falls back to Georgia rather than to a generic `serif`, because a
-    missing display face on a headline at 7rem is very visible and the default
-    serif on Windows is Times, which shares none of these faces' proportions.
-  */
-  --font-caslon: var(--font-caslon-src), Georgia, serif;
-  --font-instrument: var(--font-instrument-src), Georgia, serif;
-  --font-fraunces: var(--font-fraunces-src), Georgia, serif;
-  --font-bodoni: var(--font-bodoni-src), Georgia, serif;
-  --font-garamond: var(--font-garamond-src), Georgia, serif;
 }
 
 /*
-  MERIDIAN's heading face, as one switchable pair.
+  The heading face, as one pair — DECIDED: Libre Caslon Display, chosen by
+  the owner on the live hero over Schibsted Grotesk, Instrument Serif,
+  Fraunces, Bodoni Moda and EB Garamond.
 
-  `display-face` is the indirection the whole review turns on: every HEADING on
-  MERIDIAN carries it, so `FontSwitch` writes two custom properties on the root
-  and the page re-sets entirely — no class swapping, no list of elements to keep
-  in step, nothing to miss.
+  `display-face` remains the single point of indirection: every heading
+  carries it, so the face lives in exactly one place. WEIGHT TRAVELS WITH
+  THE FAMILY: Caslon ships a single 400, and asking for 600 would make the
+  browser synthesise a faux bold that smears its thin strokes — which is why
+  the heading classes carry no `font-semibold` of their own.
 
-  IT CARRIES WEIGHT AS WELL AS FAMILY, and that is not tidiness. The headings
-  were `font-semibold`, and Libre Caslon Display and Instrument Serif ship a
-  single 400 weight — asking for 600 makes the browser synthesise a faux bold,
-  which smears the thin strokes of exactly the high-contrast faces this review
-  exists to look at. So weight travels with the face: 600 for the grotesk, 400
-  for the serifs. `font-semibold` came off the heading classes to let it.
-
-  It is deliberately NOT applied to controls, the nav, the wordmark or running
-  text — the user asked for headings, and it is also the right scope: a serif at
-  15px inside a pill button is worse than the grotesk it would replace,
-  whichever face wins.
+  Deliberately NOT applied to controls, the nav, the wordmark or running
+  text: a serif at 15px inside a pill button is worse than the grotesk.
 
   These live outside `@theme` on purpose. Declared there, `--font-display`
   would generate a `font-display` utility and collide with this one.
 */
 :root {
-  --font-display: var(--font-schibsted);
-  --font-display-weight: 600;
+  --font-display: var(--font-caslon);
+  --font-display-weight: 400;
 }
 
 @utility display-face {

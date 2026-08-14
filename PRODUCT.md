@@ -169,8 +169,9 @@ is now alone at `/`; the notes below record what the three were.
 
 - **`/1` — Meridian. THE CHOSEN ONE.** The studio, after Dali. Ultramarine,
   verdigris action, headline "Built to be seen." with one word in the accent.
-  The heading face is under review — five serifs against the incumbent grotesk,
-  switchable in development. The user
+  The heading face review closed on 2026-08-14: the owner chose **Libre
+  Caslon Display** on the live hero, over the incumbent grotesk and four
+  other serifs. The user
   picked this direction and then pulled parts into it: the ultramarine and the
   headline from the build running alongside this one, the pill nav and the hero
   gradient from Plinth, and the sticky-sidebar showcase from the Dali
