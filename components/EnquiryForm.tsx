@@ -58,8 +58,27 @@ export function EnquiryForm({ skin }: { skin: FormSkin }) {
   }
 
   return (
-    <form noValidate onSubmit={onSubmit} className="flex flex-col gap-7">
-      <div className="grid grid-cols-1 gap-7 sm:grid-cols-2">
+    <form noValidate onSubmit={onSubmit} className="@container flex flex-col gap-7">
+      {/*
+        Name and email pair up on the CONTAINER, not on the viewport.
+
+        This was `sm:grid-cols-2`, which asked the wrong question: `sm` is a
+        media query, so the pairing was keyed to how wide the SCREEN is while
+        the thing that decides whether two fields fit is how wide this form's
+        COLUMN is. The two only agreed by luck. MERIDIAN's enquiry form now
+        sits in the narrow column of its section, where the old rule matched on
+        every desktop and crammed two fields into a third of the shell.
+
+        The threshold is `@xl`, 36rem, and it is measured rather than picked:
+        PLINTH's form column is 696px and LATTICE's is 595px, so both keep the
+        pair they render today, while MERIDIAN's is 444px and folds to one
+        column. 42rem was tried first and quietly cost LATTICE its pairing —
+        a container query still regresses whatever sits below its breakpoint.
+
+        One column is the better form in the narrow case anyway: every field
+        shares a left edge to scan down, and there is nothing to skip past.
+      */}
+      <div className="grid grid-cols-1 gap-7 @xl:grid-cols-2">
         <div className="flex flex-col gap-2">
           <label htmlFor={id("name")} className={skin.label}>
             Your name

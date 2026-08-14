@@ -23,6 +23,20 @@ export const site = {
   name: "Pulito Digital",
   contactEmail: "hello@pulitodigital.com.au",
   location: "Adelaide, South Australia",
+  /**
+   * PLACEHOLDER — NOT A REAL NUMBER, and deliberately unmistakable.
+   *
+   * The failure mode of a plausible-looking fake is that nobody notices it: it
+   * ships, and the one action this audience is most likely to take on a phone
+   * rings a stranger. The X's are the point. Do not tidy them into something
+   * that reads like a number.
+   *
+   * TODO: replace with the real number, then make the enquiry row a `tel:`
+   * link — the note beside it in `app/1/page.tsx` says exactly what to change.
+   * It renders as plain text until then, because `tel:+61 4XX XXX XXX` dials
+   * nothing.
+   */
+  phone: "+61 4XX XXX XXX",
 
   /** One CTA label, used in the nav, the hero and the footer of every world. */
   cta: "Get a free preview",
@@ -244,6 +258,27 @@ export const directions = {
       faq: "Questions we get asked",
       enquiry: "Enquiry",
     },
+    /*
+      Row labels on the enquiry section's contact list. MERIDIAN only, so it is
+      optional in the same way `headlineAccent` is: it is the one direction
+      carrying the list, and PLINTH and LATTICE are being deleted. A direction
+      without it renders the plain mailto it renders today, so this staying
+      optional costs nothing and forces nothing on the other two.
+
+      They sit in `directions` rather than in `site` because they are furniture
+      — what this world calls the things it shows — while the values behind
+      them, the address and the number and the region, are facts about the
+      business and live in `site`.
+
+      "Serving" rather than "Address": there is no shopfront to visit, and a
+      reader on a building site is asking whether these people cover him, not
+      where to post a letter.
+    */
+    contactLabels: {
+      email: "Email",
+      phone: "Phone",
+      location: "Serving",
+    },
     heroSlot: { w: 1600, h: 900 },
   },
   "2": {
@@ -312,6 +347,8 @@ export const directions = {
       faq: string;
       enquiry: string;
     };
+    /* MERIDIAN only, and optional for the same reason `headlineAccent` is. */
+    contactLabels?: { email: string; phone: string; location: string };
     heroSlot: { w: number; h: number };
   }
 >;

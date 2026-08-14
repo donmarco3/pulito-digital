@@ -370,23 +370,108 @@ export default function Meridian() {
             </div>
           </DimSection>
 
+          {/*
+            The proportions are inverted from what this section used to be: the
+            pitch now takes 1.35fr and the form 1fr, where the form took 1.35
+            and the pitch 1.
+
+            Four stacked fields do not want a wide column. A text input
+            stretched across most of the shell has a scan line far longer than
+            the two or three words anyone types into it, and it reads as a form
+            asking for more than it is — while the argument for filling it in
+            was squeezed into the narrower side. The room is now on the side
+            with something to say.
+
+            THE PANEL STAYS. `--color-mer-2` is defined as the ground of "the
+            showcase, the enquiry panel", so the recessed box here is a
+            documented element of this direction rather than imported
+            furniture — and the fields are measured against it: the skin's
+            borders clear 4.8:1 on `mer-line-strong`, and the error rose reads
+            8.8:1 on this panel specifically. Lifting the form onto a different
+            ground would move both ratios while looking, in a screenshot, like
+            it had improved something.
+
+            Square corners, because MERIDIAN's rule is that actions are pills
+            and structure is square. The one pill in this section is the submit
+            control, and it should stay the only one.
+          */}
           <DimSection id="enquiry" className="border-t border-mer-line">
             <div className="mx-auto max-w-[86rem] px-5 py-24 sm:px-8 sm:py-32">
-              <div className="grid gap-14 lg:grid-cols-[1fr_1.35fr] lg:gap-20">
+              <div className="grid gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-20">
                 <Reveal>
                   <div>
                     <h2 className="display-face text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.05] tracking-[-0.03em] text-balance">
                       {site.form.headline}
                     </h2>
-                    <p className="mt-5 max-w-[46ch] leading-relaxed text-mer-ink-soft">
+                    <p className="mt-5 max-w-[52ch] leading-relaxed text-mer-ink-soft">
                       {site.form.body}
                     </p>
-                    <a
-                      href={`mailto:${site.contactEmail}`}
-                      className="mt-8 inline-block border-b border-mer-line-strong pb-1 text-[15px] text-mer-ink-soft transition-colors hover:border-mer-accent hover:text-mer-ink"
-                    >
-                      {site.contactEmail}
-                    </a>
+
+                    {/*
+                      A description list, which is already what this build uses
+                      for label/value pairs — the figures band is a `dl` with
+                      the label as the `dt`. It is the difference between a
+                      screen reader announcing "Email, hello@…" as a pair and
+                      reading six unrelated fragments in a row. The `div`
+                      between `dl` and `dt` is valid, and is what lets each pair
+                      be its own grid row.
+
+                      Ruled rows, because MERIDIAN's structure is hairline rules
+                      between everything. No icons: this build's whole drawing
+                      vocabulary is the three parametric primitives in
+                      `Classical.tsx`, and there is deliberately no artwork in
+                      the repo. A drawn envelope would be the first, and all it
+                      would do is repeat in another language what the label
+                      beside it already says.
+
+                      The labels take the form skin's own label treatment. They
+                      sit directly across the gutter from the form's labels, and
+                      anything else would read as two systems meeting.
+                    */}
+                    {d.contactLabels && (
+                      <dl className="mt-10 border-t border-mer-line lg:mt-12">
+                        <div className="grid grid-cols-[5.5rem_1fr] items-baseline gap-x-6 border-b border-mer-line py-4 sm:grid-cols-[7rem_1fr]">
+                          <dt className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
+                            {d.contactLabels.email}
+                          </dt>
+                          <dd>
+                            <a
+                              href={`mailto:${site.contactEmail}`}
+                              className="border-b border-mer-line-strong pb-0.5 text-[15px] text-mer-ink transition-colors hover:border-mer-accent"
+                            >
+                              {site.contactEmail}
+                            </a>
+                          </dd>
+                        </div>
+
+                        <div className="grid grid-cols-[5.5rem_1fr] items-baseline gap-x-6 border-b border-mer-line py-4 sm:grid-cols-[7rem_1fr]">
+                          <dt className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
+                            {d.contactLabels.phone}
+                          </dt>
+                          {/*
+                            Plain text, deliberately. `site.phone` is a
+                            placeholder, and `tel:` on it dials nothing — so an
+                            anchor here would ship a control that looks live,
+                            invites the one tap this audience is most likely to
+                            make on a phone, and fails silently on the device it
+                            fails on.
+
+                            TODO: when the real number lands in
+                            `content/site.ts`, wrap this in the same anchor the
+                            email row uses, with the spaces stripped out of the
+                            href and left in the visible text.
+                          */}
+                          <dd className="text-[15px] text-mer-ink">{site.phone}</dd>
+                        </div>
+
+                        <div className="grid grid-cols-[5.5rem_1fr] items-baseline gap-x-6 border-b border-mer-line py-4 sm:grid-cols-[7rem_1fr]">
+                          <dt className="font-mono text-[10.5px] font-medium tracking-[0.18em] text-mer-ink-soft uppercase">
+                            {d.contactLabels.location}
+                          </dt>
+                          <dd className="text-[15px] text-mer-ink">{site.location}</dd>
+                        </div>
+                      </dl>
+                    )}
                   </div>
                 </Reveal>
 
