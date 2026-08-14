@@ -61,7 +61,9 @@ export const meridianSkin: FormSkin = {
     "mt-1 w-full rounded-full bg-mer-accent px-10 py-5 font-schibsted text-[14px] font-semibold tracking-[0.02em] whitespace-nowrap text-mer-3 transition-colors hover:bg-mer-accent-deep active:translate-y-px disabled:opacity-70",
   success: {
     wrap: "border border-mer-accent bg-mer-3 px-8 py-12",
-    title: "font-schibsted text-3xl font-semibold tracking-[-0.02em] text-mer-ink",
+    /* The success panel's heading, so it follows the display face under review
+       with every other heading. Weight comes from `display-face`. */
+    title: "display-face text-3xl tracking-[-0.02em] text-mer-ink",
     body: "mt-4 max-w-[42ch] font-sans leading-relaxed text-mer-ink-soft",
     link: "mt-7 inline-block border-b border-mer-accent pb-1 font-sans text-[15px] text-mer-ink",
   },

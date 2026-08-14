@@ -1,12 +1,30 @@
-# Photography credits and licences
+# Image credits and licences
 
-Every photograph in this build is free to use. Nothing here is generated, and
-nothing is drawn — the brief rules out vector art and illustration, so the only
-imagery on any direction is a real photograph of a real object.
+Every photograph in this build is free to use.
 
-Two licence families are in play, and they carry different obligations. That
-distinction is the one thing on this page that could cost money if it is
-ignored, so it is recorded per file rather than summarised.
+**One file is not a photograph.** `hero-arcade-silhouette-2k.webp` is generated, and the
+blanket claim that used to open this file — that nothing here is generated and
+nothing is drawn — is no longer true. It was written when the brief ruled out
+vector art and illustration; Meridian's hero reversed that deliberately. The
+photographs are still photographs, and the licence tables below still govern
+them.
+
+Two licence families are in play across the photography, and they carry
+different obligations. That distinction is the one thing on this page that
+could cost money if it is ignored, so it is recorded per file rather than
+summarised.
+
+## Generated — settle this before commercial use
+
+| File | Tool | Model | Provenance |
+|---|---|---|---|
+| `hero-arcade-silhouette-2k.webp` | Higgsfield | `nano_banana_pro`, then `upscale_image` | Image-to-image, from a control drawing authored for this build rather than from any third-party image. Two further image-to-image passes off that render — one to remove the corner light, one to invert the values into silhouette. No third-party image at any step. Brief and geometry in `PRODUCT.md` and `DESIGN.md`. |
+
+No third-party photograph was used as an input, so no upstream licence rides on
+this file. What has **not** been checked is what the generation provider's own
+terms say about commercial use of, and rights in, the output. That is a
+question for the owner before this page takes money, and it is written down
+here rather than assumed away.
 
 ## CC0 / Public Domain — no obligation
 

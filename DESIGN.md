@@ -36,9 +36,9 @@ instead.
   are kept only so they can still be flicked back to.
 
   What came from where: the ground is the ultramarine from the build running
-  alongside this one, the user's own pick. The action is amber-orange, chosen
-  because they asked for a contrasting accent — bone sat too close to the body
-  text to read as pressable. The headline is their line. The pill nav and the
+  alongside this one, the user's own pick. The action is verdigris, arrived at
+  over two rounds of review — bone, then the warm metals, then a set probing
+  hue and saturation. `globals.css` carries the reasoning. The headline is their line. The pill nav and the
   hero gradient came across from PLINTH. The body is the reference's solutions
   section, rebuilt from its stylesheet.
 - **2 PLINTH (`/2`) — the agency.** Warm white, and **no chrome at all**: not
@@ -91,8 +91,8 @@ is actually used on.
 | `--color-mer-line-strong` | `#8ba0c8` | 4.8:1. Field borders, WCAG 1.4.11 |
 | `--color-mer-ink` | `#f3f1ec` | 11.1:1 |
 | `--color-mer-ink-soft` | `#bcc7de` | 7.4:1 |
-| `--color-mer-accent` | `#e8e3d6` | 9.8:1. Warm bone. The action; `mer-3` sits on the fill at 13.4:1 |
-| `--color-mer-accent-deep` | `#d6cfbe` | Hover and pressed, 8.1:1 |
+| `--color-mer-accent` | `#43b0a0` | 4.75:1. Verdigris. The action; `mer-3` sits on the fill at 6.5:1 |
+| `--color-mer-accent-deep` | `#359287` | Hover and pressed; the label holds 4.6:1 |
 | `--color-mer-alert` | `#ffb3a7` | 8.8:1 on the enquiry panel. Validation errors, and nothing else |
 | `--color-pli` | `#f6f4ef` | PLINTH's ground. A printer's warm white, not cream |
 | `--color-pli-2` | `#ebe7de` | Recessed bands |
@@ -122,12 +122,13 @@ deliberate exceptions are both whole regions rather than marks: LATTICE's offer
 band is `lat-accent-soft` end to end, and PLINTH's four figures are set in the
 accent at display size because the figures *are* the offer.
 
-**MERIDIAN separates its action by FILL, not by hue.** Its accent was
-amber-orange first — the user asked for a contrasting accent, then saw it and
-preferred bone after all. That makes the page monochrome, and it changes how
-the accent may be used: a solid bone panel against ultramarine is unmistakably
-a control, while bone lettering beside bone lettering is not. So on this
-direction the accent is a background and a rule, and almost never text.
+**MERIDIAN separates its action by HUE, and that is a reversal.** It was bone,
+and bone worked by FILL alone — a solid panel against ultramarine is
+unmistakably a control, while bone lettering beside bone lettering is not, so
+the accent could not be used as text. The hero picture ended that: bone
+measured 1.09:1 against the arcade's travertine. Verdigris restores the
+distinction by hue, which also unlocks the accent AS text — the hero headline
+now sets one word in it.
 
 **The one exception is the error state, which needed its own hue.** With bone
 as the accent, error text set in the accent is the same colour as the label
@@ -195,13 +196,106 @@ drift apart.
 
 All three are 16:9, so one generated image fits any of them.
 
-**MERIDIAN no longer has one.** The user asked for the arcade image between the
-hero and the body to go, and that box WAS the reserved slot — the hero now runs
-straight into the offer. `heroSlot` stays in the content file and `.plate-open`
-stays in the stylesheet, both unused on that page, so reinstating it is a few
-lines rather than a rebuild. Until then, the direction that is actually
-shipping has nowhere to put a supplied hero image, which is worth resolving
-before those images are generated.
+**MERIDIAN no longer has one, and no longer needs one.** The user asked for the
+arcade image between the hero and the body to go, and that box WAS the reserved
+slot — the hero runs straight into the offer. `heroSlot` stays in the content
+file and `.plate-open` stays in the stylesheet, both unused on that page.
+
+The picture went **into** the hero instead. See *Meridian's hero picture*
+below.
+
+## Meridian's hero picture
+
+`public/img/hero-arcade-silhouette-2k.webp`, **2560 × 2060, 84 KB**. Generated
+(`nano_banana_pro`, image-to-image) from a control drawing authored for the
+purpose, because the composition is one an image model will not produce from a
+text prompt: asked in words for a flat elevation with arches scaled up left to
+right, it returns a receding viaduct in perspective every time. Three separate
+attempts did. Fed the geometry as a picture, six different rendering styles all
+obeyed it.
+
+**The file is taller than what was rendered, on purpose.** The generated frame
+is 16:9 and lives in the bottom 1434px; the 626px above it is the picture's own
+top row repeated upward. That gives `object-cover` spare sky to trim instead of
+arcade. It is seamless rather than approximate because the sky in this frame is
+genuinely flat — which is what removing the corner light produced — so a
+sampled hex would have been a worse match than replication.
+
+Pipeline: generate at 1k → `upscale_image` to 2K (returned 3856 × 2160) →
+resize to 2560 wide → extend upward → WebP q90. Smooth gradients, so 84 KB at
+2560 wide, and it is `priority` for LCP.
+
+**IT IS A SILHOUETTE, AND THAT IS A LEGIBILITY DECISION, NOT A MOOD.**
+
+The first version lit the arcade in pale travertine. Measured inside the box
+where the hero text actually sits — 2–46% across, 24–78% down — its brightest
+pixel was `#e1d8c6`, which is **1.25:1** against the headline ink. The picture
+and the type were the same brightness, and the page compensated with a CSS
+gradient laid across the left. That worked and was a compromise: the left was
+dark because a sheet was on top of it, not because the scene was dark there.
+
+The user proposed swapping the values — white clouds, blue arches. Generated
+and measured, that came back at **1.11:1** in the same box, marginally *worse*
+than what it replaced, because white is brighter than travertine and the cloud
+bank runs the full width. It also erased the secondary CTA, which is an
+outlined pill with no fill.
+
+What shipped inverts past the halfway point instead: the arches are darker than
+the sky, the cloud is pulled right and thinned off the left edge. Brightest
+pixel in the text box is now `#25438b` — **8.25:1** against the headline,
+**5.48:1** against the subhead.
+
+**So the left falloff is deleted.** The picture supplies its own shadow. Any
+future hero swap that reinstates a bright object in the left third brings that
+gradient back with it, so measure the text box before changing the file.
+
+**Two optimizer traps this hero fell into, both silent, both worth knowing
+before anyone swaps the file again:**
+
+1. **The optimizer caches against the source URL.** Replacing the file in place
+   kept serving the previously-optimized 1376-wide variant out of
+   `.next/cache/images`. The picture read as low quality through a whole round
+   of review while the file on disk was already 2560. Hence `-2k` in the
+   filename: the version is in the URL, so a swap cannot be silently ignored.
+   If a file is ever replaced in place, `rm -rf .next/cache/images`.
+2. **Next 16 ignores a `quality` prop not listed in `images.qualities`** and
+   falls back to 75 without warning. 75 is right for photographs and wrong for
+   this frame — a 1920-wide re-encode at 75 came back at **58 KB**, smaller
+   than the 2560-wide source it was made from, and banding across the sky.
+   `next.config.ts` now allows `[75, 90]`; at 90 the same width is 128 KB.
+
+Both are general to this repo, not to this image. Any future hero that is
+mostly gradient will want `quality={90}`.
+
+**The geometry, so it can be redrawn:** 1600 × 900 field. Six round-headed
+arches on piers, springing from a single baseline at y = 752. One straight
+raking cornice from (80, 668) to (1600, 168); every crown sits 16px below it,
+which is what fixes each arch's height. Opening width is 0.54 × arch height.
+Centres at x = 175, 350, 560, 810, 1105, 1420 — spacing ramps with the heights
+so the run accelerates rather than marching. A scalloped cloud bank along the
+bottom, kept low enough that the small arches stand ankle-deep in it rather
+than being swallowed. The upper-left triangle above the cornice is left empty:
+that is the headline's room, and it is a spec, not a leftover.
+
+**How it is placed, and why each part is not the obvious thing:**
+
+| Decision | Reason |
+|---|---|
+| The picture **fills the section**, anchored bottom | It was a bottom band first. A 16:9 frame in a 3:1 box loses ~42% off its top, and the deck exits near the top of the right edge — so a 1920-wide screen showed decapitated arches and no cornice at all. The sketch has the arcade reaching the top-right corner; a bottom strip was never what was asked for |
+| Headroom in the **file**, not in the CSS | Fading the band's top edge only blurred the cut. Giving `cover` spare sky to eat is the fix that survives every viewport |
+| `object-contain` below `lg`, `object-cover` at `lg` and up | `cover` on a phone crops to about two arches. The ramp is a wide-format idea; on a narrow screen it has to be shown whole and small |
+| Section ground is `--color-mer-sky`, not `--color-mer` | Sampled off the image's own top edge. `contain` leaves open section above the picture on every phone, and it has to match to the pixel or the join reads as a seam. The page ground is bluer-by-eye and would not have |
+| ~~A left-to-right falloff~~ — **deleted** | It existed because the lit-stone frame measured 1.25:1 against the headline inside the text box. The silhouette frame measures 8.25:1 there, so the picture supplies its own shadow and the gradient is gone. It also used to swallow the two smallest arches, which is no longer a price anyone pays |
+| Subhead measure cut to `40ch` at `lg` | At `58ch` it ran out across the stone |
+
+**Known limit: ultrawide.** Beyond about 2:1 the content, scaled to full width,
+is taller than the viewport, and the top of the arcade starts to go again.
+Added sky cannot help — sky and content scale together. It needs a wider
+render, not a taller one.
+
+Shrinking the band was tried twice while it was still a band, and did nothing:
+the image is anchored to the bottom, so a shorter band crops the tops off the
+tall arches and leaves the piers exactly where they were.
 
 Until an image arrives, `HeroSlot` paints a composed placeholder rather than a
 grey rectangle: a fluting rhythm behind everything, a cornice near the head, and
@@ -360,7 +454,12 @@ Direction-specific deletions:
 - **MERIDIAN is the chosen direction**, so this one is what stays. When the
   comparison is closed it moves to `/` and takes `SectionRail.tsx`,
   `Solutions.tsx`, `MeridianNav.tsx`, the `.dimmable` rules, `.plate-open` and
-  `.mer-bloom` with it.
+  `public/img/hero-arcade-silhouette-2k.webp` and `.mer-bloom` with it. The bloom was deleted
+  when the hero gained a picture and then restored at the user's request — it
+  came back **white rather than warm**, and capped to the top `46vh`, so it
+  reads as haze behind the nav rather than as a second sun competing with the
+  picture's own light. `bloom-breathe` is shared; PLINTH, LATTICE and
+  `HeroSlot` all use it too.
 - **If PLINTH loses:** `components/PillNav.tsx` goes. The figures band goes with
   it — `site.figures` has no other consumer.
 - **If LATTICE loses:** `.lat-grid` goes, and `site.capabilities` loses its only

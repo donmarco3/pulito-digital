@@ -67,18 +67,37 @@ A single landing page. One conversion event: a short enquiry form.
   Omega's nav contracting into a pill on scroll, its black-and-white
   illustration, its key figures, its simple palette. Notus's centred hero with
   an accent and a device in the middle, and its grid.
-- **The classical world is retired.** Greco-Roman remains the user's personal
-  favourite and they asked for a trace of it, explicitly conditional on it
-  being cheap. It survives as **hairline geometry only** — an arcade, fluting,
-  a cornice — drawn parametrically in `components/Classical.tsx`. No marble, no
-  sculpture photography, no serif display face. The user's standard was "clean
-  enough to get up and running and to look professional", and "not too fancy".
-- **The hero imagery is being generated separately by the user**, through
-  Higgsfield. `/2` and `/3` each reserve a real 16:9 slot with a composed
-  placeholder; `DESIGN.md` records the dimensions. **`/1`, the direction that
-  is actually shipping, no longer has one** — the user asked for the arcade
-  image below its hero to go, and that box was the slot. Where a supplied hero
-  image lives on Meridian is an open question.
+- **The classical world came back, as weather.** It was retired to hairline
+  geometry only — an arcade, fluting, a cornice, drawn parametrically in
+  `components/Classical.tsx` — and `/2` and `/3` still stand on that. **`/1`
+  no longer does.** Meridian's hero is now a generated illustration of a Roman
+  arcade climbing out of cloud, and the drawn `<Arcade>` that used to sit
+  behind that hero is gone. The parametric primitives stay in the repo because
+  the other two directions use them.
+- **The hero image is generated, illustrative, and deliberately quiet.**
+  `public/img/hero-arcade-silhouette-2k.webp`. The brief was arrived at over two sessions and
+  every clause of it was fought for, so it is recorded rather than summarised:
+  - Roman arches on **one baseline**, growing left to right, crowns governed by
+    a **straight raking cornice** — from the user's own sketch. Not perspective.
+    An image model will not produce this from words; it took a control drawing
+    fed in as a reference image. That control is reproducible from
+    `scripts`-free Python in the session log, and the geometry spec is in
+    `DESIGN.md`.
+  - **Illustrative, not photoreal.** Photoreal versions were generated first,
+    were genuinely beautiful, and were rejected: "it shouldn't be so bold and
+    stand out because it's just for aesthetic purposes". The hero's job is
+    atmosphere; the headline and the action are what the reader is meant to see.
+  - **No light source in the upper right of the picture.** Explicitly removed.
+    Separately, the user asked for the soft white gradient behind the nav to be
+    kept — that is header furniture, not weather, and it is white and capped to
+    the top of the section so it does not become a second sun.
+  - Arches stand **in cloud**, so there is no cloud above them. The alternative
+    footing (solid stone below, cloud overhead) was specified and a control
+    drawing exists for it, but it was never generated.
+- **The user's own sketch is positional only.** It fixed the layout — nav links
+  left, wordmark centred, action right; headline, subtext and CTA stacked in the
+  upper left; arcade filling the lower right. It says nothing about typography
+  or nav labels, which stay as they were.
 - **Nothing about the founder appears on the page.** No name, no photograph,
   no bio, no "who we are". Asked directly whether a founder section should
   stand in for the missing proof, the user said no. A standing constraint, not
@@ -116,7 +135,9 @@ facts, the same offer and the same form; what varies is ground, density,
 structure and one signature mechanic each.
 
 - **`/1` — Meridian. THE CHOSEN ONE.** The studio, after Dali. Ultramarine,
-  amber-orange action, Schibsted Grotesk, headline "Built to be seen." The user
+  verdigris action, headline "Built to be seen." with one word in the accent.
+  The heading face is under review — five serifs against the incumbent grotesk,
+  switchable in development. The user
   picked this direction and then pulled parts into it: the ultramarine and the
   headline from the build running alongside this one, the pill nav and the hero
   gradient from Plinth, and the sticky-sidebar showcase from the Dali
@@ -141,8 +162,23 @@ out in one commit along with the board and the switcher, and Meridian moves to
 `/`. `DESIGN.md` lists exactly what each deletion takes with it. They are being
 kept alive for now so the user can still flick back and compare.
 
-**Still to come from the user:** the hero images, generated in Higgsfield. The
-slots are reserved and dimensioned.
+**Meridian's hero image has landed.** Generated in Higgsfield
+(`nano_banana_pro`, image-to-image off an authored control drawing) and living
+at `public/img/hero-arcade-silhouette-2k.webp`. `/2` and `/3` still have empty reserved
+slots; they are being deleted, so they will not be filled.
+
+**Open, and worth a decision before this ships:**
+
+- The **stone footing** variant — arches on solid ground with cloud overhead —
+  was specified and controlled for but never rendered. It is one generation
+  away if the current footing ever looks wrong.
+- The picture closed the arcade into a **continuous viaduct with a solid
+  spandrel wall**. The sketch and the control drawing both had free-standing
+  arches with open sky between the piers. Nobody asked for the change; it looks
+  good, so it was kept, but it was not a decision anyone made.
+- Meridian's **section below the hero** has not been re-looked-at since the
+  hero gained a picture. The two were designed against a hero that was type on
+  an empty ground.
 
 **Unratified copy.** Two commitments in `content/site.ts` are not granted
 anywhere in this document and predate the current build: the reply time

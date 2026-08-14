@@ -1,5 +1,16 @@
 import type { Metadata } from "next";
-import { Archivo, Geist, Geist_Mono, Manrope, Schibsted_Grotesk } from "next/font/google";
+import {
+  Archivo,
+  Bodoni_Moda,
+  EB_Garamond,
+  Fraunces,
+  Geist,
+  Geist_Mono,
+  Instrument_Serif,
+  Libre_Caslon_Display,
+  Manrope,
+  Schibsted_Grotesk,
+} from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 
@@ -50,6 +61,66 @@ const geist = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+/*
+  THE HEADING FACES UNDER REVIEW — five of them, and they are temporary.
+
+  MERIDIAN's headings were Schibsted Grotesk on the argument that a display
+  serif belonged to the classical world this build replaced. The user has since
+  seen Libre Caslon Display on the other build, likes it, and asked to compare
+  it here against alternatives. So these load alongside the workhorses while
+  `FontSwitch` is on the page, and the four that lose come out of this file with
+  it — the same deal the three direction faces already have above.
+
+  They are chosen to span the serif space rather than to offer five versions of
+  one idea, because "a serif" is not a decision:
+
+  - LIBRE CASLON DISPLAY — the reference, and the reason for the exercise. A
+    transitional face: sturdy, bookish, even in colour.
+  - INSTRUMENT SERIF — high contrast and tightly set. The most current-looking,
+    and the one that changes the page most at headline scale.
+  - FRAUNCES — old-style with deliberate softness and wonk. Warmest of the five
+    and the least institutional.
+  - BODONI MODA — a didone. Extreme thick-to-thin, which reads as luxury and
+    fashion rather than as trade.
+  - EB GARAMOND — Renaissance humanist. Historically the closest thing here to
+    the Roman world the arcade comes from, and the quietest.
+
+  Weight is pinned to 400 where the face offers a choice. These are display
+  faces at 3–7rem, and a semibold serif at that size is a different typeface
+  wearing the same name.
+*/
+const caslon = Libre_Caslon_Display({
+  variable: "--font-caslon-src",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const instrument = Instrument_Serif({
+  variable: "--font-instrument-src",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  variable: "--font-fraunces-src",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const bodoni = Bodoni_Moda({
+  variable: "--font-bodoni-src",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const garamond = EB_Garamond({
+  variable: "--font-garamond-src",
   subsets: ["latin"],
   display: "swap",
 });
@@ -137,7 +208,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-AU"
-      className={`${schibsted.variable} ${archivo.variable} ${manrope.variable} ${geist.variable} ${geistMono.variable} h-full`}
+      className={`${schibsted.variable} ${archivo.variable} ${manrope.variable} ${geist.variable} ${geistMono.variable} ${caslon.variable} ${instrument.variable} ${fraunces.variable} ${bodoni.variable} ${garamond.variable} h-full`}
     >
       <body className="min-h-full">
         <div dangerouslySetInnerHTML={{ __html: `<!--${CONTRACT}-->` }} />

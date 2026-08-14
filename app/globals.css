@@ -50,20 +50,51 @@
   --color-mer-ink: #f3f1ec; /* 11.1:1 */
   --color-mer-ink-soft: #bcc7de; /* 7.4:1 */
   /*
-     The action: warm bone, taken from the same build as the ground.
+     The hero picture's own sky, sampled straight off the top edge of
+     `hero-arcade.webp` rather than chosen.
 
-     This was amber-orange first. The user asked for a contrasting accent
-     because bone sounded too close to the body text, saw the contrasting
-     version, and preferred the bone after all — so the page is monochrome, and
-     the action is separated from the copy by FILL rather than by hue. A solid
-     bone panel against ultramarine is unmistakably a control; bone lettering
-     beside bone lettering would not be, which is why the accent is used as a
-     background and a rule, and almost never as text.
+     It exists because the hero image is `object-contain` below `lg` — a 16:9
+     frame cannot `cover` a phone viewport without a 3.5x zoom — so there is
+     open section above the picture on every phone, and it has to be the
+     picture's colour to the pixel or the join reads as a seam. Deliberately
+     NOT `--color-mer`: the ground is #12306e, the sky is bluer, and matching
+     them by eye is what would produce the seam.
 
-     9.8:1 on the ground. `--color-mer-3` sits on the fill at 13.4:1.
+     Bone ink measures 9.6:1 on it and the soft ink 6.4:1, so the headline and
+     subhead keep their contrast where they actually sit.
   */
-  --color-mer-accent: #e8e3d6;
-  --color-mer-accent-deep: #d6cfbe; /* hover and pressed, 8.1:1 */
+  --color-mer-sky: #122c79;
+  /*
+     The action: VERDIGRIS. Chosen, after a review; the switcher is deleted.
+
+     It was warm bone, and bone was correct while the hero was type on an empty
+     ground — the page was monochrome and the action separated itself by FILL
+     rather than by hue. The hero picture ended that. The arcade is pale
+     travertine and bone measured **1.09:1** against it, so the one control the
+     page exists to offer and the architecture behind it were the same colour,
+     separated by shape alone.
+
+     Two rounds. The first tried the warm metals — gold, brass, bronze,
+     copper — and the user rejected all of them for the same reason, which is
+     worth keeping because it will come up again: a metal reads as metal
+     because of a specular highlight, and a flat fill on a screen has none, so
+     they resolve as mud-yellow and mud-orange. Making them work needs a gloss
+     treatment, which was built, seen, and judged not worth the complexity.
+
+     The second round dropped the metals and probed hue, saturation and
+     analogy — aqua, jade, mint, periwinkle, rose. Verdigris won.
+
+     Why it holds up beyond taste: it is oxidised bronze, which is the metal
+     that actually sits on travertine in the world these arches come from, and
+     it is the ground's complement, so it lifts off the blue without shouting.
+
+     4.75:1 on the ground. `--color-mer-3` sits on the fill at 6.5:1, and on
+     the hover at 4.6:1. The hero headline sets one word in it — see
+     `headlineAccent` in `content/site.ts` — which only works because the
+     accent is now a hue rather than a near-white.
+  */
+  --color-mer-accent: #43b0a0;
+  --color-mer-accent-deep: #359287; /* hover and pressed, 4.6:1 on the label */
 
   /*
      Errors, and the one hue on the page.
@@ -138,6 +169,53 @@
   --font-manrope: var(--font-manrope-src), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /*
+    THE FIVE CANDIDATE HEADING FACES. Review-stage; four of these come out when
+    one is chosen.
+
+    Each falls back to Georgia rather than to a generic `serif`, because a
+    missing display face on a headline at 7rem is very visible and the default
+    serif on Windows is Times, which shares none of these faces' proportions.
+  */
+  --font-caslon: var(--font-caslon-src), Georgia, serif;
+  --font-instrument: var(--font-instrument-src), Georgia, serif;
+  --font-fraunces: var(--font-fraunces-src), Georgia, serif;
+  --font-bodoni: var(--font-bodoni-src), Georgia, serif;
+  --font-garamond: var(--font-garamond-src), Georgia, serif;
+}
+
+/*
+  MERIDIAN's heading face, as one switchable pair.
+
+  `display-face` is the indirection the whole review turns on: every HEADING on
+  MERIDIAN carries it, so `FontSwitch` writes two custom properties on the root
+  and the page re-sets entirely — no class swapping, no list of elements to keep
+  in step, nothing to miss.
+
+  IT CARRIES WEIGHT AS WELL AS FAMILY, and that is not tidiness. The headings
+  were `font-semibold`, and Libre Caslon Display and Instrument Serif ship a
+  single 400 weight — asking for 600 makes the browser synthesise a faux bold,
+  which smears the thin strokes of exactly the high-contrast faces this review
+  exists to look at. So weight travels with the face: 600 for the grotesk, 400
+  for the serifs. `font-semibold` came off the heading classes to let it.
+
+  It is deliberately NOT applied to controls, the nav, the wordmark or running
+  text — the user asked for headings, and it is also the right scope: a serif at
+  15px inside a pill button is worse than the grotesk it would replace,
+  whichever face wins.
+
+  These live outside `@theme` on purpose. Declared there, `--font-display`
+  would generate a `font-display` utility and collide with this one.
+*/
+:root {
+  --font-display: var(--font-schibsted);
+  --font-display-weight: 600;
+}
+
+@utility display-face {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
 }
 
 @layer base {
@@ -211,38 +289,45 @@
 */
 
 /*
-  MERIDIAN's bloom. A single soft radial light behind the hero — the thing the
-  user described as the "subtle graphic in the background". It is one gradient,
-  not a mesh: a mesh of four would be the generated-page default, and one
-  light source is also what an arcade lit from outside actually looks like.
+  MERIDIAN's bloom: the soft light behind the nav.
+
+  It was deleted when the hero gained a picture, on the reasoning that the
+  picture carries its own sky and a second light source would reinstate exactly
+  the corner hotspot the image had just been regenerated to lose. The user
+  asked for it back, having seen both. They are right, and the reasoning was
+  answering the wrong question: this is header furniture, not weather. It gives
+  a translucent sticky bar something to sit against.
+
+  What changed on the way back, so it does not re-create the problem it was
+  deleted for:
+
+  - IT IS WHITE, NOT WARM. The old version led with #f2ddba, a warm crown that
+    read as sunlight and competed with the picture's own light — which now
+    comes from below the cloud line. Bone-white at low opacity reads as haze
+    instead, and haze does not claim to be a light source.
+  - IT IS A LITERAL WHITE, not `var(--color-mer-accent)`, which is what the
+    warm stop used to be. Tying atmosphere to the action was tidy right up
+    until the action changed colour — and it is being changed again right now.
+    An accent swap must not silently repaint the sky.
+  - IT IS CENTRED AND HIGH, and the element it is painted on is capped at 46vh
+    rather than covering the section, so it stays behind the nav instead of
+    spreading across the arcade.
+
+  Both stops are percentages of the element's own box, so the sizes stay flat
+  and wide: a tall narrow radial concentrates into a blob at phone width, which
+  is the bug this build already fixed twice on the other two directions.
 */
 @utility mer-bloom {
-  /*
-    Two stops, and the order matters. A narrow warm one at the crown over a
-    wider cool lift beneath it, so the join reads as a horizon rather than as
-    one flat wash.
-
-    The warm stop is a literal value rather than `var(--color-mer-accent)`,
-    which is what it used to be. Tying it to the accent was tidy right up until
-    the accent changed: with the amber it made the warm horizon the user liked,
-    and with bone it would have collapsed into a white haze and taken the
-    gradient's whole character with it. Atmosphere and actions are different
-    jobs and no longer share a token.
-
-    Both are percentages of this element's own box, so the sizes are flat and
-    wide: a tall narrow radial concentrates into a blob at phone width, which
-    is the bug this build already fixed twice on the other two directions.
-  */
   background:
     radial-gradient(
-      100% 30% at 50% 0%,
-      color-mix(in oklab, #f2ddba 40%, transparent) 0%,
-      transparent 74%
+      92% 62% at 50% 0%,
+      color-mix(in oklab, #ffffff 22%, transparent) 0%,
+      transparent 72%
     ),
     radial-gradient(
-      85% 58% at 50% 4%,
-      color-mix(in oklab, #86b4ff 32%, transparent) 0%,
-      transparent 76%
+      70% 44% at 50% 0%,
+      color-mix(in oklab, #ffffff 14%, transparent) 0%,
+      transparent 78%
     );
 }
 

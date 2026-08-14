@@ -218,6 +218,19 @@ export const directions = {
     */
     headline: "Built to be seen.",
     headlineLines: ["Built to be seen."],
+    /*
+      The one word in the headline set in the accent, at the user's request.
+
+      It lives here rather than as markup in the page because the headline stays
+      ONE string — the word is located inside it at render time. Authoring the
+      emphasis as JSX would fork the line into fragments, and splitting a
+      headline into pieces is a decision every earlier build came to regret the
+      moment the copy needed editing.
+
+      "seen" and not "seen." — the full stop closes the sentence, not the word,
+      and colouring it drags a coloured dot onto the end of the line.
+    */
+    headlineAccent: "seen",
     subhead:
       "Web, search and automation for the trades whose work already sets the standard — starting with your own homepage, redesigned as a working preview before you pay us anything.",
     problem: {
@@ -283,6 +296,13 @@ export const directions = {
     eyebrow: string;
     headline: string;
     headlineLines: readonly string[];
+    /*
+      MERIDIAN only, so it is optional: it is the one direction whose headline
+      sets a word in the accent, and PLINTH and LATTICE are being deleted. The
+      page falls back to the whole line unaccented when it is absent, so this
+      staying optional costs nothing and forces nothing on the other two.
+    */
+    headlineAccent?: string;
     subhead: string;
     problem: { headline: string; body: string };
     sections: {

@@ -150,7 +150,7 @@ export function Solutions({ items }: { items: readonly Item[] }) {
                  arrive underneath the control that sent you there. */
               className="flex min-h-[min(82vh,48rem)] scroll-mt-32 flex-col justify-center border-b border-mer-line/70 px-6 py-16 last:border-b-0 sm:px-10 sm:py-20 lg:px-14"
             >
-              <h3 className="max-w-[14ch] font-schibsted text-[clamp(2rem,4vw,3.2rem)] leading-[1.02] font-semibold tracking-[-0.03em]">
+              <h3 className="max-w-[14ch] display-face text-[clamp(2rem,4vw,3.2rem)] leading-[1.02] tracking-[-0.03em]">
                 {item.title}
               </h3>
 
