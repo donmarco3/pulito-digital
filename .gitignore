@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...except the template, which carries no value — only the variable name and
+# where to get one. Without this exception `.env*` swallows it, and the single
+# file explaining how to configure the enquiry form never reaches the repo.
+!.env.example
 
 # vercel
 .vercel
