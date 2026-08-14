@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  Archivo,
   Bodoni_Moda,
   EB_Garamond,
   Fraunces,
@@ -8,47 +7,23 @@ import {
   Geist_Mono,
   Instrument_Serif,
   Libre_Caslon_Display,
-  Manrope,
   Schibsted_Grotesk,
 } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 
 /*
-  Five faces load at the root: three display faces, one per direction, plus two
-  workhorses shared across all of them.
+  One display face and two workhorses. PLINTH's Archivo and LATTICE's Manrope
+  left with their directions when MERIDIAN won the comparison.
 
-  That is a review-stage cost and it is deliberate. The compare board puts all
-  three directions on one screen at once, and a face scoped to one route
-  arrives late into its panel there, so the comparison would be of three
-  fallbacks rather than of three directions. When one direction is chosen, the
-  other two faces come out of this file in the same commit.
-
-  - Schibsted Grotesk — 1 MERIDIAN. A newspaper grotesk, editorial and faintly
-    warm, with the authority a deep blue institutional page needs and none of
-    the shout.
-  - Archivo — 2 PLINTH. At 700–800 in tight negative tracking it is the only
-    one of the three with real poster weight, which is the whole job on a page
-    that has no cards, no borders and no shadows to lean on.
-  - Manrope — 3 LATTICE. Semi-geometric with even colour, engineered-looking
-    at small sizes, which is what a dense ruled page needs.
+  - Schibsted Grotesk — the display face, pending the heading review below. A
+    newspaper grotesk, editorial and faintly warm, with the authority a deep
+    blue institutional page needs and none of the shout.
   - Geist / Geist Mono — running text everywhere, and the measured voice used
-    for the offer figures and the rail's indices.
+    for the process numerals and the contact-row labels.
 */
 const schibsted = Schibsted_Grotesk({
   variable: "--font-schibsted-src",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const archivo = Archivo({
-  variable: "--font-archivo-src",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope-src",
   subsets: ["latin"],
   display: "swap",
 });
@@ -171,34 +146,30 @@ const jsonLd = {
   served page. It tops the artifact re-opened on every edit.
 */
 const CONTRACT = `
-PULITO DIGITAL — DIRECTION CONTRACT (world pinned by the user: three reference
-sites, one direction each; no roll, a pinned brief beats it)
+PULITO DIGITAL — DIRECTION CONTRACT (MERIDIAN, chosen by the user from a
+three-way comparison; the losing directions live in git history)
 
-THESIS: Three modern directions on one offer. Each takes its structure, density
-and signature mechanic from one of the user's three references, and all three
-carry identical product facts. The category default all three refuse is the
-proof-shaped SaaS page — logo wall, testimonials, stats, pricing table — because
-the business is new and none of that is true yet; the offer does the persuading
-instead.
+THESIS: One offer carried across a small multi-page site. The category default
+it refuses is the proof-shaped agency page — logo wall, testimonials, stats,
+pricing table — because the business is new and none of that is true yet; the
+free-preview offer does the persuading instead, on every page.
 
-OWN-WORLD: One stylesheet, three grounds and three shape languages. 1 MERIDIAN
-deep blue, square corners, a fixed section rail, neighbours dimmed. 2 PLINTH
-warm white with NO chrome — no cards, borders or shadows — pill nav and pill
-actions. 3 LATTICE cool white on a ruled grid, blue-violet, bento cells at
-0.75rem. Shared across all three: hairline geometry drawn from classical
-architecture — an arcade, fluting, a cornice rule. Line-work only, no marble,
-no photography, no serif.
+OWN-WORLD: Ultramarine ground over three recessed depths, hairline rules
+between everything, bone ink, one verdigris action. ACTIONS ARE PILLS,
+STRUCTURE IS SQUARE. One soft shadow, on floating nav furniture only. Display
+grotesk at scale (heading face under review); Geist for running text; mono for
+measurement only. The classical world appears as weather: a generated arcade
+silhouette in the hero, hairline primitives elsewhere.
 
 STORY: A renovation builder, on a phone between site visits, reads that he can
-see his own homepage redesigned before he pays anything, understands Pulito does
-web, search and automation, and sends four fields.
+see his own homepage redesigned before he pays anything, understands Pulito
+does web, search and automation, and sends four fields.
 
-FIRST VIEWPORT: Differs per direction by design — that is what is being
-compared. Each opens on the guarantee at display scale, a hero image slot
-awaiting a supplied image, and the enquiry action reachable without scrolling.
+FIRST VIEWPORT: Headline stacked upper-left over the arcade picture, one word
+in the accent; subhead and two pill actions beneath; pill nav with links left,
+wordmark centred, the enquiry action right.
 
-FORM: Pinned by the user, not dealt. Reference-per-direction, chosen in
-interview over one-skeleton-three-skins and over a loudness ladder.
+FORM: Pinned by the user across two builds and a comparison; not dealt.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the
 finish review, the verdict, and DESIGN.md
@@ -208,7 +179,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-AU"
-      className={`${schibsted.variable} ${archivo.variable} ${manrope.variable} ${geist.variable} ${geistMono.variable} ${caslon.variable} ${instrument.variable} ${fraunces.variable} ${bodoni.variable} ${garamond.variable} h-full`}
+      className={`${schibsted.variable} ${geist.variable} ${geistMono.variable} ${caslon.variable} ${instrument.variable} ${fraunces.variable} ${bodoni.variable} ${garamond.variable} h-full`}
     >
       <body className="min-h-full">
         <div dangerouslySetInnerHTML={{ __html: `<!--${CONTRACT}-->` }} />

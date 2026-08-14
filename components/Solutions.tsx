@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { site } from "@/content/site";
 
 /**
@@ -177,12 +178,23 @@ export function Solutions({ items }: { items: readonly Item[] }) {
                 ))}
               </dl>
 
-              <a
-                href="#enquiry"
-                className="mt-12 inline-block self-start border-b border-mer-accent pb-1 font-schibsted text-[15px] font-semibold text-mer-ink transition-colors hover:text-mer-accent"
-              >
-                {site.cta}
-              </a>
+              {/* Two exits per panel since the site went multi-page: the
+                  conversion stays first and keeps the accent underline; the
+                  service's own page is the quieter second read. */}
+              <div className="mt-12 flex flex-wrap items-baseline gap-x-8 gap-y-3">
+                <a
+                  href="#enquiry"
+                  className="inline-block border-b border-mer-accent pb-1 font-schibsted text-[15px] font-semibold text-mer-ink transition-colors hover:text-mer-accent"
+                >
+                  {site.cta}
+                </a>
+                <Link
+                  href={`/services/${item.slug}`}
+                  className="inline-block border-b border-mer-line-strong pb-1 font-schibsted text-[15px] font-semibold text-mer-ink-soft transition-colors hover:border-mer-ink hover:text-mer-ink"
+                >
+                  More on {item.title.toLowerCase()}
+                </Link>
+              </div>
             </article>
           );
         })}

@@ -24,7 +24,26 @@ craftsmanship because that is what they sell.
 
 ## Surface
 
-A single landing page. One conversion event: a short enquiry form.
+A multi-page site, expanded from the single landing page on 2026-08-14 at the
+user's instruction ("a proper website, not just a landing page"), planned in a
+recorded interview. One conversion event: the enquiry form.
+
+- `/` — the landing page, keeping the FULL pitch (user's decision: a cold
+  visitor reads everything and enquires without clicking further; the inner
+  pages add depth rather than taking content away).
+- `/services/web-design`, `/services/seo`, `/services/ai-automation` — one
+  page per service, slugs recorded in `content/site.ts`.
+- `/process` — the free-preview mechanism step by step. With no proof allowed
+  to exist, the way the work runs is the proof.
+- `/about` — the studio, never the founder.
+- `/contact` and `/privacy` — planned, not yet built. The privacy page is
+  required because the form goes real (below).
+
+Build sequence, agreed with the owner: (1) consolidation and nav — DONE;
+(2) the three service pages; (3) process + about; (4) contact + privacy +
+live form + SEO. The inner pages currently standing are FIRST-DRAFT
+SCAFFOLDING from step 1, so the nav has real destinations; each gets its full
+design-and-copy pass in its own step.
 
 ## Product truth
 
@@ -46,8 +65,21 @@ A single landing page. One conversion event: a short enquiry form.
 - **No proof exists yet.** The company is new. No testimonials, client logos,
   case studies, ratings or numbers may appear on the page, invented or implied.
   The offer and the process stand in for proof.
-- **The form is a demo.** It validates and acknowledges locally, sends nothing.
-  A real endpoint is a later change, and would require a privacy notice.
+- **The form is a demo, and its ending is decided.** It validates and
+  acknowledges locally, sends nothing. The owner chose (2026-08-14) to wire it
+  through a form-to-email service delivering to hello@pulitodigital.com.au in
+  build step 4, with a privacy page added in the same step. The owner supplies
+  the service's access key; it is not in the repo yet.
+- **Contact is email only, confirmed.** Asked directly what the contact page
+  and schema may carry, the owner said email only — no phone, no ABN, no
+  street address. The placeholder phone number and its row on the enquiry
+  list were REMOVED in the consolidation commit; git history has them if a
+  real number ever lands.
+- **SEO posture: launch-ready and indexable.** The owner chose to build this
+  branch as the production site — `noindex` comes off, per-page metadata,
+  LocalBusiness schema (Adelaide SA, email only), sitemap and robots arrive
+  in step 4. The landing page's `noindex` already left with the compare
+  board.
 - **Australian English.** Adelaide named explicitly, in copy and in metadata.
 
 ## Brand commitments
@@ -129,10 +161,11 @@ the classical attempts, and supplied three modern reference sites instead. The
 brief that replaced the old one, in their words: clean enough to get up and
 running, professional, not too fancy.
 
-The live build here is **three modern directions, one after each reference**,
-compared side by side and flicked through. All three carry identical product
-facts, the same offer and the same form; what varies is ground, density,
-structure and one signature mechanic each.
+The comparison build was **three modern directions, one after each
+reference**, compared side by side and flicked through. All three carried
+identical product facts, the same offer and the same form; what varied was
+ground, density, structure and one signature mechanic each. Meridian won and
+is now alone at `/`; the notes below record what the three were.
 
 - **`/1` — Meridian. THE CHOSEN ONE.** The studio, after Dali. Ultramarine,
   verdigris action, headline "Built to be seen." with one word in the accent.
@@ -156,11 +189,14 @@ structure and one signature mechanic each.
   did before: two of the three are carried by scroll mechanics that do not read
   honestly in a shrunken panel.
 
-**Decided:** Meridian ships. What is still open is only the cleanup — Plinth
-and Lattice, their form skins, tokens, motion gestures and display faces come
-out in one commit along with the board and the switcher, and Meridian moves to
-`/`. `DESIGN.md` lists exactly what each deletion takes with it. They are being
-kept alive for now so the user can still flick back and compare.
+**Decided and DONE:** Meridian shipped. The cleanup happened on branch
+`site/meridian` (2026-08-14): Plinth, Lattice, their form skins, tokens,
+motion gestures, display faces, the board and the switcher all came out in
+the consolidation commit, and Meridian moved to `/`. The pill nav grew the
+site's page navigation — a Services disclosure dropdown, Process and About
+links, and a real mobile menu sheet — and the footer became a site footer
+with link groups. `design/modern-three` still holds the three-direction
+comparison if it is ever wanted again.
 
 **Meridian's hero image has landed.** Generated in Higgsfield
 (`nano_banana_pro`, image-to-image off an authored control drawing) and living
@@ -180,10 +216,9 @@ slots; they are being deleted, so they will not be filled.
   hero gained a picture. The two were designed against a hero that was type on
   an empty ground.
 
-**Unratified copy.** Two commitments in `content/site.ts` are not granted
-anywhere in this document and predate the current build: the reply time
-("within one business day", used in the form body and the success panel) and
-the delivery estimates ("a couple of weeks", "four to six") in the FAQ. They
-are operational promises rather than invented proof, so they have been left as
-written rather than quietly softened — but they need the owner to confirm them
-or they need to change.
+**Ratified copy.** The two operational promises in `content/site.ts` — the
+reply time ("within one business day", in the form body and the success
+panel) and the delivery estimates ("a couple of weeks", "four to six") in the
+FAQ — were put to the owner directly on 2026-08-14 and CONFIRMED AS WRITTEN.
+They are commitments now, and they may carry into the service and process
+pages.

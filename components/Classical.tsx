@@ -1,12 +1,12 @@
 /**
- * The one drawing system all three directions share.
+ * The drawing system.
  *
  * The user's own taste is Greco-Roman, and their instruction was to weave some
  * of it in only if it could be done fast. So it is PARAMETRIC GEOMETRY, not
  * illustration: three primitives — an arcade, a run of fluting, a cornice —
  * each generated from a couple of numbers, each a handful of strokes. There is
  * no artwork in this repo to maintain, nothing to re-export when a token
- * moves, and every line takes its colour from the direction it is drawn on.
+ * moves, and every line takes its colour from the ground it is drawn on.
  *
  * All three are `aria-hidden`. They carry no information a reader needs; a
  * screen reader announcing "arcade" would be describing the wallpaper.
@@ -167,50 +167,29 @@ export function Cornice({ className = "" }: { className?: string }) {
  * not labelled as a placeholder on the page; the dimensions are recorded in
  * DESIGN.md, which is where whoever supplies the image will look.
  *
- * Sizes, per direction: MERIDIAN 1600×900, PLINTH 1920×1080, LATTICE 1600×900.
- * All three are 16:9, so one generated image fits any of them.
+ * MERIDIAN's slot is 1600×900. It currently has NO consumer — the hero
+ * picture went into the hero section itself — but the component stays with
+ * the recorded aspect in `meridian.heroSlot`, so reinstating the plate is a
+ * one-line change rather than an excavation. The PLINTH and LATTICE skins
+ * left with their directions.
  */
 export function HeroSlot({
   w,
   h,
-  variant,
   className = "",
 }: {
   w: number;
   h: number;
-  variant: "meridian" | "plinth" | "lattice";
   className?: string;
 }) {
   const skin = {
-    meridian: {
-      frame: "bg-mer-2 ring-1 ring-mer-line",
-      wash:
-        "bg-[radial-gradient(60%_70%_at_50%_112%,var(--color-mer-accent)_0%,transparent_66%)] opacity-[0.36]",
-      line: "text-mer-accent/55",
-      flute: "text-mer-accent/12",
-      cornice: "text-mer-line-strong/50",
-    },
-    plinth: {
-      /* No ring: this is the direction with no chrome anywhere, and a border
-         here would be the one hairline on the page. The tonal step from the
-         ground is the frame. */
-      frame: "bg-pli-2",
-      wash:
-        "bg-[radial-gradient(70%_80%_at_50%_115%,var(--color-pli-accent)_0%,transparent_62%)] opacity-[0.24]",
-      line: "text-pli-ink/45",
-      flute: "text-pli-ink/10",
-      cornice: "text-pli-ink/25",
-    },
-    lattice: {
-      frame:
-        "bg-lat-2 ring-1 ring-lat-line rounded-xl shadow-[0_24px_60px_-30px_rgb(11_15_26/0.35)]",
-      wash:
-        "bg-[radial-gradient(60%_75%_at_50%_112%,var(--color-lat-accent)_0%,transparent_64%)] opacity-[0.22]",
-      line: "text-lat-accent/45",
-      flute: "text-lat-accent/12",
-      cornice: "text-lat-line-strong/45",
-    },
-  }[variant];
+    frame: "bg-mer-2 ring-1 ring-mer-line",
+    wash:
+      "bg-[radial-gradient(60%_70%_at_50%_112%,var(--color-mer-accent)_0%,transparent_66%)] opacity-[0.36]",
+    line: "text-mer-accent/55",
+    flute: "text-mer-accent/12",
+    cornice: "text-mer-line-strong/50",
+  };
 
   /*
     COMPOSED, not decorated. The first build put one small arcade at the foot

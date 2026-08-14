@@ -158,7 +158,7 @@ export function FontSwitch() {
   return (
     <aside
       aria-label="Heading face review"
-      className="fixed right-3 bottom-[calc(var(--switch-bar)+0.75rem)] z-[60] w-[16.5rem] rounded-2xl border border-white/15 bg-[#060d22]/92 p-3 text-mer-ink shadow-2xl backdrop-blur-md sm:right-5"
+      className="fixed right-3 bottom-3 z-[60] w-[16.5rem] rounded-2xl border border-white/15 bg-[#060d22]/92 p-3 text-mer-ink shadow-2xl backdrop-blur-md sm:right-5"
     >
       <p className="flex items-baseline justify-between font-schibsted text-[11px] tracking-[0.16em] text-white/45 uppercase">
         Heading face

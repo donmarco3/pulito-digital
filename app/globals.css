@@ -1,34 +1,23 @@
 @import "tailwindcss";
 
 /*
-  Pulito Digital — three modern directions, compared side by side.
+  Pulito Digital — MERIDIAN, the direction that shipped.
 
-  This replaces the classical/photographic world entirely. The user supplied
-  three reference sites (daliagents.com, the Omega agency template, the Notus
-  agent-marketing template) and asked for one direction after each. What they
-  share is a modern grotesk at scale, real motion, and tight component craft.
-  What they do NOT share is ground, density or shape language, and that is the
-  comparison:
+  It was one of three modern directions compared side by side (PLINTH and
+  LATTICE, both in git history), each built after one of the user's three
+  reference sites. MERIDIAN — after Dali — won, and the site is now being
+  expanded from one landing page into a proper multi-page site in its system.
 
-  - 1 MERIDIAN — after Dali. Deep blue, sparse, institutional. Sharp corners,
-    a fixed section rail, and the section you are reading is the only one at
-    full strength.
-  - 2 PLINTH   — after Omega. Warm light, no chrome at all: no cards, no
-    borders, no shadows. Bold type and air do the whole job. Pill nav.
-  - 3 LATTICE  — after Notus, in its LIGHT mode, which is the mode the user was
-    looking at. Cool white, blue-violet, a ruled grid, and the densest page of
-    the three.
+  The world in one breath: ultramarine ground, a lot of air, hairline rules
+  between everything, a verdigris action, and one shape rule — ACTIONS ARE
+  PILLS, STRUCTURE IS SQUARE. The nav and every button are pills because a
+  square control inside a pill bar reads as an oversight; everything that
+  holds content keeps radius 0. Elevation is one soft shadow, on the nav
+  furniture when it floats.
 
-  SHAPE IS A DIRECTION VARIABLE, not a house rule. MERIDIAN is square
-  (radius 0), PLINTH is pill (the nav and the actions, nothing else, because it
-  has no other chrome), LATTICE is soft-rectangular (bento cells at 0.75rem).
-  Three grounds, three shape languages, three densities — so the comparison is
-  between three kinds of page and not three palettes.
-
-  The one thing all three inherit is the drawing: hairline geometry taken from
-  classical architecture — an arcade, a run of fluting, a cornice rule. It is
-  the user's own taste, kept as line-work only. No marble, no photography, no
-  serif display face; the structure is classical, the surface is modern.
+  The classical world survives as weather only: the hero's generated arcade
+  picture, and the hairline primitives in `components/Classical.tsx`. No
+  marble, no photography beyond that one illustration.
 */
 
 @theme {
@@ -114,59 +103,22 @@
   */
   --color-mer-alert: #ffb3a7;
 
-  /* ----------------------------------------------------------- 2 — PLINTH */
-  /* Warm, but not cream: cream plus a serif is the default this whole build is
-     avoiding. This is a warm GREY-white under a bold grotesk, which is a
-     printer's white rather than a stationery white. */
-  --color-pli: #f6f4ef; /* ground */
-  --color-pli-2: #ebe7de; /* recessed bands */
-  --color-pli-3: #14130f; /* the inverted band and footer */
-  --color-pli-line: #d8d2c6; /* decorative hairline */
-  --color-pli-line-strong: #6b6558; /* 4.5:1 — field borders */
-  --color-pli-ink: #14130f; /* 16.1:1 */
-  --color-pli-ink-soft: #55504a; /* 6.6:1 */
-  --color-pli-accent: #b93a16; /* 5.2:1 on ground. The action, and links */
-  --color-pli-accent-deep: #90290c; /* hover and pressed */
-
-  /* ---------------------------------------------------------- 3 — LATTICE */
-  --color-lat: #ffffff; /* ground */
-  --color-lat-2: #f4f6fa; /* recessed bands and cell fills */
-  --color-lat-3: #0b0f1a; /* the inverted CTA band and footer */
-  --color-lat-line: #e2e6ee; /* cell borders and the ruled grid */
-  --color-lat-line-strong: #737a88; /* 4.3:1 — field borders */
-  --color-lat-ink: #0b0f1a; /* 18.9:1 */
-  --color-lat-ink-soft: #545c6b; /* 6.7:1 */
-  --color-lat-accent: #4634d9; /* 7.6:1. The action, marks, active states */
-  --color-lat-accent-deep: #3628b0; /* hover and pressed */
-  --color-lat-accent-soft: #eeebfd; /* tinted fills behind accent text */
-
   /* Shared: what sits on a dark fill, and what sits on a light one. */
   --color-bone: #f7f7f5;
   --color-obsidian: #0b0b0e;
 
   /* ------------------------------------------------------------------ type */
   /*
-    Three display faces, two shared workhorses, loaded at the root rather than
-    per route — the compare board puts all three on one screen at once, and a
-    route-scoped face arrives late into its panel there, so the comparison
-    would be of three fallbacks. Two thirds of this comes out of layout.tsx on
-    the day a direction is chosen.
+    One display face and two workhorses. PLINTH's Archivo and LATTICE's
+    Manrope left with their directions.
 
-    None of the three is a system stack and none is one of the faces that turn
-    up by default in generated work. Each was picked for what it does at
-    display size on its own ground:
-
-    - Schibsted Grotesk — MERIDIAN. A newspaper grotesk: editorial, faintly
-      warm, and it holds authority on a dark ground without shouting.
-    - Archivo — PLINTH. At 700–800 in tight negative tracking it is the only
-      one of the three with real poster weight, which is the whole of a page
-      that has no cards, no borders and no shadows to lean on.
-    - Manrope — LATTICE. Semi-geometric, even colour, engineered-looking at
-      small sizes, which is what a dense ruled page needs.
+    - Schibsted Grotesk — the display face pending the review below. A
+      newspaper grotesk: editorial, faintly warm, and it holds authority on a
+      dark ground without shouting.
+    - Geist — running text. Geist Mono — measurement only (process numerals,
+      contact-row labels), never a costume.
   */
   --font-schibsted: var(--font-schibsted-src), ui-sans-serif, system-ui, sans-serif;
-  --font-archivo: var(--font-archivo-src), ui-sans-serif, system-ui, sans-serif;
-  --font-manrope: var(--font-manrope-src), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
@@ -222,20 +174,12 @@
   html {
     scroll-behavior: smooth;
     color-scheme: light;
-
-    /*
-      The height of the review switcher bar. Every direction reserves it as
-      bottom padding and every anchor clears it, because the bar is fixed over
-      pages it is not part of. It leaves with the scaffolding.
-    */
-    --switch-bar: 2.75rem;
   }
 
-  /* Anchor targets clear the sticky header at the top and the review bar at
-     the foot, so a jumped-to section is never half under either. */
+  /* Anchor targets clear the sticky header, so a jumped-to section is never
+     half under it. */
   [id] {
     scroll-margin-top: 6rem;
-    scroll-margin-bottom: calc(var(--switch-bar) + 1rem);
   }
 
   body {
@@ -281,10 +225,9 @@
   ---------------------------------------------------------------------------
   GROUNDS
 
-  Each direction's background field. All three are painted in CSS rather than
-  shipped as images: they have to survive a hero image being dropped in on top
-  of them later, and a file would have to be re-exported every time a token
-  moved.
+  Painted in CSS rather than shipped as images: they have to survive the hero
+  picture sitting on top of them, and a file would have to be re-exported
+  every time a token moved.
   ---------------------------------------------------------------------------
 */
 
@@ -329,19 +272,6 @@
       color-mix(in oklab, #ffffff 14%, transparent) 0%,
       transparent 78%
     );
-}
-
-/*
-  LATTICE's ruled field: the grid the user picked out on Notus. Two repeating
-  gradients, masked so it fades rather than stopping at an edge — an
-  unfaded grid ends in a hard line across the page, which reads as a bug.
-*/
-@utility lat-grid {
-  background-image:
-    linear-gradient(to right, var(--color-lat-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--color-lat-line) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(90% 70% at 50% 25%, #000 20%, transparent 80%);
 }
 
 /*
@@ -414,14 +344,11 @@
 }
 
 /*
-  One entrance per DIRECTION, not one for the whole build. Three pages whose
-  sections all arrive identically would have erased motion as an axis the
-  comparison could turn on, and motion is most of what the user liked about
-  the references.
-
-  MERIDIAN lifts and clears, the way its sections come up out of the dim.
-  PLINTH is heavy type settling under its own weight. LATTICE assembles — it
-  arrives slightly apart and snaps onto the grid.
+  The site's one entrance: sections lift and CLEAR — rise plus de-blur, the
+  way they come up out of the dim. It was one of three per-direction
+  entrances (PLINTH settled, LATTICE assembled; both in git history), and the
+  `motion-clear` scope survives the comparison so a page opts into the
+  entrance at its root rather than the animation being ambient.
 */
 @keyframes reveal-clear {
   from {
@@ -436,36 +363,8 @@
   }
 }
 
-@keyframes reveal-settle {
-  from {
-    opacity: 0.3;
-    transform: translate3d(0, -20px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes reveal-assemble {
-  from {
-    opacity: 0.3;
-    transform: translate3d(0, 18px, 0) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 .motion-clear .reveal {
   animation-name: reveal-clear;
-}
-.motion-settle .reveal {
-  animation-name: reveal-settle;
-}
-.motion-assemble .reveal {
-  animation-name: reveal-assemble;
 }
 
 /*

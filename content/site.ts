@@ -1,18 +1,16 @@
 /**
  * Every visible string lives here. Nothing may hard-code copy in a page.
  *
- * The file has two halves, and the split is the point.
+ * The file has two halves, and the split survived the comparison that created
+ * it.
  *
- * `site` is PRODUCT TRUTH: the services, the capabilities, the process, the
- * offer, the figures, the questions people actually ask, the form. It is
- * identical on all three directions, because those are facts about the
- * business and a comparison that let them drift would be comparing two things
- * at once.
+ * `site` is PRODUCT TRUTH: the services, the process, the offer, the questions
+ * people actually ask, the form. These are facts about the business, and every
+ * page of the site draws on the same ones.
  *
- * `directions` is VOICE: the headline, the way the problem is put, what the
- * sections are called. The user asked for creativity and flexibility in the
- * hero copy specifically, so the three headlines say the same true thing in
- * three registers — but no direction gets a fact the others are denied.
+ * `meridian` is VOICE: the headline, the way the problem is put, what the
+ * sections are called. It was one of three competing voices (`directions` in
+ * git history); MERIDIAN won and the other two were deleted with their pages.
  *
  * Standing constraints, from PRODUCT.md, that bind both halves:
  * no testimonials, logos, ratings or client numbers; no pricing in any form;
@@ -23,22 +21,8 @@ export const site = {
   name: "Pulito Digital",
   contactEmail: "hello@pulitodigital.com.au",
   location: "Adelaide, South Australia",
-  /**
-   * PLACEHOLDER — NOT A REAL NUMBER, and deliberately unmistakable.
-   *
-   * The failure mode of a plausible-looking fake is that nobody notices it: it
-   * ships, and the one action this audience is most likely to take on a phone
-   * rings a stranger. The X's are the point. Do not tidy them into something
-   * that reads like a number.
-   *
-   * TODO: replace with the real number, then make the enquiry row a `tel:`
-   * link — the note beside it in `app/1/page.tsx` says exactly what to change.
-   * It renders as plain text until then, because `tel:+61 4XX XXX XXX` dials
-   * nothing.
-   */
-  phone: "+61 4XX XXX XXX",
 
-  /** One CTA label, used in the nav, the hero and the footer of every world. */
+  /** One CTA label, used in the nav, the hero and the footer. */
   cta: "Get a free preview",
   /** The quieter second action, which scrolls rather than converts. */
   ctaSecondary: "See how it works",
@@ -56,6 +40,10 @@ export const site = {
    * answers "we already have a website" directly, because that is still true
    * and still the most common way a job starts.
    *
+   * `slug` is the service's own page under /services. The nav dropdown, the
+   * showcase's "more" links and the routes all read it from here, so a rename
+   * cannot strand a link.
+   *
    * Each service carries three `points`. Every one of them is a sentence that
    * already existed in this file, either in the service's own body or in the
    * capability list that used to sit below it, moved to the service it
@@ -64,6 +52,7 @@ export const site = {
   services: [
     {
       code: "01",
+      slug: "web-design",
       title: "Web design",
       body: "A site built around the way high-end clients actually buy: the work first, the process second, an enquiry within reach on every screen. If you already have a site, the content and the search rankings carry across — we replace the shopfront, not the business.",
       points: [
@@ -83,6 +72,7 @@ export const site = {
     },
     {
       code: "02",
+      slug: "seo",
       title: "SEO",
       body: "Getting found for the searches worth money in Adelaide, and being the one they call rather than the one they scroll past.",
       points: [
@@ -102,6 +92,7 @@ export const site = {
     },
     {
       code: "03",
+      slug: "ai-automation",
       title: "AI automation",
       body: "Enquiries answered in minutes instead of days, and nothing falling through the gap between the site visit and the quote.",
       points: [
@@ -144,22 +135,6 @@ export const site = {
     headline: "See it on your own site first",
     body: "Send through your website and we will redesign the homepage as a working preview, built with your own photos and copy. No obligation, no pitch deck. If you like it, we talk. If you don't, you keep the preview.",
   },
-
-  /**
-   * The figures band.
-   *
-   * The user liked the metrics block on one of the references and chose to
-   * spend it on the offer rather than on results — which is the only honest
-   * option available, because the business is new and has no results to
-   * report. Every one of these four is a commitment already made in words
-   * elsewhere on the page; none is a measurement, and none implies a client.
-   */
-  figures: [
-    { value: "$0", label: "What the preview costs you" },
-    { value: "0", label: "Lock-in contracts, ever" },
-    { value: "100%", label: "Yours: domain, hosting and code" },
-    { value: "1 day", label: "Until we come back to you" },
-  ],
 
   faqs: [
     {
@@ -205,150 +180,99 @@ export const site = {
   },
 } as const;
 
-export type DirectionKey = "1" | "2" | "3";
+export type Service = (typeof site.services)[number];
 
 /**
- * Per-direction voice, plus the one piece of layout data that belongs with the
- * copy rather than in the page: the hero image slot's aspect.
+ * The site's voice — MERIDIAN's, the direction that won the three-way
+ * comparison recorded in git history and in DESIGN.md.
  *
- * `heroSlot` is here so the three ratios are recorded in one readable place
- * for whoever generates the images. The page reads the ratio from this object,
- * so changing it here changes the reserved box — there is no second number to
- * keep in step.
+ * It keeps its name rather than dissolving into `site`, because the split
+ * between fact and voice is what kept three competing pages honest, and it
+ * keeps a one-voice site honest for free.
  */
-export const directions = {
-  "1": {
-    name: "Meridian",
-    tagline: "The studio",
-    /** What the page says it is, in the running header. */
-    eyebrow: "Pulito Digital — Adelaide",
-    /*
-      The user's own line, carried over from the build they liked and shortened
-      from "Built to be looked at." at their request. It is a better headline
-      than the one it replaces: three words, about the reader's work rather
-      than about the offer, and it lands before the reader has decided whether
-      to keep reading. The guarantee moves into the subhead, where it still
-      does the persuading.
-    */
-    headline: "Built to be seen.",
-    headlineLines: ["Built to be seen."],
-    /*
-      The one word in the headline set in the accent, at the user's request.
+export const meridian = {
+  /** What the page says it is, in the running header. */
+  eyebrow: "Pulito Digital — Adelaide",
+  /*
+    The user's own line, carried over from the build they liked and shortened
+    from "Built to be looked at." at their request. Three words, about the
+    reader's work rather than about the offer, and it lands before the reader
+    has decided whether to keep reading. The guarantee moves into the subhead,
+    where it still does the persuading.
+  */
+  headline: "Built to be seen.",
+  /*
+    The one word in the headline set in the accent, at the user's request.
 
-      It lives here rather than as markup in the page because the headline stays
-      ONE string — the word is located inside it at render time. Authoring the
-      emphasis as JSX would fork the line into fragments, and splitting a
-      headline into pieces is a decision every earlier build came to regret the
-      moment the copy needed editing.
+    It lives here rather than as markup in the page because the headline stays
+    ONE string — the word is located inside it at render time. Authoring the
+    emphasis as JSX would fork the line into fragments, and splitting a
+    headline into pieces is a decision every earlier build came to regret the
+    moment the copy needed editing.
 
-      "seen" and not "seen." — the full stop closes the sentence, not the word,
-      and colouring it drags a coloured dot onto the end of the line.
-    */
-    headlineAccent: "seen",
-    subhead:
-      "Web, search and automation for the trades whose work already sets the standard — starting with your own homepage, redesigned as a working preview before you pay us anything.",
-    problem: {
-      headline: "Your last build was worth more than your whole website.",
-      body: "Premium work sells on how it looks. Then the enquiry lands on a site built years ago on a template, slow on a phone, with a gallery that undersells the job. The client has already compared you to three others before you pick up. The work is the easy part. The first impression is the leak.",
-    },
-    sections: {
-      offer: "The offer",
-      services: "What we do",
-      process: "How the work runs",
-      faq: "Questions we get asked",
-      enquiry: "Enquiry",
-    },
-    /*
-      Row labels on the enquiry section's contact list. MERIDIAN only, so it is
-      optional in the same way `headlineAccent` is: it is the one direction
-      carrying the list, and PLINTH and LATTICE are being deleted. A direction
-      without it renders the plain mailto it renders today, so this staying
-      optional costs nothing and forces nothing on the other two.
-
-      They sit in `directions` rather than in `site` because they are furniture
-      — what this world calls the things it shows — while the values behind
-      them, the address and the number and the region, are facts about the
-      business and live in `site`.
-
-      "Serving" rather than "Address": there is no shopfront to visit, and a
-      reader on a building site is asking whether these people cover him, not
-      where to post a letter.
-    */
-    contactLabels: {
-      email: "Email",
-      phone: "Phone",
-      location: "Serving",
-    },
-    heroSlot: { w: 1600, h: 900 },
+    "seen" and not "seen." — the full stop closes the sentence, not the word,
+    and colouring it drags a coloured dot onto the end of the line.
+  */
+  headlineAccent: "seen",
+  subhead:
+    "Web, search and automation for the trades whose work already sets the standard — starting with your own homepage, redesigned as a working preview before you pay us anything.",
+  problem: {
+    headline: "Your last build was worth more than your whole website.",
+    body: "Premium work sells on how it looks. Then the enquiry lands on a site built years ago on a template, slow on a phone, with a gallery that undersells the job. The client has already compared you to three others before you pick up. The work is the easy part. The first impression is the leak.",
   },
-  "2": {
-    name: "Plinth",
-    tagline: "The agency",
-    eyebrow: "Adelaide, South Australia",
-    headline: "See it built before you buy it.",
-    headlineLines: ["See it built", "before you buy it."],
-    subhead:
-      "Send us your website and we redesign the homepage as a working preview. No obligation, no pitch deck, and you keep it either way.",
-    problem: {
-      headline: "The work is not the problem. The window is.",
-      body: "You spend months on a kitchen that photographs like furniture, and it arrives online as four compressed thumbnails on a page that takes six seconds to load. Nobody doubts the craft. They never get close enough to see it.",
-    },
-    sections: {
-      offer: "The offer",
-      services: "What we do",
-      process: "How a job runs",
-      faq: "Before you ask",
-      enquiry: "Start here",
-    },
-    heroSlot: { w: 1920, h: 1080 },
+  sections: {
+    offer: "The offer",
+    services: "What we do",
+    process: "How the work runs",
+    faq: "Questions we get asked",
+    enquiry: "Enquiry",
   },
-  "3": {
-    name: "Lattice",
-    tagline: "The product page",
-    eyebrow: "Pulito Digital · Adelaide SA · Web, search, automation",
-    headline: "Your homepage, redesigned. Before you commit to anything.",
-    headlineLines: ["Your homepage, redesigned.", "Before you commit to anything."],
-    subhead:
-      "Web design, redesign, SEO and AI automation for premium building and renovation trades. Start with a free working preview of your own homepage and decide from there.",
-    problem: {
-      headline: "Where the enquiry actually leaks.",
-      body: "It is rarely the trade and it is rarely the price. It is a slow page on a phone, a gallery that undersells the job, and a form nobody checks. Three fixable things standing between the work and the quote.",
-    },
-    sections: {
-      offer: "The offer",
-      services: "What we do",
-      process: "How it works",
-      faq: "Frequently asked",
-      enquiry: "Get your preview",
-    },
-    heroSlot: { w: 1600, h: 900 },
+  /*
+    Row labels on the enquiry section's contact list.
+
+    They sit here rather than in `site` because they are furniture — what this
+    world calls the things it shows — while the values behind them, the address
+    and the region, are facts about the business and live in `site`.
+
+    There is no phone row. The business publishes an email address and nothing
+    else, confirmed by the owner on 2026-08-14 — the placeholder number that
+    used to sit here is in git history if a real one ever lands.
+
+    "Serving" rather than "Address": there is no shopfront to visit, and a
+    reader on a building site is asking whether these people cover him, not
+    where to post a letter.
+  */
+  contactLabels: {
+    email: "Email",
+    location: "Serving",
   },
-} as const satisfies Record<
-  DirectionKey,
-  {
-    name: string;
-    tagline: string;
-    eyebrow: string;
-    headline: string;
-    headlineLines: readonly string[];
-    /*
-      MERIDIAN only, so it is optional: it is the one direction whose headline
-      sets a word in the accent, and PLINTH and LATTICE are being deleted. The
-      page falls back to the whole line unaccented when it is absent, so this
-      staying optional costs nothing and forces nothing on the other two.
-    */
-    headlineAccent?: string;
-    subhead: string;
-    problem: { headline: string; body: string };
-    sections: {
-      offer: string;
-      services: string;
-      process: string;
-      faq: string;
-      enquiry: string;
-    };
-    /* MERIDIAN only, and optional for the same reason `headlineAccent` is. */
-    contactLabels?: { email: string; phone: string; location: string };
-    heroSlot: { w: number; h: number };
-  }
->;
+  /*
+    The aspect of the hero image slot that used to sit between the hero and
+    the body. The slot is gone from the page — the picture went INTO the hero
+    instead — but the recorded aspect stays so reinstating the plate is a
+    one-line change rather than an excavation. See DESIGN.md.
+  */
+  heroSlot: { w: 1600, h: 900 },
+
+  /*
+    Inner-page voice. FIRST-DRAFT SCAFFOLDING from the consolidation commit:
+    these pages exist so the new nav has real destinations, and each gets its
+    own design-and-copy pass in a later milestone. The facts are all lifted
+    from `site` and PRODUCT.md; nothing here is a new claim.
+  */
+  pages: {
+    process: {
+      title: "How the work runs",
+      lede: "Four steps from first look to handover — and you see the design before you commit to anything. This is the same sequence whether the job is a redesign or a site built from nothing.",
+    },
+    about: {
+      title: "The studio",
+      lede: "Pulito is a digital studio in Adelaide, built for the renovation trades whose work already sets the standard.",
+      body: [
+        "We do three things: web design, SEO and AI automation, for kitchen designers and builders, bathroom and whole-home renovators, and high-end builders across Adelaide and regional South Australia.",
+        "The businesses we work with sell on craftsmanship, and most of them are undersold online — premium work presented on a template site that is slow on a phone and looks nothing like the standard of the builds. We exist to close that gap, and we prove it before you pay anything: your own homepage, redesigned as a working preview with your photos and your copy.",
+        "What we build is yours. The domain, the hosting and the code sit in your name from day one, there are no packages and no monthly lock-in, and leaving us never means losing your website.",
+      ],
+    },
+  },
+} as const;
