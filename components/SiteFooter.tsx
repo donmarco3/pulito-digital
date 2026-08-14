@@ -67,24 +67,32 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/#enquiry"
+                  href="/contact"
                   className="text-[14.5px] text-mer-ink transition-colors hover:text-mer-accent"
                 >
-                  {site.cta}
+                  Contact
                 </Link>
               </li>
             </ul>
           </nav>
         </div>
 
-        <p className="mt-12 border-t border-mer-line pt-6 text-[14.5px] text-mer-ink-soft">
-          {site.location} ·{" "}
-          <a
-            href={`mailto:${site.contactEmail}`}
-            className="text-mer-ink transition-colors hover:text-mer-accent"
+        <p className="mt-12 flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-mer-line pt-6 text-[14.5px] text-mer-ink-soft">
+          <span>
+            {site.location} ·{" "}
+            <a
+              href={`mailto:${site.contactEmail}`}
+              className="text-mer-ink transition-colors hover:text-mer-accent"
+            >
+              {site.contactEmail}
+            </a>
+          </span>
+          <Link
+            href="/privacy"
+            className="transition-colors hover:text-mer-ink"
           >
-            {site.contactEmail}
-          </a>
+            Privacy
+          </Link>
         </p>
       </div>
     </footer>

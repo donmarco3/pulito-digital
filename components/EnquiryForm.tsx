@@ -187,6 +187,22 @@ export function EnquiryForm({ skin }: { skin: FormSkin }) {
         <input id={id("company")} name="company" tabIndex={-1} autoComplete="off" />
       </div>
 
+      {/*
+        Delivery failure. `role="alert"` because the person just acted and
+        the outcome is the one thing they need announced; the mailto is the
+        recovery, in the same sentence, not a separate hunt. The fields keep
+        their values — nothing they typed is lost — and the button is live
+        again for a retry.
+      */}
+      {status === "failed" && (
+        <p role="alert" className={skin.error}>
+          {site.form.failBody}{" "}
+          <a href={`mailto:${site.contactEmail}`} className="underline">
+            {site.contactEmail}
+          </a>
+        </p>
+      )}
+
       <div className={skin.buttonWrap ?? ""}>
         <button type="submit" disabled={status === "pending"} className={skin.button}>
           {status === "pending" ? "Sending" : site.cta}

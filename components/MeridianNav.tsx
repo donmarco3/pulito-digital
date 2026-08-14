@@ -231,8 +231,12 @@ export function MeridianNav() {
         </Link>
 
         <div className="flex items-center justify-end gap-2.5">
+          {/* The pill's destination is /contact on every page — one
+              consistent answer to "where do I talk to them", now that the
+              enquiry has its own address. In-page CTAs still scroll to
+              their local forms. */}
           <Link
-            href="/#enquiry"
+            href="/contact"
             className={`rounded-full bg-mer-accent font-schibsted font-semibold whitespace-nowrap text-mer-3 transition-all duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-mer-accent-deep ${
               hardened ? "px-4 py-2 text-[13px]" : "px-5 py-2.5 text-[13.5px]"
             }`}

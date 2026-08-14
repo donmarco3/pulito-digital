@@ -36,14 +36,18 @@ recorded interview. One conversion event: the enquiry form.
 - `/process` — the free-preview mechanism step by step. With no proof allowed
   to exist, the way the work runs is the proof.
 - `/about` — the studio, never the founder.
-- `/contact` and `/privacy` — planned, not yet built. The privacy page is
-  required because the form goes real (below).
+- `/contact` — the enquiry with its own address: the form, the email, the
+  service area, nothing else. The nav pill's destination from every page.
+- `/privacy` — the plain-language notice the real form requires. Dated;
+  any change to what the build collects must change the notice and its
+  date together.
 
 Build sequence, agreed with the owner: (1) consolidation and nav — DONE;
 (2) the three service pages — DONE (the "one claim per room" structure,
 chosen at the milestone-2 review; each ends at its own enquiry form);
 (3) process + about — DONE (the deepened ladder and the mirror, chosen at
-the milestone-3 review); (4) contact + privacy + live form + SEO.
+the milestone-3 review); (4) contact + privacy + live form + SEO — DONE,
+except that the form's delivery key is the owner's to supply (above).
 
 ## Product truth
 
@@ -65,21 +69,26 @@ the milestone-3 review); (4) contact + privacy + live form + SEO.
 - **No proof exists yet.** The company is new. No testimonials, client logos,
   case studies, ratings or numbers may appear on the page, invented or implied.
   The offer and the process stand in for proof.
-- **The form is a demo, and its ending is decided.** It validates and
-  acknowledges locally, sends nothing. The owner chose (2026-08-14) to wire it
-  through a form-to-email service delivering to hello@pulitodigital.com.au in
-  build step 4, with a privacy page added in the same step. The owner supplies
-  the service's access key; it is not in the repo yet.
+- **The form is WIRED, awaiting one key.** `lib/leadForm.ts` submits to
+  Web3Forms, delivering to hello@pulitodigital.com.au, with a visible
+  failure state and a mailto recovery. It goes live the moment
+  `NEXT_PUBLIC_WEB3FORMS_KEY` lands in `.env.local` (see `.env.example`;
+  the owner gets the key at web3forms.com — two minutes, and the key is
+  public-safe by that service's design). UNTIL THEN the form falls back to
+  validate-and-acknowledge locally — the old demo behaviour — and warns in
+  the dev console. Do not announce the site as live while that fallback is
+  what a visitor gets.
 - **Contact is email only, confirmed.** Asked directly what the contact page
   and schema may carry, the owner said email only — no phone, no ABN, no
   street address. The placeholder phone number and its row on the enquiry
   list were REMOVED in the consolidation commit; git history has them if a
   real number ever lands.
-- **SEO posture: launch-ready and indexable.** The owner chose to build this
-  branch as the production site — `noindex` comes off, per-page metadata,
-  LocalBusiness schema (Adelaide SA, email only), sitemap and robots arrive
-  in step 4. The landing page's `noindex` already left with the compare
-  board.
+- **SEO posture: launch-ready and indexable — BUILT.** No `noindex`
+  anywhere; every page carries its own title and description;
+  `app/sitemap.ts` (routes fed from `site.services`) and `app/robots.ts`
+  serve; the ProfessionalService schema (Adelaide SA, email only) is in the
+  layout; the OG card is the hero's own bottom frame at 1200×630
+  (`public/img/og-arcade.jpg`).
 - **Australian English.** Adelaide named explicitly, in copy and in metadata.
 
 ## Brand commitments

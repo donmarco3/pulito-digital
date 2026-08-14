@@ -222,6 +222,9 @@ export const site = {
     successHeadline: "Thanks, that's come through",
     successBody:
       "We will be in touch within one business day. If it is urgent, email us directly.",
+    /* Shown only when the live submit fails; the mailto beside it is the
+       recovery, not decoration. */
+    failBody: "That didn't send. Email us directly instead —",
   },
 
   footer: {
@@ -350,6 +353,43 @@ export const meridian = {
       body: [
         "We do three things: web design, SEO and AI automation, for kitchen designers and builders, bathroom and whole-home renovators, and high-end builders across Adelaide and regional South Australia.",
         "The businesses we work with sell on craftsmanship, and most of them are undersold online — premium work presented on a template site that is slow on a phone and looks nothing like the standard of the builds. We exist to close that gap, and we prove it before you pay anything.",
+      ],
+    },
+    contact: {
+      title: "Talk to the studio",
+      lede: "Four fields, or a plain email — both reach the same desk, and both get an answer within one business day.",
+      /* The service area, said once in full. Granted by PRODUCT.md's
+         geography facts. */
+      area: "Adelaide and regional South Australia are home. Interstate is possible for design and build — we will be upfront if distance makes us the wrong fit.",
+    },
+    /*
+      The privacy notice exists because the form is real: it delivers what a
+      visitor types to the studio's email through Web3Forms. Plain language,
+      only claims that are true of this build — no analytics, no ad
+      tracking, no cookies of our own — and dated, so a change to any of
+      that has to change the date too.
+    */
+    privacy: {
+      title: "Privacy",
+      dated: "14 August 2026",
+      lede: "The short version: the enquiry form collects what you type into it, it reaches us as an email, and that is the only thing this site collects about you.",
+      sections: [
+        {
+          heading: "What we collect",
+          body: "The enquiry form asks for your name, your email address, your business website if you have one, and what you need. Nothing is collected until you press send, and the website field is optional.",
+        },
+        {
+          heading: "Where it goes",
+          body: "Submissions are delivered to hello@pulitodigital.com.au by Web3Forms, a form delivery service that processes the submission solely to deliver it to us. We do not run analytics, advertising trackers, or cookies of our own on this site.",
+        },
+        {
+          heading: "What we do with it",
+          body: "We use what you send to reply to your enquiry and, if you asked for one, to prepare your preview. We do not sell it, rent it, or share it with anyone else, and we keep correspondence only as long as the conversation needs.",
+        },
+        {
+          heading: "Your choices",
+          body: "Email us any time to ask what we hold about you, to correct it, or to have it deleted. We handle personal information in line with the Australian Privacy Principles.",
+        },
       ],
     },
   },

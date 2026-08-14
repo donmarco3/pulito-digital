@@ -68,6 +68,10 @@ export const metadata: Metadata = {
     siteName: "Pulito Digital",
     locale: "en_AU",
     type: "website",
+    /* The hero's own bottom frame, cut to 1200×630 (the crop recipe is in
+       git history with the milestone-4 commit). JPEG rather than WebP —
+       some share targets still refuse WebP cards. */
+    images: [{ url: "/img/og-arcade.jpg", width: 1200, height: 630 }],
   },
 };
 

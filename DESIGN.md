@@ -173,6 +173,20 @@ under a hairline. Deepest ground (`mer-3`), no cards, no icons.
   studio's answering granted fact in running text. Never the founder.
   Closes with the studio's plain facts on the recessed ground, then
   `CtaBand` — now that band's only consumer.
+- **Contact is the enquiry with its own address** — shaped directly, not
+  rolled, because the interview specified it precisely: the landing
+  enquiry section grown to a page (title + lede, then the words, the
+  Email/Serving rows and the service-area line left, the recessed form
+  panel right). It opens on the form because whoever lands here already
+  decided to talk: it is the nav pill's destination from every page, and
+  the footer's Contact link. In-page CTAs elsewhere still scroll to their
+  local forms.
+- **Privacy is the site's one Read surface, deliberately quiet**: no dim,
+  no rooms, no statements — one title, a mono "last updated" line, and
+  ruled running-text sections at 66ch. Copy lives in
+  `meridian.pages.privacy` under the rule that a change to what the build
+  collects changes the notice and its date together. Linked from the
+  footer's bottom line.
 
 ## The drawing system
 
@@ -266,8 +280,13 @@ that styles the form in one audited place). Square fields cut into the
 recessed panel, darker than their ground (a cut, not a card); pill submit;
 16px inputs everywhere because mobile Safari zooms on smaller and does not
 zoom back. Field borders 4.8:1, labels and errors 4.5:1+, no
-`focus:outline-none` anywhere. The demo submit and `lib/leadForm.ts` are
-unchanged; the real endpoint is a recorded plan (PRODUCT.md).
+`focus:outline-none` anywhere.
+
+**The submit is LIVE** (Web3Forms, key in `.env.local` — see PRODUCT.md
+for the key's status) with three ends: the success panel that takes focus,
+a `role="alert"` failure line in the error rose whose mailto IS the
+recovery (fields keep their values, the button re-arms), and a keyless
+fallback that acknowledges locally so review builds work end to end.
 
 The enquiry section's contact list has TWO rows — Email and Serving. The
 phone row was removed when the owner confirmed email-only contact; git
